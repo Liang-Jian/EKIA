@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>案例详情</title>
+    <style type="text/css">
+        {
+            text-align: left
+        }
+    </style>
+</head>
+
+<body>
+<div align="left">
+    <ul style="list-style: none">
+        <li>
+            <div align="center">
+                <b>案例编号:</b><span id="casecode">{{casecode}}</span>
+            </div>
+        </li>
+        <br/>
+        <li>
+            <b>正反例:</b><span id="caseProperty">{{caseProperty}}</span>
+        </li>
+        <li>
+            <b>案例名称:</b><span id="caseTitle">{{caseTitle}}</span>
+        </li>
+        <li>
+            <b>操作步骤:</b><span id="executeStep">{{executeStep}}</span>
+        </li>
+        <li>
+            <b>预期结果:</b><span id="expectResult">{{expectResult}}</span>
+        </li>
+        <li>
+            <b>执行时间:</b><span id="finishTime">{{finishTime}}</span>
+        </li>
+        <li>
+            <b>执行状态:</b><span id="executeStatus">{{executeStatus}}</span>
+        </li>
+        <br/>
+
+            <li>
+                <b>{{apiName}}</b><br/>
+                <b>请求报文:</b><br/>
+                <textarea rows="20" cols="220" id="reqString">{{reqString}}</textarea>
+            </li>
+            <br/>
+            <li>
+                <b>{{apiName}}</b><br/>
+                <b>返回报文:</b><br/>
+                <textarea rows="20" cols="220" id="respString">{{responseString}}</textarea>
+            </li>
+            <li>
+                <b>{{apiName}}</b><br/>
+                <b>接口返回数据:</b>
+                <table border="1" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th bgcolor="aqua">数据名</th>
+                        <th bgcolor="aqua">数据值</th>
+                    </tr>
+                    </thead>
+
+                </table>
+            </li>
+
+            <br/>
+
+        <br/>
+        <li>
+            <b>流程数据:</b>
+            <table border="1" cellspacing="0">
+                <thead>
+                <tr>
+                    <th bgcolor="aqua">数据名</th>
+                    <th bgcolor="aqua">数据值</th>
+                </tr>
+                </thead>
+
+            </table>
+        </li>
+        <br/>
+    </ul>
+</div>
+</body>
+</html>

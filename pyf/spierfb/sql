@@ -1,0 +1,42 @@
+j1
+#####
+j1小球率 6/9
+select * from j8 where level ='A' and round=1 and (zj+kj<2.5);
+j1大于9个
+select * from j8 where (zc+kc>9) and level ='A';
+j1主场不败
+select * from j8
+主场战绩最好的队伍(B)
+select zhu,count(*) from j8 where level ='B' and (zj-kj>=0) group by zhu;
+ where (zj-kj>=0) and level ='A';
+j1平率
+select * from j8 where (zj !=kj) and level ='A';
+j1进球落后和角球大小的关系
+select zhu,ke,zj,kj,zc,kc,(zj-kj>=0)=(zc-kc<=0) as s from j8 where  level ='A';
+
+
+主场成绩 && 客场成绩
+select * from j7 where level='A' and zhu='大宮' order by zhu;
+select * from j7 where level='A' and ke='大宮' order by ke;
+
+
+客场比赛总场次
+select * from j7 where level='A' and ke='大宮'  order by ke;
+
+客场比赛不输球场次
+select *,zhu from j7 where level='A' and ke='大宮' and (kj-zj>=0) order by ke;
+
+进球数，客队，总进球
+select zhu,zj,ke,kj, (zj+kj) as tt from j7 where  zhu='仙台' order by zhu;
+
+主场战绩最好的队伍(A)
+select zhu,count(*) from j8 where level ='A' and (zj-kj>=0) group by zhu;
+
+客场战绩最好的队伍(B)
+select zhu,zj,ke,kj,count(*) from j8 where level ='B' and (zj-kj>=0) group by zhu;
+
+进球数小于2.5个的队伍
+select zhu,count(*) from j8 where level='B' and (zj+kj<2.5) group  by zhu;
+
+角球大于７个的队伍
+select zhu,count(*) from j8 where level='B' and (zc+kc>7) group by zhu;

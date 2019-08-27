@@ -1,0 +1,18 @@
+{
+"requestId":"rdip000001",
+"requestTime":"2019-05-28 11:32:32",
+"sysName":"jcpt",
+"sysCode":"jcpt",
+"IP":"10.10.94.23",
+"orgCode":"jigoubianhao",
+"departCode":"bumenbiaohao",
+"userName":"userName",
+"repeatSign":"0",
+"requestJson":{},
+"dataflowCode":"{{dataflowCode}}",
+"fields":[],
+"params":{
+    "biz_code":"address_verify",
+    "contact_address":"浙江省杭州市海创园"
+    }
+}
