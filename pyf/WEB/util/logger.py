@@ -6,7 +6,7 @@ import os
 
 def logconfig():
 
-    logger = logging.getLogger("UI")
+    logger = logging.getLogger("j0ker")
     # 全局默认级别WARNING
     logger.setLevel(logging.DEBUG)
 

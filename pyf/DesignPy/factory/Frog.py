@@ -1,5 +1,5 @@
 
-#page 31 code example
+
 
 class Frog:
     def __init__(self,name):

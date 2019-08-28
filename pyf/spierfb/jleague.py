@@ -42,7 +42,7 @@ class J:
     k_ke_css = "body > div.content.clearfix > div.main > section > section.matchVsBox.boxCenterTime > ul.leagScoreColumn > li:nth-child(3) > p"
     ##*css*##
     def __init__(self):
-        profile_dir = "/home/sct/.mozilla/firefox/291hkm8s.sct"
+        profile_dir = "/home/root/.mozilla/firefox/291hkm8s.sct"
         profile = webdriver.FirefoxProfile(profile_dir)
         self.driver = webdriver.Firefox(profile)
         self.level =  ""
@@ -183,7 +183,7 @@ class Du500:
     win1_css = "#a648231 > td.bf_op > span:nth-child(1)"
     def __init__(self):
         self.driver = webdriver.Firefox()
-        # self.driver = webdriver.PhantomJS('/home/sct/program/phantomjs-2.1.1-linux-x86_64/bin/phantomjs')
+        # self.driver = webdriver.PhantomJS('/home/root/program/phantomjs-2.1.1-linux-x86_64/bin/phantomjs')
         self.level =  ""
         self.round =  ""
         self.status = False

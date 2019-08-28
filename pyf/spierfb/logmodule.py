@@ -6,7 +6,7 @@ import os
 
 def logConfig():
 
-    logger = logging.getLogger("grape")
+    logger = logging.getLogger("joker")
 
     logger.setLevel(logging.DEBUG)# 全局默认级别WARNING
 

@@ -138,7 +138,7 @@ delete linux system
 ##kali ftp安装
 yum -y install vsftpd  
 cd /etc/vsftpd/  
-cp vsftpd.conf vsftpd.conf.sct
+cp vsftpd.conf vsftpd.conf.root
 
 ## CentOS
 vi /etc/selinux/config
@@ -179,7 +179,7 @@ wget -q -O - https://archive.kali.org/archive-key.asc | apt-key add
 ##debian fcitx前段ui库(更新新系统后才可以用)
 apt-get install fcitx-ui-classic && apt-get install fcitx-ui-light
 apt-get install fcitx-googlepinyin
-sct@sct:$ fcitx-configtool
+root@root:$ fcitx-configtool
 
 ##chrome隐私浏览
 sudo vi /usr/bin/google-chrome
@@ -249,5 +249,5 @@ C7EDCC
 
 
 ## ssh 反弹shell ##
-ssh -fN -R 9891:localhost:9891 sct@118.25.78.198
-ssh pi@localhost -p7000
+ssh -fN -R 9891:localhost:9891 joker@118.25.78.192
+ssh joker@localhost -p7000

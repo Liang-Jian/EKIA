@@ -1,5 +1,5 @@
 ### 查看包名和activity名字
- robot@rob0t:~$ adb shell dumpsys window |grep mCurrent
+ joker@centos:~$ adb shell dumpsys window |grep mCurrent
     mCurrentAppOrientation=-1
       mCurrentRotation=0
         mCurrentUserId=0

@@ -71,7 +71,7 @@ class mysqlOP(shujuku):
             self.cursor.close()
 
 cf = configparser.ConfigParser()
-cf.read("/home/sct/workspace/java-eslworking/pythoncode/bet/spierfb/peizhi.ini")
+cf.read("../spierfb/peizhi.ini")
 class GetJleagueData(mysqlOP):
     #需要修改start_url ,_get1url中start ,end轮数
     def __init__(self):
@@ -194,7 +194,7 @@ class UIGetWeatherData(mysqlOP):#通过selenium获取天气信息 ,现在不用�
     def __init__(self):
 
         super(UIGetWeatherData, self).__init__()
-        profile_dir = "/home/sct/.mozilla/firefox/291hkm8s.sct"
+        profile_dir = "/home/root/.mozilla/firefox/291hkm8s.root"
         profile = webdriver.FirefoxProfile(profile_dir)
         self.driver = webdriver.Firefox(profile)
         self.timeout= 30

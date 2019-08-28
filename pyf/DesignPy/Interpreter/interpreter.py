@@ -1,10 +1,5 @@
 
 
-
-
-
-#代码需要引入其他包，内网环境，代码没有补充完成 page 123
-
 class Boiler:
     def __init__(self):
         self.temperature = 83

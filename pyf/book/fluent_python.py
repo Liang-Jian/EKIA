@@ -1,6 +1,6 @@
 
 
-### <<流畅的python>> ###
+### 流畅的python ###
 '''
 promos = []
 def promotion(promo_func):

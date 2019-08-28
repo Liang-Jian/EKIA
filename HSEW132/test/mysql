@@ -205,9 +205,9 @@ mysql> select concat(last_time,'=+=',create_time) from hs_ap;
 22 rows in set (0.00 sec)
 
 #查询语句中as 关键词的用法
-mysql> select id as sct from hs_goods where id > 801126001;
+mysql> select id as sss from hs_goods where id > 801126001;
 +-----------+
-| sct       |
+| sss       |
 +-----------+
 | 801127001 |
 | 801127002 |
@@ -355,9 +355,9 @@ mysql> select * from hs_ap;
 22 rows in set (0.01 sec)
 
 #在sql语句中使用if判断语句
-mysql> select id ,if(area is not  NULL,'unknown',area) as 'sct' from hs_ap;//shiyong if yuju
+mysql> select id ,if(area is not  NULL,'unknown',area) as 's' from hs_ap;//shiyong if yuju
 +----+---------+
-| id | sct     |
+| id | s       |
 +----+---------+
 | 1  | NULL    |
 | 10 | NULL    |
@@ -414,9 +414,9 @@ mysql> select * from hs_ap;
 22 rows in set (0.01 sec)
 
 #在sql语句中使用if判断语句，比上个语句更精简
-mysql> select id ,ifNULL(area,"fuck") as "sct" from hs_ap;
+mysql> select id ,ifNULL(area,"fuck") as "sss" from hs_ap;
 +----+--------+
-| id | sct    |
+| id | sss    |
 +----+--------+
 | 1  | fuck   |
 | 10 | fuck   |
@@ -578,7 +578,7 @@ mysql> select *from hs_ap order by id desc limit 4;
 4 rows in set (0.01 sec)
 
 #备份数据库到指定目录
-mysql> mysqldump -h 192.168.2.235 -uroot -padmin shopweb1.5.5-rc8 > /home/sct/q.sql
+mysql> mysqldump -h 192.168.2.235 -uroot -padmin shopweb1.5.5-rc8 > /home/root/q.sql
 
 [root@sqc-ser ~]# mysqldump -uroot  --default-character-set=utf8 mysq1 jleague >/home/hanshow/s.sql
 
