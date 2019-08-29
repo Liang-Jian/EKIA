@@ -234,7 +234,7 @@ sudo vi /etc/proxychains.conf
 socks 127.0.0.1 1080
 
 ## android_home
-`export ANDROID_HOME=/home/robot/Android/Sdk/home/robot/sdk`
+`export ANDROID_HOME=/home/joker/sdk`
 `export PATH=${JAVA_HOME}/bin:${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/tools:$PATH`
 
 ##火狐浏览器配置文件
@@ -249,5 +249,5 @@ C7EDCC
 
 
 ## ssh 反弹shell ##
-ssh -fN -R 9891:localhost:9891 joker@118.25.78.192
+ssh -fN -R 9891:localhost:9891 joker@118.25.78.198
 ssh joker@localhost -p7000

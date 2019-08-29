@@ -13,7 +13,6 @@ class KeyboardKeys(object):
         '1': 0x31,
         '2': 0x32
         }
-
     @staticmethod
     def key_down(keyName):
         '''

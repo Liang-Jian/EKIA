@@ -3,7 +3,6 @@ package book;
 import java.util.Date;
 import java.util.Random;
 
-
 class ShowPro{
     //p31 获取运行系统所有的属性
     void f(){
