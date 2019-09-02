@@ -1,5 +1,5 @@
 
-
+#BXG
 '''
 class Tool(object):
     num = 0
@@ -222,7 +222,7 @@ def query(url):
 
 start = time.time()
 for i in range(100):
-    query("http://10.130.201.36:index.jsp")
+    query("http://*.*.201.36:index.jsp")
 end = time.time()
 print('单线程访问100次百度首页，耗时:{}'.format(end-start))
 

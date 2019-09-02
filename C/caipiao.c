@@ -1,7 +1,3 @@
-//
-// Created by itw_shict on 2019/3/26.
-//
-
 
 #include <stdio.h>
 #include <stdlib.h> //touwenjian
@@ -286,8 +282,6 @@ int main()
 int main()
 {
     int num =0 ; num1 = 0 ;num2 = 0 ;
-    
-
 
 }
 

@@ -6,7 +6,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-# Firefox52 / Chrome55 + python3.4 + selenium 3.4 + debian 8 
+# Firefox52 / Chrome55 + python3.4 + selenium 3.4 + centos7
 # selenium get page data
 
 Team_A = {
