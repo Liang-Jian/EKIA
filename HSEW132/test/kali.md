@@ -158,7 +158,7 @@ vsftpd/user_list：位于/etc目录下。该文件里的用户账户在默认情
 *tcp_wrappers=YES*
 *ftp_username=hanshow*
 *local_root=/var/ftp*
-*anon_root=/var/ftp*
+*anon_root=/var/ftp*j@11
 chkconfig vsftpd on
 ftp localhost
 
@@ -234,7 +234,7 @@ sudo vi /etc/proxychains.conf
 socks 127.0.0.1 1080
 
 ## android_home
-`export ANDROID_HOME=/home/joker/sdk`
+`export ANDROID_HOME=/home/robot/Android/Sdk/home/robot/sdk`
 `export PATH=${JAVA_HOME}/bin:${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/tools:$PATH`
 
 ##火狐浏览器配置文件
@@ -249,5 +249,5 @@ C7EDCC
 
 
 ## ssh 反弹shell ##
-ssh -fN -R 9891:localhost:9891 joker@118.25.78.198
-ssh joker@localhost -p7000
+ssh -fN -R 9891:localhost:9892 j@!!*>@%>&*>!(*
+ssh root@localhost -p7000
