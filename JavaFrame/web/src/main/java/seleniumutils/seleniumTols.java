@@ -10,7 +10,8 @@ public class seleniumTols {
 
 
     void login(){
-//        WebDriver chrome/omedriver = WebDriver(ChromeDriver);
+//        WebDriver chrome/omls
+// edriver = WebDriver(ChromeDriver);
     }
 
 }
