@@ -279,6 +279,14 @@ int main()
 }
 */
 
+int bases(){
+	int x= 100;
+	printf("dec = %d;octal = %o;hex=%x\n", x,x,x );
+	printf("dec = %d;octal = %#o;hex=%#x\n", x,x,x);
+	return 0;
+	// printf("%s\n", );
+}
+
 int main()
 {
     int num =0 ; num1 = 0 ;num2 = 0 ;

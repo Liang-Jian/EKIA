@@ -237,7 +237,7 @@ socks 127.0.0.1 1080
 `export ANDROID_HOME=/home/robot/Android/Sdk/home/robot/sdk`
 `export PATH=${JAVA_HOME}/bin:${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/tools:$PATH`
 
-##火狐浏览器配置文件
+##火狐浏览器配置
 `robot@robot:~# firefox -ProfileManager -no-remote`
 
 ##更新火狐浏览器
@@ -249,5 +249,6 @@ C7EDCC
 
 
 ## ssh 反弹shell ##
-ssh -fN -R 9891:localhost:9892 j@!!*>@%>&*>!(*
-ssh root@localhost -p7000
+ssh -fN -R 9891:localhost:9891 j@!!8.25.78.198
+ssh -fN -R 9891:localhost:9891 j@!!*>@%>&*>!(*
+ssh j@localhost -p7000

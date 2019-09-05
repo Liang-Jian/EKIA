@@ -11,3 +11,22 @@ int main(void){
 	return 0;
 
 }
+
+int typesixze(){
+	printf("Type int has a size of %u bytes.\n", siezeof(int));
+	printf("Type char has a size of %u bytes.\n", siezeof(char));
+	printf("Type long has a size of %u bytes.\n", siezeof(long));
+	printf("Type double has a size of %u bytes.\n", siezeof(double));
+
+	return 0;
+
+}
+
+
+int longstr(){
+	printf("Here's one way to print a \n");
+	printf("Long string .\n");
+	printf("Here's another way to print a long string \n");
+	printf("Here's the newest way to print a ** long string .\n");
+	return 0;
+}
