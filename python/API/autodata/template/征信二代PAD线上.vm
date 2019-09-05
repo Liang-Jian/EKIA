@@ -1,0 +1,30 @@
+{
+"requestId": "XXX",
+"requestTime": "2019-03-03 12:11:09.245",
+"sysName": "智能决策平台",
+"sysCode": "XXX",
+"orgCode": "xxx",
+"departCode": "xxx",
+"loginName": "khg",
+"password": "111111",
+"userName": "张三",
+"IP": "192.178.10.15",
+"requestJson": {},
+"repeatSign": 0,
+"params": {
+        "uniqueNumber": "10",
+        "custName": "张某某",
+        "cuidIDType": "10",
+        "cuidIDnumber": "11010819931010444X",
+        "customerManager": "10000001",
+        "authorizationTime": "2019-02-21 17:23:46",
+        "queryTime": "2019-03-01 17:23:46",
+        "padNum": "01020100",
+        "authorizationNumber": "01",
+        "orgNo": "020302",
+        "queryReason": "01",
+        "clientType": "01",
+        "idDate":"2028-09-09"
+    },
+"dataflowCode": "{{dataflowCode}}"
+}
