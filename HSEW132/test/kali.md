@@ -249,6 +249,6 @@ C7EDCC
 
 
 ## ssh 反弹shell ##
-ssh -fN -R 9891:localhost:9891 j@!!8.25.78.198
-ssh -fN -R 9891:localhost:9891 j@!!*>@%>&*>!(*
-ssh j@localhost -p7000
+
+ssh -fN -R 9891:localhost:9891 @!!*>@%>&*>!(*
+ssh root@localhost -p7000
