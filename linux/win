@@ -1,0 +1,9 @@
+## 常用环境变量
+ANDROID_HOME   D:\sdk <br>
+CLASSPATH      .;%JAVA_HOME%\lib;%JAVA_HOME%\lib\tools.jar
+JAVA_HOME      C:\Program Files\Java\jdk1.8.0_60
+PATH     ;%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;%ANDROID_HOME%\tools;%ANDROID_HOME%\platform-tools;
+
+## 编译器rgb 颜色
+R 199 G 237 B 204
+R 0 G 128 B 128
