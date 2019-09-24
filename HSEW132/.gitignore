@@ -1,7 +1,0 @@
-*.pyc
-*.txt
-sqlite
-*sqlite*
-log/
-*.pkl
-*.swp
