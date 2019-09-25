@@ -6,7 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 class AutoSelenium{
-    private String driverpath = "/Users/Mac/Downloads/chromedriver" ;
+    private String driverpath = "/Users/Jettech/Downloads/chromedriver" ;
     private String URL = "https://www.baidu.com";
 
 
