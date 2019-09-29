@@ -5,7 +5,7 @@ tar cypzf backup.tgz --exclude=/proc --exclude=/lost+found --exclude=/backup.tgz
 tar cvpzf backup.tgz --exclude=/proc --exclude=/lost+found --exclude=/backup.tgz --exclude=/mnt --exclude=/sys --exclude=/opt/teamviewer/ /
 service eslworking stop
 vi /etc/init.d/eslworking
-ln -s /home/instore/hanshow hanshow
+ln -s /home/instore/hs hanshow
 mv shopweb-plugin-abm-auchan-20170607-3* software/
 service eslworking start
 tail -f eslworking.log
@@ -20,7 +20,7 @@ chmod +x /etc/init.d/shopweb1
 vi /etc/init.d/shopweb1
 service shopweb1 start
 cd apache-tomcat-8.5.15/bin
-export CATALINA_HOME=/home/instore/hanshow/apache-tomcat-8.5.15
+export CATALINA_HOME=/home/instore/hs/apache-tomcat-8.5.15
 cp -rf store1/shopweb/webapps/shopweb apache-tomcat-8.5.15/webapps/
 vi /etc/init.d/shopweb1
 vi /etc/init.d/shopweb1
@@ -42,12 +42,12 @@ vi /etc/init.d/shopweb1
 systemctl daemon-reload
 service integration start
 ps -ef | grep integration
-sh /home/instore/hanshow/integration/startup.sh
+sh /home/instore/hs/integration/startup.sh
 service integration start
 systemctl daemon-reload
 service integration start
-cd /home/instore/hanshow/integration && java -Xms1024M -Xmx1024M -Djava.ext.dirs=lib com.hanshows.cdi.proxi.DataExtractor 1>/dev/null 2>&1
-cd /home/instore/hanshow/integration && java -Xms1024M -Xmx1024M -Djava.ext.dirs=lib com.hanshows.cdi.proxi.DataExtractor
+cd /home/instore/hs/integration && java -Xms1024M -Xmx1024M -Djava.ext.dirs=lib com.hanshows.cdi.proxi.DataExtractor 1>/dev/null 2>&1
+cd /home/instore/hs/integration && java -Xms1024M -Xmx1024M -Djava.ext.dirs=lib com.hanshows.cdi.proxi.DataExtractor
 service integration start
 vi /etc/init.d/integration
 vi /etc/init.d/integration
@@ -81,13 +81,13 @@ sudo gedit ~/.bashrc
 sudo vi /etc/profile
 sudo gedit /etc/profile
 cat /etc/profile
-wget -O /home/instore/hanshow/tomcat8.tar.gz export JAVA_HOME=/usr/local/java/jdk1.8.0_131
+wget -O /home/instore/hs/tomcat8.tar.gz export JAVA_HOME=/usr/local/java/jdk1.8.0_131
 export JRE_HOME=${JAVA_HOME}/jre
 export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib
 export  PATH=${JAVA_HOME}/bin:$PATH
-wget -O /home/instore/hanshow/tomcat.tar.gz http://ftp.meisei-u.ac.jp/mirror/apache/dist/tomcat/tomcat-8/v8.5.15/bin/apache-tomcat-8.5.15.tar.gz
+wget -O /home/instore/hs/tomcat.tar.gz http://ftp.meisei-u.ac.jp/mirror/apache/dist/tomcat/tomcat-8/v8.5.15/bin/apache-tomcat-8.5.15.tar.gz
 curl 127.0.0.1:8080
-wget -O /home/instore/hanshow/boost.7z https://jaist.dl.sourceforge.net/project/boost/boost/1.63.0/boost_1_63_0.7z
+wget -O /home/instore/hs/boost.7z https://jaist.dl.sourceforge.net/project/boost/boost/1.63.0/boost_1_63_0.7z
 yum –y insta p7zip
 yum insta -y cmake make gcc gcc-c++
 yum insta -y cmake
@@ -118,7 +118,7 @@ lvcreate --size --snapshot --name snap /dev/vg00/lvol1
 sudo lvcreate --size --snapshot --name snap /dev/vg00/lvol1
 vi log/eslworking.log
 tail -f log/eslworking.log
-cd hanshow/eslworking-2.2.1/
+cd hs/eslworking-2.2.1/
 tail -f log/eslworking.log
 ssh root@192.168.1.104
 ./eslworking.sh run
@@ -127,37 +127,37 @@ ssh root@192.168.1.104
 ./eslworking.sh run
 cd /etc/sysconfig/network-scripts/
 vi ifcfg-eno1
-cd /hanshow/apache-tomcat-8.5.15/bin
+cd /hs/apache-tomcat-8.5.15/bin
 vi startup.sh
 sudo vi /etc/rc.d/rc.local
-mv jdk-8u131-linux-x64.tar.gz /hanshow/software/
-sudo mv jdk-8u131-linux-x64.tar.gz /hanshow/software/
-mv shopweb-plugin-abm-proxi-20170618.zip /hanshow/integration/
-mv business_fields.properties /hanshow/apache-tomcat-8.5.15/webapps/shopweb/WEB-INF/classes/
+mv jdk-8u131-linux-x64.tar.gz /hs/software/
+sudo mv jdk-8u131-linux-x64.tar.gz /hs/software/
+mv shopweb-plugin-abm-proxi-20170618.zip /hs/integration/
+mv business_fields.properties /hs/apache-tomcat-8.5.15/webapps/shopweb/WEB-INF/classes/
 cd component_script/
-cd /hanshow/apache-tomcat-8.5.15/bin/
+cd /hs/apache-tomcat-8.5.15/bin/
 sudo chown instore:instore -R  apache-tomcat-8.5.15/
 unzip shopweb-plugin-abm-proxi-20170618.zip
-mv shopweb-plugin-abm-proxi-20170618 /hanshow/software/
+mv shopweb-plugin-abm-proxi-20170618 /hs/software/
 unzip shopweb-plugin-abm-proxi-20170618.zip
-mv shopweb-plugin-abm-proxi-20170618.zip /hanshow/software/
+mv shopweb-plugin-abm-proxi-20170618.zip /hs/software/
 cd shopweb-plugin-abm-proxi-20170618/
 mv business_fields.properties business_fields.properties.bak
-mv  inits-config.js /hanshow/apache-tomcat-8.5.15/webapps/shopweb/hanshow-plugins-webpda/component_script/
-cd /hanshow/apache-tomcat-8.5.15/bin/
-mv /home/instore/inits-config.js /hanshow/apache-tomcat-8.5.15/webapps/shopweb/hanshow-plugins-webpda/component_script/
+mv  inits-config.js /hs/apache-tomcat-8.5.15/webapps/shopweb/hanshow-plugins-webpda/component_script/
+cd /hs/apache-tomcat-8.5.15/bin/
+mv /home/instore/inits-config.js /hs/apache-tomcat-8.5.15/webapps/shopweb/hanshow-plugins-webpda/component_script/
 gedit config.properties
 sudo chkconfig iptables off
 sudo service iptables stop
 cd /home/instore/
 unzip template1.zip
 cd template/
-mv *.ttf /hanshow/eslworking-2.2.1/data/usr/fonts/
-mv NORMAL_2*/ /hanshow/eslworking-2.2.1/data/usr/python/temp_json/
-cd /hanshow/apache-tomcat-8.5.15/bin
+mv *.ttf /hs/eslworking-2.2.1/data/usr/fonts/
+mv NORMAL_2*/ /hs/eslworking-2.2.1/data/usr/python/temp_json/
+cd /hs/apache-tomcat-8.5.15/bin
 vi startup.sh
 sudo vi /etc/rc.d/rc.local
-cd /hanshow/apache-tomcat-8.5.15/bin
+cd /hs/apache-tomcat-8.5.15/bin
 sudo vi /etc/rc.d/rc.local
 rpm -ivh google-chrome-stable_current_x86_64.rpm
 sudo yum insta *b* -y
@@ -169,19 +169,19 @@ service iptables status
 sudo vi  /etc/rc.d/rc.local
 cat language.jsp
 cat inits-config.js
-cd /hanshow/integration/
+cd /hs/integration/
 cd shopweb-plugin-abm-proxi-20170618/
 vi config.properties
 cat ~/.bashrc
 cd /usr/local/java/jdk1.8.0_131/
 sudo rm -rf apache-tomcat-8.5.15/
-cd /hanshow/eslworking-2.2.1/bin/
+cd /hs/eslworking-2.2.1/bin/
 vi eslworking.sh
 sudo cp eslworking.sh /etc/init.d eslworking
 sudo mv eslworking.sh eslworking
 sudo chkconfig --add eslworking
 ping http://10.10.10.56/login
-cd /hanshow/integration/
+cd /hs/integration/
 cd shopweb-plugin-abm-proxi-20170618/
 cd /etc/init.d/
 history >>/home/instore/cmd.log

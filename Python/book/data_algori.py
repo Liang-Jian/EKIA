@@ -332,4 +332,221 @@ def factorial(n):
         return n * factorial(n-1)
 
 
-print(factorial(3))
+################
+#
+#   基于数据的序列
+#
+################
+import ctypes
+
+class DynamicArray:
+    def __init__(self):
+        self._n = 0
+        self._capacity =1
+        self._A = self._make_array(self._capacity)
+
+    def __len__(self):
+        return self._n
+
+    def __getitem__(self, k):
+        if not 0 <= k  < self._n:
+            raise IndexError('invalid index')
+        return self._A[k]
+
+    def append(self,obj):
+        if self._n == self._capacity:
+            self._resize(2 * self._capacity)
+        self._A[self._n] = obj
+        self._n +=1
+
+    def _resize(self,c):
+        B = self._make_array(c)
+        for k in range(self._n):
+            B[k] = self._A[k]
+        self._A = B
+        self._capacity = c
+
+    def insert(self,k,value):
+        if self._n == self._capacity:
+            self._resize(2 * self._capacity)
+        for j in range(self._n,k,-1):
+            self._A[j] = self._A[j-1]
+        self._A[j] = value
+        self._n += 1
+
+    def remove(self,value):
+        for k in  range(self._n):
+            if self._A[k] == value:
+                for j in range(k,self._n -1):
+                    self._A[j] = self._A[j+1]
+                self._A[self._n -1] = None
+                self._n -=1
+                return
+            raise ValueError('value not found')
+    def _make_array(self,c):
+        return (c * ctypes.py_object)()
+
+
+from time import time
+
+def compute_average(n):
+    data = []
+    start = time()
+    for k in range(n):
+        data.append(None)
+    end = time()
+    return (end-start) / n
+
+
+
+class GameEntry:
+
+    def __init__(self,name,score):
+        self._name = name
+        self._score = score
+
+    def get_name(self):
+        return self._name
+
+    def get_score(self):
+        return self._name
+
+    def __str__(self):
+        return '({0},{1})'.format(self._name,self._score)
+
+
+class Scoreboar:
+
+    def __init__(self,capacity=10):
+        self._board = [None] * capacity
+        self._n = 0
+
+    def __getitem__(self, item):
+        return self._board[item]
+
+    def __str__(self):
+        return '\n'.join(str(self._board[j]) for j in range(self._n))
+
+    def add(self,entry):
+        score = entry.get_score()
+        good = self._n < len(self._board) or score > self._board[-1].get_score()
+
+        if good:
+            if self._n < len(self._board):
+                self._n +=1
+            j = self._n -1
+            while j> 0 and self._board[j-1].get_score() < score:
+                self._board[j] = self._board[j-1]
+                j -= 1
+            self._board[j] = entry
+
+
+def insertion_sort(A):
+    for k in range(1,len(A)):
+        cur  = A[k]
+        j = k
+        while j > 0 and  A[j-1] > cur:
+            A[j] = A[j-1]
+            j -=1
+        A[j] = cur
+
+
+class CaesarCipher:
+    def __init__(self,shift):
+        encoder = [None] * 26
+        decoder = [None] * 26
+
+        for k in range(26):
+            encoder[k] = chr(k + shift) % 26 + ord('A')
+            decoder[k] = chr(k - shift) % 26 + ord('A')
+        self._forward = ''.join(encoder)
+        self._backwrd = ''.join(decoder)
+
+    def encrypt(self,message):
+        return self._transform(message,self._forward)
+
+    def decrypt(self,secret):
+        return self._transform(secret,self._backwrd)
+
+    def _tranform(self,original,code):
+        msg = list(original)
+        for k in range(len(msg)):
+            if msg[k].isupper():
+                j = ord(msg[k]) - ord('A')
+                msg[k] = code[j]
+            return ''.join(msg)
+
+# if __name__ == '__main__':
+#     cipher = CaesarCipher(3)
+#     message = 'The EAGE'
+
+
+
+############################
+
+
+# stack queue
+
+class ArrayStack:
+    def __init__(self):
+        self._data = []
+
+    def __len__(self):
+        return len(self._data)
+
+    def is_empty(self):
+        return len(self._data) == 0
+
+    def push(self,e):
+        self._data.append(e)
+
+    def top(self):
+        if self.is_empty():
+            raise Empty('stack is empth')
+        return self._data[-1]
+
+    def pop(self):
+        if self.is_empty():
+            raise Empty('stack is empty')
+        return self._data.pop()
+
+
+def reverse_file(filename):
+    S = ArrayStack()
+    original = open(filename)
+    for line in original:
+        S.push(line.rsplit('\n'))
+    original.close()
+
+    output = open(filename,'w')
+    while not S.is_empty():
+        output.write(S.pop() + '\n')
+    output.close()
+# if __name__ == '__main__':
+#     cipher = CaesarCipher(3)
+#     message = "The eaglesis in play; meet as jobs"
+#     coded = cipher.encrypt(message)
+#     print('Secret ',coded)
+#     answer = cipher.decrypt(coded)
+#     print("Message ",answer)
+
+
+def is_matched_html(raw):
+    S = ArrayStack()
+    j = raw.find("<")
+    while j != -1:
+        k = raw.find(">",j + 1)
+        if k== -1:
+            return False
+        tag = raw[j+1:k]
+        if not tag.startwith('/'):
+            S.push(tag)
+        else:
+            if S.is_empty():
+                return False
+            if tag[1:] != S.pop():
+                return False
+        j = raw.find("<",k+1)
+    return S.is_empty()
+
+

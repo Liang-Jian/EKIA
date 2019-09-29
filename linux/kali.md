@@ -234,11 +234,11 @@ sudo vi /etc/proxychains.conf
 socks 127.0.0.1 1080
 
 ## android_home
-`export ANDROID_HOME=/home/robot/Android/Sdk/home/robot/sdk`
+`export ANDROID_HOME=/home/root/Android/Sdk/home/root/sdk`
 `export PATH=${JAVA_HOME}/bin:${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/tools:$PATH`
 
 ##火狐浏览器配置
-`robot@robot:~# firefox -ProfileManager -no-remote`
+`root@root:~# firefox -ProfileManager -no-remote`
 
 ##更新火狐浏览器
 ln -s /opt/firefox/firefox /usr/bin/firefox
@@ -260,3 +260,17 @@ ssh root@localhost -p7000
 
 vi /etc/systemd/logind.conf
 HandleLidSwitch=lock  #合上笔记本不休眠
+
+
+## 环境变量
+
+export JAVA_HOME=/usr/local/jdk
+export JRE_HOME=${JAVA_HOME}/jre
+export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib
+export PATH=${JAVA_HOME}/bin:$PATH
+export ANDROID_HOME=/home/robot/sdk
+export ANDROID_NDK=/home/robot/sdk/ndk-bundle
+
+export PATH=${JAVA_HOME}/bin:${ANDROID_HOME}/platform-tools:${ANDROID_NDK}:${ANDROID_HOME}/tools:$PATH
+export ORACLE_SID=orcl
+export LD_LIBRARY_PATH=/home/robot/program/orclient/instantclient_19_3
