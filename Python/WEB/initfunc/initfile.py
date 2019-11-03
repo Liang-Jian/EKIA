@@ -1,7 +1,7 @@
 
 from abc import ABCMeta,abstractclassmethod
 
-
+# interface class
 class DriVer(metaclass=ABCMeta):
 
     __instance = None

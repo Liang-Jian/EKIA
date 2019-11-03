@@ -1,20 +1,20 @@
-kali-linux
+#kali-linux
 ====
-##右键终端(ubuntu)
+###右键终端(ubuntu)
 sudo apt-get install nautilus-open-terminal
 
-##clear ssh log
+###clear ssh log
 strings /var/log/wtmp <br>
 echo '' > /var/log/wtmp <br>
 strings /var/log/btmp <br>
 echo '' > /var/log/btmp <br>
 history-c <br>
 
-##delete amazon
+###delete amazon
 
 sudo apt-get remove unity-webapps-common
 
-##shadowsock
+###shadowsock
 apt-get install python-gevent python-pip  
 apt-get install python-m2crypto
 pip install shadowsocks
@@ -29,7 +29,7 @@ vi /etc/shadowsocks/config.json
 "method":"chacha20"
 }`
 
-##jdk
+### jdk
 sudo mkdir /usr/local/jdk  
 sudo gedit ~/.bashrc  
 export JAVA_HOME=/usr/local/jdk
@@ -49,7 +49,7 @@ sudo apt-get purge icedtea-* openjdk-*
 检查所有 OpenJDK包是否都已卸载完毕<br>
 dpkg --list |grep -i jdk
 
-##static IPAddress
+### static IPAddress
 sudo vi /etc/network/interfaces
 auto lo
 iface lo inet loopback
@@ -59,6 +59,9 @@ address 192.168.1.103
 netmask 255.255.255.0
 gateway 192.168.1.1
 
+
+### ubuntu change dns
+sudo apt install resolvconf
 sudo vi /etc/resolvconf/resolv.conf.d/base
 nameserver 202.106.0.20
 nameserver 202.16.196.115
@@ -66,7 +69,7 @@ sudo gedit /etc/NetworkManager/NetworkManager.conf
 true
 /etc/init.d/networking restart
 
-## git configue
+### git configue
 sudo apt-get install git
 git init
 git config --global user.name  "QQ"
@@ -81,11 +84,11 @@ Agent admitted failure to sign using the key"
 eval "$(ssh-agent -s)"
 ssh-add
 
-## kali Mysql使用普通用户
+### kali Mysql使用普通用户
 update user set plugin='' where user='root';
 flush privileges;
 
-##debian ssh
+###debian ssh
 sudo apt-get install openssh-server
 sudo vi /etc/ssh/sshd_config
 sudo /etc/init.d/ssh restart
@@ -94,11 +97,11 @@ PubkeyAuthentication no
 \##AuthorizedKeysFile .ssh/authorized_keys
 PasswordAuthentication yes
 
-##常用DNS服务器
+###常用DNS服务器
 168.95.192.1    168.95.192.2
 139.175.55.244  139.175.252.16
 203.80.96.9     203.80.96.10
-
+202.106.0.20    202.16.196.115
 ##static ip address
 sudo vi /etc/network/interfaces
 auto lo
@@ -109,7 +112,7 @@ address 192.168.2.233
 netmask 255.255.255.0
 gateway 192.168.2.254
 
-##DNS
+###DNS
 ####ubuntu
 sudo vi /etc/resolvconf/resolv.conf.d/base
 nameserver 202.106.0.20
@@ -124,23 +127,23 @@ sudo vi /etc/network/interfaces
 nameserver 168.95.192.1 168.95.192.2
 /etc/init.d/networking restart
 
-##debian不显示WiFi
+###debian不显示WiFi
 打开新力得 Broadcom-sta-dkms inter
 root@root:rfkill unblock all
 reboot
 
-##双系统删除linux
+###双系统删除linux
 wget http://www.linuxidc.com/Linux/2007-11/8785.htm download MbrFix.exe
 MbrFix /drive 0 fixmbr
 You are about to Fix MBR,are you sure <Y/N>? Y
 delete linux system
 
-##kali ftp安装
+###kali ftp安装
 yum -y install vsftpd  
 cd /etc/vsftpd/  
 cp vsftpd.conf vsftpd.conf.root
 
-## CentOS
+### centos ftp
 vi /etc/selinux/config
 SELINUX=disabled
 useradd -d /var/ftp/ -s /sbin/nologin hans
@@ -162,14 +165,14 @@ vsftpd/user_list：位于/etc目录下。该文件里的用户账户在默认情
 chkconfig vsftpd on
 ftp localhost
 
-##debian 阿里源
+###debian 阿里源
 deb http://mirrors.aliyun.com/debian/ jessie main non-free contrib
 deb http://mirrors.aliyun.com/debian/ jessie-proposed-updates main non-free contrib
 deb-src http://mirrors.aliyun.com/debian/ jessie main non-free contrib
 deb-src http://mirrors.aliyun.com/debian/ jessie-proposed-updates main non-free contrib
 
 
-##kali 源
+###kali 源
 deb http://mirrors.aliyun.com/kali kali-rolling main non-free contrib
 deb-src http://mirrors.aliyun.com/kali kali-rolling main non-free contrib
 
@@ -185,36 +188,36 @@ root@root:$ fcitx-configtool
 sudo vi /usr/bin/google-chrome
 exec -a "$0" "$HERE/chrome" "$@" --incognito
 
-##chrome安装包下载url
+###chrome安装包下载url
 http://www.google.com/chrome/eula.html?hl=zh-CN&standalone=1
 http://www.google.com/chrome/eula.html?hl=zh-CN&standalone=1&extra=devchannel
 
-##安卓7.0/7.1消除感叹号
+###安卓7.0/7.1消除感叹号
 adb shell settings delete global captive_portal_server
 adb shell settings put global captive_portal_detection_enabled 0
 adb shell settings put global captive_portal_https_url https://www.google.cn/generate_204
 
-##移除CNNIC证书
+###移除CNNIC证书
 sudo gedit /etc/ca-certificates.conf
 删除CNNIC
 sudo update-ca-certificates
 
-##硬盘格式EXT4分区
+###硬盘格式EXT4分区
 apt-get install gparted
 
-##notepad++显示空格
+###notepad++显示空格
 视图(V) ⇒ 显示符号 ⇒ 显示空格与制表符
 
-##python3 -- python3-pip install
+###python3 -- python3-pip install
 python3 -m pip install *.* == version0
 export ALL_PROXY=socks5://127.0.0.1:1080
 wget https://bootstrap.pypa.io/get-pip.py
 python3 get-pip.py
 
-##安装新力得包管理器
+###安装新力得包管理器
 apt-get install synaptic
 
-##安装蓝牙
+###安装蓝牙
 apt-get install blueman
 service bluetooth start
 
@@ -237,18 +240,18 @@ socks 127.0.0.1 1080
 `export ANDROID_HOME=/home/root/Android/Sdk/home/root/sdk`
 `export PATH=${JAVA_HOME}/bin:${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/tools:$PATH`
 
-##火狐浏览器配置
+###火狐浏览器配置
 `root@root:~# firefox -ProfileManager -no-remote`
 
-##更新火狐浏览器
+###更新火狐浏览器
 ln -s /opt/firefox/firefox /usr/bin/firefox
 
-##jetbrain修改背景色为绿色
+###jetbrain修改背景色为绿色
 File -> setting -> Editor -> Color&Fonts -> General -> Text -> Default text -> Background <br>
 C7EDCC
 
 
-## ssh 反弹shell ##
+### ssh 反弹shell ##
 vi /etc/ssh/sshd_config
 GatewayPorts yes
 
@@ -256,13 +259,12 @@ ssh -fN -R 9891:localhost:9891 @!!*>@%>&*>!(*
 ssh -qTfNn -R '[::]:7000:localhost:9891' @!!*>@%>&*>!(*
 ssh root@localhost -p7000
 
-## kali 笔记本设置 ##
-
+### kali 笔记本设置 ##
 vi /etc/systemd/logind.conf
 HandleLidSwitch=lock  #合上笔记本不休眠
 
 
-## 环境变量
+### 环境变量
 
 export JAVA_HOME=/usr/local/jdk
 export JRE_HOME=${JAVA_HOME}/jre

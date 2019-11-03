@@ -51,8 +51,7 @@ TIME_OUT  = 24
 
 #######################
 ##oracle##
-#互联网区
-#conn = pymysql.connect(host='10.130.208.123',port=3306,user='tkiccore',passwd='tkiccore2017',db='tkiccore',charset='utf8')
+
 ORCLE_URL= "upiccore/sinosoft@10.130.201.118:1521/tkpi"
 
 
@@ -165,7 +164,7 @@ ID        = lianxiren[0]
 sex       = lianxiren[2]
 birday    = lianxiren[0][6:14]
 chejiahao = "LSGPC52U7AF1" + ID[-5::]
-carnb     = "晋A" + ID[-5::]
+carnb     = "京A" + ID[-5::]
 engnb     = ID[-7::]
 
 

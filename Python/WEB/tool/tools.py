@@ -5,7 +5,7 @@ import string
 
 
 
-#随机生成数字
+# random int
 def random_num(count):
     count = int(count)
     s = '0123456789'
