@@ -82,13 +82,15 @@ def nowtime():
 def getfunname():
     return inspect.stack()[1][3]
 
-def cutscreem(fp):#截图
-    from PIL import ImageGrab
-    try:
-        img = ImageGrab.grab()
-        img.save(fp)
-    except:
-        print("截图失败")
+def takeScreenshot(): # jietu function
+
+    win32api.keybd_event(44,win32api.MapVirtualKey(44,0),0,0)
+    time.sleep(1)
+    win32api.keybd_event(44, win32api.MapVirtualKey(44, 0), win32con.KEYEVENTF_KEYUP, 0)
+    time.sleep(1)
+    im = ImageGrab.grabclipboard()
+    im.save("D:\\a.png")
+takeScreenshot()
 
 def PicFilePath(name):
 
