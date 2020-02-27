@@ -254,14 +254,36 @@ C7EDCC
 ### ssh 反弹shell ##
 vi /etc/ssh/sshd_config
 GatewayPorts yes
+ssh -fCNR 9891:localhost:8920 sct@118.25.78.198
+ssh -fCNR 9891:localhost:22 sct@118.25.78.198
 
-ssh -fN -R 9891:localhost:9891 @!!*>@%>&*>!(*
-ssh -qTfNn -R '[::]:7000:localhost:9891' @!!*>@%>&*>!(*
+ssh -fCNR 9891:localhost:8920 root@!!*3@%4&*8!(*
 ssh root@localhost -p7000
 
 ### kali 笔记本设置 ##
 vi /etc/systemd/logind.conf
 HandleLidSwitch=lock  #合上笔记本不休眠
+
+
+### mysql command
+./mysqld --initialize --user=root --datadir=/usr/local/mysql/data  --basedir=/usr/local/mysql
+./mysqld_safe --user=root &
+vi /etc/my.cnf
+```
+[client-server]
+[mysqld]
+port=3306
+datadir=/usr/local/mysql/data
+#socket=/var/lib/mysql/mysql.sock
+socket=/tmp/mysql.sock
+# Disabling symbolic-links is recommended to prevent assorted security risks
+symbolic-links=0
+
+log-error=/var/log/sunpy.err
+#pid-file=/var/run/mysqld/mysqld.pid
+#user=root
+lower_case_table_names = 1
+```
 
 
 ### 环境变量
