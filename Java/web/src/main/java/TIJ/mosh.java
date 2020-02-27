@@ -12,6 +12,4 @@ public class mosh {
         System.out.println(mess.replace("!!","dd"));
 
     }
-
-
 }

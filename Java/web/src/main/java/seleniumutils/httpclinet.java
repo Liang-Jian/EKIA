@@ -19,7 +19,6 @@ class AutoSelenium{
         WebDriver dr = new ChromeDriver(options);
         dr.manage().window().maximize();
         dr.get(URL);
-
         try {
             Thread.sleep(1000);
         }catch (Exception e ) {e.printStackTrace();}

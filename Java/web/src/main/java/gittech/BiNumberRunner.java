@@ -1,0 +1,27 @@
+package gittech;
+
+public class BiNumberRunner {
+
+    public static void main(String[] args) {
+        BiNumber numbers = new BiNumber(2, 3);
+
+        System.out.println(numbers.add());//2+3
+        System.out.println(numbers.multiply());//2*3
+
+        numbers.doubleValue();//Double both numbers
+
+        System.out.println(numbers.getNumber1());//4
+        System.out.println(numbers.getNumber2());//6
+    }
+
+}
+class bitnumberrunner{
+    public static void main(String[] args) {
+        bignumnber n = new bignumnber(2,3);
+        System.out.println(n.add());
+        System.out.println(n.multiply());
+        n.doublevalue();
+        System.out.println(n.getnumber());
+        System.out.println(n.getnumber2());
+    }
+}
