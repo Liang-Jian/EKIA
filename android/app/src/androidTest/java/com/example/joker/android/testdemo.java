@@ -2,7 +2,6 @@ package com.example.joker.android;
 
 
 import android.app.Instrumentation;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Point;
@@ -16,7 +15,6 @@ import android.support.test.uiautomator.UiObject;
 import android.support.test.uiautomator.UiObject2;
 import android.support.test.uiautomator.UiObjectNotFoundException;
 import android.support.test.uiautomator.UiSelector;
-import android.support.v4.view.KeyEventDispatcher;
 import android.util.Log;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,12 +25,10 @@ import android.net.Uri;
 import android.database.Cursor;
 import java.text.SimpleDateFormat;
 import android.database.sqlite.SQLiteException;
-import java.sql.Date;
-import android.os.Message;
-import android.provider.Telephony;
+import android.webkit.WebView;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import java.sql.Date;
+
 
 @RunWith(AndroidJUnit4.class)
 public class testdemo extends Instrumentation {
@@ -291,7 +287,7 @@ public class testdemo extends Instrumentation {
         }
         mDevice.pressMenu();
         Sleep(1000);
-//        mDevice.swipe(525, 1414, 525, 580, 10); //滑动解锁时距离过长，影响解锁
+//      mDevice.swipe(525, 1414, 525, 580, 10); //滑动解锁时距离过长，影响解锁
 
         //解锁流程
         Point p1 = new Point();
@@ -495,5 +491,7 @@ public class testdemo extends Instrumentation {
 //        intent.setComponent(componentName);
 //        startActivitySync(intent);startActivityForResult(intent,1);
 //    }
+
+
 
 }
