@@ -1,5 +1,7 @@
 # cnn_captcha
 use CNN recognize captcha by tensorflow.  
+使用了该项目，用在了实际的工作中，下面有author的github，只是借用，向开源的开发者致敬。
+
 本项目针对字符型图片验证码，使用tensorflow实现卷积神经网络，进行验证码识别。  
 项目封装了比较通用的**校验、训练、验证、识别、API模块**，极大的减少了识别字符型验证码花费的时间和精力。 
   
