@@ -151,9 +151,70 @@ import argparse
 #     Main()
 #----------<>------------#
 
-import socket
-def Main():
-    host = "127.0.0.1"
-    port =5000
-    s = socket.socket()
-    s.bind()
+# import socket
+# def Main():
+#     host = "127.0.0.1"
+#     port =5000
+#     s = socket.socket()
+#     s.bind()
+
+
+#------------------------=
+
+# import matplotlib.axes as plt
+# import numpy as np
+#
+# my_x = np.linspace(-1,1)
+# my_y = np.sin(my_x)
+#
+# plt.plot(my_x,my_y)
+# title = "Plot"
+# filename = "plot.jpg"
+# plt.title(title)
+# plt.savefig(filename)
+
+###############
+
+# class DOg:
+#     def __init__(self):
+#         self.bank()
+#     def a(self):
+#         pass
+
+
+# def make_class(x):
+#     class Dog:
+#         def __init__(self,name):
+#             self.name = name
+#         def print_value(self):
+#             print(x)
+#     return Dog
+# cls = make_class(10)
+# print(cls)
+#
+# d = cls("fuck")
+# print(d.name)
+# d.print_value()
+
+
+#######################
+
+# for i in range(10):
+#     def show():
+#         print(i*2)
+#     # show()  # xiao guo bu tong
+# show()
+
+############
+import inspect
+def func(x):
+    if x== 1:
+        def rv():
+            print("X is equesl to 1 ")
+    else:
+        def rv():
+            print("X is not 1")
+    return rv()
+new_func  = func(2)
+print(new_func(inspect.getmembers(new_func)))
+new_func(inspect.getmembers(new_func))

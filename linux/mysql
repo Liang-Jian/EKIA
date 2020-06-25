@@ -260,7 +260,7 @@ mysql> select distinct area from hs_ap;
 3 rows in set (0.00 sec)
 
 #查询结果中互不相同的结果
-mysql> select count(distinct ap_id) from hs_goods_esl_pr ; //chaxun jieguozhong hubuxiangtong de jieguo
+mysql> select count(distinct ap_id) from hs_goods_esl_pr ;
 +-----------------------+
 | count(distinct ap_id) |
 +-----------------------+
@@ -315,7 +315,7 @@ mysql> select * from hs_ap;
 22 rows in set (0.00 sec)
 
 
-#查询数据中不含有NULL值的数据
+#查询area数据中不含有NULL值的数据
 mysql> select * from hs_ap where area is not NULL;
 +----+--------+------+------+--------+---------------------+---------------------+
 | id | result | ip   | port | area   | last_time           | create_time         |
@@ -355,7 +355,7 @@ mysql> select * from hs_ap;
 22 rows in set (0.01 sec)
 
 #在sql语句中使用if判断语句
-mysql> select id ,if(area is not  NULL,'unknown',area) as 's' from hs_ap;//shiyong if yuju
+mysql> select id ,if(area is not  NULL,'unknown',area) as 's' from hs_ap;
 +----+---------+
 | id | s       |
 +----+---------+
@@ -558,7 +558,7 @@ insert into pro(pro_id,service,con_name) values(2,'MSN','user2-msd');
 insert into pro(pro_id,service,con_name) values(2,'yahoo','user2-yahoo');
 insert into pro(pro_id,service,con_name) values(4,'yahoo','user4-yahoo');
 
-#qingkuang biao shuju
+#清空表数据
 mysql> truncate table hs_push_history;
 Query OK, 0 rows affected (0.12 sec)
 
@@ -566,7 +566,7 @@ Query OK, 0 rows affected (0.12 sec)
 mysql> drop tables pro;
 Query OK, 0 rows affected (0.10 sec)
 
-mysql> select *from hs_ap order by id desc limit 4;
+mysql> select * from hs_ap order by id desc limit 4;
 +----+--------+------+------+------+---------------------+---------------------+
 | id | result | ip   | port | area | last_time           | create_time         |
 +----+--------+------+------+------+---------------------+---------------------+
@@ -943,7 +943,7 @@ mysql> create table suck ( id int not null auto_increment,
 Query OK, 22 rows affected (0.31 sec)
 Records: 22  Duplicates: 0  Warnings: 0
 
-mysql> select *from suck limit 4;
+mysql> select * from suck limit 4;
 +----+---------------------+---------------------+
 | id | last_time           | create_time         |
 +----+---------------------+---------------------+

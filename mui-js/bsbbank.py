@@ -36,9 +36,9 @@ class AndroidTest(object):
         desired_caps = {}
         desired_caps['platformName'] = 'Android'
         desired_caps['platformVersion'] = '9'  # 手机系统版本
-        desired_caps['deviceName'] = 'CB512CDDDV'  # 刚才的devicename
-        desired_caps['appPackage'] = 'cn.com.bsb.mbank'  # 计算器的package
-        desired_caps['appActivity'] = 'io.dcloud.PandoraEntryActivity'  # 计算器的activity
+        desired_caps['deviceName'] = 'QV7129M024'  # 刚才的devicename
+        desired_caps['appPackage'] = 'com.google.android.calculator'  # 计算器的package
+        desired_caps['appActivity'] = 'com.android.calculator2.Calculator'  # 计算器的activity
         desired_caps['noReset'] = 'true'  # 计算器的activity
         desired_caps['fullrReset'] = 'false'  # 计算器的activity
         desired_caps['chromeOptions'] = {'androidProcess': 'com.tencent.mm:tools'}  # 计算器的activity

@@ -252,8 +252,20 @@ class SelenFun(StartDriver):
         while startN < 15:
             time.sleep(1)
             startN += 1
-            if self._isExist(css) is True: break
+            if self._isExist(css) is True:
+                return True
+        else:
+            return False
 
+    # def isExist(self,css):
+    #     startN = 0
+    #     while startN < 15:
+    #         time.sleep(1)
+    #         startN += 1
+    #         if self._isExist(css) is True:
+    #             return True
+    #     else:
+    #         return False
     def clickattr(self, tag, attribute, attributevalue):
         self.driver.execute_script("function sct(){ \
             var t_ele = document.getElementsByTagName(\"" + tag +"\"); \
@@ -286,6 +298,43 @@ class SelenFun(StartDriver):
             } \
         };sct();")
 
+
+    def ClickByWord(self, ele, p_ele):
+        """
+        :param ele: mui object or css element
+        :param p_ele: page element string
+        :return:  None create by ShiChengTao  action ""  ''
+        """
+        if self.isExist(ele) is not True : raise (f"{ele}  not Found, please check")
+        _js = '''function joker(){ \
+                    var ele_list = mui('%s'); \
+                    for (var i=0;i<ele_list.length;i++){ \
+                          if (q[i].innerText == '%s'){ \
+        		            q[i].addEventListener('tap',function(){}); \
+        		            mui.trigger(q[i],'tap');\
+        	            } \
+                    } \
+                };joker();''' % (ele, p_ele)
+        self.driver.execute_script(_js)
+
+
+    def ClickByInWord(self, ele, p_ele):
+        """
+        :param ele: mui object or css element
+        :param p_ele: page element string, regex match word
+        :return:  None create by ShiChengTao
+        """
+        if self.isExist(ele) is not True : raise (f"{ele}  not Found, please check")
+        _js = '''function joker(){ \
+                    var ele_list = mui('%s'); \
+                    for (var i=0;i<ele_list.length;i++){ \
+                          if (q[i].innerText.indexOf('%s') != -1){ \
+        		            q[i].addEventListener('tap',function(){}); \
+        		            mui.trigger(q[i],'tap');\
+        	            } \
+                    } \
+                };joker();''' % (ele, p_ele)
+        self.driver.execute_script(_js)
 
     def scrollto(self,css):
         self.driver.execute_script("arguments[0].scrollIntoView();", self.driver.find_element_by_css_selector(css))
