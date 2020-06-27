@@ -34,18 +34,30 @@ public class MainActivity extends AppCompatActivity {
 
         this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);  // 禁止截屏
 
+        Pokers pokers = new Pokers();
+        Player p1 = new Player();
+        Player p2 = new Player();
 
-
-        if (android.os.Build.VERSION.SDK_INT > 9) {
-            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-            StrictMode.setThreadPolicy(policy);
+        for (int i = 0; i < 4; i++) {
+            p1.wantPokers(pokers.getNextPoker());
+            p2.wantPokers(pokers.getNextPoker());
         }
+        String text ="player1: " +  p1.getStatString() + "total: " + p1.getSum() + ".player2: " + p2.getStatString() + "total: " +p2.getSum();
 
-            try {Thread.sleep(6000);} catch (Exception e) {}
-        Toast.makeText(this, "Fuck This World", Toast.LENGTH_SHORT).show();
-        try {Thread.sleep(3000);} catch (Exception e) {}
-//        Toast.makeText(this, readSMS(), Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, testdata(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,text,Toast.LENGTH_SHORT).show();
+
+
+
+//        if (android.os.Build.VERSION.SDK_INT > 9) {
+//            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+//            StrictMode.setThreadPolicy(policy);
+//        }
+//
+//        try {Thread.sleep(6000);} catch (Exception e) {}
+//        Toast.makeText(this, "Fuck This World", Toast.LENGTH_SHORT).show();
+//        try {Thread.sleep(3000);} catch (Exception e) {}
+////        Toast.makeText(this, readSMS(), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, testdata(), Toast.LENGTH_SHORT).show();
 
 
     }
