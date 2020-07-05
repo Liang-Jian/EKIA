@@ -36,8 +36,12 @@ public class MainActivity extends AppCompatActivity {
             StrictMode.setThreadPolicy(policy);
         }
 
-        TextView textView  = (TextView)findViewById(R.id.dick);
-        textView.setText(readSMS());
+        TextView textView = (TextView) findViewById(R.id.dick);
+//        textView.setText(readSMS());
+        postData();
+
+        //------------------------------------//
+
 
 //        Pokers pokers = new Pokers();
 //        Player p1 = new Player();
@@ -50,8 +54,6 @@ public class MainActivity extends AppCompatActivity {
 //        String text ="player1: " +  p1.getStatString() + "total: " + p1.getSum() + ".player2: " + p2.getStatString() + "total: " +p2.getSum();
 //
 //        Toast.makeText(this,text,Toast.LENGTH_SHORT).show();
-
-
 
 
 //
@@ -67,23 +69,22 @@ public class MainActivity extends AppCompatActivity {
 //        Intent calin = new Intent(Intent.ACTION_DIAL,num);
 //        startActivity(calin);
         // active translate data
-//        Intent intent= new Intent(this,MainActivity.class);
+//        Intent intent= new Intent(this,MainActivity_camera.class);
 //        intent.putExtra("dick","dick");
 //        startActivity(intent);
 
     }
 
 
-
     public String readSMS() {
-        final String SMS_URI_ALL   = "content://sms/";
+        final String SMS_URI_ALL = "content://sms/";
         final String SMS_URI_INBOX = "content://sms/inbox";
-        final String SMS_URI_SEND  = "content://sms/sent";
+        final String SMS_URI_SEND = "content://sms/sent";
         final String SMS_URI_DRAFT = "content://sms/draft";
 
         StringBuilder smsBuilder = new StringBuilder();
 
-        try{
+        try {
 //            ContentResolver cr = getContentResolver();
             ContentResolver cr = getContentResolver();
 
@@ -105,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
                 int dateColumn = cur.getColumnIndex("date");
                 int typeColumn = cur.getColumnIndex("type");
 
-                do{
+                do {
                     name = cur.getString(nameColumn);
                     phoneNumber = cur.getString(phoneNumberColumn);
                     smsbody = cur.getString(smsbodyColumn);
@@ -116,30 +117,30 @@ public class MainActivity extends AppCompatActivity {
                     date = dateFormat.format(d);
 
                     int typeId = cur.getInt(typeColumn);
-                    if(typeId == 1){
+                    if (typeId == 1) {
                         type = "接收";
-                    } else if(typeId == 2){
+                    } else if (typeId == 2) {
                         type = "发送";
                     } else {
                         type = "";
                     }
 
                     smsBuilder.append("[");
-                    smsBuilder.append(name+",");
-                    smsBuilder.append(phoneNumber+",");
-                    smsBuilder.append(smsbody+",");
-                    smsBuilder.append(date+",");
+                    smsBuilder.append(name + ",");
+                    smsBuilder.append(phoneNumber + ",");
+                    smsBuilder.append(smsbody + ",");
+                    smsBuilder.append(date + ",");
                     smsBuilder.append(type);
                     smsBuilder.append("]");
 
-                    if(smsbody == null) smsbody = "";
-                }while(cur.moveToNext());
+                    if (smsbody == null) smsbody = "";
+                } while (cur.moveToNext());
             } else {
                 smsBuilder.append("no result!");
             }
 
 //            smsBuilder.append("getSmsInPhone has executed!");
-        } catch(SQLiteException ex) {
+        } catch (SQLiteException ex) {
             Log.d("SQLiteException in getSmsInPhone", ex.getMessage());
         }
         System.out.println(smsBuilder.toString());
@@ -161,22 +162,21 @@ public class MainActivity extends AppCompatActivity {
 */
 
     /**
-     *
      * @param nums
      * @return
      */
-    int[] shuffle(int[] nums){
+    int[] shuffle(int[] nums) {
         java.util.Random rnd = new java.util.Random();
-        for (int i = nums.length -1; i > 0 ; i--){
-            int j = rnd.nextInt(i+1);
+        for (int i = nums.length - 1; i > 0; i--) {
+            int j = rnd.nextInt(i + 1);
             int temp = nums[i];
-            nums[i] =nums[j];
+            nums[i] = nums[j];
             nums[j] = temp;
         }
         return nums;
     }
 
-    int getSum(int[] pokers,String[] texts) {
+    int getSum(int[] pokers, String[] texts) {
         int sum = 0;
         for (int i = 0; i < pokers.length; i++) {
             if (pokers[i] == 0) {
@@ -202,18 +202,19 @@ public class MainActivity extends AppCompatActivity {
                     texts[0] += "黑桃" + count + ",";
                     break;
             }
-        }return  sum;
+        }
+        return sum;
 
     }
 
 
-    public String testdata(){
+    public String testdata() {
         //String params = "{\"user_phone\":" +user_phone +",\"user_password\":" + user_password+  "}";
         String params = "{\"username\":\"joker\",\"password\":\"小丑\"}";
         String data = null;
         try {
-            URL url=new URL("http://118.25.78.198:5000/b");
-            HttpURLConnection connect=(HttpURLConnection)url.openConnection();
+            URL url = new URL("http://118.25.78.198:5000/b");
+            HttpURLConnection connect = (HttpURLConnection) url.openConnection();
             connect.setDoInput(true);
             connect.setDoOutput(true);
             connect.setRequestMethod("POST");
@@ -222,9 +223,9 @@ public class MainActivity extends AppCompatActivity {
             OutputStream outputStream = connect.getOutputStream();
             outputStream.write(params.getBytes());
             int response = connect.getResponseCode();
-            if (response== HttpURLConnection.HTTP_OK) {
+            if (response == HttpURLConnection.HTTP_OK) {
                 System.out.println(response);
-                InputStream input=connect.getInputStream();
+                InputStream input = connect.getInputStream();
                 BufferedReader in = new BufferedReader(new InputStreamReader(input));
                 String line = null;
                 StringBuffer sb = new StringBuffer();  //创建字符串对象
@@ -236,8 +237,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.i("请求结果", reinfo.get("Me").toString());
                 data = reinfo.toString();
                 return reinfo.toString();
-            }
-            else {
+            } else {
                 System.out.println(response);
             }
         } catch (Exception e) {
@@ -245,9 +245,6 @@ public class MainActivity extends AppCompatActivity {
         }
         return data;
     }
-
-
-
 
 
     private void postData() {
@@ -259,8 +256,8 @@ public class MainActivity extends AppCompatActivity {
 //                String params = "{\"username\":\"joker\",\"password\":\"小丑\"}";
                 System.out.println(params);
                 try {
-                    URL url=new URL("http://118.25.78.198:5000/bb");
-                    HttpURLConnection connect=(HttpURLConnection)url.openConnection();
+                    URL url = new URL("http://118.25.78.198:5000/bb");
+                    HttpURLConnection connect = (HttpURLConnection) url.openConnection();
                     connect.setDoInput(true);
                     connect.setDoOutput(true);
                     connect.setRequestMethod("POST");
@@ -269,10 +266,9 @@ public class MainActivity extends AppCompatActivity {
                     OutputStream outputStream = connect.getOutputStream();
                     outputStream.write(params.getBytes());
                     int response = connect.getResponseCode();
-                    if (response== HttpURLConnection.HTTP_OK)
-                    {
+                    if (response == HttpURLConnection.HTTP_OK) {
                         System.out.println(response);
-                        InputStream input=connect.getInputStream();
+                        InputStream input = connect.getInputStream();
                         BufferedReader in = new BufferedReader(new InputStreamReader(input));
                         String line = null;
                         StringBuffer sb = new StringBuffer();  //创建字符串对象
@@ -282,8 +278,7 @@ public class MainActivity extends AppCompatActivity {
                         JSONObject reinfo = new JSONObject(sb.toString());  //字符串转json对象
                         System.out.println(reinfo.get("Me"));  //用get获取json对象的值
                         //Log.i("请求结果", reinfo.get("info").toString());
-                    }
-                    else {
+                    } else {
                         System.out.println(response);
                     }
                 } catch (Exception e) {
@@ -292,34 +287,5 @@ public class MainActivity extends AppCompatActivity {
             }
         }).start();
     }
-
-
-
 }
 
-//
-//class MyLocationListener implements LifecycleObserver {
-//    private boolean enabled = false;
-//    public MyLocationListener(Context context, Lifecycle lifecycle, Callback callback) {
-//           ;
-//    }
-//
-//    @OnLifecycleEvent(Lifecycle.Event.ON_START)
-//    void start() {
-//        if (enabled) {
-//            // connect
-//        }
-//    }
-//
-//    public void enable() {
-//        enabled = true;
-//        if (lifecycle.getCurrentState().isAtLeast(STARTED)) {
-//            // connect if not connected
-//        }
-//    }
-//
-//    @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
-//    void stop() {
-//        // disconnect if connected
-//    }
-//}
