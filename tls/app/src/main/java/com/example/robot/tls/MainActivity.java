@@ -1,20 +1,24 @@
 package com.example.robot.tls;
+import java.io.InputStream;
+
 
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatActivity;import java.io.InputStream;
+
 import android.view.View;
 import android.widget.TextView;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.math.BigInteger;
 import java.security.KeyManagementException;
-import java.security.KeyStore;
+import java.security.KeyStore;import java.security.PublicKey;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
-import java.security.PublicKey;
-import java.security.SecureRandom;
+
+import java.security.SecureRandom;import okhttp3.Call;
+import okhttp3.Callback;
+
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
@@ -25,12 +29,10 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
 
-import okhttp3.Call;
-import okhttp3.Callback;
 import okhttp3.OkHttpClient;
+
 import okhttp3.Request;
 import okhttp3.Response;
-
 
 // android 中使用ssl 证书
 public class MainActivity extends AppCompatActivity {

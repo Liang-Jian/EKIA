@@ -8,7 +8,7 @@ int g_var = 0;
         else
             printf("null string\r\n");
     }
-    int main (int argc, char **argv)
+    int main (int argc, char **argv)    
     {
         int l_var = 1;
         print_line("hello world!");
