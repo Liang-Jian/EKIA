@@ -258,6 +258,15 @@ GatewayPorts yes
 ssh -fCNR 9891:localhost:8920 root@!!*3@%4&*8!(*
 ssh root@localhost -p7000
 
+
+
+### ssh 服务器段超时设置###
+vi /etc/ssh/sshd_config
+ClientAliveInterval 600
+ClientAliveCountMax 10
+TCPKeepAlive yes
+
+
 ### kali 笔记本设置 ##
 vi /etc/systemd/logind.conf
 HandleLidSwitch=lock  #合上笔记本不休眠
@@ -286,13 +295,14 @@ lower_case_table_names = 1
 
 ### 环境变量
 
-export JAVA_HOME=/usr/local/jdk
-export JRE_HOME=${JAVA_HOME}/jre
-export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib
-export PATH=${JAVA_HOME}/bin:$PATH
-export ANDROID_HOME=/home/robot/sdk
+export JAVA_HOME=/usr/local/jdk 
+export JRE_HOME=${JAVA_HOME}/jre 
+export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib 
+export PATH=${JAVA_HOME}/bin:$PATH 
+export ANDROID_HOME=/home/robot/sdk 
 export ANDROID_NDK=/home/robot/sdk/ndk-bundle
+export GRADLE_HOME=/usr/local/gradle
 
-export PATH=${JAVA_HOME}/bin:${ANDROID_HOME}/platform-tools:${ANDROID_NDK}:${ANDROID_HOME}/tools:$PATH
-export ORACLE_SID=orcl
-export LD_LIBRARY_PATH=/home/robot/program/orclient/instantclient_19_3
+export PATH=${JAVA_HOME}/bin:${GRADLE_HOME}/bin:${ANDROID_HOME}/platform-tools:${ANDROID_NDK}:${ANDROID_HOME}/tools:$PATH 
+export ORACLE_SID=orcl 
+export LD_LIBRARY_PATH=/home/robot/program/orcl
