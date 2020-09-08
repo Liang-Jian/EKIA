@@ -83,7 +83,12 @@ git remote add origin git@github.com:billfeller/historyBrowsing.git
 Agent admitted failure to sign using the key"
 eval "$(ssh-agent -s)"
 ssh-add
-
+```
+#git 放弃修改，重置本地代码。
+git fetch --all
+git reset --hard origin/master
+git pull
+```
 ### kali Mysql使用普通用户
 update user set plugin='' where user='root';
 flush privileges;
@@ -251,7 +256,7 @@ File -> setting -> Editor -> Color&Fonts -> General -> Text -> Default text -> B
 C7EDCC
 
 
-### ssh 反弹shell ##
+### ssh 反弹shell
 vi /etc/ssh/sshd_config
 GatewayPorts yes
 
@@ -267,9 +272,10 @@ ClientAliveCountMax 10
 TCPKeepAlive yes
 
 
-### kali 笔记本设置 ##
+### kali 笔记本设置
+#####合上笔记本不休眠  
 vi /etc/systemd/logind.conf
-HandleLidSwitch=lock  #合上笔记本不休眠
+HandleLidSwitch=lock  
 
 
 ### mysql command
@@ -299,10 +305,34 @@ export JAVA_HOME=/usr/local/jdk
 export JRE_HOME=${JAVA_HOME}/jre 
 export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib 
 export PATH=${JAVA_HOME}/bin:$PATH 
-export ANDROID_HOME=/home/robot/sdk 
-export ANDROID_NDK=/home/robot/sdk/ndk-bundle
+export ANDROID_HOME=/home/joker/sdk 
+export ANDROID_NDK=/home/joker/sdk/ndk-bundle
 export GRADLE_HOME=/usr/local/gradle
 
 export PATH=${JAVA_HOME}/bin:${GRADLE_HOME}/bin:${ANDROID_HOME}/platform-tools:${ANDROID_NDK}:${ANDROID_HOME}/tools:$PATH 
 export ORACLE_SID=orcl 
-export LD_LIBRARY_PATH=/home/robot/program/orcl
+export LD_LIBRARY_PATH=/home/joker/program/orcl
+
+
+### centos 常用命令
+
+```
+[root@VM_0_7_centos ~]# crontab -l
+
+[root@VM_0_7_centos ~]# vi autosshservice
+# !/bin/bash
+# chkconfig: 2345 80 90
+# description:auto_run
+# start auto connect script as tiaozhuan
+
+ssh -fCNR 7000:localhost:22 root@*.*
+
+[root@VM_0_7_centos ~]# crontab -e
+0 0 * * * /usr/local/qcloud/YunJing/YDCrontab.sh > /dev/null 2>&1 &
+# 每 3个小时启启动一次sshautologin.sh
+* */3 * * * /etc/init.d/sshautologin.sh start
+* */4 * * * /etc/init.d/autoreboot.sh start
+
+
+rsync -vaz root@youservice:/home/joker/EKIA/ /home/joker/EKIA/
+```
