@@ -2,7 +2,7 @@
 
 
 
-import SocketServer,struct,os,random,binascii,SM3,uuid,re,sys
+import socketserver,struct,os,random,binascii,SM3,uuid,re,sys
 import time,datetime
 
 reload(sys)
@@ -20,25 +20,25 @@ def unpack(fmt, bytes, start=0):
 def sm(data):
 
 	#把hash后值转化string
-	print data
+	print(data)
 	y = SM3.hash_msg(data)
 	list = []
 	for i in y:
 		list.append("%08x" % i),
-	# print "\n",
+	# print("\n",
 	#只返回hash后的值，便于比较，不在里面进行补位
 	# list ="00"+"".join(list)  # len2 = len(client)+(00+hash()) 33byte+len1
 	list ="".join(list)  # len2 = len(client)+(00+hash()) 33byte+len1
-	print list
+	print(list)
 	return list
 def cutstr(data):
 
 	#把字符串每两个以空格分开,把sm算好的值分隔发送出去
-	print data
+	print(data)
 	if (len(data) %2) !=0:
-		print "can't con"
+		print("can't con")
 	result = re.sub(r"(?<=\w)(?=(?:\w\w)+$)", " ", data)
-	# print result
+	# print(result)
 	return  result
 def timestmp():
 
@@ -66,7 +66,7 @@ def usertohex(data):
 	#把客户标识转化hex model的string,与hash(timestamp)拼接并发送
 
 	strtohex = cutstr(binascii.b2a_hex(data))
-	print strtohex,type(strtohex)
+	print(strtohex,type(strtohex))
 	return strtohex
 def datahash(data): #
 	_buffer = ""
@@ -76,7 +76,7 @@ def datahash(data): #
 		_buffer += struct.pack("I", j)
 	# 相当于 _buffer += struct.pack(">I", J)，只是大小端换了一下
 	# mylog.logger.debug("SM3 %d = %r" % (len(_buffer), _buffer))
-	# print ("SM3 %d = %r" % (len(_buffer), _buffer))
+	# print(("SM3 %d = %r" % (len(_buffer), _buffer))
 	return _buffer
 def datauid():
 	uid = uuid.uuid5(uuid.uuid1(), "sutest")
@@ -89,16 +89,16 @@ def receive(channel,fmt):
     pro = channel.recv(size)
     while len(pro) < size:
         pro += channel.recv(size - len(pro))
-    # print "pro",repr(pro)
+    # print("pro",repr(pro)
     try:
         body24 = struct.unpack(fmt, pro[8:32])
-    except struct.error, e:
+    except struct.error as e:
         return ''
     #确保收到全部的DATA
     buf = ""
     while len(buf) < body24[2]:
         buf += channel.recv(body24[2] - len(buf))
-        # print "buf",repr(buf)
+        # print("buf",repr(buf)
     return body24,buf
 
 def checkFile():#随机文件名
@@ -111,13 +111,13 @@ def checkFile():#随机文件名
 	filename =str(time.strftime(fileFORMAT))+sa+str(sj)+".data"
 
 	if os.path.exists('./'+filename):
-		print "文件名重复已经删除"
+		print("文件名重复已经删除")
 		os.remove('./'+filename)
 	return filename
 
 HOST = '127.0.0.1'
 PORT = 12345
-class AMService(SocketServer.BaseRequestHandler):
+class AMService(socketserver.BaseRequestHandler):
 	fmt = "<HIQI6s"
 	USER = "lexus"
 	PASSWD = "a"
@@ -148,10 +148,10 @@ class AMService(SocketServer.BaseRequestHandler):
 				while True:
 					# data = self.request.recv(1024)
 					data = receive(self.request,self.fmt)
-					print len(data),self.client_address #repr(data)数据较多，忽略
+					print(len(data),self.client_address) #repr(data)数据较多，忽略
 					# self.checkdata(data)
 					if len(data) <=0:
-						print "not data"
+						print("not data")
 						break
 					# elif len(data) ==0:
 						#     continue
@@ -161,14 +161,14 @@ class AMService(SocketServer.BaseRequestHandler):
 							if ((data[1][:len(self.USER)].decode('ascii')) == self.USER):
 								hash1 = data[1][len(self.USER)+1:]
 								hash1 += self.PASSWD
-								print "client id pass"
+								print("client id pass")
 								self.request.send(datoB(self.PROICON))
 								self.request.send(struct.pack(self.fmt,self.SU,self.SM_SIZE*2,0,0,self.keep))
 								self.request.send(datahash(SM3.hash_msg(hash1))+datahash(SM3.hash_msg(sjc)))
 
 							else:
 								#"握手失败：客户端标识["+lexu+"]不合法！"
-								print "client id fail"
+								print("client id fail")
 								hash1 = data[1][len(self.USER)+1:]
 								hash1 += self.PASSWD
 								self.request.send(datoB(self.PROICON))
@@ -182,79 +182,79 @@ class AMService(SocketServer.BaseRequestHandler):
 							sm_passwdB = datahash(SM3.hash_msg(servicesm))
 							#5,检查sm
 							if data[1] == sm_passwdB:
-								print "client check pass"
+								print("client check pass")
 								self.request.send(datoB(self.PROICON))
 								self.request.send(struct.pack(self.fmt,self.SU,len(self.WEL.encode("gb2312"))+1,0,0,self.keep))
 								self.request.send(self.WEL.encode("gb2312"))
 								self.request.send(datoB([0x00]))
 								starttime = datetime.datetime.now()
 							else:
-								print "client check error"
-								print repr(data[1])
-								print "++++++++++++++++++"
+								print("client check error")
+								print(repr(data[1]))
+								print("++++++++++++++++++")
 								self.request.send(datoB(self.PROICON))
 								self.request.send(struct.pack(self.fmt,self.F,len(self.FAIL2.encode("gb2312"))+1,0,0,self.keep))
 								self.request.send(self.FAIL2.encode("gb2312"))
 								self.request.send(datoB([0x00]))
 						elif data[0][0] == 49:
-							print "file ask send(31)"
+							print("file ask send(31)")
 							self.request.send(datoB(self.PROICON))#8
 							self.request.send(struct.pack(self.fmt,1,240,2+1,0,0,0,0))#24
 							self.request.send(self.COMFIRM.encode("gb2312")+datoB([0x00])) #3
 						elif data[0][0] == 50:
 							'''
-								print "file sending(32)"
-								# print "收到文件长度：%s " % len(data[1])
-								print "recv file length：%s " % len(data[1])
+								print("file sending(32)"
+								# print("收到文件长度：%s " % len(data[1])
+								print("recv file length：%s " % len(data[1])
 								#判断收到的全部data 长度
 								if len(data[1]) <=0:
-									print "file data over"
+									print("file data over"
 									# time.sleep(1)
 									endtime = datetime.datetime.now()
-									print "+---------------+"
-									print "|file total time %ds   |" % (endtime-starttime).seconds
-									print "+---------------+"
+									print("+---------------+"
+									print("|file total time %ds   |" % (endtime-starttime).seconds
+									print("+---------------+"
 									f.close()
 								f.write(data[1])
 								self.totalfiledata += len(data[1])
-								# print "收到文件数据"
+								# print("收到文件数据"
 								self.request.send(datoB(self.PROICON))#8
 								self.request.send(struct.pack(self.fmt,1,240,1,0,0,0,0))#24
 								self.request.send(datoB([0x00]))#1 00
-							# print "文件开始传输(32)"
-							# print "收到文件长度：%s " % len(data[1])
+							# print("文件开始传输(32)"
+							# print("收到文件长度：%s " % len(data[1])
 							# 判断收到的全部data 长度
 							'''
-							# print "file sending(32)"
-							# print "收到文件长度：%s " % len(data[1])
-							# print "recv file length：%s " % len(data[1])
+							# print("file sending(32)"
+							# print("收到文件长度：%s " % len(data[1])
+							# print("recv file length：%s " % len(data[1])
 							f.write(data[1])
 							if len(data[1]) <= 0:
-								print "file have been received "
+								print("file have been received ")
 								# time.sleep(1)
 								endtime = datetime.datetime.now()
-								# print "+--------------+"
-								# print "|file total used  %ds |" % (endtime-starttime).seconds
-								# print "+--------------+"
+								# print("+--------------+"
+								# print("|file total used  %ds |" % (endtime-starttime).seconds
+								# print("+--------------+"
 								# f.close()
 								break
 							self.totalfiledata += len(data[1])
-							# print "===收到文件数据==="
+							# print("===收到文件数据==="
 							self.request.send(datoB(self.PROICON))  # 8
 							self.request.send(struct.pack(self.fmt, 1, 240, 1, 0, 0, 0, 0))  # 24
 							self.request.send(datoB([0x00]))  # 1 00
 
 						elif data[0][0] == 51:
-							# print "file send over(33)"
+							# print("file send over(33)"
 							self.request.send(datoB(self.PROICON))#8
 							self.request.send(struct.pack(self.fmt,1,240,2+1,0,0,0,0))#24
 							self.request.send(self.COMFIRM.encode("gb2312")+datoB([0x00])) #3
 			except:
-				print "socket error ingore "
+				print("socket error ingore ")
 			finally:
 				f.close()
 				self.request.shutdown(0)
 
 if __name__ == '__main__':
-	s = SocketServer.ThreadingTCPServer((HOST,PORT),AMService)
+	s = socketserver.ThreadingTCPServer((HOST,PORT),AMService)
 	s.serve_forever()

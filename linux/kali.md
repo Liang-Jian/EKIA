@@ -29,8 +29,8 @@ vi /etc/shadowsocks/config.json
 "method":"chacha20"
 }`
 
-### jdk
-sudo mkdir /usr/local/jdk  
+### jdk  
+`sudo mkdir /usr/local/jdk  
 sudo gedit ~/.bashrc  
 export JAVA_HOME=/usr/local/jdk
 export JRE_HOME=${JAVA_HOME}/jre
@@ -48,7 +48,7 @@ sudo apt-get purge openjdk*
 sudo apt-get purge icedtea-* openjdk-*
 检查所有 OpenJDK包是否都已卸载完毕<br>
 dpkg --list |grep -i jdk
-
+`
 ### static IPAddress
 sudo vi /etc/network/interfaces
 auto lo
@@ -118,7 +118,7 @@ netmask 255.255.255.0
 gateway 192.168.2.254
 
 ###DNS
-####ubuntu
+###ubuntu
 sudo vi /etc/resolvconf/resolv.conf.d/base
 nameserver 202.106.0.20
 nameserver 202.16.196.115
@@ -126,7 +126,7 @@ sudo gedit /etc/NetworkManager/NetworkManager.conf
 true
 /etc/init.d/networking restart
 
-####debian
+###debian
 sudo apt-get install resolvconf
 sudo vi /etc/network/interfaces
 nameserver 168.95.192.1 168.95.192.2
@@ -181,15 +181,15 @@ deb-src http://mirrors.aliyun.com/debian/ jessie-proposed-updates main non-free 
 deb http://mirrors.aliyun.com/kali kali-rolling main non-free contrib
 deb-src http://mirrors.aliyun.com/kali kali-rolling main non-free contrib
 
-##kali 数字签名错误
+###kali 数字签名错误
 wget -q -O - https://archive.kali.org/archive-key.asc | apt-key add
 
-##debian fcitx前段ui库(更新新系统后才可以用)
+###debian fcitx前段ui库(更新新系统后才可以用)
 apt-get install fcitx-ui-classic && apt-get install fcitx-ui-light
 apt-get install fcitx-googlepinyin
 root@root:$ fcitx-configtool
 
-##chrome隐私浏览
+###chrome隐私浏览
 sudo vi /usr/bin/google-chrome
 exec -a "$0" "$HERE/chrome" "$@" --incognito
 
@@ -236,12 +236,12 @@ echo "hell" | sudo tee /srv/tftp/hello.txt
 win7 : tftp.exe -i 10.140.177.206 put jietu.py
 
 
-## proxychains
+### proxychains
 sudo apt-get install proxychains
 sudo vi /etc/proxychains.conf
 socks 127.0.0.1 1080
 
-## android_home
+### android_home
 `export ANDROID_HOME=/home/root/Android/Sdk/home/root/sdk`
 `export PATH=${JAVA_HOME}/bin:${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/tools:$PATH`
 
@@ -260,9 +260,8 @@ C7EDCC
 vi /etc/ssh/sshd_config
 GatewayPorts yes
 
-ssh -fCNR 9891:localhost:8920 root@!!*3@%4&*8!(*
+ssh -fCNR 9891:localhost:8920 root@youip
 ssh root@localhost -p7000
-
 
 
 ### ssh 服务器段超时设置###
@@ -314,7 +313,7 @@ export ORACLE_SID=orcl
 export LD_LIBRARY_PATH=/home/joker/program/orcl
 
 
-### centos 常用命令
+### Linux 常用脚本
 
 ```
 [root@VM_0_7_centos ~]# crontab -l
@@ -330,9 +329,8 @@ ssh -fCNR 7000:localhost:22 root@*.*
 [root@VM_0_7_centos ~]# crontab -e
 0 0 * * * /usr/local/qcloud/YunJing/YDCrontab.sh > /dev/null 2>&1 &
 # 每 3个小时启启动一次sshautologin.sh
-* */3 * * * /etc/init.d/sshautologin.sh start
+0 */3 * * * /etc/init.d/sshautologin.sh start
 * */4 * * * /etc/init.d/autoreboot.sh start
-
 
 rsync -vaz root@youservice:/home/joker/EKIA/ /home/joker/EKIA/
 ```

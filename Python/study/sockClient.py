@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 
 import time, select, socket, traceback, threading, hashlib, json,SM3,os
-import re, Queue, sys, struct, ConfigParser, string,binascii,uuid
+import re, sys, struct, string,binascii,uuid,queue,configparser
 from time import strftime,gmtime
 
 reload(sys)
@@ -76,7 +76,7 @@ def receive(channel,fmt):
 	# print "pro",repr(pro)
 	try:
 		body24 = struct.unpack(fmt, pro[8:32])
-	except struct.error, e:
+	except struct.error as e:
 		return ''
 	#确保收到全部的DATA
 	buf = ""
@@ -125,11 +125,11 @@ class AMClient:
 
 		try:
 			self.s.connect((self.HOST,self.PORT))#1 多线程连接client出现10061
-		except socket.gaierror, e:
-			print "Address-related error connecting to server: %s" % e
+		except socket.gaierror as e:
+			print ("Address-related error connecting to server: %s") % e
 			sys.exit(1)
-		except socket.error, e:
-			print "Connection error: %s" % e
+		except socket.error as  e:
+			print("Connection error: %s") % e
 			sys.exit(1)
 		
 		# self.s.connect((self.HOST,self.PORT))
@@ -149,17 +149,17 @@ class AMClient:
 
 		while True:
 			fst = receive(self.s,self.__fmt)
-			print fst
+			print(fst)
 			if len(fst)<=0:
 				break
 			else:
 				if fst[0][0] == self.SU: #F001
 					if len(fst[1]) == self.SM_SIZE * 2:
 						if fst[1][:self.SM_SIZE] == sm_passwdA:
-							print "service sm right"
+							print("service sm right")
 							smvalue = fst[1][self.SM_SIZE:]
 							smvalue += self.PASSWD
-							print "client send 02 command start"
+							print("client send 02 command start")
 							#5，发送0002
 							self.s.send(datoB(self.PROICON))
 							self.s.send(SPROHEAD)
@@ -167,37 +167,37 @@ class AMClient:
 							# self.s.send(datahash(SM3.hash_msg(timestmp())))
 
 							self.s.send(datahash(SM3.hash_msg(smvalue)))
-							print "client send 02 command succes"
+							print("client send 02 command succes")
 						else:
-							print "service sm error"
-							print "error sm",repr(fst[1][:self.SM_SIZE])
-							print "++++++++++++++++"
+							print("service sm error")
+							print("error sm",repr(fst[1][:self.SM_SIZE]))
+							print("++++++++++++++++")
 							self.s.shutdown(socket.SHUT_WR)
 							# self.s.shutdown(socket.SHUT_WR)
 					elif fst[0][1] ==  len(self.USER)+self.WELLEN:
 					# else:
-						print "service handshake succ"
+						print("service handshake succ")
 						self.running = True
 						break
 				elif fst[0][0] == self.F: #F000
 					#4，client接收到0xF000
 					if fst[0][1] == self.SM_SIZE+len(self.FAIL.encode("gb2312"))+1:
 						if fst[1][:self.SM_SIZE] == sm_passwdA:
-							print "record error message"
+							print("record error message")
 							self.s.shutdown(socket.SHUT_WR)
 							break
 						else:
-							print "service out of  law"
+							print("service out of  law")
 							self.s.shutdown(socket.SHUT_WR)
 							break
 					elif fst[0][1] == len(self.FAIL2)+1:
 					# else:
 						if fst[0][1].decode("gb2312") == self.FAIL2:
-							print "token error"
+							print("token error")
 							self.s.shutdown(socket.SHUT_WR)
 							break
 				else:
-					print "unknown command word"
+					print("unknown command word")
 					self.running = False
 					self.s.shutdown(socket.SHUT_WR)
 					break
@@ -259,11 +259,11 @@ class AMClient:
 
 		if rdata[0][0] == self.SU: #F001
 			if rdata[1][:2].decode('gb2312') == "OK":
-				print "ask send file succ(31)"
+				print("ask send file succ(31)")
 			else:
-				print "comfirm message fail(31)"
+				print("comfirm message fail(31)")
 		else:
-			print "ask send file fail(31)"
+			print("ask send file fail(31)")
 	def fileOver(self,uid,sid):
 		self.s.send(datoB(self.PROICON))
 		self.s.send(struct.pack(self.__fmt,51,1,uid,sid,self.keep))
@@ -273,11 +273,11 @@ class AMClient:
 
 		if odata[0][0] == self.SU: #F001
 			if odata[1][:2].decode('gb2312') == "OK":
-				print "comfirm file send succ(33)"
+				print("comfirm file send succ(33)")
 			else:
-				print "comfirm message fail(33)"
+				print("comfirm message fail(33)")
 		else:
-			print "comfirm file send fail(33)"
+			print("comfirm file send fail(33)")
 	def shutsock(self):
 		self.s.shutdown(socket.SHUT_WR)
 	def sendfile(self,filepath,readsize):
@@ -292,7 +292,7 @@ class AMClient:
 		# print "开始进行传输文件"
 		filesize = os.path.getsize(filepath)
 		# print "文件大小 %d k" %(filesize /1024)
-		print "file size %d k" %(filesize /1024)
+		print("file size %d k" %(filesize /1024))
 		f = open(filepath, 'rb')
 
 		try:
@@ -309,17 +309,17 @@ class AMClient:
 
 				filedaxiao += len(fdata)
 				if len(fdata) <= 0:
-					print "file have been reading over"
+					print("file have been reading over")
 					break
 				tdata = receive(self.s,self.__fmt)
 				# print "tdata",tdata
 				if tdata[0][0] ==self.SU:
-					print "sending file succ(32)"
+					print("sending file succ(32)")
 				else:
-					print "sending file fail(32)"
+					print("sending file fail(32)")
 				sid +=1
 				self.fileOver(uid,sid)
-				print "send file size %d K" % (filedaxiao / 1024)
+				print("send file size %d K" % (filedaxiao / 1024))
 		finally:
 
 			f.close()
