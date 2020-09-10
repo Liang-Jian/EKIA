@@ -1,7 +1,7 @@
 # docker command ###
 
 ###
-1, first pull program  
+1, first pull program 
 `[root@mycentos ~]# dcocker pull nginx:latest`
 
 2, chakan images   
@@ -33,3 +33,7 @@ cf846306dbea        nginx               "/docker-entrypoin..."   4 days ago     
   -v /data/ngnix/conf.d:/etc/nginx/conf.d  \
   -v /data/ngnix/html:/usr/share/nginx/html \
   nginx
+
+
+9,check image status
+`[root@mycentos ~]# docker container ls`
