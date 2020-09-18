@@ -84,7 +84,7 @@ Agent admitted failure to sign using the key"
 eval "$(ssh-agent -s)"
 ssh-add
 ```
-#git 放弃修改，重置本地代码。
+####git 放弃修改，重置本地代码。
 git fetch --all
 git reset --hard origin/master
 git pull
@@ -270,6 +270,8 @@ ClientAliveInterval 600
 ClientAliveCountMax 10
 TCPKeepAlive yes
 
+### ssh 无密码登录
+
 
 ### kali 笔记本设置
 #####合上笔记本不休眠  
@@ -299,7 +301,7 @@ lower_case_table_names = 1
 
 
 ### 环境变量
-
+```
 export JAVA_HOME=/usr/local/jdk 
 export JRE_HOME=${JAVA_HOME}/jre 
 export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib 
@@ -311,7 +313,7 @@ export GRADLE_HOME=/usr/local/gradle
 export PATH=${JAVA_HOME}/bin:${GRADLE_HOME}/bin:${ANDROID_HOME}/platform-tools:${ANDROID_NDK}:${ANDROID_HOME}/tools:$PATH 
 export ORACLE_SID=orcl 
 export LD_LIBRARY_PATH=/home/joker/program/orcl
-
+```
 
 ### Linux 常用脚本
 
@@ -323,14 +325,60 @@ export LD_LIBRARY_PATH=/home/joker/program/orcl
 # chkconfig: 2345 80 90
 # description:auto_run
 # start auto connect script as tiaozhuan
-
-ssh -fCNR 7000:localhost:22 root@*.*
+ssh -fCNR 7000:localhost:22 root@118.25.*.*
 
 [root@VM_0_7_centos ~]# crontab -e
 0 0 * * * /usr/local/qcloud/YunJing/YDCrontab.sh > /dev/null 2>&1 &
-# 每 3个小时启启动一次sshautologin.sh
-0 */3 * * * /etc/init.d/sshautologin.sh start
-* */4 * * * /etc/init.d/autoreboot.sh start
+# 每 3个小时启动一次sshautologin.sh
+10 */3 * * * /etc/init.d/sshautologin.sh start
+0 */3 * * * /etc/init.d/autoreboot.sh start
 
 rsync -vaz root@youservice:/home/joker/EKIA/ /home/joker/EKIA/
+```
+
+### Linux 开启bbr加速
+`[root@centos ~]# wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh`
+```
+[root@centos ~]# echo "net.core.default_qdisc = fq" >> /etc/sysctl.conf
+[root@centos ~]# echo "net.ipv4.tcp_congestion_control = bbr" >> /etc/sysctl.conf
+[root@centos ~]# sysctl -p 
+net.ipv6.conf.all.disable_ipv6 = 0
+net.ipv6.conf.default.disable_ipv6 = 0
+net.ipv6.conf.lo.disable_ipv6 = 0
+kernel.printk = 5
+fs.file-max = 1000000
+fs.inotify.max_user_instances = 8192
+net.ipv4.tcp_syncookies = 1
+net.ipv4.tcp_fin_timeout = 30
+net.ipv4.tcp_tw_reuse = 1
+net.ipv4.ip_local_port_range = 1024 65000
+net.ipv4.tcp_max_syn_backlog = 16384
+net.ipv4.tcp_max_tw_buckets = 6000
+net.ipv4.route.gc_timeout = 100
+net.ipv4.tcp_syn_retries = 1
+net.ipv4.tcp_synack_retries = 1
+net.core.somaxconn = 32768
+net.core.netdev_max_backlog = 32768
+net.ipv4.tcp_timestamps = 0
+net.ipv4.tcp_max_orphans = 32768
+net.ipv4.ip_forward = 1
+net.core.default_qdisc = fq
+net.ipv4.tcp_congestion_control = bbr
+net.core.default_qdisc = fq
+net.ipv4.tcp_congestion_control = bbr
+
+查看是否开启
+[root@centos ~]# sysctl net.ipv4.tcp_available_congestion_control
+net.ipv4.tcp_available_congestion_control = reno cubic bbr
+[root@centos ~]# sysctl net.ipv4.tcp_congestion_control
+net.ipv4.tcp_congestion_control = bbr
+```
+
+### Linux 源码安装Python3
+```
+[root@centos Python37]# yum install gcc openssl-devel bzip2-devel libffi-devel -y
+[root@centos Python37]# wget -o  https://www.python.org/ftp/python/3.7.9/Python-3.7.9.tgz
+[root@centos Python37]# tar -xzf Python-3.7.9.tgz
+[root@centos Python37]# ./configure --enable-optimizations
+[root@centos Python37]# make altinstall
 ```
