@@ -3,6 +3,7 @@ package com.example.lxl;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,28 +41,43 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button button= findViewById(R.id.dick);
-        TextView mTextResult = findViewById(R.id.dick1);
-        onRequestNet(mTextResult);
+        Button button= findViewById(R.id.bdssl); // baidu ssl cert demo
         button.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
-                tankuang();
-//                setText();
-
-
+                TextView mTextResult = findViewById(R.id.bdView);
+                onRequestNet(mTextResult);
             }
         });
+
+        Button bt1 = findViewById(R.id.sMs);
+        bt1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setText();
+            }
+        });
+
     }
 
-    public void tankuang(){
-        Toast.makeText(this, "Fuck This World", Toast.LENGTH_SHORT).show();
+    /**
+     * toast 示例
+     */
+    public void toastdemo(){
+        EditText s = findViewById(R.id.et1);
+        String Tostring = s.getText().toString();
+        if (!Tostring.equals(""))
+            Toast.makeText(this, Tostring, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"No data",Toast.LENGTH_LONG).show();
     }
 
+    /**
+     * TextView 设置值
+     */
     public void setText(){
-        TextView tv = findViewById(R.id.dick1);
-        tv.setText("[\\ue3w]");
+        TextView tv = findViewById(R.id.bdView);
+        tv.setText("What's a Fuck");
+        toastdemo();
     }
 
 
@@ -85,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        TextView mTextResult = findViewById(R.id.dick1);
+                        TextView mTextResult = findViewById(R.id.bdView);
                         mTextResult.setText("请求失败：\n" + e.getLocalizedMessage());
                     }
                 });
@@ -97,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        TextView mTextResult = findViewById(R.id.dick1);
+                        TextView mTextResult = findViewById(R.id.bdView);
                         mTextResult.setText("请求成功：\n" + result);
                     }
                 });
