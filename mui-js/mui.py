@@ -19,6 +19,6 @@ def a(ele,p_ele):
 		            mui.trigger(q[i],'tap');\
 	            } \
             } \
-        };joker();''' % ("h4","可用积分")
+        };joker();''' % ("h4","班级")
     print(_js)
 a('a','b')

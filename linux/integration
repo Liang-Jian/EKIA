@@ -12,7 +12,7 @@ export JAVA_HOME
 case "$1" in
 start)    
     echo "Starting Integration..."    
-    cd /home/instore/hs/integration && nohup $JAVA_HOME/bin/java -Xms1024M -Xmx1024M -Djava.ext.dirs=lib com.hanshows.cdi.proxi.DataExtractor >/dev/null 2>&1 &
+    cd /home/instore/xueersi/integration && nohup $JAVA_HOME/bin/java -Xms1024M -Xmx1024M -Djava.ext.dirs=lib com.hanshows.cdi.proxi.DataExtractor >/dev/null 2>&1 &
     echo "Started Integration"    
     ;;    
 
@@ -36,9 +36,9 @@ exit 0
 
 JAVA_HOME=/usr/local/java/jdk1.8.0_131  
 export JAVA_HOME    
-CATALANA_HOME=/home/instore/hs/apache-tomcat-8.5.15/  
+CATALANA_HOME=/home/instore/xueersi/apache-tomcat-8.5.15/  
 export CATALINA_HOME
-CATALANA_BASE=/home/instore/hs/store1/shopweb/ 
+CATALANA_BASE=/home/instore/xueersi/store1/shopweb/ 
 
 case "$1" in    
 start)    

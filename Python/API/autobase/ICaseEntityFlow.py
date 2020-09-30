@@ -1,5 +1,4 @@
 
-
 from abc import ABCMeta,abstractclassmethod
 from autobase import GetTestData_fix1,HttpTransport,t2resut
 from autobase.utils import log

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="lxl"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="D:/zdhlog/EKIA/c/lxl/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="D:/tools/mingw64/bin/mingw32-make.exe -f &quot;D:/zdhlog/EKIA/c/lxl/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="D:/tools/mingw64/bin/mingw32-make.exe -f &quot;D:/zdhlog/EKIA/c/lxl/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/tools/mingw64/bin/mingw32-make.exe -f &quot;D:/zdhlog/EKIA/c/lxl/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/tools/mingw64/bin/mingw32-make.exe -f &quot;D:/zdhlog/EKIA/c/lxl/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="lxl">
+				<Option output="D:/zdhlog/EKIA/c/lxl/cmake-build-debug/lxl.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="D:/zdhlog/EKIA/c/lxl/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="D:/tools/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/include"/>
+					<Add directory="D:/tools/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/include-fixed"/>
+					<Add directory="D:/tools/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/../../../../x86_64-w64-mingw32/include"/>
+					<Add directory="D:/tools/mingw64/lib/gcc/../../x86_64-w64-mingw32/include/c++"/>
+					<Add directory="D:/tools/mingw64/lib/gcc/../../x86_64-w64-mingw32/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="D:/tools/mingw64/lib/gcc/../../x86_64-w64-mingw32/include/c++/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="D:/tools/mingw64/bin/mingw32-make.exe -f &quot;D:/zdhlog/EKIA/c/lxl/cmake-build-debug/Makefile&quot;  VERBOSE=1 lxl"/>
+					<CompileFile command="D:/tools/mingw64/bin/mingw32-make.exe -f &quot;D:/zdhlog/EKIA/c/lxl/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/tools/mingw64/bin/mingw32-make.exe -f &quot;D:/zdhlog/EKIA/c/lxl/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/tools/mingw64/bin/mingw32-make.exe -f &quot;D:/zdhlog/EKIA/c/lxl/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="lxl/fast">
+				<Option output="D:/zdhlog/EKIA/c/lxl/cmake-build-debug/lxl.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="D:/zdhlog/EKIA/c/lxl/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="D:/tools/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/include"/>
+					<Add directory="D:/tools/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/include-fixed"/>
+					<Add directory="D:/tools/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.4.0/../../../../x86_64-w64-mingw32/include"/>
+					<Add directory="D:/tools/mingw64/lib/gcc/../../x86_64-w64-mingw32/include/c++"/>
+					<Add directory="D:/tools/mingw64/lib/gcc/../../x86_64-w64-mingw32/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="D:/tools/mingw64/lib/gcc/../../x86_64-w64-mingw32/include/c++/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="D:/tools/mingw64/bin/mingw32-make.exe -f &quot;D:/zdhlog/EKIA/c/lxl/cmake-build-debug/Makefile&quot;  VERBOSE=1 lxl/fast"/>
+					<CompileFile command="D:/tools/mingw64/bin/mingw32-make.exe -f &quot;D:/zdhlog/EKIA/c/lxl/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/tools/mingw64/bin/mingw32-make.exe -f &quot;D:/zdhlog/EKIA/c/lxl/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/tools/mingw64/bin/mingw32-make.exe -f &quot;D:/zdhlog/EKIA/c/lxl/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="D:/zdhlog/EKIA/c/lxl/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="D:/tools/mingw64/bin/mingw32-make.exe -f &quot;D:/zdhlog/EKIA/c/lxl/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="D:/tools/mingw64/bin/mingw32-make.exe -f &quot;D:/zdhlog/EKIA/c/lxl/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/tools/mingw64/bin/mingw32-make.exe -f &quot;D:/zdhlog/EKIA/c/lxl/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/tools/mingw64/bin/mingw32-make.exe -f &quot;D:/zdhlog/EKIA/c/lxl/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="D:/zdhlog/EKIA/c/lxl/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="D:/tools/mingw64/bin/mingw32-make.exe -f &quot;D:/zdhlog/EKIA/c/lxl/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="D:/tools/mingw64/bin/mingw32-make.exe -f &quot;D:/zdhlog/EKIA/c/lxl/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/tools/mingw64/bin/mingw32-make.exe -f &quot;D:/zdhlog/EKIA/c/lxl/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/tools/mingw64/bin/mingw32-make.exe -f &quot;D:/zdhlog/EKIA/c/lxl/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="D:/zdhlog/EKIA/c/lxl/dick.c">
+			<Option target="lxl"/>
+		</Unit>
+		<Unit filename="D:/zdhlog/EKIA/c/lxl/main.cpp">
+			<Option target="lxl"/>
+		</Unit>
+		<Unit filename="D:/zdhlog/EKIA/c/lxl/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

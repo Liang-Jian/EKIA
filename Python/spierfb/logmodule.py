@@ -1,55 +1,36 @@
 import logging
 import logging.handlers
-import os
-
-
 
 def logConfig():
 
     logger = logging.getLogger("joker")
-
-    logger.setLevel(logging.DEBUG)# 全局默认级别WARNING
-
-
-    # 生成Handler对象
-    ch = logging.StreamHandler()
+    logger.setLevel(logging.DEBUG)                      # 全局默认级别WARNING
+    ch = logging.StreamHandler()                        # 生成Handler对象
     ch.setLevel(logging.DEBUG)
     # fh = logging.FileHandler("./" + "//log//log.txt", encoding="utf8")
     fh = logging.FileHandler("../log/log.log", encoding="utf8")
     fh.setLevel(logging.DEBUG)
-
-    # 生成formatter对象
-    # 把formatter对象 绑定到Handler对象
-    file_formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s %(message)s")
+    file_formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s %(message)s")# 把formatter对象 绑定到Handler对象
     console_formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
-    # console_formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(lineno)d - %(message)s")
     ch.setFormatter(console_formatter)
     fh.setFormatter(file_formatter)
-    # 把Handler对象 绑定到logger
-    logger.addHandler(ch)
+    logger.addHandler(ch)                               # 把Handler对象 绑定到logger
     logger.addHandler(fh)
     return logger
 
 log = logConfig()
 
-def logger_debug(msg):
+def Logd(msg):
     log.debug(msg)
 
-def logger_info(msg):
+def Logi(msg):
     log.info(msg)
 
-def logger_warning(msg):
+def Logw(msg):
     log.warning(msg)
 
-def logger_error(msg):
+def Loge(msg):
     log.error(msg)
 
-def logger_critical(msg):
+def Logc(msg):
     log.critical(msg)
-
-if __name__ == '__main__':
-    logger_debug("logger_debug")
-    logger_info("logger_info")
-    logger_warning("logger_warning")
-    logger_error("logger_error")
-    logger_critical("logger_critical")

@@ -3,36 +3,36 @@
 class CaseDateTime(object):
     pass
 
-class DataGenerateDanamicUtil:
+class DataGenerateDanamicUtil(object):
     pass
 
-class DataGenerateDanamicUtil2:
+class DataGenerateDanamicUtil2(object):
     pass
 
-class DataGenerateUtil:
+class DataGenerateUtil(object):
     pass
 
-class DataType: #enum
+class DataType(object): #enum
     pass
 
-class ExpressionEvaluator:
+class ExpressionEvaluator(object):
     pass
 
 
-class MapAndTemplateTransformer:
+class MapAndTemplateTransformer(object):
     pass
 
-class RandomStringGenerator:
+class RandomStringGenerator(object):
     pass
 
-class IMessageTransformer:
+class IMessageTransformer(object):
     pass
 
-class IResponsMessageExtractor:
+class IResponsMessageExtractor(object):
     pass
 
-class ISpecialMessageHandler: #请求报文特殊处理，如加签
+class ISpecialMessageHandler(object): #请求报文特殊处理，如加签
     pass
 
-class IdCardGenerator:
+class IdCardGenerator(object):
     pass

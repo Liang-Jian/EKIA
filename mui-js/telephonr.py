@@ -3,7 +3,7 @@
 ##**expectedResult={expectedResult2}   
 ##**intent={intent2}    
 #procedure=
-##**imagePath=D:\\JettechAgent1.6.0通用版(接口&UI&手机)\\execute/result/image/手机银行_微信银行_账户查询对比(安卓)/手机银行_账户信息查询_账户信息查询流程001
+##**imagePath=D:\\xueersiAgent1.6.0通用版(接口&UI&手机)\\execute/result/image/手机银行_微信银行_账户查询对比(安卓)/手机银行_账户信息查询_账户信息查询流程001
 from fractions import Fraction
 import os, platform, sys, logging, time, subprocess, re, decimal, pickle, threading,multiprocessing,decimal,json,time
 from decimal import Decimal
@@ -447,7 +447,7 @@ class FunctionLibrary():
         import cv2
         #从录屏中截取一帧图片
         
-        vidcap = cv2.VideoCapture(self.SafeImagePath+'/'+'jettech.avi')
+        vidcap = cv2.VideoCapture(self.SafeImagePath+'/'+'xueersi.avi')
         success,image = vidcap.read()
         count = 0
         #success = True
@@ -461,7 +461,7 @@ class FunctionLibrary():
     @excepTion
     #录制视频并将手机视频pull到电脑，默认目录是脚本执行的当前目录（可自定义目录）
     def getVideo(self):
-        phonePath = '/sdcard/jettech.avi'
+        phonePath = '/sdcard/xueersi.avi'
         #recordCommand = 'adb shell screenrecord  --time-limit 1.5 ' + phonePath
         recordCommand = "adb -s "+self.udid+" shell screenrecord --time-limit 1 "+phonePath
         #执行录屏命令
@@ -532,7 +532,7 @@ class FunctionLibrary():
         
         img = cv2.imread(imagePath,0)
         #print(img)
-        #img = cv2.imread('D:/eclipsespace/jettech_app/python_script/src/conf/safeKeyBordTemplate/tempimage/1000main.png',0)
+        #img = cv2.imread('D:/eclipsespace/xueersi_app/python_script/src/conf/safeKeyBordTemplate/tempimage/1000main.png',0)
         img2 = img.copy()
         template = cv2.imread("%s/conf/safeKeyBordTemplate/%s.bmp"%(firstDir,i),0)
         # 6 中匹配效果对比算法
@@ -590,7 +590,7 @@ class FunctionLibrary():
             if (PF =="Windows"):
                 chser="C:\chromedriver.exe"
             else:#苹果
-                chser="/Users/jettech/chromedriver"
+                chser="/Users/xueersi/chromedriver"
             option = webdriver.ChromeOptions()
             self.driverIE = webdriver.Chrome(chser,0,chrome_options=option)
             self.driverIE.maximize_window()

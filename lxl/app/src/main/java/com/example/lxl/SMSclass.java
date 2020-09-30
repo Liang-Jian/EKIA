@@ -158,11 +158,12 @@
 //
 //
 //    public String testdata() {
+//         String ss = "http://youservice:5000/b";
 //        //String params = "{\"user_phone\":" +user_phone +",\"user_password\":" + user_password+  "}";
 //        String params = "{\"username\":\"joker\",\"password\":\"小丑\"}";
 //        String data = null;
 //        try {
-//            URL url = new URL("http://118.25.78.198:5000/b");
+//            URL url = new URL(ss);
 //            HttpURLConnection connect = (HttpURLConnection) url.openConnection();
 //            connect.setDoInput(true);
 //            connect.setDoOutput(true);
@@ -205,7 +206,7 @@
 ////                String params = "{\"username\":\"joker\",\"password\":\"小丑\"}";
 //                System.out.println(params);
 //                try {
-//                    URL url = new URL("http://118.25.78.198:5000/bb");
+//                    URL url = new URL(url);
 //                    HttpURLConnection connect = (HttpURLConnection) url.openConnection();
 //                    connect.setDoInput(true);
 //                    connect.setDoOutput(true);

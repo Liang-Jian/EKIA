@@ -19,7 +19,7 @@ class SqlService2:
 
     jdbcUrl = "jdbc:oracle:thin:@10.130.201.118:1521:tkpi"
     user    = "upiccore"
-    passwd  = "sinosoft"
+    passwd  = "xueersi"
 
     def setConnection(self,url,us,ps):
         SqlService2.jdbcUrl = url
