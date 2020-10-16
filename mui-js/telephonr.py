@@ -3,7 +3,7 @@
 ##**expectedResult={expectedResult2}   
 ##**intent={intent2}    
 #procedure=
-##**imagePath=D:\\xueersiAgent1.6.0通用版(接口&UI&手机)\\execute/result/image/手机银行_微信银行_账户查询对比(安卓)/手机银行_账户信息查询_账户信息查询流程001
+##**imagePath=D:\\xueers\\iAgent1.6.0通用版(接口&UI&手机)\\execute/result/image/手机银行_微信银行_账户查询对比(安卓)/手机银行_账户信息查询_账户信息查询流程001
 from fractions import Fraction
 import os, platform, sys, logging, time, subprocess, re, decimal, pickle, threading,multiprocessing,decimal,json,time
 from decimal import Decimal

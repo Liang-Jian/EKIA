@@ -450,6 +450,206 @@ class Frog extends Amphibian{
 
 
 
+
+class Shared{
+    private int refcount = 0 ;
+    private static long counter =0;
+    private  final long id = counter++;
+
+    Shared(){
+        System.out.println("Creating " + this);
+    }
+    public void addRef(){
+        refcount++;
+    }
+    protected void dispose(){
+        if (--refcount ==  0 ){
+            System.out.println("Disposing " + this);
+        }
+    }
+    @Override
+    public String toString(){
+        return  "Shared " + id;
+    }
+}
+class Composing{
+    private Shared shared;
+    private static long counter = 0;
+    private final long id = counter++;
+    Composing(Shared shared){
+        System.out.println("Creating " + this);
+        this.shared = shared;
+        this.shared.addRef();
+    }
+    protected void dispose() {
+        System.out.println("disposing " + this);
+        shared.dispose();
+    }
+
+    @Override
+    public String toString() {
+        return "Composing " + id;
+    }
+}
+class ReferenceCounting{
+    static void f(){
+        Shared shared = new Shared();
+        Composing[] composing = {
+                new Composing(shared),
+                new Composing(shared),
+                new Composing(shared),
+                new Composing(shared),
+                new Composing(shared),
+        };
+        for (Composing c: composing) {
+            c.dispose();
+        }
+    }
+}
+
+
+
+
+class Glyph{
+    void draw(){
+        System.out.println("Glyph.draw()");
+    }
+    Glyph(){
+        System.out.println("Glyph() before draw()");
+        draw();
+        System.out.println("Glyph() after  draw()");
+    }
+}
+class RoundGlyph extends Glyph{
+    private int radius = 1;
+    RoundGlyph(int r){
+        radius =r ;
+        System.out.println("RoundGlyph.RoundGlyph(), radius = " + radius);
+    }
+    @Override
+    void draw(){
+        System.out.println("RoundGlyph.draw(), radius = " + radius);
+    }
+}
+class PolyConstructors{
+    static void f(){
+        new RoundGlyph(5);
+    }
+}
+
+
+
+
+class Grain{
+    @Override
+    public String toString(){
+        return "Grain";
+    }
+}
+class  Wheat extends Grain {
+    @Override
+    public String toString() {
+        return "Wheat";
+    }
+}
+class Mill{
+    Grain process(){
+        return new Grain();
+    }
+}
+class WheatMill extends Mill {
+    @Override
+    Wheat process() {
+        return new Wheat();
+    }
+}
+class CovariantReturn{
+    static void f(){
+        Mill m = new Mill();
+        Grain g = m.process();
+        System.out.println(g);
+        m = new WheatMill();
+        g = m.process();
+        System.out.println(g);
+    }
+}
+
+
+
+//使用继承设计
+
+
+class Actor{
+    public void act() {}
+}
+class  HappyActor extends Actor{
+    @Override
+    public void act() {
+        System.out.println("HappyActor");
+    }
+}
+class  SadActor extends Actor {
+    @Override
+    public void act() {
+        System.out.println("SadActor");
+    }
+}
+class Stage{
+    private Actor actor = new HappyActor();
+    public void change() {
+        actor = new SadActor();
+    }
+    public void performPlay() {
+        actor.act();
+    }
+}
+class Transmogrify{
+    static void f(){
+        Stage stage = new Stage();
+        stage.performPlay();
+        stage.change();
+        stage.performPlay();
+    }
+}
+
+
+// error demo
+class Useful{
+    public void f(){}
+    public void g(){}
+}
+class  MoreUseful extends Useful {
+    @Override
+    public void f() {}
+    @Override
+    public void g() {}
+    public void u() {}
+    public void v() {}
+    public void w() {}
+}
+class RTTI{
+    static void f(){
+        Useful[] x = {
+                new Useful(),
+                new MoreUseful()
+        };
+        x[0].f();
+        x[1].g();
+        // Compile time: method not found in Useful:
+        //- x[1].u();
+        ((MoreUseful) x[1]).u(); // Downcast/RTTI
+        ((MoreUseful) x[0]).u(); // Exception thrown
+    }
+}
+
+
+
+
+
+
+
+
+
 public class Polymorphism {
     public static void main(String[] args) {
 //        Music.f();
@@ -459,6 +659,11 @@ public class Polymorphism {
 //        FieldAccess.f();
 //        StaticPolymorphism.f();
 //        Sandwich.f();
-        Frog.f();
+//        Frog.f();
+//        ReferenceCounting.f();
+//        PolyConstructors.f();
+//        CovariantReturn.f();
+//        Transmogrify.f();
+        RTTI.f();
     }
 }

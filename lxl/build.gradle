@@ -13,6 +13,7 @@ buildscript {
         // in the individual module build.gradle files
         // 高考 大班 录播 。正价 较少。
     }
+
 }
 
 allprojects {
@@ -26,3 +27,4 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
