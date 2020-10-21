@@ -17,7 +17,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    compileOptions { // 修改jdk版本为1.8
+    compileOptions { // 修改java编译环境为1.8
         sourceCompatibility = 1.8
         targetCompatibility = 1.8
     }

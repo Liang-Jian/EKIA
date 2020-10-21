@@ -1,6 +1,6 @@
 package com.example.robot.ndktest;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
     // Example of a call to a native method
-    TextView tv = (TextView) findViewById(R.id.test_helloworld);
+    TextView tv = findViewById(R.id.test_helloworld);
 //    tv.setText(stringFromJNI());
     tv.setText(helloWorld());
     }

@@ -1,0 +1,71 @@
+{
+  "variant": {
+    "module": {
+      "rootBuildGradleFolder": "D:\\zdhlog\\EKIA\\ndktest",
+      "sdkFolder": "D:\\sdk",
+      "isNativeCompilerSettingsCacheEnabled": false,
+      "isBuildOnlyTargetAbiEnabled": true,
+      "ideBuildTargetAbi": "arm64-v8a,armeabi-v7a,armeabi",
+      "splitsAbiFilterSet": [],
+      "intermediatesFolder": "D:\\zdhlog\\EKIA\\ndktest\\app\\build\\intermediates",
+      "gradleModulePathName": ":app",
+      "moduleRootFolder": "D:\\zdhlog\\EKIA\\ndktest\\app",
+      "makeFile": "D:\\zdhlog\\EKIA\\ndktest\\app\\CMakeLists.txt",
+      "buildSystem": "CMAKE",
+      "compilerSettingsCacheFolder": "D:\\zdhlog\\EKIA\\ndktest\\.cxx",
+      "cxxFolder": "D:\\zdhlog\\EKIA\\ndktest\\app\\.cxx",
+      "ndkFolder": "D:\\sdk\\ndk\\21.3.6528147",
+      "ndkVersion": "21.3.6528147",
+      "ndkSupportedAbiList": [
+        "ARMEABI_V7A",
+        "ARM64_V8A",
+        "X86",
+        "X86_64"
+      ],
+      "ndkDefaultAbiList": [
+        "ARMEABI_V7A",
+        "ARM64_V8A",
+        "X86",
+        "X86_64"
+      ],
+      "cmakeToolchainFile": "."
+    },
+    "buildSystemArgumentList": [],
+    "cFlagList": [],
+    "cppFlagsList": [
+      ""
+    ],
+    "variantName": "debug",
+    "soFolder": "D:\\zdhlog\\EKIA\\ndktest\\app\\build\\intermediates\\cmake\\debug\\lib",
+    "objFolder": "D:\\zdhlog\\EKIA\\ndktest\\app\\build\\intermediates\\cmake\\debug\\obj",
+    "jsonFolder": "D:\\zdhlog\\EKIA\\ndktest\\app\\.cxx\\cmake\\debug",
+    "gradleBuildOutputFolder": "D:\\zdhlog\\EKIA\\ndktest\\app\\.cxx\\cxx\\debug",
+    "isDebuggableEnabled": true,
+    "validAbiList": [
+      "ARM64_V8A",
+      "ARMEABI_V7A"
+    ],
+    "buildTargetSet": []
+  },
+  "abi": "ARMEABI_V7A",
+  "abiPlatformVersion": 28,
+  "cxxBuildFolder": "D:\\zdhlog\\EKIA\\ndktest\\app\\.cxx\\cmake\\debug\\armeabi-v7a",
+  "jsonFile": "D:\\zdhlog\\EKIA\\ndktest\\app\\.cxx\\cmake\\debug\\armeabi-v7a\\android_gradle_build.json",
+  "gradleBuildOutputFolder": "D:\\zdhlog\\EKIA\\ndktest\\app\\.cxx\\cxx\\debug\\armeabi-v7a",
+  "objFolder": "D:\\zdhlog\\EKIA\\ndktest\\app\\build\\intermediates\\cmake\\debug\\obj\\armeabi-v7a",
+  "buildCommandFile": "D:\\zdhlog\\EKIA\\ndktest\\app\\.cxx\\cmake\\debug\\armeabi-v7a\\build_command.txt",
+  "buildOutputFile": "D:\\zdhlog\\EKIA\\ndktest\\app\\.cxx\\cmake\\debug\\armeabi-v7a\\build_output.txt",
+  "modelOutputFile": "D:\\zdhlog\\EKIA\\ndktest\\app\\.cxx\\cmake\\debug\\armeabi-v7a\\build_model.json",
+  "cmake": {
+    "cmakeListsWrapperFile": "D:\\zdhlog\\EKIA\\ndktest\\app\\.cxx\\cxx\\debug\\armeabi-v7a\\CMakeLists.txt",
+    "toolchainWrapperFile": "D:\\zdhlog\\EKIA\\ndktest\\app\\.cxx\\cxx\\debug\\armeabi-v7a\\android_gradle_build.toolchain.cmake",
+    "buildGenerationStateFile": "D:\\zdhlog\\EKIA\\ndktest\\app\\.cxx\\cxx\\debug\\armeabi-v7a\\build_generation_state.json",
+    "cacheKeyFile": "D:\\zdhlog\\EKIA\\ndktest\\app\\.cxx\\cxx\\debug\\armeabi-v7a\\compiler_cache_key.json",
+    "compilerCacheUseFile": "D:\\zdhlog\\EKIA\\ndktest\\app\\.cxx\\cxx\\debug\\armeabi-v7a\\compiler_cache_use.json",
+    "compilerCacheWriteFile": "D:\\zdhlog\\EKIA\\ndktest\\app\\.cxx\\cxx\\debug\\armeabi-v7a\\compiler_cache_write.json",
+    "toolchainSettingsFromCacheFile": "D:\\zdhlog\\EKIA\\ndktest\\app\\.cxx\\cxx\\debug\\armeabi-v7a\\compiler_settings_cache.cmake",
+    "cmakeWrappingBaseFolder": "."
+  },
+  "jsonGenerationLoggingRecordFile": "D:\\zdhlog\\EKIA\\ndktest\\app\\.cxx\\cmake\\debug\\armeabi-v7a\\json_generation_record.json",
+  "compileCommandsJsonFile": "D:\\zdhlog\\EKIA\\ndktest\\app\\.cxx\\cmake\\debug\\armeabi-v7a\\compile_commands.json"
+}

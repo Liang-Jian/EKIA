@@ -1,0 +1,16 @@
+{
+  "buildFiles": [
+    "D:\\zdhlog\\EKIA\\ndktest\\app\\CMakeLists.txt"
+  ],
+  "cleanCommands": [
+    "D:\\sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build D:\\zdhlog\\EKIA\\ndktest\\app\\.cxx\\cmake\\release\\x86_64 --target clean"
+  ],
+  "libraries": {
+    "native-lib-Release-x86_64": {
+      "artifactName": "native-lib",
+      "buildCommand": "D:\\sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build D:\\zdhlog\\EKIA\\ndktest\\app\\.cxx\\cmake\\release\\x86_64 --target native-lib",
+      "abi": "x86_64",
+      "output": "D:\\zdhlog\\EKIA\\ndktest\\app\\build\\intermediates\\cmake\\release\\obj\\x86_64\\libnative-lib.so"
+    }
+  }
+}

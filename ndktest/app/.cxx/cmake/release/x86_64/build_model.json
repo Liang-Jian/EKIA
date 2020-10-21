@@ -1,0 +1,72 @@
+{
+  "variant": {
+    "module": {
+      "rootBuildGradleFolder": "D:\\zdhlog\\EKIA\\ndktest",
+      "sdkFolder": "D:\\sdk",
+      "isNativeCompilerSettingsCacheEnabled": false,
+      "isBuildOnlyTargetAbiEnabled": true,
+      "splitsAbiFilterSet": [],
+      "intermediatesFolder": "D:\\zdhlog\\EKIA\\ndktest\\app\\build\\intermediates",
+      "gradleModulePathName": ":app",
+      "moduleRootFolder": "D:\\zdhlog\\EKIA\\ndktest\\app",
+      "makeFile": "D:\\zdhlog\\EKIA\\ndktest\\app\\CMakeLists.txt",
+      "buildSystem": "CMAKE",
+      "compilerSettingsCacheFolder": "D:\\zdhlog\\EKIA\\ndktest\\.cxx",
+      "cxxFolder": "D:\\zdhlog\\EKIA\\ndktest\\app\\.cxx",
+      "ndkFolder": "D:\\sdk\\ndk\\21.3.6528147",
+      "ndkVersion": "21.3.6528147",
+      "ndkSupportedAbiList": [
+        "ARMEABI_V7A",
+        "ARM64_V8A",
+        "X86",
+        "X86_64"
+      ],
+      "ndkDefaultAbiList": [
+        "ARMEABI_V7A",
+        "ARM64_V8A",
+        "X86",
+        "X86_64"
+      ],
+      "cmakeToolchainFile": "."
+    },
+    "buildSystemArgumentList": [],
+    "cFlagList": [],
+    "cppFlagsList": [
+      ""
+    ],
+    "variantName": "release",
+    "soFolder": "D:\\zdhlog\\EKIA\\ndktest\\app\\build\\intermediates\\cmake\\release\\lib",
+    "objFolder": "D:\\zdhlog\\EKIA\\ndktest\\app\\build\\intermediates\\cmake\\release\\obj",
+    "jsonFolder": "D:\\zdhlog\\EKIA\\ndktest\\app\\.cxx\\cmake\\release",
+    "gradleBuildOutputFolder": "D:\\zdhlog\\EKIA\\ndktest\\app\\.cxx\\cxx\\release",
+    "isDebuggableEnabled": false,
+    "validAbiList": [
+      "ARMEABI_V7A",
+      "ARM64_V8A",
+      "X86",
+      "X86_64"
+    ],
+    "buildTargetSet": []
+  },
+  "abi": "X86_64",
+  "abiPlatformVersion": 28,
+  "cxxBuildFolder": "D:\\zdhlog\\EKIA\\ndktest\\app\\.cxx\\cmake\\release\\x86_64",
+  "jsonFile": "D:\\zdhlog\\EKIA\\ndktest\\app\\.cxx\\cmake\\release\\x86_64\\android_gradle_build.json",
+  "gradleBuildOutputFolder": "D:\\zdhlog\\EKIA\\ndktest\\app\\.cxx\\cxx\\release\\x86_64",
+  "objFolder": "D:\\zdhlog\\EKIA\\ndktest\\app\\build\\intermediates\\cmake\\release\\obj\\x86_64",
+  "buildCommandFile": "D:\\zdhlog\\EKIA\\ndktest\\app\\.cxx\\cmake\\release\\x86_64\\build_command.txt",
+  "buildOutputFile": "D:\\zdhlog\\EKIA\\ndktest\\app\\.cxx\\cmake\\release\\x86_64\\build_output.txt",
+  "modelOutputFile": "D:\\zdhlog\\EKIA\\ndktest\\app\\.cxx\\cmake\\release\\x86_64\\build_model.json",
+  "cmake": {
+    "cmakeListsWrapperFile": "D:\\zdhlog\\EKIA\\ndktest\\app\\.cxx\\cxx\\release\\x86_64\\CMakeLists.txt",
+    "toolchainWrapperFile": "D:\\zdhlog\\EKIA\\ndktest\\app\\.cxx\\cxx\\release\\x86_64\\android_gradle_build.toolchain.cmake",
+    "buildGenerationStateFile": "D:\\zdhlog\\EKIA\\ndktest\\app\\.cxx\\cxx\\release\\x86_64\\build_generation_state.json",
+    "cacheKeyFile": "D:\\zdhlog\\EKIA\\ndktest\\app\\.cxx\\cxx\\release\\x86_64\\compiler_cache_key.json",
+    "compilerCacheUseFile": "D:\\zdhlog\\EKIA\\ndktest\\app\\.cxx\\cxx\\release\\x86_64\\compiler_cache_use.json",
+    "compilerCacheWriteFile": "D:\\zdhlog\\EKIA\\ndktest\\app\\.cxx\\cxx\\release\\x86_64\\compiler_cache_write.json",
+    "toolchainSettingsFromCacheFile": "D:\\zdhlog\\EKIA\\ndktest\\app\\.cxx\\cxx\\release\\x86_64\\compiler_settings_cache.cmake",
+    "cmakeWrappingBaseFolder": "."
+  },
+  "jsonGenerationLoggingRecordFile": "D:\\zdhlog\\EKIA\\ndktest\\app\\.cxx\\cmake\\release\\x86_64\\json_generation_record.json",
+  "compileCommandsJsonFile": "D:\\zdhlog\\EKIA\\ndktest\\app\\.cxx\\cmake\\release\\x86_64\\compile_commands.json"
+}
