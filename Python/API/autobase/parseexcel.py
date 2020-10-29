@@ -83,7 +83,8 @@ class ParseExcel(object):
         获取sheet中某一行，返回的是这一行所有的数据内容组成的tuple,下标从1开始，sheet.row[1]表示第一行
         '''
         try:
-            return sheet.rows[rowNo - 1]
+            # return sheet.rows[rowNo - 1]
+            return list(sheet.rows[rowNo - 1])
         except Exception as e:
             raise e
 
@@ -92,8 +93,8 @@ class ParseExcel(object):
         获取sheet中某一列，返回的是这一列所有的数据内容组成的tuple,下标从1开始，sheet.columns[1]表示第一列
         '''
         try:
-            return sheet.columns[rolNo - 1]
-            # return list(sheet.columns[rolNo - 1])
+            # return sheet.columns[rolNo - 1]
+            return list(sheet.columns[rolNo - 1])
         except Exception as e:
             raise e
 
@@ -202,7 +203,7 @@ if __name__ == '__main__':
     pe = ParseExcel()
     # 测试所需Excel文件“通用投保验证.xls”，请自行创建
     # path = parentDirPath + "\\testData\\通用投保验证_S20180290.xlsx"
-    path = "/home/robot/ApiTestFrame/autodata/testcase/小渠道一步希望.xlsx"
+    path = r"D:\zdhlog\EKIA\Python\API\autodata\testcase\冰鉴接口案例.xlsx"
     # path = "D:\\MyDocuments\\itw_liuyh01\桌面\\buikdNumber.xls"
     # print(path)
     pe.load_work_book(path)

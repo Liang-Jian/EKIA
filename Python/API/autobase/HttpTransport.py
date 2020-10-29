@@ -8,7 +8,7 @@ class HttpTransport:
     __headerMap = dict()
     def __init__(self):
 
-        self.encode  =  "" #= "GBK"; //"UTF-8";
+        self.encode   =  "" #= "GBK"; //"UTF-8";
         self.contentType  = ""  #"application/xml";
         self._method  = "post"
         self._http_post_status  = "http_post_status"

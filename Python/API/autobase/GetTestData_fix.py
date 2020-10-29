@@ -45,7 +45,7 @@ class CaseDataMap4Xls(object):
         self.rows = None
         self.startrow = None
         self.endrow = None
-    def data4rows(self, flowaction, start_line, end_line)->dict:  # two line data []-> {}
+    def data4rows(self, flowaction, start_line, end_line):  # two line data []-> {}
         '''
         1、调两次方法
         2、第一次取第2行、第3行，dict(zip(,))
