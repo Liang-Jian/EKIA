@@ -1,2 +1,0 @@
-include ':app',':zxing-lib'
-rootProject.name='wndk'
