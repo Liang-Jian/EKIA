@@ -110,11 +110,7 @@ class GetTestData():
 
 
 
-def randomStr(randomlength):
-    import random,string
-    str_list = [random.choice(string.digits + string.ascii_letters) for i in range(randomlength)]
-    random_str = "".join(str_list)
-    return random_str
+
 
 
 if __name__ == '__main__':

@@ -24,8 +24,6 @@ def local(key): # //返回一个ico给localdata
 
 class CaseDataMap4Xls(object):
 
-
-
     def __init__(self, xlxspath, xlsxsheet):
         # //  etst
         self.test_data_path = xlxspath
@@ -154,7 +152,7 @@ class CaseDataMap4Xls(object):
         return self.real_case_test_data
 
 if __name__ == '__main__':
-    test_data_path = r"D:\ApiTestFrame\autodata\testcase\冰鉴接口案例.xlsx"
+    test_data_path = r"D:\zdhlog\EKIA\Python\API\autodata\testcase\冰鉴接口案例.xlsx"
     test_data_sheet = "冰鉴对外投资"
     CaseDataMap4Xls(test_data_path, test_data_sheet).be_executed_test_data("冰鉴", 7)
 

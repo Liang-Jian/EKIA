@@ -2,7 +2,7 @@ import hmac , sys ,json
 # 加密过程
 from hashlib import sha1
 from autobase.logger import *
-
+import urllib.parse
 '''
 signature:
 登录的时候，content-type : urlencode  。 post 使用的content-type ： json
@@ -12,6 +12,14 @@ get 请求，需要对请求的报文进行加密
 
 '''
 
+
+
+def tostr(datatype):
+	if isinstance(datatype, int):
+		datatype = str(datatype)
+	elif isinstance(datatype, list):
+		datatype = urllib.parse.urlencode(datatype)
+	return datatype
 
 class Signature:
 
@@ -27,21 +35,17 @@ class Signature:
 		return str3
 
 	def get_string(self,dict1):
-		'''
-		:param dict1:
-		:return:  {key:value} -> key=&value
-		'''
-		string_dict = ""
-		if dict1 != dict():
-			sorted_list = sorted(dict1.items(),key = lambda d:d[0])   # -> tuple
+		dict2urlencode_String = ""
+		if dict1 != {}:
+			sorted_list = sorted(dict1.items(),key = lambda d:d[0])
 			for i in iter(sorted_list):
-				str1 = i[0] + "=" + i[1] + "&"
-				string_dict += str1
-		return string_dict[0:-1]
+				str1 = i[0] + "=" + tostr(i[1]) + "&"
+				dict2urlencode_String += str1
+		return dict2urlencode_String[0:-1]
 
-	def get_signature(self,dict1=None):
+	def getSignature(self, dict1=None):
 		'''
-		:param dict1: 登录传用户名密码 。提交数据置为空。
+		:param : 登录传用户名密码 。提交数据置为空。
 		:return: signarure
 		'''
 		if dict1 is None:
@@ -60,34 +64,3 @@ class Signature:
 			Logi("data:=%s,signature:= %s" % (dict1,signature))
 			return signature
 
-if __name__ == '__main__':
-	# content = '{"loginName":"13716697293","password":"123456"}'
-	content = {
-"classAuthority": "2",
-"cityId": "654000",
-"schoolId": "",
-"mobile": "13711110011",
-"currentSchool": "伊利第一小学",
-"currentSchoolId": "18",
-"gradeId": "25",
-"sex": "1",
-"studentName": "autotest1",
-"birthday": "",
-"studentCode": "",
-"headPic": "",
-"registerTime": "",
-"spareMobile": "",
-"inviterNumber": "",
-"recommender": "",
-"idnumber": "",
-"cityName": "伊犁哈萨克自治州",
-"studentLevelList": [],
-"studentStatus": 1
-}
-	# test1 = {"pageNum":"1","pageSize":"10"}
-	# test1 = '{"pageNum":"1","pageSize":"10"}'
-	# dic_data = json.loads(content)
-	# print(dic_data)
-	# login_sginature = Signature().get_signature()  # 提交数据
-	login_sginature = Signature().get_signature()  # 登录
-	print(login_sginature)

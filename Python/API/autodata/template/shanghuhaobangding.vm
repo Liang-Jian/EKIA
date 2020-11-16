@@ -1,0 +1,10 @@
+{
+"merchantNumberId": 371,
+"schoolId": 375,
+"payChannelType": 1,
+"schoolName": "清水二中测试",
+"campusList": [{
+	"campusId": 453,
+	"campusName": "测试数据报表校区"
+}]
+}

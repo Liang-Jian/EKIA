@@ -1,7 +1,7 @@
 
 from abc import ABCMeta,abstractclassmethod
 from autobase import GetTestData_fix1,HttpTransport,t2resut
-from autobase.utils import log
+from autobase.logger import *
 
 flowname   = "冰鉴"
 xlxsfp     = "冰鉴接口案例.xlsx"
@@ -31,10 +31,10 @@ class flow(ICaseEntityFlow):
     def run(self):
         caseEntityData = []
 
-        caseEntityData = GetTestData_fix1.CaseDataMap4Xls(flowname, xlxsfp, exeshtname,self.line).casealldata()
-        responData = self.p.httpPost("http://10.10.94.23:7001/flow/dataflow/getData", caseEntityData[0])
-        log.info("repondata type %s" ,type(responData))
-        log.info("caseEntityData %s" , caseEntityData)
+        caseEntityData = GetTestData_fix1.CaseDataMap4Xls(flowname, xlxsfp, exeshtname,self.line).caseDataAll()
+        responData = self.p.httpMethod("http://10.10.94.23:7001/flow/dataflow/getData", caseEntityData[0])
+        Logi("repondata type %s" % type(responData))
+        Logi("caseEntityData %s" % caseEntityData)
         t2resut.t2result(caseEntityData).transformBrowse(flowname)
 
 if __name__ == '__main__':

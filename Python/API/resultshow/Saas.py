@@ -58,7 +58,7 @@ def saas_case(url,sql,user, header, req, method, expect, remark,relation,paramet
             arg1 = relation.split(",")
             if "YES" not in relation:
                 dic_data = json.loads(req)
-                login_sginature = Signature().get_signature(dic_data)
+                login_sginature = Signature().getSignature(dic_data)
                 str_headers = header.replace("signature_value", login_sginature)
                 str_headers2 = str_headers.replace("token_value", gl.get_value("token"))
                 allure.attach(str(str_headers2), "最终header值")
@@ -80,7 +80,7 @@ def saas_case(url,sql,user, header, req, method, expect, remark,relation,paramet
                 str7 = gl.get_value(arg1[1])
                 req = req.replace("variable_value", str7)
                 dic_data = json.loads(req)
-                login_sginature = Signature().get_signature(dic_data)
+                login_sginature = Signature().getSignature(dic_data)
                 str_headers = header.replace("signature_value", login_sginature)
                 str_headers2 = str_headers.replace("token_value", gl.get_value("token_value"))
                 allure.attach(str(req), "获取关联值后的请求")
@@ -89,7 +89,7 @@ def saas_case(url,sql,user, header, req, method, expect, remark,relation,paramet
 
         else:
             dic_data = json.loads(req)
-            login_sginature = Signature().get_signature(dic_data)
+            login_sginature = Signature().getSignature(dic_data)
             str_headers1 = header.replace("signature_value", login_sginature)
             str_headers2 = str_headers1.replace("token_value", gl.get_value("token"))
             allure.attach(str(str_headers2), "最终header值")

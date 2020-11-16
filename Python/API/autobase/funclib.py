@@ -1,9 +1,11 @@
 import logging
 import logging.handlers
 import random,string,os
+import datetime
 
 '''
-需要eval() 转换的函数库
+all function libs
+create by Joker
 
 '''
 
@@ -12,6 +14,8 @@ def randomStr(n):
     str_list = [random.choice(string.digits + string.ascii_letters) for i in range(n)]
     random_str = "".join(str_list)
     return random_str
+
+
 
 def generate_random_str(randomlength):
     '''
@@ -23,9 +27,7 @@ def generate_random_str(randomlength):
     '''
     str_list = [random.choice(string.digits + string.ascii_letters) for i in range(randomlength)]
     random_str = "".join(str_list)
-
     return random_str
-
 
 
 
@@ -34,56 +36,32 @@ def idNum(ageFlag,sex,x1,cur_cule):
 
     return count
 
-# switch (cur_rule) {
-#     case "X":
-#         while (true) {
-#             String idnum = generateByAgeFlag(ageFlag, sex, x1);
-#             count++;
-#             if (StringUtils.equals(idnum.substring(17), "X")) {
-#                 result = idnum;
-#                 System.out.println("search count:" + count);
-#                 break;
-#             }
-#         }
-#         break;
-#     case "x":
-#         while (true) {
-#             String idnum = generateByAgeFlag(ageFlag, sex, x1);
-#             count++;
-#             if (StringUtils.equals(idnum.substring(17), "X")) {
-#                 result = idnum.replace("X", "x");
-#                 System.out.println("search count:" + count);
-#                 break;
-#             }
-#         }
-#         break;
-#     case "18":
-#         while (true) {
-#             String idnum = generateByAgeFlag(ageFlag, sex, x1);
-#             count++;
-#             if (!StringUtils.equals(idnum.substring(17), "X")) {
-#                 result = idnum;
-#                 System.out.println("search count:" + count);
-#                 break;
-#             }
-#         }
-#         break;
-#     case "15":
-#         while (true) {
-#             String idnum = generateByAgeFlag(ageFlag, sex, x1);
-#             count++;
-#             if (!StringUtils.equals(idnum.substring(17), "X")) {
-#                 idnum = idnum.substring(0, 6) + idnum.substring(8, 17);
-#                 result = idnum;
-#                 System.out.println("search count:" + count);
-#                 break;
-#             }
-#         }
-#         break;
-# }
-# return result;
-# }
+
+
+def selfRandom(word,numbercount):
+    '''
+    :param word: 自动化
+    :param numbercount: 几位int
+    :return:
+    '''
+    seeds = string.digits
+    random_str = random.choices(seeds, k=numbercount)
+    return word+ "".join(random_str)
 
 
 
 
+
+
+def CalDate(day, isTime=1):
+    '''
+    :param day: 前一天 -1 ， 后一天 1
+    :param isTime: 1:有小时 其他没有小时
+    :return:
+    '''
+    if isTime ==  1:
+        date_time_string = (datetime.date.today() + datetime.timedelta(days=day)).strftime('%Y-%m-%d %H:%M:%S')
+    else:
+        date_time_string = (datetime.date.today() + datetime.timedelta(days=day)).strftime('%Y-%m-%d')
+    # print(date_time_string)
+    return date_time_string

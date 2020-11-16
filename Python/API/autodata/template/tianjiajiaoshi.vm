@@ -1,0 +1,12 @@
+{
+"campusId": 488,
+"classroomName": "自动化测试教室",
+"peopleNum": 5,
+"classroomStatus": 1,
+"teacherCameraIP": "",
+"teacherCameraPort": "",
+"teacherCameraAccount": "lexueomo",
+"teacherCameraPass": "lexue.com",
+"studentCameraUrl": "",
+"microphoneType": 0
+}

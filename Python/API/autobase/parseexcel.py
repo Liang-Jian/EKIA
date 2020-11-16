@@ -84,7 +84,7 @@ class ParseExcel(object):
         '''
         try:
             # return sheet.rows[rowNo - 1]
-            return list(sheet.rows[rowNo - 1])
+            return list(sheet.rows)[rowNo - 1]
         except Exception as e:
             raise e
 
@@ -94,7 +94,8 @@ class ParseExcel(object):
         '''
         try:
             # return sheet.columns[rolNo - 1]
-            return list(sheet.columns[rolNo - 1])
+            # return list(sheet.columns[rolNo - 1])
+            return list(sheet.columns)[rolNo - 1]
         except Exception as e:
             raise e
 

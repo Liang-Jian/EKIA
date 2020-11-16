@@ -1,7 +1,7 @@
 
 import xml.etree.ElementTree as etree
 import json
-from jinja2 import Template
+
 
 class JSONConnector:
     def __init__(self,filepath):

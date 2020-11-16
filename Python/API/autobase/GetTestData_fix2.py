@@ -1,6 +1,7 @@
 from autobase.parseexcel import *
 import json
-from jinja2 import Template
+# from jinja2 import Template
+from string import Template
 from autobase import getdata4file
 from autobase.logger import *
 from autobase.funclib import *
@@ -73,7 +74,7 @@ class CaseDataMap4Xls(object):
             y = y.value
             value.append(y)
 
-        # // 数据是由<data-in-$$>进行了分段，分段截取对应场景交易的数据，组成dict
+        # // 数据是由<di-$$>进行了分段，分段截取对应场景交易的数据，组成dict
 
         startdataico = "<Di=\"" + flowaction + "\">"
         enddataico   = "<Do=\"" + flowaction + "\">"
@@ -152,7 +153,7 @@ class CaseDataMap4Xls(object):
 
 
 
-    def caseinfo(self) -> list:  # //return caseinfo []
+    def caseinfo(self):
 
         caseInfoData = list()
         xlxsObject = self.pe.load_work_book(self.test_data_path).get_sheet_by_name(self.test_data_sheet)
@@ -184,13 +185,35 @@ class CaseDataMap4Xls(object):
         Logi("模板文件:=%s" % vmname)
         templetepath = os.path.abspath('..') + '\\autodata\\template\\' + vmname
 
-        caseTepletedata = Template(getdata4file.connect_to(templetepath).parsed_data)
-        casedata = json.loads(caseTepletedata.render(data))
-        Logi("执行报文:=%s" % casedata)
-        return casedata
+        # caseTepletedata = Template(getdata4file.connect_to(templetepath).parsed_data)
+        caseTemplate = Template(templetepath)
+        caseTemplate1= caseTemplate.substitute()
+
+
+
+    def getFinallyReq1(self, data):
+        '''
+        :param data:  拼好的报文 list ， 拼interface url
+        :return    :  报文完成体
+        '''
+
+        if not isinstance(data,list): raise ("Data Type Not Dick")
+        _l = data
+        vm_name,singlecasedata  = _l[-1],_l[0]
+        Logi("模板文件:=%s" % vm_name)
+        xlxsObject = self.pe.load_work_book(self.test_data_path).get_sheet_by_name(self.test_data_sheet)
+        mainurl = self.pe.get_cell_of_value(xlxsObject, rowNo=2, colsNo=2)  # url
+        templetepath = os.path.abspath('..') + '\\autodata\\template\\' + vm_name
+        templetestring = open(templetepath,'r', encoding='utf-8', errors='ignore').read()
+        caseTepletedata = Template(templetestring)
+        casedata = caseTepletedata.substitute(singlecasedata) # 报文 String type
+
+        _l[0] = casedata.replace("\n","")
+        _l[4] = mainurl + _l[4]
+        Logi("执行报文:=%s" % _l)
+        return _l
 
     def caseDataAll(self):
-
 
         if len(self.publicdata) == 0:
             self.data4rows(self.execflowname, 4, 5)
@@ -203,11 +226,12 @@ class CaseDataMap4Xls(object):
         Logi("接口数据:=%s" % self.casedata)
 
         self.finallycasedata = dict(self.publicdata, **self.casedata)
-        # print(localdata(self.finallycasedata))
+        Logi("合并数据:=%s" % localdata(self.finallycasedata))
 
-        self.__casedata.append(self.getFinallyReq(self.finallycasedata))
+        self.__casedata.append(self.finallycasedata)
         self.__casedata += self.caseinfo()
-        Logi("caseinfo:=%s" % self.__casedata)
+        Logi("用例数据:=%s" % self.__casedata)
+        self.getFinallyReq1(self.__casedata)
         return self.__casedata
 
 

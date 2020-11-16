@@ -1,22 +1,21 @@
 import requests
 from autobase import HttpTransStatus
-from autobase.utils import log
-import json
+from autobase.logger import *
 
 
-class HttpTransport:
+class HttpTransport(object):
     __headerMap = dict()
     def __init__(self):
 
-        self.encode   =  "" #= "GBK"; //"UTF-8";
+        self.encode       = "" #= "GBK"; //"UTF-8";
         self.contentType  = ""  #"application/xml";
-        self._method  = "post"
+        self._method      = "post"
         self._http_post_status  = "http_post_status"
         self._resultData = "resultData"
         self.result = None
         self.header = {"Content-Type":"application/json"}
 
-    def httpPost(self,url,contentstring):
+    def httpMethod(self, url, contentstring):
         #send-recv method  url contentsting --> data
         #return new map data,include all key
         totaldata = dict()
@@ -37,7 +36,7 @@ class HttpTransport:
         #get return data
         try:
             returndata  = result.text
-            log.info("resultData %s", returndata)
+            log.info("返回数据:=%s" % returndata)
 
             totaldata.update({self._resultData:returndata})
             log.info("totalData %s",totaldata)

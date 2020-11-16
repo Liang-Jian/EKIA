@@ -2,7 +2,7 @@ import os,json
 import datetime
 from jinja2 import Template
 from  autobase import getdata4file
-from autobase import GetTestData_fix
+from autobase import GetTestData_fix1
 from autobase.utils import log
 class t2result(object):
     def __init__(self,inputdatastream):
@@ -44,6 +44,6 @@ def test():
     flowname = "冰鉴"
     xlxsfp = "冰鉴接口案例.xlsx"
     exeshtname = "冰鉴对外投资"
-    testfile = GetTestData_fix.CaseDataMap4Xls(flowname, xlxsfp, exeshtname,9).casealldata()
+    testfile = GetTestData_fix1.CaseDataMap4Xls(flowname, xlxsfp, exeshtname,9).casealldata()
     print(testfile)
     t2result(testfile).transformBrowse()
