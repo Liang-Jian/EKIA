@@ -25,7 +25,6 @@ class ParseExcel(object):
         将Excel文件加载到内存，并获取其workbook对象
         '''
         try:
-            # self.workbook = openpyxl.load_workbook(excel_path_and_name, data_only = True)
             self.workbook = openpyxl.load_workbook(excel_path_and_name)
         except Exception as e:
             raise e

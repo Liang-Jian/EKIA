@@ -1,11 +1,26 @@
-import logging
-import logging.handlers
-import os
-# from config.VarConfig import parentDirPath
-
-
+import logging.handlers,os,logging
 
 parentDirPath = os.path.abspath('..')
+
+class AllFlowData(object):
+    allflowdata = dict()
+
+    def __new__(cls, *args, **kwargs):
+        if not hasattr(cls,"instance"):
+            cls.instance = super(AllFlowData,cls).__new__(cls)
+        return cls.instance
+
+    @property
+    def dictdata(self):
+        return  AllFlowData.allflowdata
+
+    @dictdata.setter
+    def dictdata(self,key,value):
+        Logi("%s:=%s" % (key,value))
+        AllFlowData.allflowdata[key] = value
+
+
+
 
 def logconfig():
 

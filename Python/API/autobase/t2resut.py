@@ -3,7 +3,7 @@ import datetime
 from jinja2 import Template
 from  autobase import getdata4file
 from autobase import GetTestData_fix1
-from autobase.utils import log
+from autobase.logger import *
 class t2result(object):
     def __init__(self,inputdatastream):
         self.data = inputdatastream

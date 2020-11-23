@@ -50,17 +50,17 @@ class Signature:
 		'''
 		if dict1 is None:
 			signature = "79E48482F30ED5CA96DCBB4DFA43D1576DBC2B74"
-			Logi("data:=%s,signature:= %s" % (dict1,signature))
+			Logi("加密报文:=%s,signature:= %s" % (dict1,signature))
 			return signature
-		if isinstance(dict1,dict):
+		elif isinstance(dict1,dict):
 			string_dict = self.get_string(dict1)
 			signature = self.hmac_string(string_dict).upper()
-			Logi("data:=%s,signature:= %s" % (dict1,signature))
+			Logi("dic报文:=%s,signature:= %s" % (dict1,signature))
 			return signature
 		elif isinstance(dict1,str):
 			data = eval(dict1)
 			string_dict = self.get_string(data)
 			signature = self.hmac_string(string_dict).upper()
-			Logi("data:=%s,signature:= %s" % (dict1,signature))
+			Logi("str报文:=%s,signature:= %s" % (dict1,signature))
 			return signature
 

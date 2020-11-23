@@ -1,13 +1,35 @@
-import logging
-import logging.handlers
-import random,string,os
-import datetime
+import datetime,random,string,os
 
 '''
-all function libs
+all func libs , create 5 bit random word .write to txt file . 
+first read txt before run all flow ,as all flow icon .
+
 create by Joker
-
 '''
+
+
+
+def gen_text():
+    # 0ijYx
+    number = 5
+    source = list(string.ascii_letters)
+    for index in range(0,10):
+        source.append(str(index))
+    randomstr = ''.join(random.sample(source,number))
+    try:
+        msg = open(os.path.abspath("..") + "\\autodata\\template\\temp.tmp" , "w",encoding="utf-8")
+        msg.write(randomstr)
+    except (Exception) as e:
+        print(e)
+    finally:
+        msg.close()
+gen_text()
+
+
+def get_text():
+    allflow_icon = open(os.path.abspath("../") + "\\autodata\\template\\temp.tmp" , "r",encoding="utf-8")
+    return allflow_icon.read()
+
 
 
 def randomStr(n):
@@ -38,17 +60,18 @@ def idNum(ageFlag,sex,x1,cur_cule):
 
 
 
-def selfRandom(word,numbercount):
+def selfRandom(word):
     '''
     :param word: 自动化
     :param numbercount: 几位int
     :return:
     '''
-    seeds = string.digits
-    random_str = random.choices(seeds, k=numbercount)
+    # seeds = string.digits
+    # random_str = random.choices(seeds, k=numbercount)
+    random_str = get_text()
     return word+ "".join(random_str)
 
-
+# print(selfRandom("自动化"))
 
 
 

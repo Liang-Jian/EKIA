@@ -1,0 +1,1 @@
+{"campusId": 488,"classroomName": "0","peopleNum": 5,"classroomStatus": 1,"teacherCameraIP": "","teacherCameraPort": "","teacherCameraAccount": "lexueomo","teacherCameraPass": "lexue.com","studentCameraUrl": "","microphoneType": 0}

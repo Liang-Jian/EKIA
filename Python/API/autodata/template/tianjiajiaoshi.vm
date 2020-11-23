@@ -1,6 +1,6 @@
 {
 "campusId": 488,
-"classroomName": "自动化测试教室",
+"classroomName": "${classroomName}",
 "peopleNum": 5,
 "classroomStatus": 1,
 "teacherCameraIP": "",

@@ -215,9 +215,4 @@ xjyg = sess.post("https://pycmspre.lexue.com/personnel/teacher/saveTeacher",data
 print(xjyg.text)
 '''
 
-import datetime
-# time1 = datetime.datetime.now().strptime('%Y-%m-%d %H:%M:%S')
 
-yesterday = (datetime.date.today() + datetime.timedelta(days=-1)).strftime('%Y%m%d')
-# time1 = datetime.datetime.strptime(string,'%Y-%m-%d %H:%M:%S')
-print(yesterday)

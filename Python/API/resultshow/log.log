@@ -1,7 +1,96 @@
-2020-11-16 20:53:06,074 - lx - INFO data:={'loginName': 13716697293, 'password': 123456},signature:= 917B810FC675789F63C1AFA75BBF5A52AC81CC35
-2020-11-16 20:58:53,709 - lx - INFO data:={'loginName': 13716697293, 'password': 123456},signature:= 917B810FC675789F63C1AFA75BBF5A52AC81CC35
-2020-11-16 21:00:07,314 - lx - INFO data:={'loginName': 13716697293, 'password': 123456},signature:= 917B810FC675789F63C1AFA75BBF5A52AC81CC35
-2020-11-16 21:01:10,522 - lx - INFO data:={'loginName': 13716697293, 'password': 123456},signature:= 917B810FC675789F63C1AFA75BBF5A52AC81CC35
-2020-11-16 21:01:25,386 - lx - INFO data:={'loginName': 13716697293, 'password': 123456},signature:= 917B810FC675789F63C1AFA75BBF5A52AC81CC35
-2020-11-16 21:01:48,252 - lx - INFO data:={'loginName': 13716697293, 'password': 123456},signature:= 917B810FC675789F63C1AFA75BBF5A52AC81CC35
-2020-11-16 21:03:37,711 - lx - INFO data:={'loginName': 13716697293, 'password': 123456},signature:= 917B810FC675789F63C1AFA75BBF5A52AC81CC35
+2020-11-23 20:41:57,575 - lx - INFO 登录报文:=['{"loginName":13716697293,"password":123456}', None, None, 'post.ue', 'https://pycmspre.lexue.com/system/sysUser/login', 'SUCCESS', 'cmslogin.vm']
+2020-11-23 20:41:57,576 - lx - INFO str报文:={"loginName":13716697293,"password":123456},signature:= 917B810FC675789F63C1AFA75BBF5A52AC81CC35
+2020-11-23 20:41:58,077 - lx - INFO 单行数据:={'levelName': '接自OwNUf'}
+2020-11-23 20:41:58,149 - lx - INFO 公共数据:={}
+2020-11-23 20:41:58,149 - lx - INFO 合并数据:={'levelName': '接自OwNUf'}
+2020-11-23 20:41:58,230 - lx - INFO 用例数据:=[{'levelName': '接自OwNUf'}, 'LX-A1114-0001', '新建分层等级', 'post.js', '/basic/level/saveLevels', 'SUCCESS', 'fengcengdengji.vm']
+2020-11-23 20:41:58,231 - lx - INFO 模板文件:=fengcengdengji.vm
+2020-11-23 20:41:58,314 - lx - INFO 执行报文:=['{"levels": [{"schoolId": 375,"subjectId": 2142,"subjectName": "语文","levelName": "接自OwNUf","levelStatus": 1}],"operatorName": "史成涛","subjectName": "语文"}', 'LX-A1114-0001', '新建分层等级', 'post.js', 'https://pycmspre.lexue.com/basic/level/saveLevels', 'SUCCESS', 'fengcengdengji.vm']
+2020-11-23 20:41:58,314 - lx - INFO 加密报文:=None,signature:= 79E48482F30ED5CA96DCBB4DFA43D1576DBC2B74
+2020-11-23 20:41:58,314 - lx - INFO 接   口:=fengcengdengji
+2020-11-23 20:41:58,314 - lx - INFO headers:	
+2020-11-23 20:41:58,314 - lx - INFO 		appKey:=201820011141153
+2020-11-23 20:41:58,314 - lx - INFO 		token:=eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI0NjU2Iiwic3ViIjoi5Y-y5oiQ5rabIiwiaWF0IjoxNjA2MTM1MzE3LCJleHAiOjE2MDYxNDI1MTd9.khpGCFP2htqwUt_jwRm3_QpbA8KDQVfJ4NBQTCl10aE
+2020-11-23 20:41:58,314 - lx - INFO 		signature:=79E48482F30ED5CA96DCBB4DFA43D1576DBC2B74
+2020-11-23 20:41:58,315 - lx - INFO 		tenantId:=pycmspre
+2020-11-23 20:41:58,315 - lx - INFO 		Content-Type:=application/json
+2020-11-23 20:41:58,315 - lx - INFO 		userId:=4656
+2020-11-23 20:41:58,315 - lx - INFO 案例报文:=['{"levels": [{"schoolId": 375,"subjectId": 2142,"subjectName": "语文","levelName": "接自OwNUf","levelStatus": 1}],"operatorName": "史成涛","subjectName": "语文"}', 'LX-A1114-0001', '新建分层等级', 'post.js', 'https://pycmspre.lexue.com/basic/level/saveLevels', 'SUCCESS', 'fengcengdengji.vm']
+2020-11-23 20:41:58,361 - lx - INFO 返回数据:={
+  "code" : 0,
+  "message" : "操作成功",
+  "value" : true
+}
+2020-11-23 20:41:58,632 - lx - INFO 单行数据:={'classroomName': '接自OwNUf'}
+2020-11-23 20:41:58,704 - lx - INFO 公共数据:={'classroomName': '${localteacherCameraAccount'}
+2020-11-23 20:41:58,705 - lx - INFO 合并数据:={'classroomName': '接自OwNUf'}
+2020-11-23 20:41:58,784 - lx - INFO 用例数据:=[{'classroomName': '接自OwNUf'}, 'LX-A1114-0002', '添加教室', 'post.js', '/basic/campus/saveClassroom', '保存成功', 'tianjiajiaoshi.vm']
+2020-11-23 20:41:58,784 - lx - INFO 模板文件:=tianjiajiaoshi.vm
+2020-11-23 20:41:58,865 - lx - INFO 执行报文:=['{"campusId": 488,"classroomName": "接自OwNUf","peopleNum": 5,"classroomStatus": 1,"teacherCameraIP": "","teacherCameraPort": "","teacherCameraAccount": "lexueomo","teacherCameraPass": "lexue.com","studentCameraUrl": "","microphoneType": 0}', 'LX-A1114-0002', '添加教室', 'post.js', 'https://pycmspre.lexue.com/basic/campus/saveClassroom', '保存成功', 'tianjiajiaoshi.vm']
+2020-11-23 20:41:58,865 - lx - INFO 加密报文:=None,signature:= 79E48482F30ED5CA96DCBB4DFA43D1576DBC2B74
+2020-11-23 20:41:58,865 - lx - INFO 接   口:=tianjiajiaoshi
+2020-11-23 20:41:58,865 - lx - INFO headers:	
+2020-11-23 20:41:58,865 - lx - INFO 		appKey:=201820011141153
+2020-11-23 20:41:58,865 - lx - INFO 		token:=eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI0NjU2Iiwic3ViIjoi5Y-y5oiQ5rabIiwiaWF0IjoxNjA2MTM1MzE3LCJleHAiOjE2MDYxNDI1MTd9.khpGCFP2htqwUt_jwRm3_QpbA8KDQVfJ4NBQTCl10aE
+2020-11-23 20:41:58,865 - lx - INFO 		signature:=79E48482F30ED5CA96DCBB4DFA43D1576DBC2B74
+2020-11-23 20:41:58,865 - lx - INFO 		tenantId:=pycmspre
+2020-11-23 20:41:58,865 - lx - INFO 		Content-Type:=application/json
+2020-11-23 20:41:58,865 - lx - INFO 		userId:=4656
+2020-11-23 20:41:58,865 - lx - INFO 案例报文:=['{"campusId": 488,"classroomName": "接自OwNUf","peopleNum": 5,"classroomStatus": 1,"teacherCameraIP": "","teacherCameraPort": "","teacherCameraAccount": "lexueomo","teacherCameraPass": "lexue.com","studentCameraUrl": "","microphoneType": 0}', 'LX-A1114-0002', '添加教室', 'post.js', 'https://pycmspre.lexue.com/basic/campus/saveClassroom', '保存成功', 'tianjiajiaoshi.vm']
+2020-11-23 20:41:58,897 - lx - INFO 返回数据:={
+  "code" : 0,
+  "message" : "保存成功",
+  "value" : 1
+}
+2020-11-23 20:41:59,190 - lx - INFO 单行数据:={'roleName': '自教OwNUf'}
+2020-11-23 20:41:59,286 - lx - INFO 公共数据:={}
+2020-11-23 20:41:59,286 - lx - INFO 合并数据:={'roleName': '自教OwNUf'}
+2020-11-23 20:41:59,366 - lx - INFO 用例数据:=[{'roleName': '自教OwNUf'}, 'LX-A1114-0003', '添加角色', 'post.ue', '/system/role/saveSchoolRole', 'SUCCESS', 'tianjiajuese.vm']
+2020-11-23 20:41:59,366 - lx - INFO 模板文件:=tianjiajuese.vm
+2020-11-23 20:41:59,446 - lx - INFO 执行报文:=['{"schoolId":"375","roleName":"自教OwNUf","parentId":"85","roleType":"2"}', 'LX-A1114-0003', '添加角色', 'post.ue', 'https://pycmspre.lexue.com/system/role/saveSchoolRole', 'SUCCESS', 'tianjiajuese.vm']
+2020-11-23 20:41:59,446 - lx - INFO str报文:={"schoolId":"375","roleName":"自教OwNUf","parentId":"85","roleType":"2"},signature:= E73E73FE41BD99D235907A6BED704B572C0227BA
+2020-11-23 20:41:59,446 - lx - INFO 接   口:=tianjiajuese
+2020-11-23 20:41:59,446 - lx - INFO headers:	
+2020-11-23 20:41:59,446 - lx - INFO 		appKey:=201820011141153
+2020-11-23 20:41:59,446 - lx - INFO 		token:=eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI0NjU2Iiwic3ViIjoi5Y-y5oiQ5rabIiwiaWF0IjoxNjA2MTM1MzE3LCJleHAiOjE2MDYxNDI1MTd9.khpGCFP2htqwUt_jwRm3_QpbA8KDQVfJ4NBQTCl10aE
+2020-11-23 20:41:59,447 - lx - INFO 		signature:=E73E73FE41BD99D235907A6BED704B572C0227BA
+2020-11-23 20:41:59,447 - lx - INFO 		tenantId:=pycmspre
+2020-11-23 20:41:59,447 - lx - INFO 		Content-Type:=application/x-www-form-urlencoded
+2020-11-23 20:41:59,447 - lx - INFO 		userId:=4656
+2020-11-23 20:41:59,447 - lx - INFO 案例报文:=['{"schoolId":"375","roleName":"自教OwNUf","parentId":"85","roleType":"2"}', 'LX-A1114-0003', '添加角色', 'post.ue', 'https://pycmspre.lexue.com/system/role/saveSchoolRole', 'SUCCESS', 'tianjiajuese.vm']
+2020-11-23 20:41:59,487 - lx - INFO 返回数据:={
+  "code" : 0,
+  "message" : "SUCCESS",
+  "value" : {
+    "roleName" : "自教OwNUf",
+    "parentId" : 85,
+    "roleType" : 2,
+    "roleSource" : 2,
+    "subRoles" : [ ],
+    "menus" : [ ],
+    "schoolId" : 375,
+    "supRoles" : [ ],
+    "roleId" : 129
+  }
+}
+2020-11-23 20:41:59,755 - lx - INFO 单行数据:={}
+2020-11-23 20:41:59,853 - lx - INFO 公共数据:={}
+2020-11-23 20:41:59,853 - lx - INFO 合并数据:={}
+2020-11-23 20:41:59,951 - lx - INFO 用例数据:=[{}, 'LX-A1114-0004', '菜单权限分配', 'put.ue', '/system/sysUser/updateUserAndMenu', 'SUCCESS', 'caidanquanxian.vm']
+2020-11-23 20:41:59,951 - lx - INFO 模板文件:=caidanquanxian.vm
+2020-11-23 20:42:00,038 - lx - INFO 执行报文:=['{"sysUserId":"4880","menuIds":"150,151,152,179,219,221,222,150,151,152,179,219,221,222"}', 'LX-A1114-0004', '菜单权限分配', 'put.ue', 'https://pycmspre.lexue.com/system/sysUser/updateUserAndMenu', 'SUCCESS', 'caidanquanxian.vm']
+2020-11-23 20:42:00,038 - lx - INFO str报文:={"sysUserId":"4880","menuIds":"150,151,152,179,219,221,222,150,151,152,179,219,221,222"},signature:= C0653FAC3ECCE70C0D404F8FE4D26755A508F94B
+2020-11-23 20:42:00,038 - lx - INFO 接   口:=caidanquanxian
+2020-11-23 20:42:00,038 - lx - INFO headers:	
+2020-11-23 20:42:00,038 - lx - INFO 		appKey:=201820011141153
+2020-11-23 20:42:00,038 - lx - INFO 		token:=eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI0NjU2Iiwic3ViIjoi5Y-y5oiQ5rabIiwiaWF0IjoxNjA2MTM1MzE3LCJleHAiOjE2MDYxNDI1MTd9.khpGCFP2htqwUt_jwRm3_QpbA8KDQVfJ4NBQTCl10aE
+2020-11-23 20:42:00,038 - lx - INFO 		signature:=C0653FAC3ECCE70C0D404F8FE4D26755A508F94B
+2020-11-23 20:42:00,038 - lx - INFO 		tenantId:=pycmspre
+2020-11-23 20:42:00,038 - lx - INFO 		Content-Type:=application/x-www-form-urlencoded
+2020-11-23 20:42:00,038 - lx - INFO 		userId:=4656
+2020-11-23 20:42:00,038 - lx - INFO 案例报文:=['{"sysUserId":"4880","menuIds":"150,151,152,179,219,221,222,150,151,152,179,219,221,222"}', 'LX-A1114-0004', '菜单权限分配', 'put.ue', 'https://pycmspre.lexue.com/system/sysUser/updateUserAndMenu', 'SUCCESS', 'caidanquanxian.vm']
+2020-11-23 20:42:00,075 - lx - INFO 返回数据:={
+  "code" : 0,
+  "message" : "SUCCESS",
+  "value" : true
+}

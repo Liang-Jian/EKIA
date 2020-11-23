@@ -1,9 +1,8 @@
 
 from abc import ABCMeta,abstractclassmethod
-from autobase import GetTestData_fix3,HttpTransport1,t2resut
-from autobase.logger import *
 
-flowname   = "冰鉴"
+
+# flowname   = "冰鉴"
 xlxsfp     = "冰鉴接口案例.xlsx"
 exeshtname = "冰鉴对外投资"
 execline   = 10
@@ -22,7 +21,7 @@ class flow(ICaseEntityFlow):
         self.line = line
         self.execResultMap = dict()
         self.execResultInfo= dict()
-        self.p = HttpTransport1.DataAssert()
+        # self.p = HttpTransport.DataAssert()
 
     @property
     def caseEntity(self):
@@ -31,11 +30,11 @@ class flow(ICaseEntityFlow):
     def run(self):
         caseEntityData = []
 
-        caseEntityData = GetTestData_fix3.CaseDataMap4Xls(flowname, xlxsfp, exeshtname,self.line).caseDataAll()
-        responData = self.p.countResult("http://10.10.94.23:7001/flow/dataflow/getData", caseEntityData[0])
-        Logi("repondata type %s" % type(responData))
-        Logi("caseEntityData %s" % caseEntityData)
-        t2resut.t2result(caseEntityData).transformBrowse(flowname)
+        # caseEntityData = GetTestData_fix1.CaseDataMap4Xls(flowname, xlxsfp, exeshtname,self.line).caseDataAll()
+        # responData = self.p.httpMethod("http://10.10.94.23:7001/flow/dataflow/getData", caseEntityData[0])
+        # Logi("repondata type %s" % type(responData))
+        # Logi("caseEntityData %s" % caseEntityData)
+        # t2resut.t2result(caseEntityData).transformBrowse(flowname)
 
 if __name__ == '__main__':
 

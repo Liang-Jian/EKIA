@@ -26,8 +26,8 @@ def get_string(dict1):
 
     return string_dict[0:-1]
 
-d = {"a":"3","b":3}
-get_string(d)
+# d = {"a":"3","b":3}
+# get_string(d)
 
 
 li = [{"quoteStatus": 0,"conflictTotal": 0,"classCourseId": None}]
@@ -37,10 +37,10 @@ tostr(32)
 # k  = ",".join(li)
 # print(k)
 
+# import collections
+# A=['T','T','F','T','T','F','F']
+# count=collections.Counter(A)
+# print(count['T'])
 
-
-
-from string import Template
-s = Template("{'name':'${name}','age':${age}}")
-k = (s.substitute({'name':'sd','age':32}))
-print(k)
+import datetime
+print(datetime.datetime.now().strftime("%Y-%H-%M-%S"))

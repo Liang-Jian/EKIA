@@ -1,7 +1,4 @@
-import logging
-import logging.handlers
-import random,string,os
-# from pandas import DataFrame
+
 
 class CommonDataExtractor:
     pass
