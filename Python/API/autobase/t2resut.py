@@ -1,8 +1,7 @@
 import os,json
 import datetime
 from jinja2 import Template
-from  autobase import getdata4file
-from autobase import GetTestData_fix1
+from  autobase import getvmfile
 from autobase.logger import *
 class t2result(object):
     def __init__(self,inputdatastream):
@@ -19,7 +18,7 @@ class t2result(object):
         #casecode
 
         templetepath = os.path.abspath('..') + '/autodata/template/browse_demo.vm'
-        s = Template(getdata4file.connect_to(templetepath).parsed_data)
+        s = Template(getvmfile.connect_to(templetepath).parsed_data)
         log.info("return data %s" % self.data)
 
         # datain = {"casecode":self.data[1],"caseTitle":self.data[2],"reqString":self.data[0]} # data inputdatstream
@@ -39,11 +38,11 @@ class t2result(object):
             f.write(fileoutstream)
         f.close()
 
-
-def test():
-    flowname = "冰鉴"
-    xlxsfp = "冰鉴接口案例.xlsx"
-    exeshtname = "冰鉴对外投资"
-    testfile = GetTestData_fix1.CaseDataMap4Xls(flowname, xlxsfp, exeshtname,9).casealldata()
-    print(testfile)
-    t2result(testfile).transformBrowse()
+#
+# def test():
+#     flowname = "冰鉴"
+#     xlxsfp = "冰鉴接口案例.xlsx"
+#     exeshtname = "冰鉴对外投资"
+#     testfile = GetTestData_fix1.CaseDataMap4Xls(flowname, xlxsfp, exeshtname,9).casealldata()
+#     print(testfile)
+#     t2result(testfile).transformBrowse()

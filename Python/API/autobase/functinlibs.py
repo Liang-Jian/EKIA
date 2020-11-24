@@ -54,8 +54,8 @@ def generate_random_str(randomlength):
 
 
 def idNum(ageFlag,sex,x1,cur_cule):
-    count = 1231234324
 
+    count = 1231234324
     return count
 
 
@@ -71,7 +71,6 @@ def selfRandom(word):
     random_str = get_text()
     return word+ "".join(random_str)
 
-# print(selfRandom("自动化"))
 
 
 
@@ -86,5 +85,4 @@ def CalDate(day, isTime=1):
         date_time_string = (datetime.date.today() + datetime.timedelta(days=day)).strftime('%Y-%m-%d %H:%M:%S')
     else:
         date_time_string = (datetime.date.today() + datetime.timedelta(days=day)).strftime('%Y-%m-%d')
-    # print(date_time_string)
     return date_time_string

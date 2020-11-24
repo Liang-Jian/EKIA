@@ -17,46 +17,50 @@
     <ul style="list-style: none">
         <li>
             <div align="center">
-                <b>案例编号:</b><span id="casecode">{{casecode}}</span>
+                <b>案例编号:</b><span id="casecode">LX-A1114-0004</span>
             </div>
         </li>
         <br/>
         <li>
-            <b>接口路径:</b><span id="interPath">{{interPath}}</span>
+            <b>接口路径:</b><span id="interPath">https://pycmspre.lexue.com/system/sysUser/updateUserAndMenu</span>
         </li>
         <li>
-            <b>案例名称:</b><span id="caseTitle">{{caseTitle}}</span>
+            <b>案例名称:</b><span id="caseTitle">菜单权限分配</span>
         </li>
         <li>
-            <b>模板名称:</b><span id="templeteName">{{templeteName}}</span>
+            <b>模板名称:</b><span id="templeteName">caidanquanxian.vm</span>
         </li>
         <li>
-            <b>接口类型:</b><span id="interType">{{interType}}</span>
+            <b>接口类型:</b><span id="interType">put.ue</span>
         </li>
         <li>
-            <b>预期结果:</b><span id="expectResult">{{expectResult}}</span>
+            <b>预期结果:</b><span id="expectResult">SUCCESS</span>
         </li>
         <li>
-            <b>执行时间:</b><span id="finishTime">{{finishTime}}</span>
+            <b>执行时间:</b><span id="finishTime">2020-11-24 15:11:38.725476</span>
         </li>
         <li>
-            <b>断言结果:</b><span id="assertresult">{{assertresult}}</span>
+            <b>断言结果:</b><span id="assertresult">pass</span>
         </li>
         <br/>
 
             <li>
-                <b>{{apiName}}</b><br/>
+                <b></b><br/>
                 <b>请求报文:</b><br/>
-                <textarea rows="20" cols="220" id="reqString">{{reqString}}</textarea>
+                <textarea rows="20" cols="220" id="reqString">{"sysUserId":"4880","menuIds":"150,151,152,179,219,221,222,150,151,152,179,219,221,222"}</textarea>
             </li>
             <br/>
             <li>
-                <b>{{apiName}}</b><br/>
+                <b></b><br/>
                 <b>返回报文:</b><br/>
-                <textarea rows="20" cols="220" id="respString">{{responseString}}</textarea>
+                <textarea rows="20" cols="220" id="respString">{
+  "code" : 0,
+  "message" : "SUCCESS",
+  "value" : true
+}</textarea>
             </li>
             <li>
-                <b>{{apiName}}</b><br/>
+                <b></b><br/>
                 <b>接口返回数据:</b>
                 <table border="1" cellspacing="0">
                     <thead>

@@ -1,7 +1,6 @@
-import hmac , sys ,json
+import hmac
 # 加密过程
 from hashlib import sha1
-from autobase.logger import *
 import urllib.parse
 '''
 signature:
@@ -45,22 +44,22 @@ class Signature:
 
 	def getSignature(self, dict1=None):
 		'''
-		:param : 登录传用户名密码 。提交数据置为空。
+		:param : req。
 		:return: signarure
 		'''
 		if dict1 is None:
 			signature = "79E48482F30ED5CA96DCBB4DFA43D1576DBC2B74"
-			Logi("加密报文:=%s,signature:= %s" % (dict1,signature))
+			# Logi("加密报文:=%s,signature:= %s" % (dict1,signature))
 			return signature
 		elif isinstance(dict1,dict):
 			string_dict = self.get_string(dict1)
 			signature = self.hmac_string(string_dict).upper()
-			Logi("dic报文:=%s,signature:= %s" % (dict1,signature))
+			# Logi("dic报文:=%s,signature:= %s" % (dict1,signature))
 			return signature
 		elif isinstance(dict1,str):
 			data = eval(dict1)
 			string_dict = self.get_string(data)
 			signature = self.hmac_string(string_dict).upper()
-			Logi("str报文:=%s,signature:= %s" % (dict1,signature))
+			# Logi("str报文:=%s,signature:= %s" % (dict1,signature))
 			return signature
 

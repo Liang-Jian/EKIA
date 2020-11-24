@@ -1,6 +1,6 @@
 
 from abc import ABCMeta,abstractclassmethod
-from autobase import GetTestData_fix3,HttpTransport1,t2resut
+from autobase import proceCasedata,httpTransport,t2resut
 from autobase.logger import *
 
 flowname   = "冰鉴"
@@ -22,7 +22,7 @@ class flow(ICaseEntityFlow):
         self.line = line
         self.execResultMap = dict()
         self.execResultInfo= dict()
-        self.p = HttpTransport1.DataAssert()
+        self.p = httpTransport.DataAssert()
 
     @property
     def caseEntity(self):
@@ -31,7 +31,7 @@ class flow(ICaseEntityFlow):
     def run(self):
         caseEntityData = []
 
-        caseEntityData = GetTestData_fix3.CaseDataMap4Xls(flowname, xlxsfp, exeshtname,self.line).caseDataAll()
+        caseEntityData = proceCasedata.CaseDataMap4Xls(flowname, xlxsfp, exeshtname, self.line).caseDataAll()
         responData = self.p.countResult("http://10.10.94.23:7001/flow/dataflow/getData", caseEntityData[0])
         Logi("repondata type %s" % type(responData))
         Logi("caseEntityData %s" % caseEntityData)

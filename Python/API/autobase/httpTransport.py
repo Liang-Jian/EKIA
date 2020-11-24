@@ -1,12 +1,10 @@
 from autobase import HttpTransStatus
-from autobase.logger import *
+from autobase.recorder import *
 import requests,json
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 from autobase.signatureUtil import Signature
-from string import Template
-from autobase.parseexcel import *
-from autobase.GetTestData_fix3 import *
+from autobase.proceCasedata import *
 
 signature = Signature()
 
@@ -16,12 +14,13 @@ class HttpTransport(object):
     def __init__(self):
 
         self.reqdatalist  = ""                                     # data from xls
-        self.encode       = ""                                     # = "GBK"; //"UTF-8";
+        self.encode       = ""                                     # gbk or utf8
         self.contentType  = ""                                     # "application/xml";
         self._method      = "post"
-        self._http_post_status  = "http_post_status"
+        self._http_post_status  = "http_post_status"               #
         self._resultData = "resultData"
         self.result = None
+        self.resultrsp = list()                                    # get all score
         self.sess = requests.session()                             # request
         self.loginreq = HttpGetHeader.getLoginReq()                # login req ,get login data
         self._headers = {
@@ -35,38 +34,38 @@ class HttpTransport(object):
         self.loginReponseStr = self.sess.post(url=self.loginreq[4], stream='True', data=json.loads(self.loginreq[0]), verify=False, timeout=4, headers=self._headers).text
         AllFlowData().allflowdata=(eval(self.loginReponseStr))
 
-    def httpMethod(self, url, contentstring):
+    # def httpMethod(self, url, contentstring):
+    #
+    #     totaldata = dict()
+    #     try:
+    #         result  = requests.post(url=url,headers=self.header,json=contentstring)
+    #         log.info("resultCode %s" , result.status_code)
+    #         if result.status_code == 200:
+    #             totaldata.update({self._http_post_status: HttpTransStatus.HttpTransStatus().HTTPTRANS_STATUS_SUC})
+    #         elif result.status_code == 500:
+    #             totaldata.update({self._http_post_status: HttpTransStatus.HttpTransStatus().HTTPTRANS_STATUS_500})
+    #         else:
+    #             totaldata.update({self._http_post_status: HttpTransStatus.HttpTransStatus().HTTPTRANS_STATUS_FAIL})
+    #     except IOError as e:
+    #         totaldata.update({self._http_post_status: HttpTransStatus.HttpTransStatus().HTTPTRANS_STATUS_FAIL})
+    #         log.error(e)
+    #
+    #
+    #     #get return data
+    #     try:
+    #         returndata  = result.text
+    #         log.info("返回数据:=%s" % returndata)
+    #
+    #         totaldata.update({self._resultData:returndata})
+    #         log.info("totalData %s",totaldata)
+    #     except Exception as e :
+    #         raise  e
+    #
+    #     return totaldata
 
-        totaldata = dict()
-        try:
-            result  = requests.post(url=url,headers=self.header,json=contentstring)
-            log.info("resultCode %s" , result.status_code)
-            if result.status_code == 200:
-                totaldata.update({self._http_post_status: HttpTransStatus.HttpTransStatus().HTTPTRANS_STATUS_SUC})
-            elif result.status_code == 500:
-                totaldata.update({self._http_post_status: HttpTransStatus.HttpTransStatus().HTTPTRANS_STATUS_500})
-            else:
-                totaldata.update({self._http_post_status: HttpTransStatus.HttpTransStatus().HTTPTRANS_STATUS_FAIL})
-        except IOError as e:
-            totaldata.update({self._http_post_status: HttpTransStatus.HttpTransStatus().HTTPTRANS_STATUS_FAIL})
-            log.error(e)
 
 
-        #get return data
-        try:
-            returndata  = result.text
-            log.info("返回数据:=%s" % returndata)
-
-            totaldata.update({self._resultData:returndata})
-            log.info("totalData %s",totaldata)
-        except Exception as e :
-            raise  e
-
-        return totaldata
-
-
-
-    def httpMethod1(self,reqdata):
+    def httpMethod(self, reqdata):
         self.reqdatalist = reqdata
         __url  = self.reqdatalist[4]
         __req  = self.reqdatalist[0]
@@ -78,7 +77,7 @@ class HttpTransport(object):
         Logi("headers:\t")
         for k,v in self._headers.items():
             Logi("\t\t%s:=%s" % (k,v))
-        Logi("案例报文:=%s" % self.reqdatalist)
+        # Logi("案例报文:=%s" % self.reqdatalist)
         self.writesMsg(self.reqdatalist[0])
 
 
@@ -90,15 +89,15 @@ class HttpTransport(object):
 
         elif l[0] == "put" and l[1] == "ue":
             response_Str = self.sess.put(url=__url, data=json.loads(self.reqdatalist[0]),headers=self._headers)
-            # response_Str = self.sess.put(url=__url, data=json.dumps(eval(self.reqdatalist[0])),headers=self._headers)
 
         try:
             responsecasedata = response_Str.text
             self.writeMsg(responsecasedata)
             Logi("返回数据:=%s" % responsecasedata)
+            self.dataAssert(self.reqdatalist[5],responsecasedata)
 
         except Exception as e:
-            Loge(e)
+            raise e
         return responsecasedata
 
     @property
@@ -121,14 +120,23 @@ class HttpTransport(object):
             self._headers['userId'] = str(AllFlowData().allflowdata.get('value').get('sysUserId'))
             self._headers['signature'] = signature.getSignature()
 
-
-    def dataAssert(self):
+    def dataAssert(self,A,B):
         '''
         1,数据比较 ，断言 ， 保存断言结果，使用计数器保存对比结果，计算出通过率,发给结果函数，保存为html
-
         :return:
         '''
-        pass
+        if A in B :
+            Logi("assert PASS")
+            self.resultrsp.append("T")
+            self.reqdatalist.insert(7, "T")
+            self.reqdatalist.insert(8, B)
+            HtmlRecorder(self.reqdatalist).data2html()
+
+        else:
+            Logi("assert FAIL")
+            self.reqdatalist.insert(7, "T")
+            self.reqdatalist.insert(8, B)
+            HtmlRecorder(self.reqdatalist).data2html()
 
     def writeMsg(self,message):
         try:
@@ -145,6 +153,10 @@ class HttpTransport(object):
             encoding="utf-8")
         send_msg.write(str(message))
         send_msg.close()
+
+    def __del__(self):
+        pass
+
 class HttpGetHeader(object):
     pe          = ParseExcel()
     reqlist     = list()
@@ -180,4 +192,4 @@ if __name__ == '__main__':
     p = HttpTransport()
     for i in range(9,13):
         testfile = CaseDataMap4Xls(xlxsfp, exeshtname,i).caseDataAll()
-        p.httpMethod1(testfile)
+        p.httpMethod(testfile)

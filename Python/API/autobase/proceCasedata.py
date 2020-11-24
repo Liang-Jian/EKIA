@@ -1,10 +1,8 @@
 from autobase.parseexcel import *
 import json
-# from jinja2 import Template
 from string import Template
-from autobase import getdata4file
 from autobase.logger import *
-from autobase.funclib import *
+from autobase.functinlibs import *
 
 
 def delNkey(dictey):
@@ -41,14 +39,6 @@ class CaseDataMap4Xls(object):
     __filepath = os.path.abspath("..") + "/autodata/testcase/"
 
     def __init__(self, xlxspath, xlsxsheet, execline):
-        '''
-
-        :param execflowname:
-        :param xlxspath:     冰鉴接口案例.xlsx
-        :param xlsxsheet:    冰鉴对外投资
-        :param execline:
-        :param caseendrow:
-        '''
 
         self.test_data_path = CaseDataMap4Xls.__filepath + xlxspath  # 文件路径 str->
         self.test_data_sheet = xlsxsheet                             # sheet名 str->冰鉴接口
@@ -170,7 +160,6 @@ class CaseDataMap4Xls(object):
         key_m   = []
         value_m = []
 
-        print(AllFlowData().allflowdata)
         for key, value in self.dict_n.items():
             value = str(value)
             if value.startswith("${") and "flow" not in value and "local" not in value:
@@ -180,7 +169,6 @@ class CaseDataMap4Xls(object):
                 value_m.append(value_new)
         dict_m = dict(zip(key_m, value_m))
         self.casedata = dict(self.dict_n, **dict_m)
-        # localdata(self.casedata)            # process ${local data
         # print(localdata(self.casedata))            # process ${local data
 
         flowdatafix(self.casedata)            # process ${flow  data
@@ -191,7 +179,6 @@ class CaseDataMap4Xls(object):
         key_n   = list()
         value_n = list()
         for key, value in self.dataMap.items():
-            # print(value)
             if value.startswith("${"):
                 value_new = value[2:-1]
                 value_new = eval(value_new)
@@ -223,23 +210,23 @@ class CaseDataMap4Xls(object):
 
 
 
+    # def getFinallyReq(self, data):
+    #     '''
+    #     :param data:  拼好的报文
+    #     :return    :  报文完成体
+    #     '''
+    #
+    #     xlxsObject = self.pe.load_work_book(self.test_data_path).get_sheet_by_name(self.test_data_sheet)
+    #     vmname = (self.pe.get_cell_of_value(xlxsObject, rowNo=2, colsNo=3))  # vm-tem-name
+    #     print(vmname)
+    #     Logi("模板文件:=%s" % vmname)
+    #     templetepath = os.path.abspath('..') + '\\autodata\\template\\' + vmname
+    #
+    #     # caseTepletedata = Template(getdata4file.connect_to(templetepath).parsed_data)
+    #     caseTemplate = Template(templetepath)
+    #     caseTemplate1= caseTemplate.substitute()
+
     def getFinallyReq(self, data):
-        '''
-        :param data:  拼好的报文
-        :return    :  报文完成体
-        '''
-
-        xlxsObject = self.pe.load_work_book(self.test_data_path).get_sheet_by_name(self.test_data_sheet)
-        vmname = (self.pe.get_cell_of_value(xlxsObject, rowNo=2, colsNo=3))  # vm-tem-name
-        print(vmname)
-        Logi("模板文件:=%s" % vmname)
-        templetepath = os.path.abspath('..') + '\\autodata\\template\\' + vmname
-
-        # caseTepletedata = Template(getdata4file.connect_to(templetepath).parsed_data)
-        caseTemplate = Template(templetepath)
-        caseTemplate1= caseTemplate.substitute()
-
-    def getFinallyReq1(self, data):
         '''
         :param data:  拼好的报文 list ， 拼interface url
         :return    :  报文完成体
@@ -254,8 +241,8 @@ class CaseDataMap4Xls(object):
         templetepath = os.path.abspath('..') + '\\autodata\\template\\' + vm_name
         templetestring = open(templetepath,'r', encoding='utf-8', errors='ignore').read()
         caseTepletedata = Template(templetestring)
-        casedata = caseTepletedata.substitute(singlecasedata) # 报文 String type
-
+        casedata = caseTepletedata.substitute(singlecasedata) # 报文 Str type
+        Logi("发送报文:=%s" % casedata)
         _l[0] = casedata.replace("\n","").replace("\t","")
         _l[4] = mainurl + _l[4]
         Logi("执行报文:=%s" % _l)
@@ -275,11 +262,12 @@ class CaseDataMap4Xls(object):
         self.finallycasedata = dict(self.publicdata, **self.casedata)
         print(self.finallycasedata)
         Logi("合并数据:=%s" % localdata(self.finallycasedata))
+        # Logi("合并数据:=%s" % self.finallycasedata)
 
         self.__casedata.append(self.finallycasedata)
         self.__casedata += self.caseinfo()
-        Logi("用例数据:=%s" % self.__casedata)
-        self.getFinallyReq1(self.__casedata)
+        # Logi("用例数据:=%s" % self.__casedata)
+        self.getFinallyReq(self.__casedata)
 
         return self.__casedata
 

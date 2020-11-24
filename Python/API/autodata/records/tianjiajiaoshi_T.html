@@ -17,46 +17,50 @@
     <ul style="list-style: none">
         <li>
             <div align="center">
-                <b>案例编号:</b><span id="casecode">{{casecode}}</span>
+                <b>案例编号:</b><span id="casecode">LX-A1114-0002</span>
             </div>
         </li>
         <br/>
         <li>
-            <b>接口路径:</b><span id="interPath">{{interPath}}</span>
+            <b>接口路径:</b><span id="interPath">https://pycmspre.lexue.com/basic/campus/saveClassroom</span>
         </li>
         <li>
-            <b>案例名称:</b><span id="caseTitle">{{caseTitle}}</span>
+            <b>案例名称:</b><span id="caseTitle">添加教室</span>
         </li>
         <li>
-            <b>模板名称:</b><span id="templeteName">{{templeteName}}</span>
+            <b>模板名称:</b><span id="templeteName">tianjiajiaoshi.vm</span>
         </li>
         <li>
-            <b>接口类型:</b><span id="interType">{{interType}}</span>
+            <b>接口类型:</b><span id="interType">post.js</span>
         </li>
         <li>
-            <b>预期结果:</b><span id="expectResult">{{expectResult}}</span>
+            <b>预期结果:</b><span id="expectResult">保存成功</span>
         </li>
         <li>
-            <b>执行时间:</b><span id="finishTime">{{finishTime}}</span>
+            <b>执行时间:</b><span id="finishTime">2020-11-24 15:11:37.573959</span>
         </li>
         <li>
-            <b>断言结果:</b><span id="assertresult">{{assertresult}}</span>
+            <b>断言结果:</b><span id="assertresult">pass</span>
         </li>
         <br/>
 
             <li>
-                <b>{{apiName}}</b><br/>
+                <b></b><br/>
                 <b>请求报文:</b><br/>
-                <textarea rows="20" cols="220" id="reqString">{{reqString}}</textarea>
+                <textarea rows="20" cols="220" id="reqString">{"campusId": 488,"classroomName": "自教pFoQL","peopleNum": 5,"classroomStatus": 1,"teacherCameraIP": "","teacherCameraPort": "","teacherCameraAccount": "lexueomo","teacherCameraPass": "lexue.com","studentCameraUrl": "","microphoneType": 0}</textarea>
             </li>
             <br/>
             <li>
-                <b>{{apiName}}</b><br/>
+                <b></b><br/>
                 <b>返回报文:</b><br/>
-                <textarea rows="20" cols="220" id="respString">{{responseString}}</textarea>
+                <textarea rows="20" cols="220" id="respString">{
+  "code" : 0,
+  "message" : "保存成功",
+  "value" : 1
+}</textarea>
             </li>
             <li>
-                <b>{{apiName}}</b><br/>
+                <b></b><br/>
                 <b>接口返回数据:</b>
                 <table border="1" cellspacing="0">
                     <thead>

@@ -1,10 +1,6 @@
 import openpyxl
 from openpyxl.styles import Border, Side, Font
-# from openpyxl import load_workbook
-# from openpyxl import *
 import time
-# from UI.config.VarConfig import *
-import os
 
 
 class ParseExcel(object):
@@ -37,7 +33,6 @@ class ParseExcel(object):
         '''
         try:
             sheet = self.workbook.get_sheet_by_name(sheetName)
-            # sheet = self.workbook[sheetName]
             return sheet
         except Exception as e:
             raise e
@@ -82,7 +77,6 @@ class ParseExcel(object):
         获取sheet中某一行，返回的是这一行所有的数据内容组成的tuple,下标从1开始，sheet.row[1]表示第一行
         '''
         try:
-            # return sheet.rows[rowNo - 1]
             return list(sheet.rows)[rowNo - 1]
         except Exception as e:
             raise e
@@ -92,8 +86,6 @@ class ParseExcel(object):
         获取sheet中某一列，返回的是这一列所有的数据内容组成的tuple,下标从1开始，sheet.columns[1]表示第一列
         '''
         try:
-            # return sheet.columns[rolNo - 1]
-            # return list(sheet.columns[rolNo - 1])
             return list(sheet.columns)[rolNo - 1]
         except Exception as e:
             raise e

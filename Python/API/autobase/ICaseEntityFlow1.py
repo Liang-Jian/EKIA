@@ -21,7 +21,6 @@ class flow(ICaseEntityFlow):
         self.line = line
         self.execResultMap = dict()
         self.execResultInfo= dict()
-        # self.p = HttpTransport.DataAssert()
 
     @property
     def caseEntity(self):
