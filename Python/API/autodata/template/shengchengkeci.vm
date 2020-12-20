@@ -1,0 +1,17 @@
+{
+"courseFrequency":"2",
+"courseFirstDate":"2020-12-16",
+"handleType":"0",
+"teacherId":"5888",
+"teacherName":"建师FClwh",
+"campusId":"453",
+"campusName":"测试数据报表校区",
+"classroomId":"3014",
+"classroomName":"面对现实",
+"classTimeId":"5371",
+"classTimeName":"01:00~01:15",
+"classStartTime":"01:00:00",
+"classEndTime":"01:15:00",
+"ruleId":"7748",
+"courseTypeCode":"1"
+}

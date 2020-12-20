@@ -195,18 +195,18 @@ if __name__ == '__main__':
     pe = ParseExcel()
     # 测试所需Excel文件“通用投保验证.xls”，请自行创建
     # path = parentDirPath + "\\testData\\通用投保验证_S20180290.xlsx"
-    path = r"D:\zdhlog\EKIA\Python\API\autodata\testcase\冰鉴接口案例.xlsx"
+    path = r"D:\workspace\dom-po\API\autodata\testcase\培优接口用例.xlsx"
     # path = "D:\\MyDocuments\\itw_liuyh01\桌面\\buikdNumber.xls"
     # print(path)
     pe.load_work_book(path)
     # print("通过名称获取sheet对象的名字：", pe.get_sheet_by_name("200").title)
     # print("通过名称获取sheet对象的名字：", pe.get_sheet_by_name("data"))
     # print("通过index序号获取sheet对象的名字：", pe.get_sheet_by_index(1).title)
-    sheet = pe.get_sheet_by_name("出单")
+    sheet = pe.get_sheet_by_name("CMS接口")
     # sheet = pe.get_sheet_by_index(0)
     # print(sheet)
     # sheet = pe.get_sheet_by_index(0)
-    # print("获取最大行号：", pe.get_rows_number(sheet)) # 获取最大行号
+    print("获取最大行号：", pe.get_rows_number(sheet)) # 获取最大行号
     # print("获取最大列号：", pe.get_cols_number(sheet)) # 获取最大列号
     # rows_num = pe.get_rows_number(sheet)
     # print(rows_num)

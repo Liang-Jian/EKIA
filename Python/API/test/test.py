@@ -147,7 +147,7 @@ sess.headers.update(
 )
 
 
-''' feng ceng deng ji 
+''' 分层等级 over
 sess.headers.update({'Content-Type':'application/json'})
 f = open(r'D:\zdhlog\EKIA\Python\API\autodata\template\fengcengdengji.vm','r',encoding='utf-8',errors='ignore')
 data = f.read()
@@ -158,7 +158,7 @@ print(response1.text)'''
 
 
 
-'''班级状态更新
+'''班级状态更新 over
 req:
 {"id":"488","campusStatus":"1"}
 rep:
@@ -173,7 +173,7 @@ question:
 id 如何取
 1 : 启用 0: 禁用
 
-zhuangtaibaowen = open(r'D:\zdhlog\EKIA\Python\API\\autodata\\template\\xiaoquzhuangtai.vm','r',encoding='utf-8',errors='ignore').read()
+zhuangtaibaowen = open(r'D:\zdhlog\EKIA\Python\API\\autodata\\template\\banjizhuangtai.vm','r',encoding='utf-8',errors='ignore').read()
 zhuangtai_data = json.loads(zhuangtaibaowen)
 print(zhuangtai_data)
 # 获取 signature
@@ -184,7 +184,7 @@ banjizhuangtai = sess.put("https://pycmspre.lexue.com/basic/campus/updateCampusS
 print(banjizhuangtai.text)'''
 
 
-'''商户号绑定
+'''商户号绑定 over
 shhbdbaowen = open(r'D:\zdhlog\EKIA\Python\API\autodata\template\shanghuhaobangding.vm','r',encoding='utf-8',errors='ignore').read()
 shhbdbaowen_dict_data = eval(shhbdbaowen)
 
@@ -194,7 +194,7 @@ shanghuhaobind = sess.post("https://pycmspre.lexue.com/basic/merchant/saveMercha
 print(shanghuhaobind.text)
 '''
 
-'''添加教室
+'''添加教室 over
 
 tjjsbaowen = open(r'D:\zdhlog\EKIA\Python\API\autodata\template\tianjiajiaoshi.vm','r',encoding='utf-8',errors='ignore').read()
 tjjs_dict_data = eval(tjjsbaowen)
@@ -205,7 +205,7 @@ print(shanghuhaobind.text)'''
 
 
 
-'''添加角色 yes
+'''添加角色 over
 tianjiajuesebaowen = open(r'D:\zdhlog\EKIA\Python\API\autodata\template\tianjiajuese.vm', 'r', encoding='utf-8', errors='ignore').read()
 tianjiajuse_dict_data = json.loads(tianjiajuesebaowen)
 print(tianjiajuse_dict_data)
@@ -218,7 +218,7 @@ tianjiajuese = sess.post("https://pycmspre.lexue.com/system/role/saveSchoolRole"
 print(tianjiajuese.text)'''
 
 
-'''角色启用
+'''角色启用 over
 {"roleId":"89"} Id 
 
 jsqybaowen = open(r'D:\zdhlog\EKIA\Python\API\autodata\template\jueseqiyong.vm', 'r', encoding='utf-8', errors='ignore').read()
@@ -234,7 +234,7 @@ print(tianjiajuese.text)'''
 
 
 
-'''新建员工
+'''新建员工 over
 
 
 # {
@@ -243,7 +243,7 @@ print(tianjiajuese.text)'''
 #   "value" : null
 # }
 
-xxjygbaowen = open(r'D:\zdhlog\EKIA\Python\API\autodata\templatexinjianyuangong.vm', 'r', encoding='utf-8', errors='ignore').read()
+xxjygbaowen = open(r'D:\zdhlog\EKIA\Python\API\autodata\template\\xinjianyuangong.vm', 'r', encoding='utf-8', errors='ignore').read()
 xxjygbaowen_dict_data = eval(xxjygbaowen)
 
 time.sleep(1)
@@ -252,7 +252,7 @@ xjyg = sess.post("https://pycmspre.lexue.com/personnel/teacher/saveTeacher",data
 print(xjyg.text)'''
 
 
-'''菜单权限分配
+'''菜单权限分配 over
 cdqxbaowen = open(r'D:\zdhlog\EKIA\Python\API\autodata\template\caidanquanxian.vm', 'r', encoding='utf-8', errors='ignore').read()
 cdqx_dict_data = json.loads(cdqxbaowen)
 print(cdqx_dict_data)
@@ -267,7 +267,7 @@ print(tianjiajuese.text)
 '''
 
 
-'''数据权限
+'''数据权限 over
 sjqxbaowen = open(r'D:\zdhlog\EKIA\Python\API\autodata\template\shujuquanxian.vm', 'r', encoding='utf-8', errors='ignore').read()
 sjqx_dict_data = json.loads(sjqxbaowen)
 print(sjqx_dict_data)
@@ -281,7 +281,7 @@ tianjiajuese = sess.put("https://pycmspre.lexue.com/system/sysUser/updateUserAnd
 print(tianjiajuese.text)'''
 
 
-'''新建面授课-长期班
+'''新建面授课-长期班 over
 
 
 "courseLevelCoursewareList":"[{\"levelId\":\"0\",\"coursewareList\":[]}]",
@@ -300,7 +300,7 @@ print(tianjiajuese.text)'''
 
 
 
-'''新建面授可-短期班
+'''新建面授可-短期班 over
 # "courseLevelCoursewareList":" [{"levelId"":""0","coursewareList"":"[]}]
 # "courseLevelDetailList":" [{"levelId"":""0","content"":""","detailPic"":"[]}]
 xjdqbbaowen = open(r'D:\zdhlog\EKIA\Python\API\autodata\template\\xinjianduanqiban.vm', 'r', encoding='utf-8', errors='ignore').read()
@@ -314,7 +314,7 @@ sess.headers.update({'token':token,'signature':tjjs_sginature})
 tianjiajuese = sess.post("https://pycmspre.lexue.com/educational/course/saveCourse", data=json.loads(xjdqbbaowen), verify=False, timeout=4)
 print(tianjiajuese.text)'''
 
-'''新建考试课
+'''新建考试课 over
 xjkskbaowen = open(r'D:\zdhlog\EKIA\Python\API\autodata\template\\xinjiankaoshike.vm', 'r', encoding='utf-8', errors='ignore').read()
 xjdqb_dict_data = json.loads(xjkskbaowen)
 print(xjdqb_dict_data)
@@ -327,7 +327,7 @@ tianjiajuese = sess.post("https://pycmspre.lexue.com/educational/course/saveCour
 print(tianjiajuese.text)'''
 
 
-'''新建公开课
+'''新建公开课 over
 xjgkkbaowen = open(r'D:\zdhlog\EKIA\Python\API\autodata\template\\xinjiangongkaike.vm', 'r', encoding='utf-8', errors='ignore').read()
 xjdqb_dict_data = json.loads(xjgkkbaowen)
 print(xjdqb_dict_data)
@@ -354,7 +354,7 @@ sess.headers.update({'token':token,'signature':tjjs_sginature})
 xxskgl = sess.get("https://pycmspre.lexue.com/educational/classRule/generateClassDate?%s" % xjdqb_dict_data)
 print(xxskgl.text)'''
 
-'''新建上课规律
+'''新建上课规律 over
 xjskglbaowen = open(r'D:\zdhlog\EKIA\Python\API\autodata\template\\xinjianshangkeguilv.vm', 'r', encoding='utf-8', errors='ignore').read()
 xjdqb_dict_data = json.loads(xjskglbaowen)
 time.sleep(1)
@@ -548,7 +548,7 @@ response
 '''
 
 
-'''新建讲座
+'''新建讲座 over
 zxkqrbaowen = open('D:\\zdhlog\\EKIA\\Python\\API\\autodata\\template\\xinjianjiangzuo.vm', 'r', encoding='utf-8', errors='ignore').read()
 zxkqr_dick_data = json.loads(zxkqrbaowen)
 time.sleep(1)
@@ -557,7 +557,7 @@ zxkresponse = sess.post("https://pycmspre.lexue.com/marketing/onlineLecture/crea
 print(zxkresponse.text)'''
 
 
-'''编辑长期班
+'''编辑长期班 over
 # "courseLevelCoursewareList":"[{"levelId":"0","coursewareList":[]}]",
 # "courseLevelDetailList":"[{"levelId":"0","content":"","detailPic":[]}]"
 
@@ -573,7 +573,7 @@ tianjiajuese = sess.put("https://pycmspre.lexue.com/educational/course/updateCou
 print(tianjiajuese.text)'''
 
 
-'''编辑讲座
+'''编辑讲座 over
 bjjzbaowen = open(r'D:\zdhlog\EKIA\Python\API\autodata\template\\bianjijiangzuo.vm', 'r', encoding='utf-8', errors='ignore').read()
 xjcqb_dict_data = json.loads(bjjzbaowen)
 print(xjcqb_dict_data)
@@ -583,7 +583,7 @@ tianjiajuese = sess.post("https://pycmspre.lexue.com/marketing/onlineLecture/edi
 print(tianjiajuese.text)'''
 
 
-'''课程上架
+'''课程上架 over
 kcsjbaowen = open(r'D:\zdhlog\EKIA\Python\API\autodata\template\kechengshangjia.vm', 'r', encoding='utf-8', errors='ignore').read()
 sjqx_dict_data = json.loads(kcsjbaowen)
 print(sjqx_dict_data)
@@ -598,7 +598,7 @@ print(tianjiajuese.text)'''
 
 
 
-'''课程下架
+'''课程下架 over
 kcxjbaowen = open(r'D:\zdhlog\EKIA\Python\API\autodata\template\kechengxiajia.vm', 'r', encoding='utf-8', errors='ignore').read()
 sjqx_dict_data = json.loads(kcxjbaowen)
 print(sjqx_dict_data)
@@ -612,7 +612,7 @@ tianjiajuese = sess.put("https://pycmspre.lexue.com/educational/onlineClass/upda
 print(tianjiajuese.text)'''
 
 
-'''新建学生
+'''新建学生 over
 xjxxbaowen = open(r'D:\zdhlog\EKIA\Python\API\autodata\template\\xinjianxuesheng.vm', 'r', encoding='utf-8', errors='ignore').read()
 xjcqb_dict_data = json.loads(xjxxbaowen)
 print(xjcqb_dict_data)
@@ -622,7 +622,7 @@ tianjiajuese = sess.post("https://pycmspre.lexue.com/personnel/student/saveStude
 print(tianjiajuese.text)'''
 
 
-'''编辑学生-修改性别
+'''编辑学生-修改性别 over
 bjxsbaowen = open(r'D:\zdhlog\EKIA\Python\API\autodata\template\bianjixuesheng.vm', 'r', encoding='utf-8', errors='ignore').read()
 sjqx_dict_data = json.loads(bjxsbaowen)
 print(sjqx_dict_data)
@@ -645,7 +645,7 @@ sess.headers.update({'Content-Type':'application/json'})
 tianjiajuese = sess.post("https://pycmspre.lexue.com/educational/sign/updateStudentsSign", data=json.dumps(xjcqb_dict_data,ensure_ascii=True),verify=False, timeout=4)
 print(tianjiajuese.text)'''
 
-'''新建代金卷
+'''新建代金卷 over
 bjxsbaowen = open(r'D:\zdhlog\EKIA\Python\API\autodata\template\\xinjiandaijinquan.vm', 'r', encoding='utf-8', errors='ignore').read()
 sjqx_dict_data = json.loads(bjxsbaowen)
 print(sjqx_dict_data)
@@ -659,7 +659,7 @@ tianjiajuese = sess.post("https://pycmspre.lexue.com/coupon/coupon/saveCoupon", 
 print(tianjiajuese.text)'''
 
 
-'''新建限时购
+'''新建限时购 over
 xjxsgbaowen = open(r'D:\zdhlog\EKIA\Python\API\autodata\template\\xinjianxianshigou.vm', 'r', encoding='utf-8', errors='ignore').read()
 sjqx_dict_data = json.loads(xjxsgbaowen)
 print(sjqx_dict_data)
@@ -673,7 +673,7 @@ tianjiajuese = sess.post("https://pycmspre.lexue.com/marketing/limittimePurchase
 print(tianjiajuese.text)'''
 
 
-'''关班
+'''关班 over
 gbbaowen = open(r'D:\zdhlog\EKIA\Python\API\autodata\template\guanban.vm', 'r', encoding='utf-8', errors='ignore').read()
 sjqx_dict_data = json.loads(gbbaowen)
 print(sjqx_dict_data)
@@ -687,7 +687,7 @@ tianjiajuese = sess.put("https://pycmspre.lexue.com/educational/classBase/update
 print(tianjiajuese.text)'''
 
 
-'''在线课编辑
+'''在线课编辑 over
 zxkbjbaowen = open('D:\\zdhlog\\EKIA\\Python\\API\\autodata\\template\\bianjizaixianke.vm', 'r', encoding='utf-8', errors='ignore').read()
 zxkqr_dick_data = json.loads(zxkbjbaowen)
 time.sleep(1)
@@ -696,16 +696,9 @@ zxkresponse = sess.post("https://pycmspre.lexue.com/educational/onlineClass/edit
 print(zxkresponse.text)
 '''
 
-'''新建教室
-zxkbjbaowen = open('D:\\zdhlog\\EKIA\\Python\\API\\autodata\\template\\xinjianjiaoshi.vm', 'r', encoding='utf-8', errors='ignore').read()
-zxkqr_dick_data = json.loads(zxkbjbaowen)
-time.sleep(1)
-sess.headers.update({'Content-Type':'application/json'})
-zxkresponse = sess.post("https://pycmspre.lexue.com/basic/campus/saveClassroom",data=json.dumps(zxkqr_dick_data,ensure_ascii=True),verify=False, timeout=4)
-print(zxkresponse.text)
-'''
 
-'''编辑教室
+
+'''编辑教室 over
 bjjsbaowen = open('D:\\zdhlog\\EKIA\\Python\\API\\autodata\\template\\bianjijiaoshi.vm', 'r', encoding='utf-8', errors='ignore').read()
 zxkqr_dick_data = json.loads(bjjsbaowen)
 time.sleep(1)
@@ -713,7 +706,7 @@ sess.headers.update({'Content-Type':'application/json'})
 zxkresponse = sess.post("https://pycmspre.lexue.com/basic/campus/updateClassroom",data=json.dumps(zxkqr_dick_data,ensure_ascii=True),verify=False, timeout=4)
 print(zxkresponse.text)'''
 
-'''新建营销活动联报
+'''新建营销活动联报 over
 xjyxhdbaowen = open('D:\\zdhlog\\EKIA\\Python\\API\\autodata\\template\\xinjianyingxiaohuodonglianbao.vm', 'r', encoding='utf-8', errors='ignore').read()
 zxkqr_dick_data = json.loads(xjyxhdbaowen)
 time.sleep(1)
@@ -723,14 +716,25 @@ print(respontext.text)
 '''
 
 
-'''新建营销活动单科
+'''新建营销活动单科 over
 xjyxhddkbaowen = open('D:\\zdhlog\\EKIA\\Python\\API\\autodata\\template\\xinjianyingxiaohuodongdanke.vm', 'r', encoding='utf-8', errors='ignore').read()
 zxkqr_dick_data = json.loads(xjyxhddkbaowen)
 time.sleep(1)
 sess.headers.update({'Content-Type':'application/json'})
 respontext = sess.post("https://pycmspre.lexue.com/marketing/jointEnroll/create", data=json.dumps(zxkqr_dick_data, ensure_ascii=True), verify=False, timeout=4)
 print(respontext.text)'''
-import string
-# s = "tat":"${flow('data')}"
-#
-# print(s.find('world'))
+
+
+
+'''课程下架
+kcxjbaowen = open(r'D:\zdhlog\EKIA\Python\API\autodata\template\xinjianxiaoqu.vm', 'r', encoding='utf-8', errors='ignore').read()
+sjqx_dict_data = json.loads(kcxjbaowen)
+print(sjqx_dict_data)
+# 获取 signature
+tjjs_sginature = Signature().get_signature(sjqx_dict_data)
+print(tjjs_sginature)
+time.sleep(1)
+sess.headers.update({'token':token,'signature':tjjs_sginature})
+print(sess.headers)
+tianjiajuese = sess.put("https://pycmspre.lexue.com/educational/onlineClass/updateStatus", data=json.loads(kcxjbaowen))
+print(tianjiajuese.text)'''

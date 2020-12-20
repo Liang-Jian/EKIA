@@ -1,4 +1,4 @@
 {
-"classId":"119218",
-"classStatus":0
+"classId":"${classId}",
+"classStatus":2
 }

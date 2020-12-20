@@ -53,7 +53,7 @@ class HtmlRecorder(object):
 
         _fileOutStream = s.render(datain)
         self.writeHtml(_fileOutStream)
-        logger.Logi("%s writing to html success" % self.templeteName[:-3])
+        logger.Logi("%s writed to html success" % self.templeteName[:-3])
         return
 
     def writeHtml(self, message):

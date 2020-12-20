@@ -1,0 +1,34 @@
+{
+"oldClassId": ${oldClassId},
+"studentId": ${studentId},
+"classStudentId": ${classStudentId},
+"orderDetailId": ${orderDetailId},
+"changeType": 1,
+"newClassId": ${newClassId},
+"oldCourseIdList": [{
+	"courseId": ${courseId},
+	"classId": ${classId},
+	"studentId": ${studentId1},
+	"weekName": "周六",
+	"courseSort": 1,
+	"classDate": "${classDate}",
+	"showStatus": 5,
+	"classStartTime": "00:30:00",
+	"classEndTime": "00:32:00",
+	"refundStatus": 0,
+	"teacherName": "${teacherName}",
+	"campusName": "测试数据报表校区",
+	"classroomName": "面对现实",
+	"className": "${className}",
+	"classTimeName": "00:30:00~00:32:00",
+	"signStatus": 1,
+	"updateName": ""
+}],
+"newCourseIdList": [{
+	"courseId": ${courseId1},
+	"courseSort": 1,
+	"classDate": "${classDate1}",
+	"classTimeName": "01:00~01:15"
+}],
+"userId": ${userId}
+}

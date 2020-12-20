@@ -1,7 +1,7 @@
 {
-"campusId": 488,
+"campusId": ${campusId},
 "classroomName": "${classroomName}",
-"peopleNum": 5,
+"peopleNum": 9,
 "classroomStatus": 1,
 "teacherCameraIP": "",
 "teacherCameraPort": "",

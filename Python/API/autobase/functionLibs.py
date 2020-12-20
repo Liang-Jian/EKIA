@@ -1,7 +1,7 @@
 import datetime,random,string,os
 
 '''
-all func libs , create 5 bit random word .write to txt file . 
+all func libs , create 4 bit random word .write to txt file . 
 first read txt before run all flow ,as all flow icon .
 
 create by Joker
@@ -60,7 +60,7 @@ def idNum(ageFlag,sex,x1,cur_cule):
 
 
 
-def selfRandom(word):
+def randword(word):
     '''
     :param word: 自动化
     :param numbercount: 几位int
@@ -73,16 +73,67 @@ def selfRandom(word):
 
 
 
+def midword(word1,word2):
+    '''
+    :param word: 自动化
+    :param numbercount: 几位int
+    :return:
+    '''
+    # seeds = string.digits
+    # random_str = random.choices(seeds, k=numbercount)
+    random_str = get_text()
+    return word1 + "".join(random_str)+ word2
 
 
-def CalDate(day, isTime=1):
+
+def calDate(day, isTime=1):
     '''
     :param day: 前一天 -1 ， 后一天 1
     :param isTime: 1:有小时 其他没有小时
     :return:
     '''
     if isTime ==  1:
-        date_time_string = (datetime.date.today() + datetime.timedelta(days=day)).strftime('%Y-%m-%d %H:%M:%S')
+        datetime_string = (datetime.date.today() + datetime.timedelta(days=day)).strftime('%Y-%m-%d %H:%M:%S')
     else:
-        date_time_string = (datetime.date.today() + datetime.timedelta(days=day)).strftime('%Y-%m-%d')
-    return date_time_string
+        datetime_string = (datetime.date.today() + datetime.timedelta(days=day)).strftime('%Y-%m-%d')
+    return datetime_string
+
+
+def calDate1(day):
+    '''
+    :param day: 前一天 -1 ， 后一天 1
+    :param demo: 2020-12-19 18:57:42
+    :return:
+    '''
+    now_time = datetime.datetime.now()
+    datetime_string = (now_time + datetime.timedelta(days=day)).strftime("%Y-%m-%d %H:%M:%S")
+    # print(datetime_string)
+    return datetime_string
+
+
+def randomTel():
+    #随机电话号
+    prelist = ["130", "131", "132", "133", "134", "135", "136", "137", "138", "139", "147", "150", "151", "152",
+                   "153", "155", "156", "157", "158", "159", "186"]
+    return random.choice(prelist) + "".join(random.choice("0123456789") for i in range(8))
+
+
+def stuTel():
+    #学生电话: 187 188
+    prelist = [ "187", "188"]
+    return random.choice(prelist) + "".join(random.choice("0123456789") for i in range(8))
+
+def randomNum(count):
+    #几位数字
+    count = int(count)
+    s = '123456789'
+    r = ''
+    while count > 0:
+        r += random.choice(s)
+        count -= 1
+    return r
+# if __name__ == '__main__':
+#     print(calDate(0,0))
+#     print(calDate(1,0))
+    # print(calDate(12,0))
+    # print(selfRandom("建课"))

@@ -6,6 +6,6 @@
 	"levelName": "${levelName}",
 	"levelStatus": 1
 }],
-"operatorName": "史成涛",
+"operatorName": "${operatorName}",
 "subjectName": "语文"
 }

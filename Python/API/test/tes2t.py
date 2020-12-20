@@ -28,19 +28,128 @@ def get_string(dict1):
 
 # d = {"a":"3","b":3}
 # get_string(d)
+'''
+1,${local("A")} -> A  - OK 
+2,A -> A.value
+3,替换
 
+'''
+import re
+allflow = {"userid":"12","joker":"william"}
+b = '{"mailFlag": "0","editFlag":1,"courseTypeName": "讲座","playType": 1,"ossResourceUrl": "${local("courseTypeName")}","classDateEndTime": "2020-12-13 00:00:00","teacherType": 1}'
 
-li = [{"quoteStatus": 0,"conflictTotal": 0,"classCourseId": None}]
-
-tostr(32)
+# -1-
+# name = re.findall('\${local\(.*?\)}',b)
+# # name = re.findall('\${local\(\".*\"\)\}\,',b)
+# print(name)
+# ss = name[0].replace("${local(\"","").replace("\")}","")
+# print(ss)
 #
-# k  = ",".join(li)
+# # -2-
+#
+# # ss = "mailFlag"
+# k = re.findall('{}\":(.*?)\,'.format(ss),b)
 # print(k)
+#
+# s1 = b.replace(name[0],k[0])
+# print(s1)
+#
+# s = '{"classId":"119218","classStatus":0}'
+def local2str(_str):
+    if not isinstance(_str,str): raise ("should be str")
+    if len(re.findall('\${local\(.*?\)}',_str)) == 0 : return _str
+    # local_value_list = re.findall('\${local\(\".*\"\)\}',_str,1)
+    local_value_list = re.findall('\${local\(.*?\)}',_str)
 
-# import collections
-# A=['T','T','F','T','T','F','F']
-# count=collections.Counter(A)
-# print(count['T'])
+    local_value_str = local_value_list[0]
+    local_value_str1 = local_value_str.replace("${local(\"","").replace("\")}","")
+    replace_value = re.findall('{}\":(.*?)\,'.format(local_value_str1),_str)[0].replace("\"","")
+    all_str = _str.replace(local_value_str,replace_value)
+    # Logi("remove local:=%s" % all_str)
+    print(all_str)
+    return all_str
+# local2str(b)
+# templetestring g,type(templetestring))= open(r"D:\workspace\dom-po\API\autodata\template\xinjianzhuanban.vm", 'r', encoding='utf-8', errors='ignore').read()
+# print(templetestrin
+def digui(n):
+    if n == 0:
+        print('')
+        return
+    print('*' * n)
+    digui(n - 1)
+
+if __name__ == '__main__':
+    digui(5)
+import datetime
+def calDate(day, isTime=1):
+    '''
+    :param day: 前一天 -1 ， 后一天 1
+    :param isTime: 1:有小时 其他没有小时
+    :return:
+    '''
+    if isTime ==  1:
+        datetime_string = (datetime.date.today() + datetime.timedelta(days=day)).strftime('%Y-%m-%d %H:%M:%S')
+        print(datetime_string)
+    else:
+        datetime_string = (datetime.date.today() + datetime.timedelta(days=day)).strftime('%Y-%m-%d')
+        print(datetime_string)
+    return datetime_string
+# calDate(+1,1)
+
+
+
+from datetime import datetime,timedelta
+import time
+
+def last_day(d, day_name):
+    days_of_week = ['sunday','monday','tuesday','wednesday',
+                        'thursday','friday','saturday']
+    target_day = days_of_week.index(day_name.lower())
+    print(target_day)
+    print(d.isweekday())
+    delta_day = target_day - d.isoweekday()
+    if delta_day >= 0: delta_day += 7 # go back 7 days
+    return d + timedelta(days=delta_day)
+
+# print(last_day(datetime.date() ,'friday'))
 
 import datetime
-print(datetime.datetime.now().strftime("%Y-%H-%M-%S"))
+
+def get_current_week():
+    today = datetime.date.today().day
+    saturday, sunday = datetime.date.today(), datetime.date.today()
+    print(today)
+    one_day = datetime.timedelta(days=1)
+    while saturday.weekday() != 5:
+        saturday -= one_day
+    while sunday.weekday() != 6:
+        saturday += one_day
+
+    return saturday, sunday
+    # return saturday.day, sunday.day
+
+
+
+# nowDate = datetime.datetime.now()
+# weekFriday = ''.join(str(nowDate+datetime.timedelta(days=4-date1.weekday())).split()[0].split('-'))
+# print(weekFriday)
+
+
+
+import calendar
+import datetime
+
+
+def getNextSunday():
+    today = datetime.date.today()
+    print(today)
+    oneday = datetime.timedelta(days = 1)
+    m1 = calendar.SATURDAY
+    while today.weekday() != m1:
+        today += oneday
+    nextSaturday = today.strftime('%Y%m%d')
+    return nextSaturday
+
+print(getNextSunday())
+
+print(get_current_week())

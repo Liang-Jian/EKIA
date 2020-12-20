@@ -1,9 +1,21 @@
 from autobase.parseexcel import *
-import json
+import json,re
 from string import Template
 from autobase.logger import *
-from autobase.functinlibs import *
+from autobase.functionLibs import *
+from autobase.utils import MsqService
 
+
+
+def sqlValue(ele):
+    # [(375,)] -> 375
+    _t  = None
+    _t1 = None
+    if len(ele)== 1 and isinstance(ele,list):
+        _t = ele[0]
+        if isinstance(_t,tuple) and _t.__len__() == 1:
+            _t1 = _t[0]
+    return _t1
 
 def delNkey(dictey):
     startN = 0
@@ -18,11 +30,160 @@ def delNkey(dictey):
 
 
 def localdata(dictey):  # // set value2local
-    print(dictey)
+    # print(dictey)
     for key, val in dictey.items():
         if isinstance(val, str) and val.startswith("${local"): dictey[key] = dictey[val[7:]]
     return dictey
 
+
+def local2str(_str):
+    '''
+    $local() -> str
+    '''
+    if not isinstance(_str,str): raise ("must be str")
+    if len(re.findall('\${local\(.*?\)}',_str)) == 0 : return _str
+    local_value_list = re.findall('\${local\(.*?\)}',_str)
+    local_value_str = local_value_list[0]
+    local_value_str1 = local_value_str.replace("${local(\"","").replace("\")}","")
+    replace_value = re.findall('{}\":(.*?)\,'.format(local_value_str1),_str)[0].replace("\"","")
+    all_str = _str.replace(local_value_str,replace_value)
+    # Logi("remove local:=%s" % all_str)
+    # print(all_str)
+    return (all_str)
+
+
+# def flow2str(_str):
+#     '''
+#     $flow() -> str
+#     '''
+#     if not isinstance(_str,str): raise ("should be str")
+#     if len(re.findall('\${flow\(.*?\)}', _str)) == 0: return _str
+#     flow_value_list = re.findall('\${flow\(.*?\)}',_str)
+#     flow_value_str = flow_value_list[0]
+#     flow_key_str = flow_value_str.replace("${flow(\"","").replace("\")}","")
+#     replace_value = str(getflowValue(AllFlowData().allflowdata,flow_key_str))
+#     # all_str = _str.replace(flow_value_str,replace_value)
+#     all_str = _str.replace(flow_value_str,replace_value)
+#     # Logi("remove local:=%s" % all_str)
+#     flow2str(all_str)
+#     return all_str
+
+
+def flow2str(_str):
+    '''
+    $flow() -> str
+    '''
+    if not isinstance(_str,str): raise ("should be str")
+    if len(re.findall('\${flow\(.*?\)}', _str)) == 0: return _str
+    flow_value_list = re.findall('\${flow\(.*?\)}',_str)
+    flow_value_str = flow_value_list[0]
+    flow_key_str = flow_value_str.replace("${flow(\"","").replace("\")}","")
+    replace_value = str(getflowValue(AllFlowData().allflowdata,flow_key_str))
+    all_str = _str.replace(flow_value_str,replace_value)
+    final_all = flow2str(all_str)
+    return final_all
+
+# _str = "${sql(select * from py_class_rule where class_rule_name=${selfRandom('建校')})}"
+# def sql2str(s):
+#     # cutsql = ""
+#     if "{sql(" not in s: return s
+#     removesql_str = s.replace("${sql(","")[:-2]
+#     Logi("SQl数据:=%s" % removesql_str)
+#     # if "${" in cutsql:
+#     if "${" not in removesql_str:
+#         sqlresult = MsqService().search_db(removesql_str)
+#         return sqlresult
+#     index = removesql_str.index("${")
+#     end   = removesql_str.index("}")
+#     print(removesql_str[index+2:-1])
+#     randomMake = eval(removesql_str[index+2:-1])
+#     print(randomMake)
+#
+#     finalstr = removesql_str.replace(removesql_str[index:end+1],"'"+randomMake+"'")
+#     print(finalstr)
+#     Logi("查询数据:=%s" % finalstr)
+#     try:
+#         sqlresult = MsqService().search_db(finalstr)
+#     except (Exception) as e:
+#         print(e)
+#     return  sqlresult
+
+def sql2str(s):
+    finalstr = None
+    if "{sql(" not in s: return s
+    removesql_str = s.replace("${sql(","")[:-2]
+    print("SQl数据:=%s" % removesql_str)
+    # if "${" in cutsql:
+    if "${" not in removesql_str:
+        sqlresult = MsqService().search_db(removesql_str)
+        return sqlresult
+    index = removesql_str.index("${")
+    end   = removesql_str.index("}")
+
+    if "flow" in removesql_str:
+        newstr = removesql_str[index+2:-1]
+        flow_value_list = re.findall('\${flow\(.*?\)}',removesql_str)
+        flow_value_str = flow_value_list[0]
+        flow_key_str = flow_value_str.replace("${flow(\"", "").replace("\")}", "")
+        # replace_value = str(b.get(flow_key_str))
+        replace_value = str(AllFlowData().allflowdata.get(flow_key_str))
+        finalstr = removesql_str.replace(flow_value_str,"{}".format(replace_value))
+        print(finalstr)
+    else:
+        print(removesql_str[index + 2:-1])
+        randomMake = eval(removesql_str[index + 2:-1])
+        print(randomMake)
+        finalstr = removesql_str.replace(removesql_str[index:end + 1], "'" + randomMake + "'")
+        print(finalstr)
+        Logi("查询数据:=%s" % finalstr)
+    try:
+        sqlresult = MsqService().search_db(finalstr)
+    except (Exception) as e:
+        print(e)
+    return  sqlresult
+
+# def sql2str(s):
+#     # cutsql = ""
+#     if "{sql(" not in s: return s
+#     removesql_str = s.replace("${sql(","")[:-2]
+#     Logi("SQl数据:=%s" % removesql_str)
+#     # if "${" in cutsql:
+#     if "${" not in removesql_str:
+#         sqlresult = MsqService().search_db(removesql_str)
+#         return sqlresult
+#     index = removesql_str.index("${")
+#     end   = removesql_str.index("}")
+#     print(removesql_str[index+2:-1])
+#     randomMake = eval(removesql_str[index+2:-1])
+#     print(randomMake)
+#
+#     finalstr = removesql_str.replace(removesql_str[index:end+1],"'"+randomMake+"'")
+#     print(finalstr)
+#     Logi("查询数据:=%s" % finalstr)
+#     try:
+#         sqlresult = MsqService().search_db(finalstr)
+#     except (Exception) as e:
+#         print(e)
+#     return  sqlresult
+
+def sql2strd(s)->dict:
+    if not isinstance(s,dict): raise ("not support data type")
+    for key, val in s.items():
+        if isinstance(val, str) and val.startswith("${sql("):
+            s[key] = sqlValue(sql2str(val))
+    print(s)
+    return s
+def getflowValue(dict_, objkey, default=None):
+    tmp = dict_
+    for k,v in tmp.items():
+        if k == objkey:
+            return v
+        else:
+            if isinstance(v,dict):
+                ret = getflowValue(v, objkey, default)
+                if ret is not default:
+                    return ret
+    return default
 
 def local(key):  # //返回一个ico给localdata
     return "${local" + key
@@ -124,7 +285,7 @@ class CaseDataMap4Xls(object):
 
         key_len = len(key)
         start_index = 0
-        end_index = 0
+        end_index   = 0
         for i in range(key_len):
             if key[i] == startdataico:
                 start_index = key.index(key[i]) + 1
@@ -136,6 +297,8 @@ class CaseDataMap4Xls(object):
         key = key[start_index:end_index]
         value = value[start_index:end_index]
         self.dataMap = dict(zip(key, value))
+
+        # print(self.dataMap)
 
 
     def testdataprocess(self):
@@ -162,33 +325,54 @@ class CaseDataMap4Xls(object):
 
         for key, value in self.dict_n.items():
             value = str(value)
-            if value.startswith("${") and "flow" not in value and "local" not in value:
+            if value.startswith("${") and "flow" not in value and "local" not in value and "sql" not in value:
                 value_new = value[2:-1]
                 value_new = eval(value_new)
                 key_m.append(key)
                 value_m.append(value_new)
         dict_m = dict(zip(key_m, value_m))
-        self.casedata = dict(self.dict_n, **dict_m)
+        self.casedata_ = dict(self.dict_n, **dict_m)
         # print(localdata(self.casedata))            # process ${local data
-
-        flowdatafix(self.casedata)            # process ${flow  data
+        # flowdatafix(self.casedata)                 # process ${flow  data
+        self.casedata = sql2strd(self.casedata_)     #
+        # print(self.casedata)
         return self.casedata
 
-    def get_test_data_replace(self):  # ${}-> realValue
+    # def getpubllicdata(self):  # ${}-> realValue
+    #
+    #     key_n   = list()
+    #     value_n = list()
+    #     for key, value in self.dataMap.items():
+    #         if value.startswith("${"):
+    #             value_new = value[2:-1]
+    #             value_new = eval(value_new)
+    #             key_n.append(key)
+    #             value_n.append(value_new)
+    #
+    #     dict_n = dict(zip(key_n, value_n))
+    #     self.get_test_data_be_replaced = dict(self.dataMap, **dict_n)
+    #     return self.get_test_data_be_replaced
+
+
+    def getpubllicdata(self):  # ${}-> realValue
 
         key_n   = list()
         value_n = list()
         for key, value in self.dataMap.items():
-            if value.startswith("${"):
+            if value.startswith("${") and "flow" not in value and "local" not in value and "sql" not in value:
                 value_new = value[2:-1]
                 value_new = eval(value_new)
                 key_n.append(key)
                 value_n.append(value_new)
+        dict_m = dict(zip(key_n, value_n))
+        self.casedata_ = dict(self.dict_n, **dict_m)
 
         dict_n = dict(zip(key_n, value_n))
+
         self.get_test_data_be_replaced = dict(self.dataMap, **dict_n)
-        # localdata(self.get_test_data_be_replaced)
-        return self.get_test_data_be_replaced
+        self.getPulicdata = sql2strd(self.get_test_data_be_replaced)     #
+
+        return self.getPulicdata
 
     def caseinfo(self):
         caseInfoData = list()
@@ -232,7 +416,7 @@ class CaseDataMap4Xls(object):
         :return    :  报文完成体
         '''
 
-        if not isinstance(data,list): raise ("Data Type Not Dick")
+        if not isinstance(data,list): raise ("data type not Dick")
         _l = data
         vm_name,singlecasedata  = _l[-1],_l[0]
         Logi("模板文件:=%s" % vm_name)
@@ -241,7 +425,10 @@ class CaseDataMap4Xls(object):
         templetepath = os.path.abspath('..') + '\\autodata\\template\\' + vm_name
         templetestring = open(templetepath,'r', encoding='utf-8', errors='ignore').read()
         caseTepletedata = Template(templetestring)
-        casedata = caseTepletedata.substitute(singlecasedata) # 报文 Str type
+        casedata_before = caseTepletedata.substitute(singlecasedata)    # 报文 Str type
+        casedata2 = flow2str(casedata_before)                           # replce flow data
+        casedata = local2str(casedata2)                                 # replce local data
+        casedata = sql2str(casedata)                                    # replce sql data
         Logi("发送报文:=%s" % casedata)
         _l[0] = casedata.replace("\n","").replace("\t","")
         _l[4] = mainurl + _l[4]
@@ -256,13 +443,13 @@ class CaseDataMap4Xls(object):
 
         if len(self.publicdata) == 0:
             self.data4rows_flow(4, 5)
-            self.publicdata = self.get_test_data_replace()
-        Logi("公共数据:=%s" % self.publicdata)
+            self.publicdata = self.getpubllicdata()
+        AllFlowData().allflowdata.update(self.publicdata)
 
+        Logi("flow数据:=%s" % AllFlowData().allflowdata)
+        Logi("公共数据:=%s" % self.publicdata)
         self.finallycasedata = dict(self.publicdata, **self.casedata)
-        print(self.finallycasedata)
-        Logi("合并数据:=%s" % localdata(self.finallycasedata))
-        # Logi("合并数据:=%s" % self.finallycasedata)
+        Logi("合并数据:=%s" % self.finallycasedata)
 
         self.__casedata.append(self.finallycasedata)
         self.__casedata += self.caseinfo()

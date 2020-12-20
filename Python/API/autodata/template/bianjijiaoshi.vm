@@ -1,7 +1,7 @@
 {
-"campusId": 488,
-"classroomName": "自动化教师0001",
-"peopleNum": 7,
+"campusId": ${campusId},
+"classroomName": "${classroomName}",
+"peopleNum": 10,
 "classroomStatus": 1,
 "teacherCameraIP": "",
 "teacherCameraPort": "",
@@ -9,5 +9,5 @@
 "teacherCameraPass": "lexue.com",
 "studentCameraUrl": "",
 "microphoneType": 0,
-"id": 3401
+"id": ${classroomId}
 }

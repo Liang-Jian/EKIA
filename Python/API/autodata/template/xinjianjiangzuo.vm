@@ -1,5 +1,5 @@
 {
-	"className": "自动化测试添加讲座2",
+	"className": "${className}",
 	"teacherType": 1,
 	"detailPicList": [{
 		"test": "test",
@@ -11,17 +11,17 @@
 	}],
 	"managerList": [{
 		"teacherName": "自动化老师1(15799990001)",
-		"teacherId": 5881,
-		"name": "自动化老师1"
+		"teacherId": ${teacherId},
+		"name": "${name}"
 	}],
 	"courseTypeCode": 4,
 	"playType": 1,
 	"schoolShareFlag": 1,
 	"mailFlag": 0,
-	"yearId": 488,
+	"yearId": ${yearId},
 	"seasonId": 481,
 	"tuitionFee": 1,
-	"schoolId": 375,
+	"schoolId": ${schoolId},
 	"gradeList": [2125,
 	2126,
 	2127,
@@ -43,7 +43,7 @@
 	2294,
 	2295,
 	2296],
-	"campusId": 445,
+	"campusId": ${campusId},
 	"subjectList": [2142,
 	2143,
 	2144,
@@ -52,7 +52,7 @@
 	2185,
 	2194,
 	2195],
-	"teacherId": 5881,
+	"teacherId": ${teacherId1},
 	"manager": {
 
 	},
@@ -65,6 +65,6 @@
 	"seasonName": "秋季",
 	"gradeFully": 1,
 	"subjectFully": 1,
-	"classDateStartTime": "2020-11-13 00:00:00",
-	"classDateEndTime": "2020-12-13 00:00:00"
+	"classDateStartTime": "${classDateStartTime}",
+	"classDateEndTime": "${classDateEndTime}"
 }

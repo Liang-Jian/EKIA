@@ -156,7 +156,7 @@ question:
 id 如何取
 1 : 启用 0: 禁用
 
-zhuangtaibaowen = open(r'D:\zdhlog\EKIA\Python\API\\autodata\\template\\xiaoquzhuangtai.vm','r',encoding='utf-8',errors='ignore').read()
+zhuangtaibaowen = open(r'D:\zdhlog\EKIA\Python\API\\autodata\\template\\banjizhuangtai.vm','r',encoding='utf-8',errors='ignore').read()
 
 zhuangtai_data = json.loads(zhuangtaibaowen)
 print(zhuangtai_data)
@@ -216,3 +216,140 @@ print(xjyg.text)
 '''
 
 
+'''新建引用课
+生成课次表
+post js 
+https://pycmspre.lexue.com/educational/onlineClass/queryClassCourse
+{"courseFirstDate":"2020-11-27","courseFrequency":3,"teacherId":4373,"teacherName":"杜岩松","classTimeId":5937,"classTimeName":"09:30~09:44","classStartTime":"09:30:00","classEndTime":"09:44:00","classRuleId":7053,"quoteStatus":0}/educational/onlineClass/queryClassCourse
+{
+  "code" : 0,
+  "message" : "SUCCESS",
+  "value" : [ {
+    "quoteStatus" : 0,
+    "conflictTotal" : 0,
+    "classCourseId" : null,
+    "classId" : null,
+    "campusId" : null,
+    "classroomId" : null,
+    "teacherId" : 4373,
+    "teacherName" : "杜岩松",
+    "classDate" : "2020-11-27",
+    "classStartTime" : "09:30:00",
+    "classEndTime" : "09:44:00",
+    "weekName" : "周五",
+    "weekCode" : null,
+    "occupationStatus" : null,
+    "courseSort" : 1,
+    "createTime" : null,
+    "className" : null,
+    "classCourseName" : null,
+    "campusName" : null,
+    "timeAndName" : null,
+    "classTimeName" : "09:30~09:44",
+    "classroomName" : null,
+    "teacherOccupation" : 0,
+    "classroomOccupation" : null,
+    "timeCode" : 1,
+    "timeName" : "上午",
+    "courseStage" : "1/3",
+    "coursePrice" : null,
+    "dateStartTime" : "2020-11-27 09:30:00",
+    "dateEndTime" : "2020-11-27 09:44:00",
+    "classTimeId" : 5937,
+    "classRuleId" : null,
+    "receiveCourseNum" : null,
+    "createUserId" : null,
+    "createName" : null,
+    "updateTime" : null,
+    "updateUserId" : null,
+    "updateName" : null,
+    "courseFirstDate" : null,
+    "courseFrequency" : null
+  }, {
+    "quoteStatus" : 0,
+    "conflictTotal" : 0,
+    "classCourseId" : null,
+    "classId" : null,
+    "campusId" : null,
+    "classroomId" : null,
+    "teacherId" : 4373,
+    "teacherName" : "杜岩松",
+    "classDate" : "2020-11-28",
+    "classStartTime" : "09:30:00",
+    "classEndTime" : "09:44:00",
+    "weekName" : "周六",
+    "weekCode" : null,
+    "occupationStatus" : null,
+    "courseSort" : 2,
+    "createTime" : null,
+    "className" : null,
+    "classCourseName" : null,
+    "campusName" : null,
+    "timeAndName" : null,
+    "classTimeName" : "09:30~09:44",
+    "classroomName" : null,
+    "teacherOccupation" : 0,
+    "classroomOccupation" : null,
+    "timeCode" : 1,
+    "timeName" : "上午",
+    "courseStage" : "2/3",
+    "coursePrice" : null,
+    "dateStartTime" : "2020-11-28 09:30:00",
+    "dateEndTime" : "2020-11-28 09:44:00",
+    "classTimeId" : 5937,
+    "classRuleId" : null,
+    "receiveCourseNum" : null,
+    "createUserId" : null,
+    "createName" : null,
+    "updateTime" : null,
+    "updateUserId" : null,
+    "updateName" : null,
+    "courseFirstDate" : null,
+    "courseFrequency" : null
+  }, {
+    "quoteStatus" : 0,
+    "conflictTotal" : 0,
+    "classCourseId" : null,
+    "classId" : null,
+    "campusId" : null,
+    "classroomId" : null,
+    "teacherId" : 4373,
+    "teacherName" : "杜岩松",
+    "classDate" : "2020-11-29",
+    "classStartTime" : "09:30:00",
+    "classEndTime" : "09:44:00",
+    "weekName" : "周日",
+    "weekCode" : null,
+    "occupationStatus" : null,
+    "courseSort" : 3,
+    "createTime" : null,
+    "className" : null,
+    "classCourseName" : null,
+    "campusName" : null,
+    "timeAndName" : null,
+    "classTimeName" : "09:30~09:44",
+    "classroomName" : null,
+    "teacherOccupation" : 0,
+    "classroomOccupation" : null,
+    "timeCode" : 1,
+    "timeName" : "上午",
+    "courseStage" : "3/3",
+    "coursePrice" : null,
+    "dateStartTime" : "2020-11-29 09:30:00",
+    "dateEndTime" : "2020-11-29 09:44:00",
+    "classTimeId" : 5937,
+    "classRuleId" : null,
+    "receiveCourseNum" : null,
+    "createUserId" : null,
+    "createName" : null,
+    "updateTime" : null,
+    "updateUserId" : null,
+    "updateName" : null,
+    "courseFirstDate" : null,
+    "courseFrequency" : null
+  } ]
+}
+新建
+https://pycmspre.lexue.com/educational/onlineClass/create
+{"classCapacity":25,"classTeacherId":4373,"orderScale":0,"singleTuitionFee":0,"courseTypeCode":1,"specialPrice":0,"className":"2020秋季小班综合不限","teacherType":1,"playType":1,"screenType":1,"school_share_flag":1,"mailFlag":0,"campusId":456,"yearId":484,"seasonId":481,"sectionId":2381,"gradeId":2299,"subjectId":2371,"levelId":0,"teacherId":4373,"courseFrequency":3,"tuitionFee":0,"schoolFee":0,"entryFee":0,"classPrice":"0.00","changeClassLimit":1,"changeAdjustLimit":1,"content":"","coverUrl":"https://picspy.lexue.com/avatar-employee-1606384702481","numLimit":25,"adjustLimit":0,"testClassFlag":0,"schoolId":379,"gradeName":"小班","limitEditFlag":1,"appTeacherName":"杜岩松","appTeacherId":"4373,4373,4373,4373,4373,4373","auditingStatus":0,"lowPriceClassFlag":0,"superNumberClassFlag":0,"specialClass":0,"classTeacherName":"杜岩松","schoolName":"北京总部","campusName":"乐学教育集团","classTimeName":"09:30~09:44","teacherName":"杜岩松","startTime":"2020-11-27 00:00:00","endTime":"2020-12-04 00:00:00","yearName":"2020","seasonName":"秋季","sectionName":"学龄前","subjectName":"综合","courseTypeName":"长期班","classTimeId":5937,"classDateStartTime":"2020-11-27 09:30:00","classDateEndTime":"2020-11-29 09:44:00","classCourseDtoList":[{"quoteStatus":0,"conflictTotal":0,"classCourseId":null,"classId":null,"campusId":null,"classroomId":null,"teacherId":4373,"teacherName":"杜岩松","classDate":"2020-11-27","classStartTime":"09:30:00","classEndTime":"09:44:00","weekName":"周五","weekCode":null,"occupationStatus":null,"courseSort":1,"createTime":null,"className":null,"classCourseName":"2020秋季小班综合不限第1讲","campusName":null,"timeAndName":null,"classTimeName":"09:30~09:44","classroomName":null,"teacherOccupation":0,"classroomOccupation":null,"timeCode":1,"timeName":"上午","courseStage":"1/3","coursePrice":null,"dateStartTime":"2020-11-27 09:30:00","dateEndTime":"2020-11-27 09:44:00","classTimeId":5937,"classRuleId":null,"receiveCourseNum":null,"createUserId":null,"createName":null,"updateTime":null,"updateUserId":null,"updateName":null,"courseFirstDate":null,"courseFrequency":null,"isEdit":false},{"quoteStatus":0,"conflictTotal":0,"classCourseId":null,"classId":null,"campusId":null,"classroomId":null,"teacherId":4373,"teacherName":"杜岩松","classDate":"2020-11-28","classStartTime":"09:30:00","classEndTime":"09:44:00","weekName":"周六","weekCode":null,"occupationStatus":null,"courseSort":2,"createTime":null,"className":null,"classCourseName":"2020秋季小班综合不限第2讲","campusName":null,"timeAndName":null,"classTimeName":"09:30~09:44","classroomName":null,"teacherOccupation":0,"classroomOccupation":null,"timeCode":1,"timeName":"上午","courseStage":"2/3","coursePrice":null,"dateStartTime":"2020-11-28 09:30:00","dateEndTime":"2020-11-28 09:44:00","classTimeId":5937,"classRuleId":null,"receiveCourseNum":null,"createUserId":null,"createName":null,"updateTime":null,"updateUserId":null,"updateName":null,"courseFirstDate":null,"courseFrequency":null,"isEdit":false},{"quoteStatus":0,"conflictTotal":0,"classCourseId":null,"classId":null,"campusId":null,"classroomId":null,"teacherId":4373,"teacherName":"杜岩松","classDate":"2020-11-29","classStartTime":"09:30:00","classEndTime":"09:44:00","weekName":"周日","weekCode":null,"occupationStatus":null,"courseSort":3,"createTime":null,"className":null,"classCourseName":"2020秋季小班综合不限第3讲","campusName":null,"timeAndName":null,"classTimeName":"09:30~09:44","classroomName":null,"teacherOccupation":0,"classroomOccupation":null,"timeCode":1,"timeName":"上午","courseStage":"3/3","coursePrice":null,"dateStartTime":"2020-11-29 09:30:00","dateEndTime":"2020-11-29 09:44:00","classTimeId":5937,"classRuleId":null,"receiveCourseNum":null,"createUserId":null,"createName":null,"updateTime":null,"updateUserId":null,"updateName":null,"courseFirstDate":null,"courseFrequency":null,"isEdit":false}],"classStartTime":"09:30:00","classEndTime":"09:44:00","managerList":[],"ruleId":7053,"schoolShareFlag":1,"ruleName":"测试直播间","courseVideoList":[],"detailPicList":[],"quoteStatus":0,"levelName":"不限","liveFlow":null,"gradeFully":1,"subjectFully":0}
+'''

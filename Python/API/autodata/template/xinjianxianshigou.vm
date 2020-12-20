@@ -1,9 +1,9 @@
 {
-"schoolId":"375",
-"activitiesName":"自动化测试添加限时购00001",
+"schoolId":"${schoolId}",
+"activitiesName":"${activitiesName}",
 "activitiesStatus":"NaN",
 "classIdStr":"58106",
 "limittimeTuitionFeeStr":"0",
-"startTime":"2020-11-14 00:00:00",
-"endTime":"2020-11-17 00:00:00"
+"startTime":"${startTime}",
+"endTime":"${endTime}"
 }

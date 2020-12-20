@@ -1,5 +1,5 @@
 {
-	"activityName": "自动化营销0001",
+	"activityName": "${activityName}",
 	"activityType": 2,
 	"sceneType": 1,
 	"courseSeries": 1,
@@ -7,7 +7,7 @@
 	"discountType": 1,
 	"mainSubjectId": "",
 	"ruleDescribe": "一往无前虎山行\n拨开云雾见光明\n梦里花开牡丹亭\n幻象成真歌舞升平",
-	"schoolId": 375,
+	"schoolId": ${schoolId},
 	"gradeList": [2125, 2126, 2127, 2128, 2129, 2130, 2131, 2132, 2133, 2134, 2135, 2136, 2137, 2138, 2139, 2140, 2141, 2293, 2294, 2295, 2296],
 	"subjectList": [2142, 2143, 2144, 2183, 2184, 2185, 2194, 2195],
 	"fromSeasonId": 482,
@@ -23,6 +23,6 @@
 	"gradeFully": 1,
 	"subjectFully": 1,
 	"seasonFully": 1,
-	"startTime": "2020-12-02 00:00:00",
-	"endTime": "2020-12-02 01:00:00"
+	"startTime": "${startTime}",
+	"endTime": "${endTime}"
 }

@@ -1,7 +1,7 @@
 {
 "couponType":1,
 "preferentialAmt":98,
-"mainTitle":"自动化代金券0002",
+"mainTitle":"${mainTitle}",
 "assistantTile":"",
 "validityType":"2",
 "Time":"",
@@ -9,7 +9,7 @@
 "validityDays":1,
 "reductionAmt":"987",
 "totalStock":"4",
-"schoolId":"375",
+"schoolId":"${schoolId}",
 "gradeStr":"2288,2039,2040,2041,2042,2043,2044,2045,2046,2047,2052,2053,2054,2261",
 "seasonStr":"482,479,480,481",
 "subjectStr":"2048,2049,2050,2055,2056,2262",

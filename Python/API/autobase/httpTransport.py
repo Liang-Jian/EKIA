@@ -1,6 +1,5 @@
-from autobase import HttpTransStatus
 from autobase.recorder import *
-import requests,json
+import requests
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 from autobase.signatureUtil import Signature
@@ -33,7 +32,7 @@ class HttpTransport(object):
 
         self.loginReponseStr = self.sess.post(url=self.loginreq[4], stream='True', data=json.loads(self.loginreq[0]), verify=False, timeout=4, headers=self._headers).text
         AllFlowData().allflowdata=(eval(self.loginReponseStr))
-
+        # print(AllFlowData().allflowdata)
     # def httpMethod(self, url, contentstring):
     #
     #     totaldata = dict()
@@ -82,7 +81,8 @@ class HttpTransport(object):
 
 
         if l[0] == "post" and l[1] == "js":
-            response_Str = self.sess.post(url=__url, data=json.dumps(eval(self.reqdatalist[0]), ensure_ascii=True), headers=self._headers, verify=False, timeout=4, stream='True')
+            response_Str = self.sess.post(url=__url, data=json.dumps(json.loads(self.reqdatalist[0]), ensure_ascii=True), headers=self._headers, verify=False, timeout=4, stream='True')
+            # response_Str = self.sess.post(url=__url, data=json.dumps(eval(self.reqdatalist[0]), ensure_ascii=True), headers=self._headers, verify=False, timeout=4, stream='True')
 
         elif l[0] == "post" and l[1] == "ue":
             response_Str = self.sess.post(url=__url,data=json.loads(self.reqdatalist[0]), headers=self._headers,verify=False, timeout=4)
@@ -92,7 +92,7 @@ class HttpTransport(object):
 
         try:
             responsecasedata = response_Str.text
-            self.writeMsg(responsecasedata)
+            self.writerMsg(responsecasedata)
             Logi("返回数据:=%s" % responsecasedata)
             self.dataAssert(self.reqdatalist[5],responsecasedata)
 
@@ -100,48 +100,53 @@ class HttpTransport(object):
             raise e
         return responsecasedata
 
-    @property
-    def headerMap(self):
-        return  self._headers
-
-    @headerMap.setter
-    def headerMap(self,key,value):
-        self._headers[key] = value
+    # @property
+    # def headerMap(self):
+    #     return  self._headers
+    #
+    # @headerMap.setter
+    # def headerMap(self,key,value):
+    #     self._headers[key] = value
 
     def setHeaderToken(self, data):
         if data.lower() == "ue":
             self._headers['Content-Type'] = "application/x-www-form-urlencoded"
             self._headers['token']     = AllFlowData().allflowdata.get('value').get('token')
+            self._headers['isadmin']     =str(AllFlowData().allflowdata.get('value').get('isAdmin'))
             self._headers['userId'] = str(AllFlowData().allflowdata.get('value').get('sysUserId'))  # must be str
             self._headers['signature'] = Signature().getSignature(self.reqdatalist[0])
         elif data.lower() == "js":
             self._headers['Content-Type'] = "application/json"
             self._headers['token'] = AllFlowData().allflowdata.get('value').get('token')
+            self._headers['isadmin']     =str(AllFlowData().allflowdata.get('value').get('isAdmin'))
             self._headers['userId'] = str(AllFlowData().allflowdata.get('value').get('sysUserId'))
             self._headers['signature'] = signature.getSignature()
 
     def dataAssert(self,A,B):
         '''
-        1,数据比较 ，断言 ， 保存断言结果，使用计数器保存对比结果，计算出通过率,发给结果函数，保存为html
+        1,数据比较 ，断言 ， 保存断言结果，使用计数器保存对比结果，计算出通过率,保存为html
         :return:
         '''
         if A in B :
-            Logi("assert PASS")
+            Logi("断    言 PASS")
             self.resultrsp.append("T")
             self.reqdatalist.insert(7, "T")
             self.reqdatalist.insert(8, B)
             HtmlRecorder(self.reqdatalist).data2html()
 
         else:
-            Logi("assert FAIL")
-            self.reqdatalist.insert(7, "T")
+            Logi("断    言 FAIL")
+            Logi("A:=%s" % A)
+            Logi("B:=%s" % B)
+            self.reqdatalist.insert(7, "F")
             self.reqdatalist.insert(8, B)
             HtmlRecorder(self.reqdatalist).data2html()
 
-    def writeMsg(self,message):
+    def writerMsg(self, message):
         try:
             recv_msg = open(
-                os.path.abspath("../") + "\\Msg\\" + self.reqdatalist[-1][:-3] + datetime.datetime.now().strftime("%d-%H-%M-%S") + "_recv.txt", "w",
+                # os.path.abspath("../") + "\\Msg\\" + self.reqdatalist[-1][:-3] + datetime.datetime.now().strftime("%d-%H-%M-%S") + "_recv.txt", "w",
+                os.path.abspath("../") + "\\Msg\\" + self.reqdatalist[-1][:-3] + datetime.datetime.now().strftime("%d-%H-%M") + "_recv.txt", "w",
                 encoding="utf-8")
             recv_msg.write(str(message))
         finally:
@@ -149,7 +154,7 @@ class HttpTransport(object):
 
     def writesMsg(self,message):
         send_msg = open(
-            os.path.abspath("../") + "\\Msg\\" + self.reqdatalist[-1][:-3] + datetime.datetime.now().strftime("%d-%H-%M-%S") + "_send.txt", "w",
+            os.path.abspath("../") + "\\Msg\\" + self.reqdatalist[-1][:-3] + datetime.datetime.now().strftime("%d-%H-%M") + "_send.txt", "w",
             encoding="utf-8")
         send_msg.write(str(message))
         send_msg.close()
@@ -166,7 +171,7 @@ class HttpGetHeader(object):
 
     @classmethod
     def getLoginReq(cls):
-        xlxsObject = HttpGetHeader.pe.load_work_book(os.path.abspath('..') + "\\autodata\\testcase\\" +"培优接口用例.xlsx").get_sheet_by_name("CMS接口")
+        xlxsObject = HttpGetHeader.pe.load_work_book(os.path.abspath('..') + "\\autodata\\testcase\\培优接口用例.xlsx").get_sheet_by_name("CMS接口T")
         username = HttpGetHeader.pe.get_cell_of_value(xlxsObject, rowNo=2, colsNo=3)  # username
         password = HttpGetHeader.pe.get_cell_of_value(xlxsObject, rowNo=2, colsNo=4)  # password
         loginurl = HttpGetHeader.pe.get_cell_of_value(xlxsObject, rowNo=2, colsNo=2)  # u   r  l
@@ -187,9 +192,10 @@ class HttpGetHeader(object):
         return HttpGetHeader.reqlist
 if __name__ == '__main__':
     xlxsfp = "培优接口用例.xlsx"
-    exeshtname = "CMS接口"
-    execline = 12
+    exeshtname = "CMS接口T"
+    # execline = 12
     p = HttpTransport()
-    for i in range(9,13):
+
+    for i in range(9,18):
         testfile = CaseDataMap4Xls(xlxsfp, exeshtname,i).caseDataAll()
         p.httpMethod(testfile)

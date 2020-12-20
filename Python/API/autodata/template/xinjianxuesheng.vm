@@ -1,13 +1,13 @@
 {
-	"classAuthority": 1,
+	"classAuthority": 2,
 	"cityId": 654000,
 	"schoolId": "",
-	"mobile": "13999999993",
-	"currentSchool": "伊利第一小学",
-	"currentSchoolId": 18,
-	"gradeId": 25,
+	"mobile": "${smobile}",
+	"currentSchool": "",
+	"currentSchoolId": "",
+	"gradeId": 27,
 	"sex": 2,
-	"studentName": "自动化学生2",
+	"studentName": "${studentName}",
 	"birthday": "",
 	"studentCode": "",
 	"headPic": "",
@@ -17,10 +17,6 @@
 	"recommender": "",
 	"idnumber": "",
 	"cityName": "伊犁哈萨克自治州",
-	"studentLevelList": [{
-		"levelId": 2703,
-		"subjectId": 2143,
-		"schoolId": 375
-	}],
+	"studentLevelList": [],
 	"studentStatus": 1
 }

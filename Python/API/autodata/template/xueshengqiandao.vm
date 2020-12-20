@@ -1,1 +1,8 @@
-{"signList":[{"classId":117936,"courseId":1621891,"studentId":138426,"signStatus":1}]}
+{
+"signList": [{
+	"classId": ${classId},
+	"courseId": ${courseId},
+	"studentId": ${studentId},
+	"signStatus": 2
+}]
+}

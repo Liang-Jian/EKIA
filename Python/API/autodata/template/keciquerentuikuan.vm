@@ -1,0 +1,8 @@
+{
+"operationName":"${operationName}",
+"orderRefundId":"${orderRefundId}",
+"refundClassFee":"0",
+"refundEntryFee":"0",
+"refundSchoolFee":"0",
+"discountRefund":"0"
+}

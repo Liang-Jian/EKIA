@@ -173,7 +173,7 @@ question:
 id 如何取
 1 : 启用 0: 禁用
 
-zhuangtaibaowen = open(r'D:\zdhlog\EKIA\Python\API\\autodata\\template\\xiaoquzhuangtai.vm','r',encoding='utf-8',errors='ignore').read()
+zhuangtaibaowen = open(r'D:\zdhlog\EKIA\Python\API\\autodata\\template\\banjizhuangtai.vm','r',encoding='utf-8',errors='ignore').read()
 
 zhuangtai_data = json.loads(zhuangtaibaowen)
 print(zhuangtai_data)
@@ -684,8 +684,8 @@ time.sleep(1)
 sess.headers.update({'token':token,'signature':tjjs_sginature})
 print(sess.headers)
 tianjiajuese = sess.put("https://pycmspre.lexue.com/educational/classBase/updateBatchEndClassBase", data=json.loads(gbbaowen))
-print(tianjiajuese.text)'''
-
+print(tianjiajuese.text)
+'''
 
 '''在线课编辑
 zxkbjbaowen = open('D:\\zdhlog\\EKIA\\Python\\API\\autodata\\template\\bianjizaixianke.vm', 'r', encoding='utf-8', errors='ignore').read()
@@ -723,13 +723,13 @@ print(respontext.text)
 '''
 
 
-'''新建营销活动单科'''
+'''新建营销活动单科
 xjyxhddkbaowen = open('D:\\zdhlog\\EKIA\\Python\\API\\autodata\\template\\xinjianyingxiaohuodongdanke.vm', 'r', encoding='utf-8', errors='ignore').read()
 zxkqr_dick_data = json.loads(xjyxhddkbaowen)
 time.sleep(1)
 sess.headers.update({'Content-Type':'application/json'})
 respontext = sess.post("https://pycmspre.lexue.com/marketing/jointEnroll/create", data=json.dumps(zxkqr_dick_data, ensure_ascii=True), verify=False, timeout=4)
-print(respontext.text)
+print(respontext.text)'''
 
 
 
