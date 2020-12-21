@@ -196,6 +196,6 @@ if __name__ == '__main__':
     # execline = 12
     p = HttpTransport()
 
-    for i in range(9,18):
+    for i in range(9,25):
         testfile = CaseDataMap4Xls(xlxsfp, exeshtname,i).caseDataAll()
         p.httpMethod(testfile)

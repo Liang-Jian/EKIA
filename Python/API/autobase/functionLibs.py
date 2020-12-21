@@ -1,4 +1,6 @@
 import datetime,random,string,os
+import calendar
+import datetime
 
 '''
 all func libs , create 4 bit random word .write to txt file . 
@@ -132,8 +134,39 @@ def randomNum(count):
         r += random.choice(s)
         count -= 1
     return r
-# if __name__ == '__main__':
-#     print(calDate(0,0))
-#     print(calDate(1,0))
-    # print(calDate(12,0))
-    # print(selfRandom("建课"))
+
+
+
+def getNextSaturday():
+    # 获取下一周 周六
+    today = datetime.date.today()
+    oneday = datetime.timedelta(days = 1)
+    m1 = calendar.SATURDAY
+    while today.weekday() != m1:
+        today += oneday
+    nextMonday = today.strftime('%Y-%m-%d')
+    print(nextMonday)
+    return nextMonday
+
+def calClassDay(start="00:00:00",end="00:15:00"):
+    td= datetime.date.today()               # today
+    st= datetime.date.today()               # saturday
+    sn= datetime.date.today()               # sunday
+    today = datetime.date.today()
+
+    if td.isoweekday() == 6:                # 如果是星期日取下个周六
+        b_t = td.strftime('%Y-%m-%d {}'.format(start) )
+        a_t = getNextSaturday() + " {}".format(end)
+        return b_t,a_t
+
+    oneday = datetime.timedelta(days=1)
+    while st.weekday() != 5:
+        st += oneday
+    while sn.weekday() != 6:
+        sn += oneday
+    b_t = st.strftime('%Y-%m-%d {}'.format(start))
+    a_t = sn.strftime('%Y-%m-%d {}'.format(end))
+    print(b_t,a_t)
+    return b_t,a_t
+
+
