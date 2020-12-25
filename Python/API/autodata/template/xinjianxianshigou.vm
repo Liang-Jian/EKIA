@@ -1,8 +1,8 @@
 {
 "schoolId":"${schoolId}",
-"activitiesName":"${activitiesName}",
+"activitiesName":"${XSGactivitiesName}",
 "activitiesStatus":"NaN",
-"classIdStr":"58106",
+"classIdStr":"${classIdStr}",
 "limittimeTuitionFeeStr":"0",
 "startTime":"${startTime}",
 "endTime":"${endTime}"

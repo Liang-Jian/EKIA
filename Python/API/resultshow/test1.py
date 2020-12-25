@@ -24,8 +24,6 @@ class Signature:
 		string_dict = ""
 		if dict1 != {}:
 			sorted_list = sorted(dict1.items(),key = lambda d:d[0])
-
-
 			for i in iter(sorted_list):
 				str1 = i[0] + "=" + i[1] + "&"
 				string_dict += str1

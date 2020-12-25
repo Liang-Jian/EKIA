@@ -31,7 +31,7 @@ class IMessageTransformer(object):
 class IResponsMessageExtractor(object):
     pass
 
-class ISpecialMessageHandler(object): #请求报文特殊处理，如加签
+class ISpecialMessageHandler(object): # 请求报文特殊处理，如加签
     pass
 
 class IdCardGenerator(object):

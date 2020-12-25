@@ -1,5 +1,5 @@
 {
-"orderCourseIds":"${orderCourseIds1},${orderCourseIds2}",
+"orderCourseIds":"${orderCourseIds2}",
 "reasonId":"32",
 "classRefund":"1",
 "discountRefund":"0",
@@ -7,7 +7,7 @@
 "refundEntryFee":"0",
 "refundSchoolFee":"0",
 "toRefundSchoolFee":"0",
-"classRemain":"0",
+"classRemain":"1",
 "teacherId":"${teacherId}",
 "isRate":"0",
 "removeFromClass":"1",

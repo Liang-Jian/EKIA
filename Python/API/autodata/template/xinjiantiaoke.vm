@@ -13,14 +13,15 @@
 	"courseSort": 1,
 	"classDate": "${classDate}",
 	"showStatus": 5,
-	"classStartTime": "00:30:00",
-	"classEndTime": "00:32:00",
+	"classStartTime": "${classStartTime}",
+	"classEndTime": "${classEndTime}",
 	"refundStatus": 0,
 	"teacherName": "${teacherName}",
-	"campusName": "测试数据报表校区",
-	"classroomName": "面对现实",
+	"campusName": "${campusName}",
+	"classroomName": "${classroomName}",
 	"className": "${className}",
-	"classTimeName": "00:30:00~00:32:00",
+	"classTimeName": "${classTimeName}",
+	"signTime": "${signTime}",
 	"signStatus": 1,
 	"updateName": ""
 }],
@@ -28,7 +29,7 @@
 	"courseId": ${courseId1},
 	"courseSort": 1,
 	"classDate": "${classDate1}",
-	"classTimeName": "01:00~01:15"
+	"classTimeName": "${classTimeName1}"
 }],
 "userId": ${userId}
 }

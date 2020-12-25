@@ -7,6 +7,16 @@ from autobase.utils import MsqService
 
 
 
+
+import yaml,os
+def readyaml(key):
+    # read yaml file
+    file = open(os.path.abspath('..') + r"\configure\database.yml", "r", encoding="utf8")
+    config = yaml.load(file.read(), Loader=yaml.Loader)
+    conf = config['pycms_controller']
+    # print(conf[key])
+    return conf[key]
+
 def sqlValue(ele):
     # [(375,)] -> 375
     _t  = None
@@ -48,7 +58,6 @@ def local2str(_str):
     replace_value = re.findall('{}\":(.*?)\,'.format(local_value_str1),_str)[0].replace("\"","")
     all_str = _str.replace(local_value_str,replace_value)
     # Logi("remove local:=%s" % all_str)
-    # print(all_str)
     return (all_str)
 
 
@@ -128,13 +137,13 @@ def sql2str(s):
         # replace_value = str(b.get(flow_key_str))
         replace_value = str(AllFlowData().allflowdata.get(flow_key_str))
         finalstr = removesql_str.replace(flow_value_str,"{}".format(replace_value))
-        print(finalstr)
+        # print(finalstr)
     else:
         print(removesql_str[index + 2:-1])
         randomMake = eval(removesql_str[index + 2:-1])
-        print(randomMake)
+        # print(randomMake)
         finalstr = removesql_str.replace(removesql_str[index:end + 1], "'" + randomMake + "'")
-        print(finalstr)
+        # print(finalstr)
         Logi("查询数据:=%s" % finalstr)
     try:
         sqlresult = MsqService().search_db(finalstr)
@@ -171,7 +180,7 @@ def sql2strd(s)->dict:
     for key, val in s.items():
         if isinstance(val, str) and val.startswith("${sql("):
             s[key] = sqlValue(sql2str(val))
-    print(s)
+    # print(s)
     return s
 def getflowValue(dict_, objkey, default=None):
     tmp = dict_
@@ -202,7 +211,7 @@ class CaseDataMap4Xls(object):
     def __init__(self, xlxspath, xlsxsheet, execline):
 
         self.test_data_path = CaseDataMap4Xls.__filepath + xlxspath  # 文件路径 str->
-        self.test_data_sheet = xlsxsheet                             # sheet名 str->冰鉴接口
+        self.test_data_sheet = xlsxsheet                             # sheet名 str->
         self.execline = execline                                     # 执行行   int-> 8
         self.pe = ParseExcel()
         self.pe.load_work_book(self.test_data_path)

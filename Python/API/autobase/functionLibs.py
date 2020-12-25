@@ -148,14 +148,43 @@ def getNextSaturday():
     print(nextMonday)
     return nextMonday
 
-def calClassDay(start="00:00:00",end="00:15:00"):
+# def calClassDay(start="00:00:00",end="00:15:00"):
+#     td= datetime.date.today()               # today
+#     st= datetime.date.today()               # saturday
+#     sn= datetime.date.today()               # sunday
+#     today = datetime.date.today()
+#
+#     if td.isoweekday() == 6:                # 如果是星期日取下个周六
+#         b_t = td.strftime('%Y-%m-%d {}'.format(start) )
+#         a_t = getNextSaturday() + " {}".format(end)
+#         return b_t,a_t
+#
+#     oneday = datetime.timedelta(days=1)
+#     while st.weekday() != 5:
+#         st += oneday
+#     while sn.weekday() != 6:
+#         sn += oneday
+#     b_t = st.strftime('%Y-%m-%d {}'.format(start))
+#     a_t = sn.strftime('%Y-%m-%d {}'.format(end))
+#     print(b_t,a_t)
+#     return b_t,a_t
+
+def calClassDay(icon=1):
+    if icon == 1:
+        start = "00:00:00"
+        end = "00:15:00"
+    elif icon == 2:
+        start = "01:00:00"
+        end = "01:15:00"
+    elif icon == 3:
+        pass
     td= datetime.date.today()               # today
     st= datetime.date.today()               # saturday
     sn= datetime.date.today()               # sunday
     today = datetime.date.today()
 
     if td.isoweekday() == 6:                # 如果是星期日取下个周六
-        b_t = td.strftime('%Y-%m-%d {}'.format(start) )
+        b_t = td.strftime('%Y-%m-%d {}'.format(start))
         a_t = getNextSaturday() + " {}".format(end)
         return b_t,a_t
 
@@ -169,4 +198,13 @@ def calClassDay(start="00:00:00",end="00:15:00"):
     print(b_t,a_t)
     return b_t,a_t
 
-
+def classTime(icon=1):
+    # 00:00~00:15,00:00:00,00:15:00
+    if   icon == 1:
+        return ["00:00~00:15","00:00:00","00:15:00"]
+    elif icon == 2:
+        return ["01:00~01:15","01:00:00","01:15:00"]
+    elif icon == 3:
+        pass
+    elif icon == 4:
+        pass

@@ -28,6 +28,7 @@ class VMConnect:
     @property
     def parsed_data(self):
         return self.data
+
 def connection_factory(filepath):
     if filepath.endswith('.json'):
         connector = JSONConnector
@@ -47,19 +48,5 @@ def connect_to(filepath):
         print(e)
     return  factory
 
-
-# def main():
-#     # sqlite_factory = connect_to('data/persqn.sq3')
-#     print()
-#     xml_factory = connect_to('data/person.xml')
-#     xml_data = xml_factory.parsed_data
-#     print(xml_data)
-#
-#
-#     json_factory = connect_to('data/dount.json')
-#     json_data = json_factory.parsed_data
-#     print('found {}'.format(json_data))
-#     for donut in json_data:
-#         print("name {}".format(donut['name']))
 
 

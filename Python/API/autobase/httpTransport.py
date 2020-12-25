@@ -32,7 +32,7 @@ class HttpTransport(object):
 
         self.loginReponseStr = self.sess.post(url=self.loginreq[4], stream='True', data=json.loads(self.loginreq[0]), verify=False, timeout=4, headers=self._headers).text
         AllFlowData().allflowdata=(eval(self.loginReponseStr))
-        # print(AllFlowData().allflowdata)
+
     # def httpMethod(self, url, contentstring):
     #
     #     totaldata = dict()
@@ -171,7 +171,8 @@ class HttpGetHeader(object):
 
     @classmethod
     def getLoginReq(cls):
-        xlxsObject = HttpGetHeader.pe.load_work_book(os.path.abspath('..') + "\\autodata\\testcase\\培优接口用例.xlsx").get_sheet_by_name("CMS接口T")
+
+        xlxsObject = HttpGetHeader.pe.load_work_book(os.path.abspath('..') + "\\autodata\\testcase\\{}".format(readyaml("path"))).get_sheet_by_name(readyaml("sheet"))
         username = HttpGetHeader.pe.get_cell_of_value(xlxsObject, rowNo=2, colsNo=3)  # username
         password = HttpGetHeader.pe.get_cell_of_value(xlxsObject, rowNo=2, colsNo=4)  # password
         loginurl = HttpGetHeader.pe.get_cell_of_value(xlxsObject, rowNo=2, colsNo=2)  # u   r  l
@@ -190,12 +191,11 @@ class HttpGetHeader(object):
         HttpGetHeader.reqlist.insert(6, HttpGetHeader.loginvmname)
         Logi("登录报文:=%s" % HttpGetHeader.reqlist)
         return HttpGetHeader.reqlist
-if __name__ == '__main__':
-    xlxsfp = "培优接口用例.xlsx"
-    exeshtname = "CMS接口T"
-    # execline = 12
-    p = HttpTransport()
-
-    for i in range(9,25):
-        testfile = CaseDataMap4Xls(xlxsfp, exeshtname,i).caseDataAll()
-        p.httpMethod(testfile)
+# if __name__ == '__main__':
+#     xlxsfp = "培优接口用例.xlsx"
+#     exeshtname = "CMS接口T"
+#     p = HttpTransport()
+#
+#     for i in range(9,19):
+#         testfile = CaseDataMap4Xls(xlxsfp, exeshtname,i).caseDataAll()
+#         p.httpMethod(testfile)
