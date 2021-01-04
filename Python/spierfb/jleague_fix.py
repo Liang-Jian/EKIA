@@ -7,8 +7,7 @@ import re
 import lxml.html
 import requests
 from bs4 import BeautifulSoup
-
-from bet.duqiu.logmodule import logger_info,logger_warning,logger_debug
+from Python.spierfb.logmodule import Logi,Loge,Logd,Logc
 from abc import ABCMeta,abstractclassmethod
 
 
@@ -51,14 +50,14 @@ class shujuku(metaclass=ABCMeta):
 class mysqlOP(shujuku):
 
     def __init__(self):
-        self.conn = mysql.connector.connect(host='localhost', user='root', password='root', database='jleague',
+        self.conn = mysql.connector.connect(host='118.25.78.198', user='root', password='root', database='jleague',
                                             use_unicode=True)
 
     def search_db(self,sql):
         self.cursor = self.conn.cursor()
         self.cursor.execute(sql)
         select_data = self.cursor.fetchall()
-        logger_info("查询结果{}".format(select_data))
+        Logi("查询结果{}".format(select_data))
         return select_data
 
     def update_db(self,sql):
@@ -78,8 +77,8 @@ class GetJleagueData(mysqlOP):
     def __init__(self):
         super(GetJleagueData,self).__init__()
 
-        self.start_roud= 27  #开始轮数
-        self.end_round = 42  #结束轮数
+        self.start_roud= 10  #开始轮数
+        self.end_round = 11  #结束轮数
         self.level     = "A"
         self.round     = ""
         self.st        = ""
@@ -91,7 +90,8 @@ class GetJleagueData(mysqlOP):
         self.kc        = ""
         self.start_url = "https://www.jleague.jp/match/section/{}/{}/"
         self.headers   = {'User-Agent': 'User-Agent:Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36'}
-        self.proxies   = {'http': 'socks5://127.0.0.1:1080', 'https': 'socks5://127.0.0.1:1080'}
+        # self.proxies   = {'http': 'socks5://127.0.0.1:1080', 'https': 'socks5://127.0.0.1:1080'}
+        self.proxies   = {'http': 'socks5://127.0.0.1:10808', 'https': 'socks5://127.0.0.1:10808'}
 
     def _get1url(self,):
         #第一级URL start开始轮数
@@ -100,7 +100,7 @@ class GetJleagueData(mysqlOP):
         elif self.level == "B":Level = "j2"
         for i in range(self.start_roud,self.end_round):
             _firstURL.append(self.start_url.format(Level,i))
-        logger_info("一级URL获取完成")
+        Logi("一级URL获取完成")
         return _firstURL
 
     def _get2url(self):
@@ -108,13 +108,13 @@ class GetJleagueData(mysqlOP):
         secondURL= []
         _str = "https://www.jleague.jp"
         for i in self._get1url():
-            html = requests.get(i, proxies=self.proxies, verify=True, headers=self.headers)
+            html = requests.get(i, verify=True, headers=self.headers) #proxies=self.proxies,
             k = re.findall("href=\"(.*?)\">試合詳細",html.text)
             print(k)
             if k != []:
                 for s in k:
                     secondURL.append(_str+s)
-        logger_info("二级URL获取完成")
+        Logi("二级URL获取完成")
         return secondURL
 
     @staticmethod
@@ -125,13 +125,15 @@ class GetJleagueData(mysqlOP):
                 return level_pool.get(key)
 
     def get_sql(self,url):
-        self.html = requests.get(url, proxies=self.proxies, verify=True, headers=self.headers)
+        # self.html = requests.get(url, proxies=self.proxies, verify=True, headers=self.headers)
+        self.html = requests.get(url, verify=True, headers=self.headers)
         selector =lxml.html.fromstring(self.html.text)
         soup = BeautifulSoup(self.html.text, 'lxml')
 
         new_url = url.replace("live/","ajax_live?_={}T{}") #天气信息ajax动态加载的.拼ajax的url
         new_url.format(datetime.date.today(),time.strftime('%H:%M',time.localtime(time.time())))
-        weather_web = requests.get(new_url, proxies=self.proxies, verify=True, headers=self.headers).content.decode()
+        # weather_web = requests.get(new_url, proxies=self.proxies, verify=True, headers=self.headers).content.decode()
+        weather_web = requests.get(new_url, verify=True, headers=self.headers).content.decode()
         weather_soup = BeautifulSoup(weather_web, 'lxml')
         _zhu = weather_soup.table.strings
         s = []
@@ -149,29 +151,29 @@ class GetJleagueData(mysqlOP):
         self.level   = self._get_level("".join(selector.xpath(cf.get("css","level_css"))))
         self.st      = "".join(selector.xpath(cf.get("css","sj_css"))).replace(":","")
         self.round   = re.findall("\d+","".join(selector.xpath(cf.get("css","level_css"))),re.S)[1]
-        self.date    = re.findall("2018/(.*?)/live",soup.link['href'])[0]
+        self.date    = re.findall("2020/(.*?)/live",soup.link['href'])[0]
         self.weather = "".join(re.findall("(.*?)\/", s[-3])[0].split())[0:1]
 
         _insertsql = "INSERT INTO `j8` VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');" % (
             self.date, self.st, self.level, self.round, self.weather, self.zhu, "", self.ke, self.bc,
             self.zj, self.kj, self.zc, self.kc, "9.99", "9.99", "9.99")
-        logger_info("creatsql {}".format(_insertsql))
+        Logi("creatsql {}".format(_insertsql))
         return  _insertsql
 
     def _writeDB(self, sqlyuju):
 
         sql_lan = sqlyuju
         if sql_lan is None:
-            logger_warning("sql语句无数据")
+            Loge("sql语句无数据")
         data = re.findall("\'(.*?)\'\,",sql_lan)
         if data is []:
-            logger_warning("匹配数据失败")
+            Loge("匹配数据失败")
         _date = data[0]
         if self.search_db("select * from j8 where date ='%s'" % _date) != []:
-            logger_info("'%s'数据库中已存在" % _date)
+            Loge("'%s'数据库中已存在" % _date)
         else:
             self.update_db(sql_lan)
-            logger_info("数据插入成功")
+            Logi("数据插入成功")
 
     def _get_all_sql(self):#返回所有的sql语句
         all_sql = []
@@ -180,7 +182,7 @@ class GetJleagueData(mysqlOP):
                 all_sql.append(self.get_sql(i))
             except:
                 raise("数据返回失败")
-        logger_info("全部sql返回成功" + self._get_all_sql.__name__+ "")
+        Logi("全部sql返回成功" + self._get_all_sql.__name__+ "")
         return all_sql
 
     def run(self):
@@ -188,7 +190,7 @@ class GetJleagueData(mysqlOP):
             try:
                 self._writeDB(k)
             except:
-                logger_warning("{}插入失败".format(k))
+                Loge("{}插入失败".format(k))
 '''
 class UIGetWeatherData(mysqlOP):#通过selenium获取天气信息 ,现在不用了.可以通过get ajaxurl来去数据
     weather_css = "#loadArea > table > tbody > tr:nth-child(3) > td:nth-child(2)"
@@ -274,17 +276,17 @@ class Get500Data(mysqlOP):
         for i in list_:
             if i[1] == "":
                 match_date.append(i[0])
-        logger_info("查找asia字段成功{}".format(match_date))
+        Logi("查找asia字段成功{}".format(match_date))
         return match_date
 
     def _get5url(self):
 
         pin_all_url = []
-        url_tmp = "http://live.500.com/?e=2018-"
+        url_tmp = "http://live.500.com/?e=2020-"
         for i in self._getmatchtime():
             _url_ = url_tmp+i[0:2]+"-"+i[2:4]
             pin_all_url.append(_url_)
-            logger_info("500url生成成功{}".format(_url_))
+            Logi("500url生成成功{}".format(_url_))
         return pin_all_url
 
     def _getupdatesql(self):
@@ -292,7 +294,7 @@ class Get500Data(mysqlOP):
         for i in self._get5url():
             update_sql +=self._getdata(i)
         # print(update_sql)
-        logger_info("全部sql生成成功")
+        Logi("全部sql生成成功")
         return  update_sql
 
     @staticmethod
@@ -305,7 +307,8 @@ class Get500Data(mysqlOP):
             _zhu_info += self.search_db(_sql.format(i,self._level))
         for i in _zhu_info:
             dist.update({i[0]: i[1]})
-        logger_info("主客队生成成功"+self.getzhuandke.__name__)
+        Logi("主客队生成成功"+self.getzhuandke.__name__)
+        print(dist)
         return dist
 
     def _getdata(self,url):
@@ -318,23 +321,23 @@ class Get500Data(mysqlOP):
             self._zhu =getkey(Team_A,key)
             self._ke  =getkey(Team_A,val)
             # logger_info("主队 {},客队 {}".format(self._zhu,self._ke))
-            _datadict = eval(re.findall("liveOddsList=(.*?);", file_txt, re.S)[0]) #所有赔率列表
+            _datadict = eval(re.findall("var liveOddsList = (.*?);", file_txt, re.S)[0]) #所有赔率列表
             k = re.findall("<tr(.*?)"+self._zhu+","+self._ke,file_txt)
             # print(k)
             if k !=[]:
                 id_number = re.findall("id=\"a(.*?)\"",k[0])[0]
                 _peilv =_datadict.get(id_number)['3']#赔率列表
                 level1 = re.findall(id_number + "&r=1\"" + "(.*?)"+"</a>",file_txt,re.S)[1]#查找亚洲盘
-                logger_info("{}id={}赔率:{}".format(self._zhu, id_number,_peilv))
-                self._win  = "%.2f" % _peilv[0]
-                self._draw = "%.2f" % _peilv[1]
-                self._lose = "%.2f".format(_peilv[2])
+                Logi("{} id={} 赔率={}".format(self._zhu, id_number,_peilv))
+                self._win  = "%.2f" % float(_peilv[0])
+                self._draw = "%.2f" % float(_peilv[1])
+                self._lose = "%.2f" % float(_peilv[2])
                 self._asia = re.findall("\">(.*?)$",level1)[0]
                 updatesql = (
                             "update j8 set asia='%s',win='%s',draw='%s',lose='%s' where zhu='%s' and left(date,4)='%s'" % (
                     self._asia, self._win, self._draw, self._lose, Team_A[self._zhu], date4))
                 _urll.append(updatesql)
-                logger_info("sql增加成功{}".format(updatesql))
+                Logi("sql增加成功{}".format(updatesql))
             else:
                 pass
         return(_urll)
@@ -342,18 +345,18 @@ class Get500Data(mysqlOP):
 
         sql_lan = sqlyuju
         if sql_lan is None:
-            logger_warning("sql语句无数据")
+            Loge("sql语句无数据")
         _zhu = re.findall("zhu=\'(.*?)\'",sql_lan,re.S)[0]
         _left_date = re.findall("\)=\'(.*?)\'",sql_lan,re.S)[0]
-        logger_info("插入前查询{} {}".format(_zhu,_left_date))
+        Logi("插入前查询{} {}".format(_zhu,_left_date))
         if _zhu is not []:
             if self.search_db("select asia from j8 where zhu ='%s' and left(date,4)='%s' " % (_zhu,_left_date))[0][0] != "":
-                logger_info("数据不为空 {}".format(sql_lan))
+                Logi("数据不为空 {}".format(sql_lan))
             else:
                 self.update_db(sql_lan)
-                logger_info("数据插入成功 {}".format(sql_lan))
+                Logi("数据插入成功 {}".format(sql_lan))
         else:
-            logger_warning("zhu列匹配数据失败")
+            Loge("zhu列匹配数据失败")
     def run(self):
         for i in self._getupdatesql():
             self._writeDb(i)

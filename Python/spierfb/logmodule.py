@@ -8,7 +8,7 @@ def logConfig():
     ch = logging.StreamHandler()                        # 生成Handler对象
     ch.setLevel(logging.DEBUG)
     # fh = logging.FileHandler("./" + "//log//log.txt", encoding="utf8")
-    fh = logging.FileHandler("../log/log.log", encoding="utf8")
+    fh = logging.FileHandler("../log.log", encoding="utf8")
     fh.setLevel(logging.DEBUG)
     file_formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s %(message)s")# 把formatter对象 绑定到Handler对象
     console_formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")

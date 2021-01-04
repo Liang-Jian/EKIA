@@ -2092,9 +2092,9 @@ MariaDB [wm]> select name,currently_price from hs_goods where name like "C___E%"
 
 train:
 -----
-create table jleague(
-date int(4)  unsigned zerofill not null,
-time int(8) unsigned zerofill not null,
+create table j8(
+date int(6)  unsigned zerofill not null,
+time int(4) unsigned zerofill not null,
 level char(2) not null,
 round tinyint unsigned not null,
 weather varchar(20) not null,
@@ -2104,14 +2104,19 @@ ke  varchar(20) not null,
 bc char(3) not null,
 zj tinyint(2) not null,
 kj tinyint(2) not null,
+zc tinyint(2) not null,
+kc tinyint(2) not null,
 win double(3,2) not null,
 draw double(3,2) not null,
 lose double(3,2) not null,
-primary key(time)
-);
+primary key(date)
+) default charset=utf8
+;
 
 
 insert into jleague(date,time,level,round,weather,zhu,asia,ke,bc,zj,kj,win,draw,lose) values(0225,02251130,'A',1,'晴','横滨水手','受半球','浦和红钻','1-0',3,2,'3.80','3.60','1.91');
+
+INSERT INTO `j8` VALUES ('111406', '1403', 'A', '27', '屋', '札幌', '', '鳥栖', '0-0', '1', '1', '5', '8', '9.99', '9.99', '9.99');
 #修改数据格式为
 mysql> show session variables like '%sql_mode%';
 
