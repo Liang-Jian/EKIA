@@ -170,7 +170,7 @@ class GetJleagueData(MsqService):
             Loge("'%s'数据库中已存在" % _date)
         else:
             self.update(sql_lan)
-            Logi("数据插入成功")
+            Logi("j data insert successfully")
 
     def _get_all_sql(self): #返回所有的sql语句
         all_sql = []
@@ -229,11 +229,11 @@ class Get500Data(MsqService):
         for i in self.get5url():
             update_sql +=self._getdata(i)
         print(update_sql)
-        Logi("全部sql生成成功")
+        Logi("A_sql:= {}".format(update_sql))
         return  update_sql
 
     def get_match_team(self,date):
-        match_team_dict = dict()
+        # match_team_dict = dict()
         match_team_list = list()
         update_sql = "select zhu,ke from j8 where asia = '' and left(date,4)={} and level='{}';"
         match_team_list += self.search(update_sql.format(date,self._level))
@@ -288,8 +288,11 @@ class Get500Data(MsqService):
             if self.search("select asia from j8 where zhu ='%s' and left(date,4)='%s' " % (_zhu, _left_date))[0][0] != "":
                 Logi("数据不为空 {}".format(sql_lan))
             else:
-                self.update(sql_lan)
-                Logi("数据插入成功 {}".format(sql_lan))
+                try:
+                    self.update(sql_lan)
+                    Logi("数据插入成功 {}".format(sql_lan))
+                except:
+                    pass
         else:
             Loge("zhu列匹配数据失败")
     def run(self):

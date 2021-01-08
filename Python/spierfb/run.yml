@@ -1,6 +1,7 @@
 control:
   path:                           # 文件
-  year: 2020                      # 年
-  startNo: 29                     # 执行行数
-  endNo: 33                       # 执行行数
-  level: B
+  year: 2018                      # 年
+  startNo: 1                      # 执行行数
+  endNo: 2                        # 执行行数
+  level: A
+  startcount: [31005,40100]
