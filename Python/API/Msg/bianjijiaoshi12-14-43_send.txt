@@ -1,0 +1,1 @@
+{"campusId": 453,"classroomName": "接口测试","peopleNum": 10,"classroomStatus": 1,"teacherCameraIP": "","teacherCameraPort": "","teacherCameraAccount": "lexueomo","teacherCameraPass": "lexue.com","studentCameraUrl": "","microphoneType": 0,"id": None}

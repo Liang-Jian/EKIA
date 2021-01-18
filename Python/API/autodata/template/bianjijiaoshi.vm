@@ -1,0 +1,13 @@
+{
+"campusId": ${campusId},
+"classroomName": "${classroomName}",
+"peopleNum": 10,
+"classroomStatus": 1,
+"teacherCameraIP": "",
+"teacherCameraPort": "3389",
+"teacherCameraAccount": "lexueomo",
+"teacherCameraPass": "lexue.com",
+"studentCameraUrl": "",
+"microphoneType": 0,
+"id": ${classroomId}
+}

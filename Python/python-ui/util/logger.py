@@ -9,7 +9,7 @@ parentDirPath = os.path.abspath('..')
 
 def logconfig():
 
-    logger = logging.getLogger("LX")
+    logger = logging.getLogger("lx")
     # 全局默认级别WARNING
     logger.setLevel(logging.DEBUG)
 

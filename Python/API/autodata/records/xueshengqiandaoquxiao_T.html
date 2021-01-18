@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>案例详情</title>
+    <style type="text/css">
+        {
+            text-align: left
+        }
+    </style>
+</head>
+
+<body>
+<div align="left">
+    <ul style="list-style: none">
+        <li>
+            <div align="center">
+                <b>案例编号:</b><span id="casecode">lx-031</span>
+            </div>
+        </li>
+        <br/>
+        <li>
+            <b>接口路径:</b><span id="interPath">http://sct12345.bms.lexue.com/educational/sign/updateStudentsSign</span>
+        </li>
+        <li>
+            <b>案例名称:</b><span id="caseTitle">学生签到取消</span>
+        </li>
+        <li>
+            <b>模板名称:</b><span id="templeteName">xueshengqiandaoquxiao.vm</span>
+        </li>
+        <li>
+            <b>接口类型:</b><span id="interType">post.js</span>
+        </li>
+        <li>
+            <b>预期结果:</b><span id="expectResult">更新成功</span>
+        </li>
+        <li>
+            <b>执行时间:</b><span id="finishTime">2021-01-12 14:22:00.004710</span>
+        </li>
+        <li>
+            <b>断言结果:</b><span id="assertresult">pass</span>
+        </li>
+        <br/>
+
+            <li>
+                <b></b><br/>
+                <b>请求报文:</b><br/>
+                <textarea rows="20" cols="220" id="reqString">{"signList":    [{"classId":24,      "courseId":44,      "studentId":14,      "signStatus":1    }]}</textarea>
+            </li>
+            <br/>
+            <li>
+                <b></b><br/>
+                <b>返回报文:</b><br/>
+                <textarea rows="20" cols="220" id="respString">{
+  "code" : 0,
+  "message" : "更新成功",
+  "value" : null
+}</textarea>
+            </li>
+            <li>
+                <b></b><br/>
+                <b>接口返回数据:</b>
+                <table border="1" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th bgcolor="aqua">数据名</th>
+                        <th bgcolor="aqua">数据值</th>
+                    </tr>
+                    </thead>
+
+                </table>
+            </li>
+
+            <br/>
+
+        <br/>
+        <li>
+            <b>流程数据:</b>
+            <table border="1" cellspacing="0">
+                <thead>
+                <tr>
+                    <th bgcolor="aqua">数据名</th>
+                    <th bgcolor="aqua">数据值</th>
+                </tr>
+                </thead>
+
+            </table>
+        </li>
+        <br/>
+    </ul>
+</div>
+</body>
+</html>

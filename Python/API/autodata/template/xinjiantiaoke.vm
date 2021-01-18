@@ -1,0 +1,35 @@
+{
+"oldClassId": ${oldClassId},
+"studentId": ${studentId},
+"classStudentId": ${classStudentId},
+"orderDetailId": ${orderDetailId},
+"changeType": 1,
+"newClassId": ${newClassId},
+"oldCourseIdList": [{
+	"courseId": ${courseId},
+	"classId": ${classId},
+	"studentId": ${studentId1},
+	"weekName": "周六",
+	"courseSort": 1,
+	"classDate": "${classDate}",
+	"showStatus": 5,
+	"classStartTime": "${classStartTime}",
+	"classEndTime": "${classEndTime}",
+	"refundStatus": 0,
+	"teacherName": "${teacherName}",
+	"campusName": "${campusName}",
+	"classroomName": "${classroomName}",
+	"className": "${className}",
+	"classTimeName": "${classTimeName}",
+	"signTime": "${signTime}",
+	"signStatus": 1,
+	"updateName": ""
+}],
+"newCourseIdList": [{
+	"courseId": ${courseId1},
+	"courseSort": 1,
+	"classDate": "${classDate1}",
+	"classTimeName": "${classTimeName1}"
+}],
+"userId": ${userId}
+}

@@ -1,0 +1,1 @@
+{"classAuthority": 2,"cityId": 654000,"schoolId": "","mobile": "18706404847","currentSchool": "","currentSchoolId": "","gradeId": 27,"sex": 2,"studentName": "生JBTel","birthday": "","studentCode": "","headPic": "","registerTime": "","spareMobile": "","inviterNumber": "","recommender": "","idnumber": "","cityName": "伊犁哈萨克自治州","studentLevelList": [],"studentStatus": 1}

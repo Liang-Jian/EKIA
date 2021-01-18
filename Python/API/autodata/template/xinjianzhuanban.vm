@@ -1,0 +1,10 @@
+{
+"oldClassId": "${ClassIdzbA}",
+"studentId": "${studentId}",
+"classStudentId": "${classStudentId}",
+"orderDetailId": "${orderDetailId}",
+"changeType": "2",
+"userId": ${userId},
+"newClassId": ${ClassIdzbB},
+"oldCourseIdList": null
+}

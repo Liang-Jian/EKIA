@@ -2113,6 +2113,13 @@ primary key(date)
 ) default charset=utf8
 ;
 
+-----
+create table event(
+url varchar(2083),
+username varchar(30),
+password varchar(100),
+primary key(url)
+);
 
 insert into jleague(date,time,level,round,weather,zhu,asia,ke,bc,zj,kj,win,draw,lose) values(0225,02251130,'A',1,'晴','横滨水手','受半球','浦和红钻','1-0',3,2,'3.80','3.60','1.91');
 
@@ -2125,3 +2132,5 @@ mysql> set sql_mode="ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_B
 
 #查看mysql配置文件启动列表
 mysqld --help --verbose | less
+
+
