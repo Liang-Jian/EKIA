@@ -1,5 +1,0 @@
-{
-  "code" : 505,
-  "message" : "上课规律名称已存在",
-  "value" : null
-}

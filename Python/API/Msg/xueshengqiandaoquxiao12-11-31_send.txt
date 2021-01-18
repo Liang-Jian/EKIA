@@ -1,1 +1,0 @@
-{"signList":    [{"classId":18,      "courseId":34,      "studentId":12,      "signStatus":1    }]}
