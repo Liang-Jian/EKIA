@@ -1,0 +1,1 @@
+{"purposeClassId": 24,"startTime": "2021-01-12 00:00:00","endTime": "2021-01-12 00:00:00","resubmitList": [{"sourceClassId": 25,"startTime": "2021-01-12 00:00:00","endTime": "2021-01-12 00:00:00"}]}

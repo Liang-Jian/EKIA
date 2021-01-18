@@ -1,0 +1,5 @@
+{
+  "code" : 502,
+  "message" : "名称重复：自动化等级",
+  "value" : null
+}

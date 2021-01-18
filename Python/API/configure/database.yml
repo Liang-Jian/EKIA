@@ -1,0 +1,66 @@
+pycms_controller:
+  path: 培优接口用例.xlsx           # 用例文件
+  sheet: CMS接口T                 # 执行的sheet表
+  finishRowNo: 18                 # 执行行数
+
+saas_controller:
+  path: 接口测试用例.xlsx
+  sheet: saas
+  startRowNo: 4
+#  finishRowNo: 8
+  finishRowNo: 6
+  req_url: 6
+  req_method: 5
+  req_header: 7
+  req_params: 8
+  req_expect: 9
+  req_relation: 10
+  req_remark: 4
+  req_sql: 11
+  req_user: 12
+  parameterization: 13
+mysql:
+  host: 10.10.200.173
+  port: 3306
+  name: peiyou
+  user: education
+  password: lexue123
+pre:
+  host: 10.10.200.210
+  port: 3306
+  name: lx_sct123456
+  user: education
+  password: lexue123
+tsl:
+  host: 10.10.200.173
+  port: 3306
+  name: peiyou
+  user: education
+  password: lexue123
+dev:
+  host: 10.10.200.173
+  port: 3306
+  name: peiyou
+  user: education
+  password: lexue123
+
+sas:
+  host: 10.10.200.173
+  port: 3306
+  name: peiyou
+  user: education
+  password: lexue123
+
+ol:
+  host: 10.10.41.222
+  port: 3306
+  name: lx_sct12345
+  user: readonly_online
+  password: readonly_Py2o19
+
+online:
+  host: 10.10.41.202
+  port: 3306
+  name: peiyou
+  user: readonly_online
+  password: readonly_Py2o19

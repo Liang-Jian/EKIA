@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>结果概况</title>
+    <style type="text/css">
+        td {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div align="left">
+    <div align="left"><b>概览:</b></div>
+    <table border="1" cellspacing="0">
+        <thead>
+        <tr>
+            <th bgcolor="aqua">总条数</th>
+            <th bgcolor="aqua">成功数</th>
+            <th bgcolor="aqua">失败数</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td align="center">${TotalCount}</td>
+            <td>${SuccessCount}</td>
+            <td>${FailCount}</td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+<br/>
+<div align="left">
+    <span><b>成功案例:</b></span>
+    <table border="1" cellspacing="0">
+        <thead>
+        <tr>
+            <th bgcolor="aqua">用例编号</th>
+            <th bgcolor="aqua">用例标题</th>
+##            <th bgcolor="aqua">测试意图</th>
+            <th bgcolor="aqua">预期结果</th>
+            <th bgcolor="aqua">用例属性</th>
+            <th bgcolor="aqua">用例执行比对结果</th>
+            <th bgcolor="aqua">预期结果比对项</th>
+            #foreach($spitOut in ${spitOutDataNameList})
+                <th bgcolor="aqua">$spitOut</th>
+            #end
+        </tr>
+        </thead>
+        <tbody>
+            #foreach($ce in ${flowTestCaseList})
+                #if(${ce.executeStatus}=="S")
+                <tr>
+                ##取flow的字段
+                    <td><a href="${ce.casecode}.html">${ce.casecode}</a></td>
+                    <td>${ce.caseTitle}</td>
+##                    <td>${ce.caseDesign}</a></td>
+                    <td>${ce.expectResult}</td>
+                    <td>${ce.caseProperty}</td>
+                    <td>符合预期</td>
+                    <td>${ce.checkMessage}</td>
+                    #foreach($dataKey in ${spitOutDataNameList})
+                        #if(${ce.splitOutDataMap.get($dataKey)} != "" )
+                            <td>${ce.splitOutDataMap.get($dataKey)}</td>
+                        #else
+                            <td></td>
+                        #end
+                    #end
+                </tr>
+                #end
+            #end
+        </tbody>
+    </table>
+
+</div>
+<br/>
+    #if($FailCount > 0 )
+    <div align="left">
+        <div align="left"><b>失败案例:</b></div>
+        <table border="1" cellspacing="0">
+            <thead>
+            <tr>
+                <th bgcolor="aqua">用例编号</th>
+                <th bgcolor="aqua">用例标题</th>
+##                <th bgcolor="aqua">测试意图</th>
+                <th bgcolor="aqua">预期结果</th>
+                <th bgcolor="aqua">用例属性</th>
+                <th bgcolor="aqua">用例执行比对结果</th>
+                <th bgcolor="aqua">预期结果比对项</th>
+                #foreach($spitOut in ${spitOutDataNameList})
+                    <th bgcolor="aqua">$spitOut</th>
+                #end
+            </tr>
+            </thead>
+            <tbody>
+                #foreach($ce in ${flowTestCaseList})
+                    #if(${ce.executeStatus}!="S")
+                    <tr>
+                    ##取flow的字段
+                        <td><a href="${ce.casecode}.html">${ce.casecode}</a></td>
+                        <td>${ce.caseTitle}</td>
+##                        <td>${ce.caseDesign}</a></td>
+                        <td>${ce.expectResult}</td>
+                        <td>${ce.caseProperty}</td>
+                        <td>与预期不符</td>
+                        <td>${ce.checkMessage}</td>
+                        #foreach($dataKey in ${spitOutDataNameList})
+                            #if(${ce.splitOutDataMap.get($dataKey)} != "" )
+                                <td>${ce.splitOutDataMap.get($dataKey)}</td>
+                            #else
+                                <td></td>
+                            #end
+                        #end
+                    </tr>
+                    #end
+                #end
+            </tbody>
+        </table>
+    </div>
+    #end
+</body>
+</html>
