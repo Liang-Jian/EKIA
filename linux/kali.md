@@ -315,7 +315,7 @@ export ORACLE_SID=orcl
 export LD_LIBRARY_PATH=/home/joker/program/orcl
 ```
 
-### Linux 常用脚本
+### Linux 添加任务实现自启动
 
 ```
 [root@VM_0_7_centos ~]# crontab -l
@@ -325,12 +325,13 @@ export LD_LIBRARY_PATH=/home/joker/program/orcl
 # chkconfig: 2345 80 90
 # description:auto_run
 # start auto connect script as tiaozhuan
-ssh -fCNR 7000:localhost:22 root@118.25.*.*
+ssh -fCNR 7000:localhost:22 root@118.45.*.*
 
 [root@VM_0_7_centos ~]# crontab -e
 0 0 * * * /usr/local/qcloud/YunJing/YDCrontab.sh > /dev/null 2>&1 &
-# 每 3个小时启动一次sshautologin.sh
+# 每 3个小时10分启动一次sshautologin.sh
 10 */3 * * * /etc/init.d/sshautologin.sh start
+# 每 3个小时启动一次sshautologin.sh
 0 */3 * * * /etc/init.d/autoreboot.sh start
 
 rsync -vaz root@youservice:/home/joker/EKIA/ /home/joker/EKIA/
@@ -382,3 +383,25 @@ net.ipv4.tcp_congestion_control = bbr
 [root@centos Python37]# ./configure --enable-optimizations
 [root@centos Python37]# make altinstall
 ```
+
+
+### 树莓派开机自动启动脚本
+[root@centos Python37]# vi /etc/rc.local
+在exit 0前写入：
+./home/pi/start.sh &
+
+
+### 内网反弹
+ras:
+[root@VM-0-7-centos ~]# ./chisel client -v 118.45.88.111:6666 R:0.0.0.0:8888:10.9.104.2:22
+service:
+[root@centos Python37]# ./chisel server -p 6666 --reverse
+host:
+[root@centos Python37]# ssh -p 8888 root@118.45.88.111
+
+
+### centos添加自动启动
+[root@VM-0-7-centos ~]# chmod +x /etc/rc.d/rc.local
+[root@VM-0-7-centos ~]# vi /etc/rc.d/rc.local
+/usr/local/qcloud/gpu/nv_gpu_conf.sh >/tmp/nv_gpu_conf.log 2>&1
+/var/ftp/pub/chisel server -p 6666 --reverse

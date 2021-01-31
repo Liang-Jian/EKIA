@@ -2134,3 +2134,6 @@ mysql> set sql_mode="ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_B
 mysqld --help --verbose | less
 
 
+#mysql修改字段长度
+ALTER TABLE event_tmp MODIFY COLUMN  password VARCHAR(10000);
+
