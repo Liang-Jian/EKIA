@@ -1,7 +1,17 @@
 control:
-  path:                           # 文件
-  year: 2020                      # 年
-  startNo: 1                      # 执行行数
-  endNo: 2                        # 执行行数
-  level: B
-  startcount: [92613]
+  year: 2021                      # 年
+  level: A
+  round: 13
+
+
+css:
+  level_css: //span[@class='matchVsTitle__league']/text()
+  sj_css: body > div.content.clearfix > div.main > section > section > h3 > span.matchVsTitle__date
+
+
+db:
+  host: 101.201.81.174
+  port: 3306
+  dbname: jleague
+  user: root
+  password: root

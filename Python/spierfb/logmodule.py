@@ -3,17 +3,17 @@ import logging.handlers
 
 def logConfig():
 
-    logger = logging.getLogger("s")
+    logger = logging.getLogger("j")
     logger.setLevel(logging.DEBUG)                      # 全局默认级别WARNING
     ch = logging.StreamHandler()                        # 生成Handler对象
     ch.setLevel(logging.DEBUG)
-    fh = logging.FileHandler("../log.log", encoding="utf8")
+    fh = logging.FileHandler("../../log.log", encoding="utf8")
     fh.setLevel(logging.DEBUG)
     file_formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s %(message)s")# 把formatter对象 绑定到Handler对象
     console_formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
     ch.setFormatter(console_formatter)
     fh.setFormatter(file_formatter)
-    logger.addHandler(ch)                               # 把Handler对象 绑定到logger
+    logger.addHandler(ch)
     logger.addHandler(fh)
     return logger
 
