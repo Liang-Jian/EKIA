@@ -2092,7 +2092,7 @@ MariaDB [wm]> select name,currently_price from hs_goods where name like "C___E%"
 
 train:
 -----
-create table j8(
+create table j7(
 date int(6)  unsigned zerofill not null,
 time int(4) unsigned zerofill not null,
 level char(2) not null,
@@ -2110,7 +2110,7 @@ win double(3,2) not null,
 draw double(3,2) not null,
 lose double(3,2) not null,
 primary key(date)
-) default charset=utf8
+) default charset=utf8 COMMENT='2020-jleague'
 ;
 
 -----
@@ -2137,3 +2137,18 @@ mysqld --help --verbose | less
 #mysql修改字段长度
 ALTER TABLE event_tmp MODIFY COLUMN  password VARCHAR(10000);
 
+
+#创建角球记录表
+create table jq(
+country varchar(14)  not null COMMENT '国家',
+time varchar(30) not null comment '时间',
+weather varchar(20) not null comment '天气',
+zhu varchar(20) not null comment '主队',
+ke  varchar(20) not null comment '课对',
+zc tinyint(2) not null comment '上半场主队角球',
+kc tinyint(2) not null comment '上半场客队角球',
+kj BOOLEAN comment '是否10分钟内有角球',
+bz varchar(300) comment '备注与经验',
+primary key(time)
+) default charset=utf8 COMMENT='角球信息'
+;

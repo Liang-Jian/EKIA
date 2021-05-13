@@ -30,7 +30,8 @@ vi /etc/shadowsocks/config.json
 }`
 
 ### jdk  
-`sudo mkdir /usr/local/jdk  
+```
+sudo mkdir /usr/local/jdk
 sudo gedit ~/.bashrc  
 export JAVA_HOME=/usr/local/jdk
 export JRE_HOME=${JAVA_HOME}/jre
@@ -48,7 +49,7 @@ sudo apt-get purge openjdk*
 sudo apt-get purge icedtea-* openjdk-*
 检查所有 OpenJDK包是否都已卸载完毕<br>
 dpkg --list |grep -i jdk
-`
+```
 ### static IPAddress
 sudo vi /etc/network/interfaces
 auto lo
@@ -70,18 +71,18 @@ true
 /etc/init.d/networking restart
 
 ### git configue
-sudo apt-get install git
-git init
-git config --global user.name  "QQ"
-git config --global user.email "\*@gmail.com"
-ssh-keygen -C 's@gmail.com' -t rsa
-cat ~/.ssh/id_rsa.pub
-ssh -T git@github.com
-git clone git@192.168.5.95:lzhang/PublicDocument.git
-git remote add origin git@github.com:billfeller/historyBrowsing.git
+sudo apt-get install git  
+git init  
+git config --global user.name  "QQ"  
+git config --global user.email "\*@gmail.com"  
+ssh-keygen -C 's@gmail.com' -t rsa  
+cat ~/.ssh/id_rsa.pub  
+ssh -T git@github.com  
+git clone git@192.168.5.95:lzhang/PublicDocument.git  
+git remote add origin git@github.com:billfeller/historyBrowsing.git  
 
-Agent admitted failure to sign using the key"
-eval "$(ssh-agent -s)"
+Agent admitted failure to sign using the key"  
+eval "$(ssh-agent -s)"  
 ssh-add
 ```
 ####git 放弃修改，重置本地代码。
@@ -99,14 +100,14 @@ sudo vi /etc/ssh/sshd_config
 sudo /etc/init.d/ssh restart
 PermitRootLogin yes
 PubkeyAuthentication no
-\##AuthorizedKeysFile .ssh/authorized_keys
+AuthorizedKeysFile .ssh/authorized_keys
 PasswordAuthentication yes
 
-###常用DNS服务器
-168.95.192.1    168.95.192.2
-139.175.55.244  139.175.252.16
-203.80.96.9     203.80.96.10
-202.106.0.20    202.16.196.115
+### 常用DNS服务器
+168.95.192.1    168.95.192.2  
+139.175.55.244  139.175.252.16  
+203.80.96.9     203.80.96.10  
+202.106.0.20    202.16.196.115  
 ##static ip address
 sudo vi /etc/network/interfaces
 auto lo
@@ -117,8 +118,8 @@ address 192.168.2.233
 netmask 255.255.255.0
 gateway 192.168.2.254
 
-###DNS
-###ubuntu
+### DNS
+#### ubuntu
 sudo vi /etc/resolvconf/resolv.conf.d/base
 nameserver 202.106.0.20
 nameserver 202.16.196.115
@@ -386,22 +387,30 @@ net.ipv4.tcp_congestion_control = bbr
 
 
 ### 树莓派开机自动启动脚本
-[root@centos Python37]# vi /etc/rc.local
+[root@centos Python37]# vi /etc/rc.local  
 在exit 0前写入：
 ./home/pi/start.sh &
 
 
 ### 内网反弹
+```
 ras:
-[root@VM-0-7-centos ~]# ./chisel client -v 118.45.88.111:6666 R:0.0.0.0:8888:10.9.104.2:22
+[root@VM-0-7-centos ~]# ./chisel client -v 118.201.81.174:6666 R:0.0.0.0:8888:10.9.104.2:22
 service:
 [root@centos Python37]# ./chisel server -p 6666 --reverse
 host:
 [root@centos Python37]# ssh -p 8888 root@118.45.88.111
-
+```
 
 ### centos添加自动启动
+```
 [root@VM-0-7-centos ~]# chmod +x /etc/rc.d/rc.local
 [root@VM-0-7-centos ~]# vi /etc/rc.d/rc.local
 /usr/local/qcloud/gpu/nv_gpu_conf.sh >/tmp/nv_gpu_conf.log 2>&1
 /var/ftp/pub/chisel server -p 6666 --reverse
+```
+
+
+
+
+

@@ -1,0 +1,24 @@
+{
+"operationName": "${operationName}",
+"userId": ${userId},
+"orderDtoList": [{
+	"studentId":${studentId},
+	"classId": ${classId},
+	"discountMoney": 0,
+	"toPayMoney": 0,
+	"classFee": 0,
+	"courseNum": 2,
+	"orderCourseIds": "${orderCourseIds1},${orderCourseIds2}",
+	"couponList": [],
+	"schoolFee": 0,
+	"entryFee": 0,
+	"jointActivityId": null,
+	"discountAmount": null,
+	"activityType": null,
+	"activation": 0
+}],
+"studentId": ${studentId1},
+"totalAmount": "0.00",
+"orderSource": "3",
+"toPayDate": "${toPayDate}"
+}

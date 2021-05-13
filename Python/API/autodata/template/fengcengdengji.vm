@@ -1,0 +1,11 @@
+{
+"levels": [{
+	"schoolId": ${schoolId},
+	"subjectId": ${subjectId},
+	"subjectName": "${subjectName}",
+	"levelName": "${levelName}",
+	"levelStatus": 1
+}],
+"operatorName": "${operatorName}",
+"subjectName": "${subjectName}"
+}

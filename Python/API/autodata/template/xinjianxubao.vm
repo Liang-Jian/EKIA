@@ -1,0 +1,10 @@
+{
+"purposeClassId": ${purposeClassId},
+"startTime": "${startTime}",
+"endTime": "${endTime}",
+"resubmitList": [{
+	"sourceClassId": ${sourceClassId},
+	"startTime": "${startTime1}",
+	"endTime": "${endTime1}"
+}]
+}

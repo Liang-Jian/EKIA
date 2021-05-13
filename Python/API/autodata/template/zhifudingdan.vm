@@ -1,0 +1,11 @@
+{
+"paymentType":"4",
+"referenceNumber":"",
+"authNumber":"",
+"merchantNumber":"",
+"bankId":"",
+"userMobile":"${userMobile}",
+"SumorderMoney":"0.00",
+"orderDetailId":"${orderDetailId}",
+"operationName":"${operationName}"
+}
