@@ -43,7 +43,7 @@ def make_averager():
     count = 0
     total = 0
     def averager(new_value):
-        nonlocal count,total    #变量标记为自由变量
+        nonlocal count,total #变量标记为自由变量
         count += 1
         total += new_value
         return total / count
@@ -232,7 +232,6 @@ print(bus3.passengers)
 
 #################
 from array import array
-
 # class Vector2d:
 #     typecode = 'd'
 #     def __repr__(self):
@@ -315,34 +314,6 @@ class D(B,C):
         self.pong()
         super().pong()
         C.pong(self)
-# d = D()
-# d.pong()
-# C.pong(d)
-
-
-# import random
-# def password(length):
-#     pw = str()
-#     characters = "qwertyuiopASDFGHJKLzxcvbnm" + "234567890"+"!@#$%^&*,.[]"
-#     for i in range(length):
-#         pw = pw +  random.choice(characters)
-#     print(pw)
-#     return pw
-# password(8)
-
-
-import multiprocessing
-import os
-from multiprocessing import current_process
-class Worker(multiprocessing.Process):
-  def run(self):
-    name = current_process().name # 获取当前进程的名称
-    print('run child process <%s> (%s)' % (name, os.getpid()))
-    print('In %s' % self.name)
-    return
-if __name__ == '__main__':
-  print('parent process %s.' % os.getpid())
-  p = Worker()
-  p.start()
-  p.join()
-  print('process end.')
+d = D()
+d.pong()
+C.pong(d)

@@ -47,6 +47,10 @@ import queue,threading
 #         print(q.get())
 #######################
 
+
+# def bytestostr():
+#     s = b'\xe3\x80\x90\xe6\xb5\x81\xe9\x87\x8f\xe6\x8f\x90\xe9\x86\x92\xe3\x80\x91'
+#     print(str(s, encoding='utf-8'))
 def calc_squre(numbers,result):
     for idx,n in enumerate(numbers):
         result[idx] = n * n

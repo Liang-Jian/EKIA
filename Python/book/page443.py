@@ -238,22 +238,22 @@ def reader(queue,loops):
         readQ(queue)
         sleep(randint(2,5))
 
-# funcs = [writer,reader]
-# nfuncs = range(len(funcs))
-#
-# def main():
-#     nlops= randint(2,5)
-#     q = Queue(323)
-#     threads = []
-#     for i in nfuncs:
-#         t = MyThread(funcs[i],(q,nlops),funcs[i].__name__)
-#         threads.append(t)
-#     for i in nfuncs:
-#         threads.start()
-#     for i in nfuncs:
-#         threads.join()
-#     print('all Done')
+funcs = [writer,reader]
+nfuncs = range(len(funcs))
 
-#
-# if __name__ == '__main__':
-#     main()
+def main():
+    nlops= randint(2,5)
+    q = Queue(323)
+    threads = []
+    for i in nfuncs:
+        t = MyThread(funcs[i],(q,nlops),funcs[i].__name__)
+        threads.append(t)
+    for i in nfuncs:
+        threads.start()
+    for i in nfuncs:
+        threads.join()
+    print('all Done')
+
+
+if __name__ == '__main__':
+    main()
