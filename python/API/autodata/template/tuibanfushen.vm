@@ -1,0 +1,11 @@
+{
+"operationName":"${operationName}",
+"orderRefundId":"${orderRefundId}",
+"refundClassFee":"0",
+"refundEntryFee":"0",
+"refundSchoolFee":"0",
+"reasonId":"32",
+"content":"",
+"discountRefund":"0",
+"removeFromClass":"1"
+}

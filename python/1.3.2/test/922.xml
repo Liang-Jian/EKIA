@@ -1,0 +1,1178 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+ <!--54-72-C0-99 (1.54)  54-76-D9-99 (1.54)    为我数据库里面有的价签，
+ apid 为 1 不存在的apid为99 51-EF-EF-99为不存在的价签，其他的为存在的价签，使用脚本时的时候请自行修改为自己数据库里面的有价签，最好选择通信强度好，不受干扰的价签的价签  使用notepad++可以批量修改，如果有什么问题，请及时与我联系-->
+
+<API>
+    <testdata1>		
+        <ok262>OK</ok262>
+		<act262>00</act262>
+		<ret262>SUCCESS</ret262>
+		<log262>OK</log262>
+		<db262>OK</db262>		
+
+        <ok263>OK</ok263>
+		<act263>00</act263>
+		<ret263>SUCCESS</ret263>
+		<log263>OK</log263>
+		<db263>OK</db263>
+
+        <ok264>OK</ok264>
+		<act264>00</act264>
+		<ret264>SUCCESS</ret264>
+		<log264>OK</log264>
+		<db264>OK</db264>
+
+        <ok265>OK</ok265>
+		<act265>00</act265>
+		<ret265>SUCCESS</ret265>
+		<log265>OK</log265>
+		<db265>OK</db265>		
+
+        <ok266>OK</ok266>
+		<act266>00</act266>
+		<ret266>SUCCESS</ret266>
+		<log266>OK</log266>
+		<db266>OK</db266>
+
+        <ok267>OK</ok267>
+		<act267>00</act267>
+		<ret267>SUCCESS</ret267>
+		<log267>OK</log267>
+		<db267>OK</db267>
+
+        <ok268>OK</ok268>
+		<act268>00</act268>
+		<ret268>SUCCESS</ret268>
+		<log268>OK</log268>
+		<db268>OK</db268>
+
+        <ok269>OK</ok269>
+		<act269>00</act269>
+		<ret269>SUCCESS</ret269>
+		<log269>OK</log269>
+		<db269>OK</db269>	
+
+        <ok270>OK</ok270>
+		<act270>00</act270>
+		<ret270>SUCCESS</ret270>
+		<log270>OK</log270>
+		<db270>OK</db270>
+
+        <ok271>OK</ok271>
+		<act271>00</act271>
+		<ret271>SUCCESS</ret271>
+		<log271>OK</log271>
+		<db271>OK</db271>		
+		
+		<type272>ESL_NETLINK</type272>
+        <send_cmd272>[{"eslid":"54-72-C0-99", "nw1":"51-0汉1-0科3-66",  "nw3":"158","op2":"5", "setchn":"158","grpchn":"158"}]</send_cmd272>
+        <ok272>OK</ok272>
+		<act272>12</act272>
+		<ret272>ENCODE_ARG_ERR</ret272>		
+
+		<type273>ESL_NETLINK</type273>
+        <send_cmd273>[{"eslid":"54-72-C0-99", "nw1":"51- 0 1 -03-66",  "nw3":"158","op2":"5", "setchn":"158","grpchn":"158"}]</send_cmd273>
+        <ok273>OK</ok273>
+		<act273>02</act273>
+		<ret273>ESL_NOT_EXIST</ret273>
+		<log273>OK</log273>
+		<db273>OK</db273>	
+
+        <ok274>OK</ok274>
+		<act274>00</act274>
+		<ret274>SUCCESS</ret274>
+		<log274>OK</log274>
+		<db274>OK</db274>			
+
+		<ok275>OK</ok275>
+		<act275>00</act275>
+		<ret275>SUCCESS</ret275>
+		<log275>OK</log275>
+		<db275>OK</db275>
+
+        <ok276>OK</ok276>
+		<act276>02</act276>
+		<ret276>ESL_NONE</ret276>
+		<log276>OK</log276>
+		<db276>OK</db276>
+		<type276>ESL_NETLINK</type276>
+        <send_cmd276>[{"nw1":"51-01-03-99",  "nw3":"158"}]</send_cmd276>
+        
+
+		
+	</testdata1>
+	<testdata2>
+		<type504>AP_INFO</type504>
+		<send_cmd504>[{"apid":"1"}]</send_cmd504>
+        <ok504>OK</ok504>
+		<act504>00</act504>
+		<ret504>SUCCESS</ret504>
+
+		<type505>AP_INFO</type505>
+		<send_cmd505>[{"apid":"2"},{"apid":"1"}]</send_cmd505>
+        <ok505>OK</ok505>
+		<act505>00</act505>
+		<ret505>SUCCESS</ret505>
+
+		<type506>AP_INFO</type506>
+		<send_cmd506>[{"apid":"99"}]</send_cmd506>
+        <ok506>OK</ok506>
+		<act506>05</act506>
+		<ret506>AP_NOT_EXIST</ret506>
+
+		<type507>AP_INFO</type507>
+		<send_cmd507>[{"apid":"99"},{"apid":"1"}]</send_cmd507>
+        <ok507>OK</ok507>
+		<act507>05</act507>
+		<ret507>AP_NOT_EXIST</ret507>
+
+		<type508>AP_INFO</type508>
+		<send_cmd508>[{"apid":""}]</send_cmd508>
+        <ok508>OK</ok508>
+		<act508>05</act508>
+		<ret508>AP_NONE</ret508>
+
+		<type509>AP_INFO</type509>
+		<send_cmd509>[{"apid":"1汉字"}]</send_cmd509>
+        <ok509>OK</ok509>
+		<act509>12</act509>
+		<ret509>ENCODE_ARG_ERR</ret509>
+
+		<type510>AP_INFO</type510>
+		<send_cmd510>[{"apid":"1 "}]</send_cmd510>
+        <ok510>OK</ok510>
+		<act510>05</act510>
+		<ret510>AP_FMT_ERR</ret510>
+
+		<type511>AP_INFO</type511>
+		<send_cmd511>[{"apid":"1	"}]</send_cmd511>
+        <ok511>OK</ok511>
+		<act511>05</act511>
+		<ret511>AP_FMT_ERR</ret511>
+
+		<type512>AP_INFO</type512>
+		<send_cmd512>[{"apid":"#1*"}]</send_cmd512>
+        <ok512>OK</ok512>
+		<act512>05</act512>
+		<ret512>AP_FMT_ERR</ret512>
+
+		<type513>AP_INFO</type513>
+		<send_cmd513>[{"apid":".1"}]</send_cmd513>
+        <ok513>OK</ok513>
+		<act513>05</act513>
+		<ret513>AP_FMT_ERR</ret513>
+
+		<type514>AP_INFO</type514>
+		<send_cmd514>[{"apid":"-1"}]</send_cmd514>
+        <ok514>OK</ok514>
+		<act514>05</act514>
+		<ret514>AP_FMT_ERR</ret514>
+
+		<type515>AP_INFO</type515>
+		<send_cmd515>[{"apid":"12121121211212112121121211212112121121211212112121121211212112121121211212112121121211212112121121211212112121121211212112121121211212112121121211212112121121211212112121121211212112121121211212112121121211212112121121211212112121121211212112121121211212"}]</send_cmd515>
+        <ok515>OK</ok515>
+		<act515>05</act515>
+		<ret515>AP_NOT_EXIST</ret515>
+
+		<type516>AP_INFO</type516>
+		<send_cmd516>[{"apid":"121211212112121121211212112121121211212112121121211212112121121211212112121121211212112121121211212112121121211212112121121211212112121121211212112121121211212112121121211212112121121211212112121121211212112121121211212112121121211212112121121211212112121"}]</send_cmd516>
+        <ok516>OK</ok516>
+		<act516>05</act516>
+		<ret516>AP_NOT_EXIST</ret516>
+
+		<type517>AP_INFO</type517>
+		<send_cmd517>[{"apid":"1212112121121211212112121121211212112121121211212112121121211212112121121211212112121121211212112121121211212112121121211212112121121211212112121121211212112121121211212112121121211212112121121211212112121121211212112121121211212112121121211212112121121232"}]</send_cmd517>
+        <ok517>OK</ok517>
+		<act517>05</act517>
+		<ret517>AP_NOT_EXIST</ret517>
+
+		<type518>AP_INFO</type518>
+		<send_cmd518>[{"":"1"}]</send_cmd518>
+        <ok518>OK</ok518>
+		<act518>05</act518>
+		<ret518>AP_NONE</ret518>
+
+		<type519>AP_INFO</type519>
+		<send_cmd519>[{"cadilac":"1"}]</send_cmd519>
+        <ok519>OK</ok519>
+		<act519>05</act519>
+		<ret519>AP_NONE</ret519>
+		
+		<type520>AP_LIST</type520>
+		<send_cmd520>[{"apid":"1","esl_list":[],"group":[]}]</send_cmd520>
+        <ok520>OK</ok520>
+		<act520>00</act520>
+		<ret520>SUCCESS</ret520>
+
+		<type521>AP_LIST</type521>
+		<send_cmd521>[{"apid":"1","esl_list":[]},{"apid":"2","group":[]}]</send_cmd521>
+        <ok521>OK</ok521>
+		<act521>00</act521>
+		<ret521>SUCCESS</ret521>
+
+		<type522>AP_LIST</type522>
+		<send_cmd522>[{"apid":"99","esl_list":[],"group":[]}]</send_cmd522>
+        <ok522>OK</ok522>
+		<act522>05</act522>
+		<ret522>AP_NOT_EXIST</ret522>
+
+		<type523>AP_LIST</type523>
+		<send_cmd523>[{"apid":"1","esl_list":[],"group":[]}]</send_cmd523>
+        <ok523>OK</ok523>
+		<act523>00</act523>
+		<ret523>SUCCESS</ret523>
+
+		<type524>AP_LIST</type524>
+		<send_cmd524>[{"apid":"99","group":[]},{"apid":"1","esl_list":[]}]</send_cmd524>
+        <ok524>OK</ok524>
+		<act524>05</act524>
+		<ret524>AP_NOT_EXIST</ret524>
+
+		<type525>AP_LIST</type525>
+		<send_cmd525>[{"apid":"1","esl_list":[]},{"apid":"2","esl_list":[]},{"apid":"99","esl_list":[]}]</send_cmd525>
+        <ok525>OK</ok525>
+		<act525>00</act525>
+		<ret525>SUCCESS</ret525>
+
+		<type526>AP_LIST</type526>
+		<send_cmd526>[{"apid":"","esl_list":[]}]</send_cmd526>
+        <ok526>OK</ok526>
+		<act526>00</act526>
+		<ret526>SUCCESS</ret526>
+
+		<type527>AP_LIST</type527>
+		<send_cmd527>[{"apid":"汉2字","esl_list":[]}]</send_cmd527>
+        <ok527>OK</ok527>
+		<act527>12</act527>
+		<ret527>ENCODE_ARG_ERR</ret527>
+
+		<type528>AP_LIST</type528>
+		<send_cmd528>[{"apid":"2 ","esl_list":[]}]</send_cmd528>
+        <ok528>OK</ok528>
+		<act528>05</act528>
+		<ret528>AP_FMT_ERR</ret528>
+
+		<type529>AP_LIST</type529>
+		<send_cmd529>[{"apid":"2	","esl_list":[]}]</send_cmd529>
+        <ok529>OK</ok529>
+		<act529>05</act529>
+		<ret529>AP_FMT_ERR</ret529>
+
+		<type530>AP_LIST</type530>
+		<send_cmd530>[{"apid":"2^%$","esl_list":[]}]</send_cmd530>
+        <ok530>OK</ok530>
+		<act530>05</act530>
+		<ret530>AP_FMT_ERR</ret530>
+
+		<type531>AP_LIST</type531>
+		<send_cmd531>[{"apid":".2.","esl_list":[]}]</send_cmd531>
+        <ok531>OK</ok531>
+		<act531>05</act531>
+		<ret531>AP_FMT_ERR</ret531>
+
+		<type532>AP_LIST</type532>
+		<send_cmd532>[{"apid":".2","esl_list":[]}]</send_cmd532>
+        <ok532>OK</ok532>
+		<act532>05</act532>
+		<ret532>AP_FMT_ERR</ret532>
+
+		<type533>AP_LIST</type533>
+		<send_cmd533>[{"apid":"-2","esl_list":[]}]</send_cmd533>
+        <ok533>OK</ok533>
+		<act533>05</act533>
+		<ret533>AP_FMT_ERR</ret533>
+
+		<type534>AP_LIST</type534>
+		<send_cmd534>[{"apid":"11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111112","esl_list":[]}]</send_cmd534>
+        <ok534>OK</ok534>
+		<act534>05</act534>
+		<ret534>AP_NOT_EXIST</ret534>
+
+		<type535>AP_LIST</type535>
+		<send_cmd535>[{"apid":"111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111122","esl_list":[]}]</send_cmd535>
+        <ok535>OK</ok535>
+		<act535>05</act535>
+		<ret535>AP_NOT_EXIST</ret535>
+
+		<type536>AP_LIST</type536>
+		<send_cmd536>[{"apid":"1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111222","esl_list":[]}]</send_cmd536>
+        <ok536>OK</ok536>
+		<act536>05</act536>
+		<ret536>AP_NOT_EXIST</ret536>
+
+		<type537>AP_LIST</type537>
+		<send_cmd537>[{"ap":"2","esl_lt":[]}]</send_cmd537>
+        <ok537>OK</ok537>
+		<act537>00</act537>
+		<ret537>SUCCESS</ret537>
+
+		<type538>AP_LIST</type538>
+		<send_cmd538>[{"esl_list":[]}]</send_cmd538>
+        <ok538>OK</ok538>
+		<act538>00</act538>
+		<ret538>SUCCESS</ret538>
+
+		<type539>AP_LIST</type539>
+		<send_cmd539>[{"apid":"1"}]</send_cmd539>
+        <ok539>OK</ok539>
+		<act539>00</act539>
+		<ret539>SUCCESS</ret539>
+
+		<type540>AP_LIST</type540>
+		<send_cmd540>[{"":"2","":[]}]</send_cmd540>
+        <ok540>OK</ok540>
+		<act540>00</act540>
+		<ret540>SUCCESS</ret540>
+
+		<type541>AP_LIST</type541>
+		<send_cmd541>[{"ap":"2","esl_lt":[]}]</send_cmd541>
+        <ok541>OK</ok541>
+		<act541>00</act541>
+		<ret541>SUCCESS</ret541>
+		
+		<type542>AP_REPORT</type542>     
+		<send_cmd542>[{"bind":[]}]</send_cmd542>
+        <ok542>OK</ok542>
+		<act542>00</act542>
+		<ret542>SUCCESS</ret542>	
+
+		<type543>AP_REPORT</type543>     
+		<send_cmd543>[{"bind":[],"group":[],"transmission":[]}, {}]</send_cmd543>
+        <ok543>OK</ok543>
+		<act543>00</act543>
+		<ret543>SUCCESS</ret543>
+
+		<type544>AP_REPORT</type544>     
+		<send_cmd544>[{"bind":[],"salesno":[]}]</send_cmd544>
+        <ok544>OK</ok544>
+		<act544>00</act544>
+		<ret544>SUCCESS</ret544>
+
+		<type545>AP_REPORT</type545>     
+		<send_cmd545>[{"bind":[]}]</send_cmd545>	
+        <ok545>OK</ok545>
+		<act545>00</act545>
+		<ret545>SUCCESS</ret545>
+
+		<type546>AP_REPORT</type546>     
+		<send_cmd546>[{"bind":[],"ap_status":[],"group":[],"transmission":[]}]</send_cmd546>
+        <ok546>OK</ok546>
+		<act546>00</act546>
+		<ret546>SUCCESS</ret546>	
+
+		<type547>AP_REPORT</type547>     
+		<send_cmd547>[{"":[],"":[],"":[]}, {}]</send_cmd547>
+        <ok547>OK</ok547>
+		<act547>00</act547>
+		<ret547>SUCCESS</ret547>
+
+		<type548>AP_REPORT</type548>     
+		<send_cmd548>[{"bd":[],"gup":[],"trission":[]}, {}]</send_cmd548>
+        <ok548>OK</ok548>
+		<act548>00</act548>
+		<ret548>SUCCESS</ret548>	
+	
+		<type549>AP_QUERY</type549>     
+		<send_cmd549>[{"apid":"1"}]</send_cmd549>
+        <ok549>OK</ok549>
+		<act549>00</act549>
+		<ret549>SUCCESS</ret549>	
+
+		<type550>AP_QUERY</type550>     
+		<send_cmd550>[{"apid":"2"},{"apid":"1"}]</send_cmd550>
+        <ok550>OK</ok550>
+		<act550>00</act550>
+		<ret550>SUCCESS</ret550>	
+
+		<type551>AP_QUERY</type551>     
+		<send_cmd551>[{"apid":"55"}]</send_cmd551>
+        <ok551>OK</ok551>
+		<act551>05</act551>
+		<ret551>AP_NOT_EXIST</ret551>	
+
+		<type552>AP_QUERY</type552>     
+		<send_cmd552>[{"apid":"11"},{"apid":"1"}]</send_cmd552>
+        <ok552>OK</ok552>
+		<act552>05</act552>
+		<ret552>AP_NOT_EXIST</ret552>	
+
+		<type553>AP_QUERY</type553>     
+		<send_cmd553>[{"apid":""}]</send_cmd553>
+        <ok553>OK</ok553>
+		<act553>05</act553>
+		<ret553>AP_NONE</ret553>			
+
+		<type554>AP_QUERY</type554>     
+		<send_cmd554>[{"apid":"汉2字"}]</send_cmd554>
+        <ok554>OK</ok554>
+		<act554>12</act554>
+		<ret554>ENCODE_ARG_ERR</ret554>	
+
+		<type555>AP_QUERY</type555>     
+		<send_cmd555>[{"apid":" 1"}]</send_cmd555>
+        <ok555>OK</ok555>
+		<act555>00</act555>
+		<ret555>SUCCESS</ret555>	
+		
+		<type556>AP_QUERY</type556>     
+		<send_cmd556>[{"apid":"1	"}]</send_cmd556>
+        <ok556>OK</ok556>
+		<act556>00</act556>
+		<ret556>SUCCESS</ret556>
+
+		<type557>AP_QUERY</type557>     
+		<send_cmd557>[{"apid":"1%^$"}]</send_cmd557>
+        <ok557>OK</ok557>
+		<act557>05</act557>
+		<ret557>AP_FMT_ERR</ret557>
+
+		<type558>AP_QUERY</type558>     
+		<send_cmd558>[{"apid":"1."}]</send_cmd558>
+        <ok558>OK</ok558>
+		<act558>05</act558>
+		<ret558>AP_FMT_ERR</ret558>
+
+		<type559>AP_QUERY</type559>     
+		<send_cmd559>[{"apid":"-1"}]</send_cmd559>
+        <ok559>OK</ok559>
+		<act559>05</act559>
+		<ret559>AP_FMT_ERR</ret559>
+
+		<type560>AP_QUERY</type560>     
+		<send_cmd560>[{"apid":"22222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222"}]</send_cmd560>		
+        <ok560>OK</ok560>
+		<act560>05</act560>
+		<ret560>AP_NOT_EXIST</ret560>		
+		
+		
+		<type561>AP_QUERY</type561>     
+		<send_cmd561>[{"apid":"222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222"}]</send_cmd561>		
+        <ok561>OK</ok561>
+		<act561>05</act561>
+		<ret561>AP_NOT_EXIST</ret561>			
+		
+		<type562>AP_QUERY</type562>     
+		<send_cmd562>[{"apid":"2222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222"}]</send_cmd562>
+        <ok562>OK</ok562>
+		<act562>05</act562>
+		<ret562>AP_NOT_EXIST</ret562>		
+		
+		<type563>AP_QUERY</type563>     
+		<send_cmd563>[{"":"2"}]</send_cmd563>
+        <ok563>OK</ok563>
+		<act563>05</act563>
+		<ret563>AP_NONE</ret563>
+
+		<type564>AP_QUERY</type564>     
+		<send_cmd564>[{"appid":"2"}]</send_cmd564>
+        <ok564>OK</ok564>
+		<act564>05</act564>
+		<ret564>AP_NONE</ret564>			
+	
+		<type565>API_VERSION</type565>     
+		<send_cmd565>[{}]</send_cmd565>
+        <ok565>OK</ok565>
+		<act565>00</act565>
+		<ret565>SUCCESS</ret565>
+
+		<type566>API_VERSION</type566>     
+		<send_cmd566>[{"cadilac":"ats"}]</send_cmd566>
+        <ok566>OK</ok566>
+		<act566>00</act566>
+		<ret566>SUCCESS</ret566>		
+		
+		<type567>BIND_LIST</type567>     
+		<send_cmd567>[{"eslid":"54-72-C0-99"}]</send_cmd567>
+        <ok567>OK</ok567>
+		<act567>00</act567>
+		<ret567>SUCCESS</ret567>	
+
+		<type568>BIND_LIST</type568>     
+		<send_cmd568>[{"salesno":"1"}]</send_cmd568>
+        <ok568>OK</ok568>
+		<act568>00</act568>
+		<ret568>SUCCESS</ret568>	
+
+		<type569>BIND_LIST</type569>     
+		<send_cmd569>[{"apid":"1"}]</send_cmd569>
+        <ok569>OK</ok569>
+		<act569>00</act569>
+		<ret569>SUCCESS</ret569>	
+
+		<type570>BIND_LIST</type570>     
+		<send_cmd570>[{"eslid":"54-72-C0-99"},{"salesno":"2"},{"apid":"1"}]</send_cmd570>
+        <ok570>OK</ok570>
+		<act570>00</act570>
+		<ret570>SUCCESS</ret570>	
+
+		<type571>BIND_LIST</type571>     
+		<send_cmd571>[{"eslid":"54-72-C0-99"}]</send_cmd571>
+        <ok571>OK</ok571>
+		<act571>02</act571>
+		<ret571>ESL_BIND_NOT_EXIST</ret571>	
+
+		<type572>BIND_LIST</type572>     
+		<send_cmd572>[{"eslid":"51-FF-FF-99"}]</send_cmd572>
+        <ok572>OK</ok572>
+		<act572>02</act572>
+		<ret572>ESL_NOT_EXIST</ret572>
+
+		<type573>BIND_LIST</type573>     
+		<send_cmd573>[{"salesno":"2"}]</send_cmd573>
+        <ok573>OK</ok573>
+		<act573>00</act573>
+		<ret573>SUCCESS</ret573>	
+
+		<type574>BIND_LIST</type574>     
+		<send_cmd574>[{"salesno":"2"}]</send_cmd574>
+        <ok574>OK</ok574>
+		<act574>03</act574>
+		<ret574>PROD_NOT_EXIST</ret574>	
+
+		<type575>BIND_LIST</type575>     
+		<send_cmd575>[{"apid":"1"}]</send_cmd575>
+        <ok575>OK</ok575>
+		<act575>00</act575>
+		<ret575>SUCCESS</ret575>
+
+		<type576>BIND_LIST</type576>     
+		<send_cmd576>[{"apid":"2"}]</send_cmd576>
+        <ok576>OK</ok576>
+		<act576>00</act576>
+		<ret576>SUCCESS</ret576>
+
+		<type577>BIND_LIST</type577>     
+		<send_cmd577>[{"eslid":"51-EF-EF-99"},{"salesno":"1"},{"apid":"1"}]</send_cmd577>
+        <ok577>OK</ok577>
+		<act577>02</act577>
+		<ret577>ESL_NOT_EXIST</ret577>
+
+		<type578>BIND_LIST</type578>     
+		<send_cmd578>[{"salesno":"10"},{"eslid":"54-72-C0-99"},{"apid":"1"}]</send_cmd578>
+        <ok578>OK</ok578>
+		<act578>00</act578>
+		<ret578>SUCCESS</ret578>
+
+		<type579>BIND_LIST</type579>     
+		<send_cmd579>[{"eslid":"54-72-C0-99"},{"salesno":"2"},{"apid":"99"}]</send_cmd579>
+        <ok579>OK</ok579>
+		<act579>00</act579>
+		<ret579>SUCCESS</ret579>
+		
+		<type580>BIND_LIST</type580>     
+		<send_cmd580>[{"":"54-72-C0-99"},{"":"2"},{"":"1"}]</send_cmd580>
+        <ok580>OK</ok580>
+		<act580>00</act580>
+		<ret580>SUCCESS</ret580>
+
+		<type581>BIND_LIST</type581>     
+		<send_cmd581>[{"eid":"54-72-C0-99"},{"sesno":"1"},{"id":"1"}]</send_cmd581>
+        <ok581>OK</ok581>
+		<act581>00</act581>
+		<ret581>SUCCESS</ret581>	
+
+
+
+		
+		<type593>ESL_INFO</type593>     
+		<send_cmd593>[{"eslid":"54-72-C0-99"}]</send_cmd593>
+        <ok593>OK</ok593>
+		<act593>00</act593>
+		<ret593>SUCCESS</ret593>	
+		
+		<type594>ESL_INFO</type594>     
+		<send_cmd594>[{"eslid":"54-76-D9-99"},{"eslid":"54-72-C0-99"}]</send_cmd594>
+        <ok594>OK</ok594>
+		<act594>00</act594>
+		<ret594>SUCCESS</ret594>	
+		
+		<type595>ESL_INFO</type595>     
+		<send_cmd595>[{"eslid":"51-EF-EF-99"}]</send_cmd595>
+        <ok595>OK</ok595>
+		<act595>02</act595>
+		<ret595>ESL_NOT_EXIST</ret595>	
+		
+		<type596>ESL_INFO</type596>     
+		<send_cmd596>[{"eslid":"51-EF-EF-99"},{"eslid":"54-72-C0-99"}]</send_cmd596>
+        <ok596>OK</ok596>
+		<act596>02</act596>
+		<ret596>ESL_NOT_EXIST</ret596>			
+
+		<type597>ESL_INFO</type597>     
+		<send_cmd597>[{"eslid":""}]</send_cmd597>
+        <ok597>OK</ok597>
+		<act597>02</act597>
+		<ret597>ESL_NONE</ret597>	
+
+		<type598>ESL_INFO</type598>     
+		<send_cmd598>[{"eslid":"54-7汉字6-D9-99"}]</send_cmd598>
+        <ok598>OK</ok598>
+		<act598>12</act598>
+		<ret598>ENCODE_ARG_ERR</ret598>	
+
+		<type599>ESL_INFO</type599>     
+		<send_cmd599>[{"eslid":"5 4-72-C0-9 9"}]</send_cmd599>
+        <ok599>OK</ok599>
+		<act599>02</act599>
+		<ret599>ESL_FMT_ERR</ret599>	
+
+		<type600>ESL_INFO</type600>     
+		<send_cmd600>[{"eslid":"5	4-72-C0-99"}]</send_cmd600>
+        <ok600>OK</ok600>
+		<act600>02</act600>
+		<ret600>ESL_FMT_ERR</ret600>	
+
+		<type601>ESL_INFO</type601>     
+		<send_cmd601>[{"eslid":"54-7首2-C汉0-99"}]</send_cmd601>
+        <ok601>OK</ok601>
+		<act601>12</act601>
+		<ret601>ENCODE_ARG_ERR</ret601>	
+
+		<type602>ESL_INFO</type602>     
+		<send_cmd602>[{"eslid":"54-72-C0-"}]</send_cmd602>
+        <ok602>OK</ok602>
+		<act602>02</act602>
+		<ret602>ESL_FMT_ERR</ret602>	
+
+		<type603>ESL_INFO</type603>     
+		<send_cmd603>[{"eslid":"5472C099"}]</send_cmd603>
+        <ok603>OK</ok603>
+		<act603>02</act603>
+		<ret603>ESL_FMT_ERR</ret603>	
+
+		<type604>ESL_INFO</type604>     
+		<send_cmd604>[{"eslid":"5472C0"}]</send_cmd604>
+        <ok604>OK</ok604>
+		<act604>02</act604>
+		<ret604>ESL_FMT_ERR</ret604>	
+
+		<type605>ESL_INFO</type605>     
+		<send_cmd605>[{"eslid":"54-72-c0-99"}]</send_cmd605>
+        <ok605>OK</ok605>
+		<act605>00</act605>
+		<ret605>SUCCESS</ret605>	
+
+		<type606>ESL_INFO</type606>     
+		<send_cmd606>[{"eslid":"54.72.C0.99"}]</send_cmd606>
+        <ok606>OK</ok606>
+		<act606>02</act606>
+		<ret606>ESL_FMT_ERR</ret606>	
+
+		<type607>ESL_INFO</type607>     
+		<send_cmd607>[{"eslid":"-54-72-C0-99"}]</send_cmd607>
+        <ok607>OK</ok607>
+		<act607>02</act607>
+		<ret607>ESL_FMT_ERR</ret607>	
+
+		<type608>ESL_INFO</type608>     
+		<send_cmd608>[{"eslid":"54-72-C0-9954-72-C0-9954-72-C0-9954-72-C0-9954-72-C0-9954-72-C0-9954-72-C0-9954-72-C0-9954-72-C0-9954-72-C0-9954-72-C0-9954-72-C0-9954-72-C0-9954-72-C0-9954-72-C0-9954-72-C0-9954-72-C0-9954-72-C0-9954-72-C0-9954-72-C0-9954-72-C0-9954-72-C0-9954-72-C0-999"}]</send_cmd608>
+        <ok608>OK</ok608>
+		<act608>02</act608>
+		<ret608>ESL_FMT_ERR</ret608>	
+
+		<type609>ESL_INFO</type609>     
+		<send_cmd609>[{"eslid":"54-72-C0-9954-72-C0-9954-72-C0-9954-72-C0-9954-72-C0-9954-72-C0-9954-72-C0-9954-72-C0-9954-72-C0-9954-72-C0-9954-72-C0-9954-72-C0-9954-72-C0-9954-72-C0-9954-72-C0-9954-72-C0-9954-72-C0-9954-72-C0-9954-72-C0-9954-72-C0-9954-72-C0-9954-72-C0-9954-72-C0-9995"}]</send_cmd609>
+        <ok609>OK</ok609>
+		<act609>02</act609>
+		<ret609>ESL_FMT_ERR</ret609>	
+		
+		<type610>ESL_INFO</type610>     
+		<send_cmd610>[{"eslid":"54-76-D9-9954-76-D9-9954-76-D9-9954-76-D9-9954-76-D9-9954-76-D9-9954-76-D9-9954-76-D9-9954-76-D9-9954-76-D9-9954-76-D9-9954-76-D9-9954-76-D9-9954-76-D9-9954-76-D9-9954-76-D9-9954-76-D9-9954-76-D9-9954-76-D9-9954-76-D9-9954-76-D9-9954-76-D9-9954-76-D9-99595"}]</send_cmd610>
+        <ok610>OK</ok610>
+		<act610>02</act610>
+		<ret610>ESL_FMT_ERR</ret610>	
+	
+		<type611>ESL_INFO</type611>     
+		<send_cmd611>[{"eslid":"54-72-C0-99"}]</send_cmd611>
+        <ok611>OK</ok611>
+		<act611>00</act611>
+		<ret611>SUCCESS</ret611>	
+
+		<type612>ESL_INFO</type612>     
+		<send_cmd612>[{"eslid":"54-72-C0-99"}]</send_cmd612>
+        <ok612>OK</ok612>
+		<act612>00</act612>
+		<ret612>SUCCESS</ret612>	
+
+		<type613>ESL_INFO</type613>     
+		<send_cmd613>[{"":"54-72-C0-99"}]</send_cmd613>
+        <ok613>OK</ok613>
+		<act613>02</act613>
+		<ret613>ESL_NONE</ret613>	
+
+		<type614>ESL_INFO</type614>     
+		<send_cmd614>[{"cadilid":"54-72-C0-99"}]</send_cmd614>
+        <ok614>OK</ok614>
+		<act614>02</act614>
+		<ret614>ESL_NONE</ret614>		
+
+		<type615>ESL_LIST</type615>     
+		<send_cmd615>[{"eslid":"54-72-C0-99"}]</send_cmd615>
+        <ok615>OK</ok615>
+		<act615>00</act615>
+		<ret615>SUCCESS</ret615>	
+
+		<type616>ESL_LIST</type616>     
+		<send_cmd616>[{"eslid":"50-28-A8-01"},{"eslid":"54-72-C0-99"}]</send_cmd616>
+        <ok616>OK</ok616>
+		<act616>00</act616>
+		<ret616>SUCCESS</ret616>
+
+		<type617>ESL_LIST</type617>     
+		<send_cmd617>[{"eslid":"51-EF-EF-99"}]</send_cmd617>
+        <ok617>OK</ok617>
+		<act617>02</act617>
+		<ret617>ESL_NOT_EXIST</ret617>
+
+		<type618>ESL_LIST</type618>     
+		<send_cmd618>[{"eslid":"51-EF-EF-99"},{"eslid":"54-72-C0-99"}]</send_cmd618>
+        <ok618>OK</ok618>
+		<act618>02</act618>
+		<ret618>ESL_NOT_EXIST</ret618>
+
+		<type619>ESL_LIST</type619>     
+		<send_cmd619>[{"eslid":""}]</send_cmd619>
+        <ok619>OK</ok619>
+		<act619>02</act619>
+		<ret619>ESL_NONE</ret619>
+
+		<type620>ESL_LIST</type620>     
+		<send_cmd620>[{"eslid":"51-C汉字3-EF-99"}]</send_cmd620>
+        <ok620>OK</ok620>
+		<act620>02</act620>
+		<ret620>ESL_FMT_ERR</ret620>
+
+		<type621>ESL_LIST</type621>     
+		<send_cmd621>[{"eslid":"51-C3-E F-99"}]</send_cmd621>
+        <ok621>OK</ok621>
+		<act621>02</act621>
+		<ret621>ESL_FMT_ERR</ret621>	
+
+		<type622>ESL_LIST</type622>     
+		<send_cmd622>[{"eslid":"51-C3-E		F-99"}]</send_cmd622>
+        <ok622>OK</ok622>
+		<act622>02</act622>
+		<ret622>ESL_FMT_ERR</ret622>	
+
+		<type623>ESL_LIST</type623>     
+		<send_cmd623>[{"eslid":"51-C$3-E#F-99"}]</send_cmd623>
+        <ok623>OK</ok623>
+		<act623>02</act623>
+		<ret623>ESL_FMT_ERR</ret623>	
+
+		<type624>ESL_LIST</type624>     
+		<send_cmd624>[{"eslid":"51-C3-EF"}]</send_cmd624>
+        <ok624>OK</ok624>
+		<act624>02</act624>
+		<ret624>ESL_FMT_ERR</ret624>	
+
+		<type625>ESL_LIST</type625>     
+		<send_cmd625>[{"eslid":"51C3EF99"}]</send_cmd625>
+        <ok625>OK</ok625>
+		<act625>02</act625>
+		<ret625>ESL_FMT_ERR</ret625>	
+
+		<type626>ESL_LIST</type626>     
+		<send_cmd626>[{"eslid":"51C3EF"}]</send_cmd626>
+        <ok626>OK</ok626>
+		<act626>02</act626>
+		<ret626>ESL_FMT_ERR</ret626>
+
+		<type627>ESL_LIST</type627>     
+		<send_cmd627>[{"eslid":"51-c4-5d-99"}]</send_cmd627>
+        <ok627>OK</ok627>
+		<act627>00</act627>
+		<ret627>SUCCESS</ret627>	
+
+		<type628>ESL_LIST</type628>     
+		<send_cmd628>[{"eslid":"51.C.3.EF.99"}]</send_cmd628>
+        <ok628>OK</ok628>
+		<act628>02</act628>
+		<ret628>ESL_FMT_ERR</ret628>
+
+		<type629>ESL_LIST</type629>     
+		<send_cmd629>[{"eslid":"-54-76-D9-99"}]</send_cmd629>
+        <ok629>OK</ok629>
+		<act629>02</act629>
+		<ret629>ESL_FMT_ERR</ret629>		
+
+		<type630>ESL_LIST</type630>     
+		<send_cmd630>[{"eslid":"11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111112"}]</send_cmd630>
+        <ok630>OK</ok630>
+		<act630>02</act630>
+		<ret630>ESL_FMT_ERR</ret630>	
+
+		<type631>ESL_LIST</type631>     
+		<send_cmd631>[{"eslid":"111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111112"}]</send_cmd631>
+        <ok631>OK</ok631>
+		<act631>02</act631>
+		<ret631>ESL_FMT_ERR</ret631>	
+
+		<type632>ESL_LIST</type632>     
+		<send_cmd632>[{"eslid":"1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111112"}]</send_cmd632>
+        <ok632>OK</ok632>
+		<act632>02</act632>
+		<ret632>ESL_FMT_ERR</ret632>		
+
+		<type633>ESL_LIST</type633>     
+		<send_cmd633>[{"":"54-76-D9-99"}]</send_cmd633>
+        <ok633>OK</ok633>
+		<act633>02</act633>
+		<ret633>ESL_NONE</ret633>	
+
+		<type634>ESL_LIST</type634>     
+		<send_cmd634>[{"esl":"54-76-D9-99"}]</send_cmd634>
+        <ok634>OK</ok634>
+		<act634>02</act634>
+		<ret634>ESL_NONE</ret634>		
+
+		<type635>ESL_QUERY</type635>     
+		<send_cmd635>[{"eslid":"54-72-C0-99"}]</send_cmd635>
+        <ok635>OK</ok635>
+		<act635>00</act635>
+		<ret635>SUCCESS</ret635>	
+
+		<type636>ESL_QUERY</type636>     
+		<send_cmd636>[{"eslid":"54-72-C0-99"},{"eslid":"54-76-D9-99"}]</send_cmd636>
+        <ok636>OK</ok636>
+		<act636>00</act636>
+		<ret636>SUCCESS</ret636>
+
+		<type637>ESL_QUERY</type637>     
+		<send_cmd637>[{"eslid":"54-72-C0-99"}]</send_cmd637>
+        <ok637>OK</ok637>
+		<act637>02</act637>
+		<ret637>ESL_BIND_NOT_EXIST</ret637>	
+
+		<type638>ESL_QUERY</type638>     
+		<send_cmd638>[{"eslid":"51-EF-EF-99"}]</send_cmd638>
+        <ok638>OK</ok638>
+		<act638>02</act638>
+		<ret638>ESL_NOT_EXIST</ret638>	
+
+		<type639>ESL_QUERY</type639>     
+		<send_cmd639>[{"eslid":"51-EF-EF-99"}]</send_cmd639>
+        <ok639>OK</ok639>
+		<act639>02</act639>
+		<ret639>ESL_NOT_EXIST</ret639>	
+
+		<type640>ESL_QUERY</type640>     
+		<send_cmd640>[{"eslid":"54-FF-FF-99"},{"eslid":"54-72-C0-99"}]</send_cmd640>
+        <ok640>OK</ok640>
+		<act640>02</act640>
+		<ret640>ESL_NOT_EXIST</ret640>	
+
+		<type641>ESL_QUERY</type641>     
+		<send_cmd641>[{"eslid":"51-EF-EF-99"},{"eslid":"54-72-C0-99"}]</send_cmd641>
+        <ok641>OK</ok641>
+		<act641>02</act641>
+		<ret641>ESL_NOT_EXIST</ret641>
+
+		<type642>ESL_QUERY</type642>     
+		<send_cmd642>[{"eslid":"51-EF-EF-99"},{"eslid":"54-72-C0-99"}]</send_cmd642>
+        <ok642>OK</ok642>
+		<act642>02</act642>
+		<ret642>ESL_NOT_EXIST</ret642>
+
+		<type643>ESL_QUERY</type643>     
+		<send_cmd643>[{"eslid":""}]</send_cmd643>
+        <ok643>OK</ok643>
+		<act643>02</act643>
+		<ret643>ESL_NONE</ret643>
+
+		<type644>ESL_QUERY</type644>     
+		<send_cmd644>[{"eslid":"51-C4-5字D-汉99"}]</send_cmd644>
+        <ok644>OK</ok644>
+		<act644>12</act644>
+		<ret644>ENCODE_ARG_ERR</ret644>
+
+		<type645>ESL_QUERY</type645>     
+		<send_cmd645>[{"eslid":"51-C4-5 D-99"}]</send_cmd645>
+        <ok645>OK</ok645>
+		<act645>02</act645>
+		<ret645>ESL_FMT_ERR</ret645>	
+
+		<type646>ESL_QUERY</type646>     
+		<send_cmd646>[{"eslid":"51-C4-5		D-99"}]</send_cmd646>
+        <ok646>OK</ok646>
+		<act646>02</act646>
+		<ret646>ESL_FMT_ERR</ret646>
+	
+		<type647>ESL_QUERY</type647>     
+		<send_cmd647>[{"eslid":"51-C4-5#$D-99"}]</send_cmd647>
+        <ok647>OK</ok647>
+		<act647>02</act647>
+		<ret647>ESL_FMT_ERR</ret647>
+
+		<type648>ESL_QUERY</type648>     
+		<send_cmd648>[{"eslid":"51-C4-5D-"}]</send_cmd648>
+        <ok648>OK</ok648>
+		<act648>02</act648>
+		<ret648>ESL_FMT_ERR</ret648>		
+
+		<type649>ESL_QUERY</type649>     
+		<send_cmd649>[{"eslid":"51C45D99"}]</send_cmd649>
+        <ok649>OK</ok649>
+		<act649>02</act649>
+		<ret649>ESL_FMT_ERR</ret649>	
+
+		<type650>ESL_QUERY</type650>     
+		<send_cmd650>[{"eslid":"51C45D"}]</send_cmd650>
+        <ok650>OK</ok650>
+		<act650>02</act650>
+		<ret650>ESL_FMT_ERR</ret650>	
+
+		<type651>ESL_QUERY</type651>     
+		<send_cmd651>[{"eslid":"54-72-c0-99"}]</send_cmd651>
+        <ok651>OK</ok651>
+		<act651>00</act651>
+		<ret651>SUCCESS</ret651>	
+
+		<type652>ESL_QUERY</type652>     
+		<send_cmd652>[{"eslid":"51.C4.5D.99"}]</send_cmd652>
+        <ok652>OK</ok652>
+		<act652>02</act652>
+		<ret652>ESL_FMT_ERR</ret652>
+
+		<type653>ESL_QUERY</type653>     
+		<send_cmd653>[{"eslid":"-54-72-C0-99"}]</send_cmd653>
+        <ok653>OK</ok653>
+		<act653>02</act653>
+		<ret653>ESL_FMT_ERR</ret653>	
+
+		<type654>ESL_QUERY</type654>     
+		<send_cmd654>[{"eslid":"5D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-995"}]</send_cmd654>
+        <ok654>OK</ok654>
+		<act654>02</act654>
+		<ret654>ESL_FMT_ERR</ret654>	
+
+		<type655>ESL_QUERY</type655>     
+		<send_cmd655>[{"eslid":"5D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-9955"}]</send_cmd655>
+        <ok655>OK</ok655>
+		<act655>02</act655>
+		<ret655>ESL_FMT_ERR</ret655>
+
+		<type656>ESL_QUERY</type656>     
+		<send_cmd656>[{"eslid":"5D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-995D-CE-DE-99555"}]</send_cmd656>
+        <ok656>OK</ok656>
+		<act656>02</act656>
+		<ret656>ESL_FMT_ERR</ret656>
+		
+		<type657>ESL_QUERY</type657>     
+		<send_cmd657>[{"":"54-72-C0-99"}]</send_cmd657>
+        <ok657>OK</ok657>
+		<act657>02</act657>
+		<ret657>ESL_NONE</ret657>
+		
+		<type658>ESL_QUERY</type658>     
+		<send_cmd658>[{"cadi":"54-72-C0-99"}]</send_cmd658>
+        <ok658>OK</ok658>
+		<act658>02</act658>
+		<ret658>ESL_NONE</ret658>
+
+		<type659>ESL_QUERY_REALTIME</type659>     
+		<send_cmd659>[{"eslid":"54-72-C0-99"}]</send_cmd659>
+        <ok659>OK</ok659>
+		<act659>00</act659>
+		<ret659>SUCCESS</ret659>	
+
+		<type660>ESL_QUERY_REALTIME</type660>     
+		<send_cmd660>[{"eslid":"54-76-D9-99"},{"eslid":"54-72-C0-99"}]</send_cmd660>
+        <ok660>OK</ok660>
+		<act660>00</act660>
+		<ret660>SUCCESS</ret660>
+
+		<type661>ESL_QUERY_REALTIME</type661>     
+		<send_cmd661>[{"eslid":"54-72-C0-99"},{"eslid":"54-72-C0-99"}]</send_cmd661>
+        <ok661>OK</ok661>
+		<act661>00</act661>
+		<ret661>SUCCESS</ret661>	
+
+		<type662>ESL_QUERY_REALTIME</type662>     
+		<send_cmd662>[{"eslid":"51-EF-EF-99"}]</send_cmd662>
+        <ok662>OK</ok662>
+		<act662>02</act662>
+		<ret662>ESL_NOT_EXIST</ret662>		
+
+		<type663>ESL_QUERY_REALTIME</type663>     
+		<send_cmd663>[{"eslid":"54-72-C0-99"},{"eslid":"51-EF-EF-99"}]</send_cmd663>
+        <ok663>OK</ok663>
+		<act663>00</act663>
+		<ret663>SUCCESS</ret663>
+		
+		<type664>ESL_QUERY_REALTIME</type664>     
+		<send_cmd664>[{"eslid":""}]</send_cmd664>
+        <ok664>OK</ok664>
+		<act664>02</act664>
+		<ret664>ESL_NONE</ret664>		
+
+		<type665>ESL_QUERY_REALTIME</type665>     
+		<send_cmd665>[{"eslid":"51-C汉字3-EF-99"}]</send_cmd665>
+        <ok665>OK</ok665>
+		<act665>12</act665>
+		<ret665>ENCODE_ARG_ERR</ret665>
+		
+		<type666>ESL_QUERY_REALTIME</type666>     
+		<send_cmd666>[{"eslid":"51-C 3-EF-99"}]</send_cmd666>
+        <ok666>OK</ok666>
+		<act666>02</act666>
+		<ret666>ESL_FMT_ERR</ret666>	
+
+		<type667>ESL_QUERY_REALTIME</type667>     
+		<send_cmd667>[{"eslid":"54-7	6-D9-99"}]</send_cmd667>
+        <ok667>OK</ok667>
+		<act667>02</act667>
+		<ret667>ESL_FMT_ERR</ret667>			
+
+		<type668>ESL_QUERY_REALTIME</type668>     
+		<send_cmd668>[{"eslid":"51-C#3-E%F-99"}]</send_cmd668>
+        <ok668>OK</ok668>
+		<act668>02</act668>
+		<ret668>ESL_FMT_ERR</ret668>	
+		
+		<type669>ESL_QUERY_REALTIME</type669>     
+		<send_cmd669>[{"eslid":"51-C3-EF"}]</send_cmd669>
+        <ok669>OK</ok669>
+		<act669>02</act669>
+		<ret669>ESL_FMT_ERR</ret669>	
+
+		<type670>ESL_QUERY_REALTIME</type670>     
+		<send_cmd670>[{"eslid":"51C3EF99"}]</send_cmd670>
+        <ok670>OK</ok670>
+		<act670>02</act670>
+		<ret670>ESL_FMT_ERR</ret670>	
+		
+		<type671>ESL_QUERY_REALTIME</type671>     
+		<send_cmd671>[{"eslid":"51C3EF"}]</send_cmd671>
+        <ok671>OK</ok671>
+		<act671>02</act671>
+		<ret671>ESL_FMT_ERR</ret671>	
+
+		<type672>ESL_QUERY_REALTIME</type672>     
+		<send_cmd672>[{"eslid":"54-72-c0-99"}]</send_cmd672>
+        <ok672>OK</ok672>
+		<act672>02</act672>
+		<ret672>ESL_NOT_EXIST</ret672>	
+		
+		<type673>ESL_QUERY_REALTIME</type673>     
+		<send_cmd673>[{"eslid":"51.C3.EF.99"}]</send_cmd673>
+        <ok673>OK</ok673>
+		<act673>02</act673>
+		<ret673>ESL_FMT_ERR</ret673>	
+
+		<type674>ESL_QUERY_REALTIME</type674>     
+		<send_cmd674>[{"eslid":"-54-76-D9-99"}]</send_cmd674>
+        <ok674>OK</ok674>
+		<act674>02</act674>
+		<ret674>ESL_FMT_ERR</ret674>	
+
+		<type675>ESL_QUERY_REALTIME</type675>     
+		<send_cmd675>[{"eslid":"11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111112"}]</send_cmd675>
+        <ok675>OK</ok675>
+		<act675>02</act675>
+		<ret675>ESL_FMT_ERR</ret675>	
+
+		<type676>ESL_QUERY_REALTIME</type676>     
+		<send_cmd676>[{"eslid":"111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111112"}]</send_cmd676>
+        <ok676>OK</ok676>
+		<act676>02</act676>
+		<ret676>ESL_FMT_ERR</ret676>
+
+		<type677>ESL_QUERY_REALTIME</type677>     
+		<send_cmd677>[{"eslid":"1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111112"}]</send_cmd677>
+        <ok677>OK</ok677>
+		<act677>02</act677>
+		<ret677>ESL_FMT_ERR</ret677>	
+
+		<type678>ESL_QUERY_REALTIME</type678>     
+		<send_cmd678>[{"esld":"54-76-D9-99"}]</send_cmd678>
+        <ok678>OK</ok678>
+		<act678>02</act678>
+		<ret678>ESL_NONE</ret678>		
+
+		<type679>ESL_QUERY_REALTIME</type679>     
+		<send_cmd679>[{"":"54-76-D9-99"}]</send_cmd679>
+        <ok679>OK</ok679>
+		<act679>02</act679>
+		<ret679>ESL_NONE</ret679>		
+
+		<type680>ESL_QUERY_REALTIME</type680>     
+		<send_cmd680>[{"eslid":"54-72-C0-99"}]</send_cmd680>
+        <ok680>OK</ok680>
+		<act680>02</act680>
+		<ret680>ESL_PROP_ERR</ret680>
+
+		<type683>ESL_REPORT</type683>     
+		<send_cmd683>[{"bind":[]}]</send_cmd683>
+        <ok683>OK</ok683>
+		<act683>00</act683>
+		<ret683>SUCCESS</ret683>
+
+		<type684>ESL_REPORT</type684>     
+		<send_cmd684>[{"bind":[],"esl_status":[],"battery":[],"transmission":[]},{}]</send_cmd684>
+        <ok684>OK</ok684>
+		<act684>00</act684>
+		<ret684>SUCCESS</ret684>
+
+		<type686>ESL_REPORT</type686>     
+		<send_cmd686>[{"binds":[]}]</send_cmd686>
+        <ok686>OK</ok686>
+		<act686>00</act686>
+		<ret686>SUCCESS</ret686>	
+
+		<type685>ESL_REPORT</type685>     
+		<send_cmd685>[{"bind":[],"esl_status":[],"battery":[],"tsransmission":[]},{}]</send_cmd685>
+        <ok685>OK</ok685>
+		<act685>00</act685>
+		<ret685>SUCCESS</ret685>
+
+		<type687>ESL_REPORT</type687>     
+		<send_cmd687>[{"bind":[],"esl_status":[],"battery":[],"salesno":[]},{}]</send_cmd687>
+        <ok687>OK</ok687>
+		<act687>00</act687>
+		<ret687>SUCCESS</ret687>	
+
+		<type688>ESL_REPORT</type688>     
+		<send_cmd688>[{"":[],"":[],"":[],"":[]},{}]</send_cmd688>
+        <ok688>OK</ok688>
+		<act688>00</act688>
+		<ret688>SUCCESS</ret688>	
+
+		<type689>ESL_REPORT</type689>     
+		<send_cmd689>[{"bd":[],"esl_atus":[],"bat":[],"transmission":[]},{}]</send_cmd689>
+        <ok689>OK</ok689>
+		<act689>00</act689>
+		<ret689>SUCCESS</ret689>
+
+		<type718>GET_AP_LEVEL</type718>
+        <send_cmd718>[{'eslid':'54-72-C0-99'}]</send_cmd718>
+        <ok718>OK</ok718>
+		<act718>54-72-C0-99</act718>
+		<ret718>SUCCESS</ret718>
+
+		<type719>GET_AP_LEVEL</type719>
+        <send_cmd719>[{'eslid':'54-72-C0-99'},{'eslid':'54-76-D9-99'}]</send_cmd719>
+        <ok719>OK</ok719>
+		<act719>54-72-C0-99</act719>
+		<ret719>SUCCESS</ret719>
+
+
+
+
+
+		
+		<type738>HELLO</type738>
+        <send_cmd738>[]</send_cmd738>
+        <ok738>O</ok738>
+		<act738>00</act738>
+		<ret738>SUCCESS</ret738>	
+	
+		<type739>HELLO</type739>
+        <send_cmd739>[{"fk":"yo"}]</send_cmd739>
+        <ok739>O</ok739>
+		<act739>00</act739>
+		<ret739>SUCCESS</ret739>		
+	
+	</testdata2>
+	
+</API>

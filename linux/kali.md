@@ -261,7 +261,7 @@ C7EDCC
 vi /etc/ssh/sshd_config
 GatewayPorts yes
 
-ssh -fCNR 9891:localhost:8920 root@youip
+ssh -fCNR 9891:localhost:8920 root@118.25.78.198
 ssh root@localhost -p7000
 
 
@@ -326,7 +326,7 @@ export LD_LIBRARY_PATH=/home/joker/program/orcl
 # chkconfig: 2345 80 90
 # description:auto_run
 # start auto connect script as tiaozhuan
-ssh -fCNR 7000:localhost:22 root@118.45.*.*
+ssh -fCNR 7000:localhost:22 root@118.25.78.198
 
 [root@VM_0_7_centos ~]# crontab -e
 0 0 * * * /usr/local/qcloud/YunJing/YDCrontab.sh > /dev/null 2>&1 &
@@ -395,14 +395,14 @@ net.ipv4.tcp_congestion_control = bbr
 ### 内网反弹
 ```
 ras:
-[root@VM-0-7-centos ~]# ./chisel client -v 118.201.81.174:6666 R:0.0.0.0:8888:10.9.104.2:22
+[root@VM-0-7-centos ~]# ./chisel client -v 118.25.78.198:6666 R:0.0.0.0:8888:10.9.104.2:22
 service:
 [root@centos Python37]# ./chisel server -p 6666 --reverse
 host:
-[root@centos Python37]# ssh -p 8888 root@118.45.88.111
+[root@centos Python37]# ssh -p 8888 root@118.25.78.198
 ```
 
-### centos添加自动启动
+### centos6添加自动启动
 ```
 [root@VM-0-7-centos ~]# chmod +x /etc/rc.d/rc.local
 [root@VM-0-7-centos ~]# vi /etc/rc.d/rc.local

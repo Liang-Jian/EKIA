@@ -1,0 +1,626 @@
+show databases;
+use peiyou;
+use lx_sct123456;
+use lx_test60;
+show tables;
+
+
+
+select * from py_merchant_number
+
+select id from py_merchant_number where merchant_name='自动化测试商户号'
+
+select count(*) from py_classroom
+
+select * from py_school;
+
+# select * from py_school where id=493;
+select id from py_school where school_name='清水二中测试';
+
+select * from py_school where name=375;
+
+select * from py_classroom;
+
+select id from py_course_type where type_name='短期班' and school_id=1
+
+
+select * from py_course_type
+
+
+
+
+select distinct(subject_id) from py_course where school_id=375 and subject_name='语文';
+
+select * from py_campus where campus_name="测试数据报表校区" and campus_status=1;
+
+select id from py_campus where campus_name="建校WXhVd";
+
+
+
+
+
+select * from py_campus ;
+
+# 学校的相关 school_name
+select * from py_school where school_name='清水二中测试';
+
+select * from py_class_base where id=3461;
+
+select id from py_classroom where classroom_name='接口测试'
+
+select  * from py_class_change ;
+
+# select * from py_classroom where classroom_code=4933461;
+select id from py_classroom where classroom_name='testdemo';
+select * from py_classroom where classroom_name='建校WXhVd';
+select * from py_classroom where classroom_code='4933461';
+
+# 建课
+select * from py_classroom where classroom_name='testdemo';
+
+# 教师角色。 校长
+select * from py_role;
+
+#
+select * from py_class_base;
+
+
+select  * from py_school;
+
+# subjectid  subjectName
+select  * from py_school_rel where id=2143 and school_id=375;
+
+select  * from py_school_rel where id=2143 and school_id=375;
+
+# 秋季
+select  * from py_school_rel where  school_id=0 and key_name="秋季"
+
+select * from py_school where school_name='清水二中测试';
+select  * from py_school_rel where   key_name="秋季"
+
+
+
+
+
+# 学龄前
+select  id from py_school_rel where school_id=1 and key_name="语文"
+
+
+#
+
+
+# role id
+select  id from py_role where role_name='接自VgwUn';
+select * from py_role;
+#role type
+select role_type from py_role where role_name='教师'
+# role id
+select id from py_role where role_name='教师'
+${sql(select role_type from py_role where role_name='教师')}
+
+# 分配菜单权限
+
+select * from py_sys_user where id=5009;
+
+
+select id from py_school where school_name='清水二中测试'
+
+# 分配数据权限
+
+select id from py_sys_user where real_name='建员工eZ7ad';
+
+
+#商户号绑定
+
+select * from py_school_rel where school_id=375;
+select * from py_school_rel where key_name="考试课";
+
+
+
+# gradeid
+select * from py_school_rel where school_id=${flow("school_Id)} and key_name="大班";
+
+
+# 商户号绑定，查询出校区和其他地方
+select * from py_campus where id=453;
+select * from py_campus where campus_name='奎屯测试校区';
+select id from py_campus where campus_name='测试数据报表校区'
+
+campus_name='测试数据报表校区'
+
+select * from py_business_type ;
+
+
+# 查询出所有的省市代码
+select * from py_school where city_id=654000;
+select distinct(city_id),city_name from py_school;
+
+# 添加学生
+select * from py_students where current_school='伊利第一小学' and grade_id=25;
+select * from py_students where grade_id=25;
+select distinct(grade_id) from  py_students;
+
+
+# 更新学生性别 （编辑学生）
+select * from py_students where mobile=18713582783;
+select user_id from py_students where student_name='生KJVIG';
+select id from py_students where student_name='生KJVIG';
+select * from py_students where student_name='建学1ukzW';
+
+
+# 上课规律
+select * from py_class_rule where class_rule_name='自动化测试上课规律0001';
+
+# 新建长期班
+
+select * from py_course where course_Type_Id='467' and course_name='2020自动化测试添加课程长期班1';
+
+select * from py_course
+
+select * from py_class_base where id=3461;
+
+
+
+#year_id , year_name , subjectId , subjectName
+select distinct(year_id) from py_course where year_name=2020;
+select * from py_
+
+select * from py_course where school_id=375;
+select distinct(year_id) from py_course where school_name='清水二中测试';
+select * from py_school_rel where key_name='语文' and school_id=375
+
+# 新建 面授课-长期班
+select * from py_course where school_id=375;
+select school_id from py_course where school_name='清水二中测试' limit 1;
+select * from py_school_rel where school_id=375;
+select distinct(py_course.school_id) from py_course inner join py_school_rel on py_school_rel.school_id = py_course.school_id where py_course.school_name='清水二中测试'
+select * from py_course inner join py_school_rel on py_school_rel.school_id = py_course.school_id where py_course.school_name='清水二中测试' limit  1
+select course_type_id from py_course inner join py_sselect distinct(subject_id) from py_course inner join py_school_rel on py_school_rel.school_id = py_course.school_id where py_course.school_name='清水二中测试' and py_course.subject_name='语文'
+chool_rel on py_school_rel.school_id = py_course.school_id where py_course.school_name='清水二中测试' and py_course.course_type_name='公开课' limit 1
+# select key_id from py_course inner join py_school_rel on py_school_rel.school_id = py_course.school_id where py_course.school_name='清水二中测试' limit  1
+# school_id
+select start_time from py_class_rule where class_rule_name='自动化测试上课规律0001' limit 1
+
+# 新建 讲座
+select id from py_teacher where name='自动化老师1';
+select * from py_campus where campus_name='奎屯测试校区';
+select school_id from py_course where school_name='清水二中测试' limit 1
+select * from py_school_rel;
+select * from py_school;
+
+
+select *
+from py_user limit 555,100;
+
+select count(*) from py_teacher;
+select * from py_coupon where main_title='自动化代金券0002';
+select * from py_coupon limit 1;
+
+# 新建限时购
+select * from py_class_base where id=58106
+select * from py_class_base where course_name='2020寒假六年级物理' and class_name='2020寒假六年级物理不限短期常规'
+select * from py_class_base where class_name='2020寒假六年级物理不限短期常规'
+
+
+# classid  58106
+select * from py_class_base where  id = 58106
+select id from py_class_base where class_name='2020寒假六年级物理不限短期常规'
+
+
+# 联保优惠
+select id from py_school where school_name='清水二中测试';
+
+# 学生签到
+# id = 117936
+select * from py_class_base where   school_name='清水二中测试' and class_name='2020寒假初一数学在线班'
+
+select * from py_students where id=138426;
+
+select * from py_students where student_name like "生%";
+
+select count(*) from py_students where student_name like "生%";
+
+select * from py_students_sign;
+select * from py_school;
+select * from py_teacher;
+
+select * from py_class_base where class_name='在线课转班测试0226'
+
+select * from py_class_base where school_name='清水二中测试'
+
+
+# 班级状态更新 id
+# 488
+select * from py_class_base where id=488;
+select id from py_class_base where class_name='2019春天暑假初一数学勤学班童蝶'
+
+select * from py_course where course_Type_Id='467'
+select * from py_classroom;
+# 编辑长期班
+
+select id from py_classroom where classroom_name='${flow("classroomName")}'
+
+select * from py_class_base where course_name='2020自动化测试添加课程公开课4';
+select * from py_class_base where course_id=44994;
+
+# 新建捆绑报名 #
+# 薛--高三数学--测试班级
+select id from py_class_base where class_name='薛--高三数学--测试班级不限';
+select * from py_class_base where course_name='薛--高三数学--测试班级';
+select id from py_class_base where class_name='薛--高三语文--测试班级不限';
+select * from py_class_base where id=84045;
+
+# 创建订单 #
+# studentId
+select * from py_class_base where id=119172;
+select * from py_class_base where id=119241;
+
+select * from py_class_base where class_name='2020秋季一年级数学好学班' and teacher_name='马境鸿';
+
+#classid,
+select id from py_class_base where class_name='2020秋季一年级数学好学班' and teacher_name='马境鸿';
+# toPayMoney
+select class_price from py_class_base where class_name='2020秋季一年级数学好学班' and teacher_name='马境鸿';
+# totalAmount
+select class_price from py_class_base where class_name='2020秋季一年级数学好学班' and teacher_name='马境鸿';
+# schoolFee
+select school_fee from py_class_base where class_name='2020秋季一年级数学好学班' and teacher_name='马境鸿';
+# classFee
+select tuition_fee from py_class_base where class_name='2020秋季一年级数学好学班' and teacher_name='马境鸿';
+# studentId
+select id from py_students where student_name='建学1ukzW';
+# orderCourseIds
+select * from py_class_course where class_name='建长班eYKqR不限' and occupation_status=1
+select id from py_class_course where class_name='建长班eYKqR不限' and occupation_status=1 limit 1
+select id from py_class_course where class_name='建长班eYKqR不限' and occupation_status=1 limit 1,1
+
+
+#
+#
+# 3316 teacher_id
+select * from py_orders where student_id=290336;
+select * from py_teacher where id='3316'
+select * from py_teacher where name='建师FClwh'
+select * from py_teacher where name='马境鸿'
+
+select * from py_orders where student_id= 290381;
+select * from py_order_detail where student_name='建学1ukzW';
+select * from py_order_detail where student_name='建学1ukzW' and teacher_name='建师FClwh';
+
+# 支付订单 #
+
+# 1937341
+select * from py_order_detail where student_name='建学1ukzW';
+select user_mobile from py_order_detail where student_name='建学1ukzW' limit 1;
+
+select  id from py_order_detail where class_name='调课A7FsDB'
+
+select * from py_course where id=1642017
+
+select * from py_class_base where id=1642017;
+
+select * from py_order_course where id= 1642017;
+select * from py_order_course where id= 1642455;
+select * from py_order_course where student_id= 290381;
+select * from py_order_course where order_detail_id= 1937330;
+select * from py_order_course where order_detail_id= 1937331;
+select order_detail_id from py_order_course where student_id= 290336 limit 1;
+select * from py_order_course where student_id= 290336
+
+
+# 新建班级 #
+select * from py_class_base where teacher_id=5889
+# classTeacherId
+select id from py_teacher where name='建师oA6W0'
+# schoolId
+select id from py_school where school_name='清水二中测试';
+# gradeId
+select grade_Id from py_course where school_name='清水二中测试' and grade_name='小班' limit 1;
+# subjectId
+select subject_id from py_course where school_name='清水二中测试' and subject_name='语文' limit 1;
+# sectionId
+select section_id from py_course where school_name='清水二中测试' and section_name='学龄前' limit 1;
+# classroomId
+select classroom_id from py_class_base where classroom_name='接口测试' limit 1
+# campusId
+select id from py_campus where campus_name='测试数据报表校区'
+# year_id
+select year_id from py_course where year_name=2020 limit 1
+# seasonid
+select season_id from py_course where season_name='春季' limit 1
+# classDateCopy
+select start_time from py_class_rule where class_rule_name='自动化测试上课规律0001' limit 1;
+
+
+# 建班审核 #
+# classId
+select id from py_class_base where class_name='调课AykXnc' and delete_flag=0;
+
+# 建班复审 #
+# classId
+select id from py_class_base where class_name='退班' and delete_flag=0;
+
+
+# 课程上架 #
+# classId
+select id from py_class_base where class_name='退班' and delete_flag=0;
+
+
+
+# 学生签到 #
+# classId
+select id from py_class_base where class_name='建长班eYKqR不限' and teacher_name='建师FClwh'
+# courseId
+select id from py_class_course where class_name='建长班eYKqR不限' and occupation_status=1 limit 1
+# studentId
+select id from py_students where student_name='建学1ukzW';
+
+select id from py_class_course where class_name='长期班sf9xW' and occupation_status=1 limit 1
+
+
+select * from py_role_school
+
+
+
+# 新建转班 #
+# oldclassid
+select id from py_class_base where class_name='建长班eYKqR不限' and teacher_name='建师FClwh'
+select id from py_class_base where class_name='课ARFcfW' and teacher_name='建师FClwh'
+select * from py_class_base where class_name='调课AHD6Gy'
+# studentId
+select id from py_students where student_name='建学1ukzW';
+# classStudentId
+
+select id from py_order_class where student_id=290419
+# orderDetailId
+select distinct(order_detail_id) from py_order_course where student_id= (select id from py_students where student_name='建学1ukzW') and source_type=2;
+select distinct(order_detail_id) from py_order_course where student_id=290395;
+# userId
+select distinct(user_id) from py_order_course where student_id= (select id from py_students where student_name='建学1ukzW') and source_type=2;
+select distinct(user_id) from py_order_course where student_id=290395 and source_type=2;
+select distinct(user_id) from py_order_course where student_id=290428
+# newClassId
+select id from py_class_base where class_name='建长班Ijcy2不限'
+
+select distinct(order_detail_id) from py_order_course where student_id=290381 and source_type=2
+
+select * from py_order_course where student_id=290381
+
+
+# 新建调课 #
+# oldclassid
+select id from py_class_base where class_name='课ARFcfW'
+select * from py_class_base where id=144984
+
+# studentId
+select id from py_students where student_name='建学yLwct';
+# classStudentId
+select id from py_order_class where student_name='建学yLwct';
+# orderDetailId
+select distinct(order_detail_id) from py_order_course where student_id= (select id from py_students where student_name='建学yLwct') and source_type=2;
+select distinct(order_detail_id) from py_order_course where student_id= (select id from py_students where student_name='建学yLwct');
+
+# newClassId
+select id from py_class_base where class_name='调课B'
+select * from py_class_base where class_name='调课A'
+# courseId
+select id from py_order_course where student_id=(select id from py_students where student_name='建学yLwct') limit 1
+select id from py_order_course where student_id=290429 limit 1
+
+# classId
+select class_id from py_class_course where class_name='调课A'
+
+# classDate
+select class_date from py_class_course where class_name='调课A'
+
+# teacherName
+select teacher_name from py_class_course where class_name='调课A'
+
+# new courseId
+select id from py_class_course where class_name='课AFgAZc' limit 1
+select * from py_class_course where id=45060
+
+# classDate
+# select class_date_start_time from  py_class_base where class_name='调课A'
+select left(class_date_start_time,10) from  py_class_base where class_name='调课A'
+
+
+# classDate1
+select left(class_date_start_time,10) from  py_class_base where class_name='课BFgAZc'
+
+# user_id
+select user_id from py_students where student_name='建学yLwct';
+
+
+
+# 新建续报 #
+# purposeClassId
+select id from py_class_base where class_name='续报A'
+# sourceClassId
+select id from py_class_base where class_name='续报B8Z9Aa'
+select id from py_class_base where class_name='${flow("classNameB")}'
+
+
+# 退课次 #
+# orderCourseIds
+# select * from py_order_course where student_id=(select id from py_students where student_name='建学yLwct') limit 1
+select id from py_order_course where student_id=(select id from py_students where student_name='建学yLwct') limit 1
+# teacherId
+select id from py_teacher where name='师CAYjd'
+# orderDetailId
+select order_detail_id from py_order_course where student_id=(select id from py_students where student_name='建学yLwct') limit 1
+# operationName
+# ${flow('name')}
+
+
+# 退课次初审 #
+# operationName
+# ${flow('name')}
+# orderRefundId
+# select * from py_order_refund where id=203269
+select id from py_order_refund where user_id=(select user_id from py_students where student_name='建学yLwct')
+
+select id from py_order_refund where id=290435
+
+# 关班
+# classIdStr
+select * from py_class_base where id=119172;
+select * from py_class_base where class_name='2020秋季小班语文11';
+select * from py_class_base where teacher_name='张振波';
+select * from py_class_course where teacher_name='建师FClwh'
+
+# 下架 #
+# classId
+select * from py_class_base where class_name='续报B';
+
+
+# 退班 #
+# orderCourseIds1,orderCourseIds2
+
+select * from py_order_course where course_sort=2 and id=10674159
+select id from py_order_course where course_sort=2 and student_id=290438
+
+select id from py_order_course where order_detail_id=1937355 limit 1
+select id from py_order_course where order_detail_id=1937355 limit 1,1
+
+select * from py_order_course where order_detail_id=8
+
+# teacherId
+select id from py_teacher where name="建师FClwh"
+
+# select distinct(order_detail_id) from py_order_course where student_id= (select id from py_students where student_name='建学1ukzW') and source_type=2;
+# orderDetailId
+select order_detail_id from py_order_course where class_id=(select id from py_class_base where class_name='退班') limit 1
+select id from py_order_class  where student_name="建学1ukzW"
+select * from py_order_class  where student_name="建学1ukzW"
+
+select * from py_order_class where id=203307
+
+select id from py_order_refund where order_detail_id=8 limit 1,1
+
+
+# 退班初审 #
+# orderRefundId
+
+select id from py_order_refund where class_id=(select id from py_class_base where class_name='退班')
+
+select id from py_order_refund where class_refund_status=0 and order_detail_id=1937375
+select * from py_order_refund where class_refund_status=0 and order_detail_id=1937375
+select * from py_order_refund where class_refund_status=0 and class_id=119431
+
+select id from py_order_refund where order_detail_id=1937355
+select id from py_order_refund where order_detail_id=1937356
+
+# 退班复审 #
+select id from py_order_refund where class_id=(select id from py_class_base where class_name='退班')
+
+
+# 退班退款确认 #
+select id from py_order_refund where class_id=(select id from py_class_base where class_name='退班')
+
+
+
+
+# temp
+select * from py_class_course where id=10674090
+select * from py_order_course where id=10674090
+
+
+select * from py_user where id=256111;
+
+select id from py_class_course where class_name='长期班sf9xW' limit 1
+select * from py_class_course where id=45060
+select * from py_class_base where class_name='长期班sf9xW';
+select campus_name from py_class_base where course_name='长期班sf9xW' limit 1;
+select id from py_class_base where class_name='${flow(className)}';
+
+select * from py_classroom where id=3014
+select * from py_classroom where classroom_name='接口测试'
+
+
+
+select * from py_time where id=5367 and school_id=375;
+select * from py_time where school_id=375;
+select id from py_class_rule where class_rule_name='自动化专用规律' and class_rule_status=1;
+select rule_splicing_name,class_rule_name from py_class_rule where class_rule_name='自动化专用规律' and class_rule_status=1;
+select concat(rule_splicing_name,class_rule_name) from py_class_rule where class_rule_name='自动化专用规律' and class_rule_status=1;
+
+
+select * from py_class_rule where school_id=375
+
+select id from py_time where start_time='00:00:00' and school_id=375
+select * from py_time where start_time='00:00:00' and end_time='00:15:00' and school_id=375
+
+
+select concat(ule_splicing_name,class_rule_name) as f from py_class_rule where class_rule_name='自动化专用规律' and class_rule_status=1
+
+
+select distinct(subject_id) from py_course where school_id=3 and subject_name='语文'
+select id from py_school where school_name='清水二中测试'
+
+
+select subject_id from py_course where subject_name='语文'
+select distinct(subject_id) from py_course where subject_name='语文' and school_name='清水二中测试' limit 1
+
+select * from py_course where subject_id=2142
+
+select key_id from py_school_rel where school_id=1 and key_name='语文'
+
+select key_id from py_school_rel where school_id=3 and key_name='语文'
+
+
+
+select count(*) from py_students where student_name like "生%";
+select mobile from py_students where student_name like "生%";
+
+select * from py_students where student_name='生cuF7T';
+
+select * from py_students where student_name="生bLHUY"
+
+select * from py_order_class  where student_name="生bLHUY"
+select * from py_order_class  where student_name="生bLHUY"
+
+# telphone
+select mobile from py_students where id=625167
+select mobile from py_students where id=609805
+select * from py_students where id=299033
+
+# order_detail_id
+select order_detail_id from py_order_class where student_id=625167
+
+2238300
+
+
+select mobile from py_students where student_name like "生%" 0,100000;
+select mobile from py_students where student_name like "生%" 100001,100000;
+select mobile from py_students where student_name like "生%" 0,100000;
+
+
+# id = studnntid
+# studentPareendId = user_id
+
+select id from py_students where mobile=18759267368
+select user_id from py_students where mobile=18759267368
+
+
+
+select count(*) from py_order_class where class_id=144966;
+
+select user_id from py_order_class where class_id=144966 and order_status=1;
+select * from py_order_class where class_id=144966 and order_status=1;
+
+select count(*) from py_order_class where class_id=144966 ;
+
+select * from py_students where mobile=18742827261
+select * from py_students where user_id=378189
+
+select mobile from py_students where user_id in (select user_id from py_order_class where class_id=144966 and order_status=1)
+
+select count(mobile) from py_students where user_id in (select user_id from py_order_class where class_id=144966 and order_status=1)
+
+select id,user_id,mobile from py_students where user_id in (select user_id from py_order_class where class_id=144966 and order_status=1)
+
+select id from py_students where user_id in (select user_id from py_order_class where class_id=144966 and order_status=1)
+
+
+select * from py_students where id=308864

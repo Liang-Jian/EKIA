@@ -1,0 +1,148 @@
+{
+	"name":"screen-sn_zn_name", 
+	"version":"60220",
+	"screen_type":"screen-sn",
+	"codepage":"Unicode",
+	"zone":
+	{
+		"zn_number_big":[
+			{"basic_module":"bm_0", "screen_table":[75]},
+			{"basic_module":"bm_number+", "screen_table":[87, 83, 80, 84, 85, 86, 82]},
+			{"basic_module":"bm_number+", "screen_table":[79, 74, 72, 76, 77, 78, 73]},
+			{"basic_module":"bm_number+", "screen_table":[7, 11, 10, 5, 2, 3, 6]},			
+			{"basic_module":"bm_number+", "screen_table":[19, 23, 22, 17, 14, 15, 18]},
+			{"basic_module":"bm_percent_bar", "screen_table":[13]}
+		],
+		"zn_number_sml":[
+			{"basic_module":"bm_p3", "screen_table":[71]},
+			{"basic_module":"bm_number+", "screen_table":[64, 65, 66, 67, 70, 68, 69]},
+			{"basic_module":"bm_dot", "screen_table":[63]},	
+			{"basic_module":"bm_number+", "screen_table":[56, 57, 58, 59, 62, 60, 61]},
+			{"basic_module":"bm_number+", "screen_table":[48, 49, 50, 51, 54, 52, 53]},
+			{"basic_module":"bm_number+", "screen_table":[40, 41, 42, 43, 46, 44, 45]},
+			{"basic_module":"bm_number+", "screen_table":[32, 33, 34, 35, 38, 36, 37]},
+			{"basic_module":"bm_percent_bar", "screen_table":[39]}
+		],
+		"zn_mark_curren":[
+			{"basic_module":"bm_currency", "screen_table":[4,9,47,29]},
+			{"basic_module":"bm_currency", "screen_table":[4,9,47,29]},
+			{"basic_module":"bm_currency", "screen_table":[4,9,47,29]},
+			{"basic_module":"bm_currency", "screen_table":[4,9,47,29]}
+		],
+		"zn_mark_state":[
+			{"basic_module":"bm_marker", "screen_table":[1,8,0,20,81]},
+			{"basic_module":"bm_marker", "screen_table":[1,8,0,20,81]},
+			{"basic_module":"bm_marker", "screen_table":[1,8,0,20,81]},
+			{"basic_module":"bm_marker", "screen_table":[1,8,0,20,81]},
+			{"basic_module":"bm_marker", "screen_table":[1,8,0,20,81]}
+		],
+		"zn_mark_arrow":[
+			{"basic_module":"bm_arrow", "screen_table":[16,12,21]}		
+		],
+		"zn_mark_bar":[
+			{"basic_module":"bm_redbar", "screen_table":[147, 159, 55, 30]},
+			{"basic_module":"bm_redbar", "screen_table":[147, 159, 55, 30]},
+			{"basic_module":"bm_redbar", "screen_table":[147, 159, 55, 30]},
+			{"basic_module":"bm_redbar", "screen_table":[147, 159, 55, 30]}
+		],
+		"zn_mark_promo":[
+			{"basic_module":"bm_promo", "screen_table":[99,31]}
+		],
+		"zn_mark_unit":[
+			{"basic_module":"bm_unit", "screen_table":[25,27,26,24]},
+			{"basic_module":"bm_unit", "screen_table":[25,27,26,24]},
+			{"basic_module":"bm_unit", "screen_table":[25,27,26,24]},
+			{"basic_module":"bm_unit", "screen_table":[25,27,26,24]}
+		],
+		"zn_alpha":[
+			{"basic_module":"bm_letter", "screen_table":[148, 149, 151, 155, 158, 157, 153, 156, 152, 150, 154]},
+			{"basic_module":"bm_letter", "screen_table":[136, 137, 139, 143, 146, 145, 141, 144, 140, 138, 142]},
+			{"basic_module":"bm_letter", "screen_table":[124, 125, 127, 131, 134, 133, 129, 132, 128, 126, 130]},
+			{"basic_module":"bm_letter", "screen_table":[112, 113, 115, 119, 122, 121, 117, 120, 116, 114, 118]},
+			{"basic_module":"bm_letter", "screen_table":[100, 101, 103, 107, 110, 109, 105, 108, 104, 102, 106]},
+			{"basic_module":"bm_letter", "screen_table":[88, 89, 91, 95, 98, 97, 93, 96, 92, 90, 94]},
+			{"basic_module":"bm_dot", "screen_table":[135]},
+			{"basic_module":"bm_dot", "screen_table":[123]},
+			{"basic_module":"bm_dot", "screen_table":[111]}
+		],
+
+		
+		"unit_num":
+		[
+			{"basic_module":"bm_p3", "screen_table":[71]},
+			{"basic_module":"bm_number+", "screen_table":[64, 65, 66, 67, 70, 68, 69]},
+			{"basic_module":"bm_number+", "screen_table":[56, 57, 58, 59, 62, 60, 61]},
+			{"basic_module":"bm_number+", "screen_table":[48, 49, 50, 51, 54, 52, 53]},
+			{"basic_module":"bm_number+", "screen_table":[40, 41, 42, 43, 46, 44, 45]},
+			{"basic_module":"bm_number+", "screen_table":[32, 33, 34, 35, 38, 36, 37]}
+		],
+		"zn_big_num":
+		[
+			{"basic_module":"bm_0", "screen_table":[75]},
+			{"basic_module":"bm_number+", "screen_table":[87, 83, 80, 84, 85, 86, 82]},
+			{"basic_module":"bm_number+", "screen_table":[79, 74, 72, 76, 77, 78, 73]},
+			{"basic_module":"bm_number+", "screen_table":[7, 11, 10, 5, 2, 3, 6]},
+			{"basic_module":"bm_number+", "screen_table":[19, 23, 22, 17, 14, 15, 18]}
+		],
+		"zn_letter":
+		[
+			{"basic_module":"bm_letter", "screen_table":[148, 149, 151, 155, 158, 157, 153, 156, 152, 150, 154]},
+			{"basic_module":"bm_letter", "screen_table":[136, 137, 139, 143, 146, 145, 141, 144, 140, 138, 142]},
+			{"basic_module":"bm_letter", "screen_table":[124, 125, 127, 131, 134, 133, 129, 132, 128, 126, 130]},
+			{"basic_module":"bm_letter", "screen_table":[112, 113, 115, 119, 122, 121, 117, 120, 116, 114, 118]},
+			{"basic_module":"bm_letter", "screen_table":[100, 101, 103, 107, 110, 109, 105, 108, 104, 102, 106]},
+			{"basic_module":"bm_letter", "screen_table":[88, 89, 91, 95, 98, 97, 93, 96, 92, 90, 94]}
+		],
+		"zn_currency":
+		[
+			{"basic_module":"bm_currency", "screen_table":[4, 9,47,29]},
+			{"basic_module":"bm_currency", "screen_table":[4, 9,47,29]},
+			{"basic_module":"bm_currency", "screen_table":[4, 9,47,29]},
+			{"basic_module":"bm_currency", "screen_table":[4, 9,47,29]}
+		],
+		"zn_unit":
+		[
+			{"basic_module":"bm_unit", "screen_table":[25,27,26,24]},
+			{"basic_module":"bm_unit", "screen_table":[25,27,26,24]},
+			{"basic_module":"bm_unit", "screen_table":[25,27,26,24]},
+			{"basic_module":"bm_unit", "screen_table":[25,27,26,24]}
+		],
+		"zn_flag":
+		[
+			{"basic_module":"bm_marker", "screen_table":[1,8,0,20]},
+			{"basic_module":"bm_marker", "screen_table":[1,8,0,20]},
+			{"basic_module":"bm_marker", "screen_table":[1,8,0,20]},
+			{"basic_module":"bm_marker", "screen_table":[1,8,0,20]},
+			{"basic_module":"bm_battery", "screen_table":[81]}
+		],	
+		"zn_dot":
+		[
+			{"basic_module":"bm_dot", "screen_table":[135,123,111,63]},
+			{"basic_module":"bm_dot", "screen_table":[135,123,111,63]},
+			{"basic_module":"bm_dot", "screen_table":[135,123,111,63]},
+			{"basic_module":"bm_dot", "screen_table":[135,123,111,63]}
+		],
+		"zn_vba":
+		[
+			{"basic_module":"bm_percent_bar", "screen_table":[39,4]},
+			{"basic_module":"bm_percent_bar", "screen_table":[39,4]}
+		],
+		"zn_redbar":
+		[
+			{"basic_module":"bm_redbar", "screen_table":[147, 159, 55, 30]}
+		],
+		"zn_promo_left":
+		[
+			{"basic_module":"bm_promo", "screen_table":[99,31]}
+		],
+		"zn_arrow":
+		[
+			{"basic_module":"bm_arrow", "screen_table":[16,12,21]}		
+		],
+		"zn_0":
+		[
+			{"basic_module":"bm_0", "screen_table":[75]}
+		]
+
+	}
+}
