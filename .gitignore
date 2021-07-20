@@ -4,8 +4,8 @@
 *.zip
 *.txt
 *.rar
-/Python/API
-/Python/1.3.2
+/python/API
+/python/1.3.2
 */__pycache__
 /apitk
 *.jpg
