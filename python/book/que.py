@@ -48,12 +48,40 @@ import queue,threading
 #######################
 
 
-# def bytestostr():
-#     s = b'\xe3\x80\x90\xe6\xb5\x81\xe9\x87\x8f\xe6\x8f\x90\xe9\x86\x92\xe3\x80\x91'
-#     print(str(s, encoding='utf-8'))
-def calc_squre(numbers,result):
-    for idx,n in enumerate(numbers):
-        result[idx] = n * n
-        print(result[idx])
-# calc_squre(2,4)
+# plt 做饼图
+import matplotlib.pyplot as plt
+# plt.rcParams['font.sans.serif']=['SimHei']
+# edu = [0.25,0.35,0.1,0.3]
+# labers = ['本科生','初中生','小学生','大专生']
+# plt.pie(x=edu,labels=labers,autopct='%.1f%%')
+# plt.show()
 
+
+######################
+# data1 = [1,4,2,6]
+# data2 = ['a','b','c','d']
+#
+# plt.bar(x=range(1,6),height=5,tick_label='fuck',color='steelblue')
+# plt.ylabel('gdp wanyi')
+# plt.title('all flow data')
+# for x,y in enumerate(data1.__dict__):
+#     plt.text(x,y + 0.1, '%s' % round(y,1),ha='center')
+# plt.show()
+
+
+
+#####################
+data1 = ['1','2','3','5']
+data2 = ['3','12','14','5']
+plt.plot(data1,
+         data2.__len__(),
+         linestyle='-',
+         linewidth=2,
+         color='steelblue',
+         market='o',
+         markersize=6,
+         markeredgecolor='black',
+         marketfacecolor='brown')
+plt.ylabel='people count'
+plt.title='every round conner count'
+plt.show()

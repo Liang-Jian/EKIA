@@ -77,9 +77,6 @@ def getbanchangjinqiu(level='A'):
     plt.legend(loc = "best")                                             # 图例
     plt.show()
 
-
-
-
 def bestzhu(level='A'):
     '''
     主场战绩最好的队伍
@@ -106,7 +103,6 @@ def bestzhu(level='A'):
     plt.xlabel('队伍')
     plt.title('主场战绩最好的队伍排列')
     plt.show()
-
 
 def bestke(level='A'):
     '''
@@ -136,14 +132,22 @@ def pingju(level='A'):
     matchround = a[:, 0]
     allconner  = a[:, 1]
 
-    plt.plot(matchround,allconner,'s-',color = 'blue',label="ATT-RLSTM")    # 示例
+    plt.plot(matchround,allconner,
+             linewidth=2,
+             color='steelblue',
+             marker='o',
+             markersize=6,
+             markeredgecolor='black',
+             markerfacecolor='brown') # 示例
     plt.xlabel("比赛轮数")                                                # 横坐标名字
     plt.xticks(range(0, 24, 1))                                          # (0,23) 范围0-23 ，单位 1
-    plt.yticks(range(0, 6, 1))                                          # (0,23) 范围0-100 ，单位 4
+    plt.yticks(range(0, 8, 1))                                          # (0,23) 范围0-100 ，单位 4
     plt.ylabel(f" {level} 平局次数")                                           # 纵坐标名字
     plt.legend(loc = "best")                                             # 图例
-    plt.show()
 
+
+
+    plt.show()
 
 def getjq8zhu(level='A'):
     '''
@@ -162,7 +166,6 @@ def getjq8zhu(level='A'):
     plt.ylabel(f" {level} 主场角球大于8 的总数")                                           # 纵坐标名字
     plt.legend(loc = "best")                                             # 图例
     plt.show()
-
 
 def getjq8ke(level='A'):
     '''
@@ -185,13 +188,76 @@ def getjq8ke(level='A'):
     plt.legend(loc = "best")                                             # 图例
     plt.show()
 
+def getteamqj(level='A',team='川崎Ｆ'):
+    '''
+    获取某个队伍的角球趋势图
+    :param level:
+    :param team:
+    :return:
+    '''
+    s = MsqService().search(f"SELECT CONCAT(zhu,'-',ke) as bisai,round,zc+kc as total from j21 WHERE `level`='{level}' and (zhu= '{team}' or ke ='{team}') order  by round")
+    a = np.array(s)
+    matchteam  = a[:, 0]
+    matchround = a[:, 1]
+    allconner  = a[:, 2]
+    print(matchteam)
+    # matchTeam = list(map(addSpecial, matchround))
+    # fix_matchTeam = splitlist(matchTeam)
+    print(matchteam)
+    plt.plot(matchround,allconner,'s-',color = 'blue',label="角球趋势图")    # 示例
+    plt.xlabel("比赛轮数")                                                # 横坐标名字
+    plt.xticks(range(0, 24, 1))                                          # (0,23) 范围0-23 ，单位 1
+    plt.yticks(range(0, 17, 1))                                          # (0,23) 范围0-100 ，单位 4
+    plt.ylabel(f" {level} f{team} 的角球走势图")                           # 纵坐标名字
+    plt.legend(loc = 0)                                                  # 图例
+    plt.show()
 
-getbanchangjinqiu('B')
-getJq('B')
-bestzhu('B')
-bestke('B')
-pingju('B')
-getjq8zhu('B')
-getjq8ke('B')
+
+def getallxiao(level='B',team='大宫'):
+    s = MsqService().search(f"select * from j21 where  level='{level}' and zj+kj <=2 and (zhu='{team}' or ke='{team}')")
+    a = np.array(s)
+    matchteam  = a[:, 0]
+    matchround = a[:, 1]
+    allconner  = a[:, 2]
+    print(matchteam)
+    # matchTeam = list(map(addSpecial, matchround))
+    # fix_matchTeam = splitlist(matchTeam)
+    print(matchteam)
+    plt.plot(matchround,allconner,'s-',color = 'blue',label="角球趋势图")    # 示例
+    plt.xlabel("比赛轮数")                                                # 横坐标名字
+    plt.xticks(range(0, 24, 1))                                          # (0,23) 范围0-23 ，单位 1
+    plt.yticks(range(0, 17, 1))                                          # (0,23) 范围0-100 ，单位 4
+    plt.ylabel(f" {level} f{team} 的角球走势图")                           # 纵坐标名字
+    plt.legend(loc = 0)                                                  # 图例
+    plt.show()
+
+
+def train(level='B',team='大宫'):
+    s = MsqService().search(f"select * from j21 where  level='{level}' and zj+kj <=2 and (zhu='{team}' or ke='{team}')")
+    a = np.array(s)
+    matchteam  = a[:, 0]
+    matchround = a[:, 1]
+    allconner  = a[:, 2]
+    print(matchteam)
+    # matchTeam = list(map(addSpecial, matchround))
+    # fix_matchTeam = splitlist(matchTeam)
+    print(matchteam)
+    plt.scatter(x=10 ,y=5,
+                color='steelblue')    # 示例
+    plt.xlabel("比赛轮数")                                                # 横坐标名字
+    plt.xticks(range(0, 24, 1))                                          # (0,23) 范围0-23 ，单位 1
+    plt.yticks(range(0, 17, 1))                                          # (0,23) 范围0-100 ，单位 4
+    plt.ylabel(f" {level} f{team} 的角球走势图")                           # 纵坐标名字
+    plt.legend(loc = 0)                                                  # 图例
+    plt.show()
+
+# getbanchangjinqiu('B')
+# getJq('B')
+# bestzhu('B')
+# bestke('B')
+# pingju('B')
+getjq8zhu('A')
+# getjq8ke('B')
+# getteamqj()
 # elm = list(map(addSpecial, ['川崎Ｆ', '横浜FC', '浦和']))
 # print(splitlist(elm))
