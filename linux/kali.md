@@ -106,7 +106,7 @@ PasswordAuthentication yes
 ### 常用DNS服务器
 168.95.192.1    168.95.192.2  
 139.175.55.244  139.175.252.16  
-203.80.96.9     203.80.96.10  
+203.80.96.9     203.80.96.10  #feiqi
 202.106.0.20    202.16.196.115  
 ##static ip address
 sudo vi /etc/network/interfaces

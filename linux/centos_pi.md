@@ -14,7 +14,8 @@
 ```
 
 ## 树莓派脚本
-####
+#### auto reboot
 ```
-
+sudo vi /etc/crontab
+1 */4   * * *   root    reboot  # 每隔4小时1分重启s
 ```

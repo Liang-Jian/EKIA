@@ -74,4 +74,4 @@ sudo sysctl -p
 `[root@VM_0_7_centos v2ray]# docker run \
   --name chisel -p 9312:9312 \
   -d --restart always \
-  jpillora/chisel server -p 9312 --socks5 --key supersecret
+  jpillora/chisel server -p 9312 --socks5 --key supersecret`
