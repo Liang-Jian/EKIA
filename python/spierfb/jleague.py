@@ -1,9 +1,9 @@
 import mysql.connector, datetime, time, re, requests, yaml, lxml.html, pyquery, logging, logging.handlers
 from bs4 import BeautifulSoup
-from requests.packages.urllib3.exceptions import InsecureRequestWarning
+# from requests.packages.urllib3.exceptions import InsecureRequestWarning
 from selenium.webdriver.support.select import Select
 
-requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+# requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 from selenium import webdriver
 import concurrent.futures
 import threading
@@ -206,11 +206,8 @@ def get_every_j_data(_url):
     return True
 
 
-def run():
-    with concurrent.futures.ThreadPoolExecutor() as executor:
-        executor.map(get_every_j_data, getUrl())
 
-
+L = 'A'
 class GetPeilv:
     from selenium import webdriver
     def __init__(self):
@@ -220,6 +217,7 @@ class GetPeilv:
         self.A = "http://zq.win007.com/cn/SubLeague/2022/25.html"
         self.B = "http://zq.win007.com/cn/SubLeague/2022/284.html"
         self.durl = "http://zq.win007.com/League/LeagueOddsAjax"
+        self.level = L
         self.page_source = ""
         self.zhu = ""
         self.win = ""
@@ -228,21 +226,18 @@ class GetPeilv:
         self.headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36'}
 
 
-    def insert_before(self, level='B'):
+    def insert_before(self):
         #
-        sql_list = ms.search("select distinct(round) from j22 where level='%s' and win='9.99'" % level)
+        sql_list = ms.search("select distinct(round) from j22 where level='%s' and win='9.99'" % self.level)
         round_list = [x[0] for x in sql_list]
-        args = (level,round_list)
-        # print(args)
-        return ('B',[1])
+        args = (self.level,round_list)
+        return args
 
     def run(self):
-        global level
         level,round_l = self.insert_before()
-
+        print(round_l)
+        if round_l is []: return
         win007_index = webdriver.Chrome('/usr/local/bin/chromedriver')
-
-
         if level == 'A':
             win007_index.get(self.A)
             time.sleep(1)
@@ -280,7 +275,6 @@ class GetPeilv:
 
 
     def getPeilv(self, id, zhu, round):
-
         requestdata = {
             "sclassId": '25',
             "subSclassId": "943",
@@ -289,7 +283,7 @@ class GetPeilv:
             "flesh": "0.23699970411978874"
         }
         int = id
-        if level =='B':
+        if self.level =='B':
             requestdata['sclassId'] = '284'
             requestdata['subSclassId'] = '808'
         peilv = requests.get(url=self.durl, params=requestdata, headers=self.headers)
@@ -298,7 +292,6 @@ class GetPeilv:
         findStr = recompile.search(peilv.text)
         if findStr is None: return
         findStr1 = recompile.search(peilv.text).group()[22::]
-        print(findStr1)
         finddict = eval(findStr1)
         for key in finddict:
             if key[0] == 281:
@@ -320,14 +313,11 @@ class GetPeilv:
             try:
                 if ms.search("select win from j22 where zhu ='%s' and round='%s' " % (Team_PL[zhu_], round))[0][0] != 9.99:
                     Logi("peil exist don't insert")
-            except(IndexError,) as e: print(e, f'please check data!')
-            else:
-                try:
+                else:
                     ms.update(sql_lan)
                     Logi("pv update succ={}\n".format(sql_lan))
-                except(IndexError,) as e:
-                    print(e)
-
+            except(IndexError,):
+                print(f'{sql_lan} error')
 
 
 class GetAsia:
@@ -378,62 +368,21 @@ class GetAsia:
             print(i)
             # print(re.findall(r'[\u4e00-\u9fa5]+', str(i)),end='\r\n')
 
-        # selector = lxml.html.fromstring(self.page_source)
-        # info = selector.cssselect("tr")
-        # for i in info:
-        #     print(i)
-        #     if i.text == '試合詳細':
-        #         print(i.get("href"))
-        # all_url.append(i.get("href"))
-        # allUrl.append("https://www.jleague.jp"+i.get("href"))
-        # return all_url
-        # peilvstr = re.compile('<tr (.*?)</a><sup')
-        # infolist = peilvstr.findall(self.page_source)
-        # for i in infolist:
-        #     print(i)
-        #     _id = re.findall("\d+",i)[0] # id
-        #     _zhu = re.findall("k\">(.*)",i)[0]  # 主队
-        #     print(_id, _zhu)
-        #     self.getPeilv(_id, _zhu)
-        # \32 135884 > td:nth-child(3) > a
-        # \32 135884 > td:nth-child(3) > a
-        # \32 135884 > td:nth-child(3) > a
-
-    # def getPeilv(self,id,zhu):
-    #     int = id
-    #     peilv = requests.get(url=self.durl, params=self.requestdata, headers=self.headers)
-    #     print(peilv.text)
-    #     recompile = re.compile('oddsData\[\"O_{}\"\]=(.*?)]]'.format(int))  # 正则对象
-    #
-    #     findStr = recompile.search(peilv.text)
-    #     if findStr is None: return
-    #     findStr1 = recompile.search(peilv.text).group()[22::]
-    #     # print(findStr1)
-    #     finddict = eval(findStr1)
-    #     for key in finddict:
-    #         if key[0] == 281:
-    #             # print(key[1], key[2], key[3])
-    #             self.win = key[1]
-    #             self.draw = key[2]
-    #             self.lose= key[3]
-    #             updatesql = (
-    #                         "update j22 set win='%s',draw='%s',lose='%s' where zhu='%s' and round='%s'" % (
-    #                 self.win, self.draw, self.lose, Team_PL[zhu], ryaml('round')))
-    #             Logi(updatesql)
-    #             self.writeSql(zhu,updatesql)
-
     def writeSql(self, zhu_, sqlyuju):
         sql_lan = sqlyuju
         if sql_lan is []:
             Loge("sql not found ")
         else:
-            if ms.search("select win from j22 where zhu ='%s' and round='%s' " % (Team_PL[zhu_], ryaml('round')))[0][
-                0] != 9.99:
+            if ms.search("select win from j22 where zhu ='%s' and round='%s' " % (Team_PL[zhu_], ryaml('round')))[0][0] != 9.99:
                 Logi("peil exist don't insert")
             else:
                 ms.update(sql_lan)
                 Logi("pv update succ={}\n".format(sql_lan))
 
+def run():
+    with concurrent.futures.ThreadPoolExecutor() as executor:
+        executor.map(get_every_j_data, getUrl())
 
-
-GetPeilv().run()
+if __name__ == '__main__':
+    # run()
+    GetPeilv().run()
