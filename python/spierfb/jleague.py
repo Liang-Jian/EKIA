@@ -1,9 +1,9 @@
-import mysql.connector, datetime, time, re, requests, yaml, lxml.html, pyquery, logging, logging.handlers
+import mysql.connector, datetime, time, re, requests, yaml, lxml.html, pyquery, logging, logging.handlers, os, sys
 from bs4 import BeautifulSoup
-# from requests.packages.urllib3.exceptions import InsecureRequestWarning
+from requests.packages.urllib3.exceptions import InsecureRequestWarning
 from selenium.webdriver.support.select import Select
 
-# requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 from selenium import webdriver
 import concurrent.futures
 import threading
@@ -51,7 +51,8 @@ J_Header = {  # j header
 
 def ryaml(key, peer="control"):
     # read yaml file
-    _f = open("../spierfb/run.yml", "r", encoding="utf8")
+    homept = os.path.expanduser('~')
+    _f = open(f"{homept}/EKIA/python/spierfb/run.yml", "r", encoding="utf8")
     config = yaml.load(_f.read(), Loader=yaml.Loader)
     conf = config[peer]
     _f.close()
@@ -89,10 +90,11 @@ def logconfig():
     logger.setLevel(logging.DEBUG)
     ch = logging.StreamHandler()
     ch.setLevel(logging.DEBUG)
-    fh = logging.FileHandler("./log.log", encoding="utf8")
+    homept = os.path.expanduser('~')
+    fh = logging.FileHandler(f"{homept}/EKIA/python/spierfb/log.log", encoding="utf8")
     fh.setLevel(logging.DEBUG)
-    file_formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s %(message)s")
-    console_formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+    file_formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s", datefmt='%H-%M-%S')
+    console_formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s", datefmt='%H-%M-%S')
     ch.setFormatter(console_formatter)
     fh.setFormatter(file_formatter)
     logger.addHandler(ch)
@@ -123,6 +125,8 @@ def getUrl():
     all_url = list()
     indexhtml = requests.get(
         url='https://www.jleague.jp/match/', verify=False, headers=J_Header, timeout=60)
+
+    # indexhtml = requests.get(url='https://www.jleague.jp/match/section/j3/2/',verify=False,headers=J_Header)
     selector = lxml.html.fromstring(indexhtml.text)
     info = selector.cssselect("li a")
     for i in info:
@@ -156,7 +160,7 @@ def w2db(_sql):
 def get_every_j_data(_url):
     url = "https://www.jleague.jp{}".format(_url)
     __level = getlevel(re.findall('/match/(.*)/2022', _url)[0])
-    __round: str = ""
+    __round = ""
     __st = ""
     __status = False
     __bc = ""
@@ -230,7 +234,7 @@ class GetPeilv:
         #
         sql_list = ms.search("select distinct(round) from j22 where level='%s' and win='9.99'" % self.level)
         round_list = [x[0] for x in sql_list]
-        args = (self.level,round_list)
+        args = (self.level, round_list)
         return args
 
     def run(self):
@@ -338,7 +342,6 @@ class GetAsia:
     def __init__(self):
         '''
         从球探上获取数据，取代500 . 先用webdriver -> pagesource -> id,name -> peilv -> create sql -> done
-
         '''
         self.url = "http://zq.win007.com/cn/SubLeague/2022/25.html"
         self.urlB = "http://zq.win007.com/cn/SubLeague/2021/284.html"
@@ -383,6 +386,6 @@ def run():
     with concurrent.futures.ThreadPoolExecutor() as executor:
         executor.map(get_every_j_data, getUrl())
 
-if __name__ == '__main__':
-    # run()
-    GetPeilv().run()
+# if __name__ == '__main__':
+run()
+    # GetAsia().run()
