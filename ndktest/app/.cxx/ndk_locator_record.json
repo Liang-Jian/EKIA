@@ -1,5 +1,5 @@
 {
-  "ndkFolder": "D:\\sdk\\ndk\\21.3.6528147",
+  "ndkFolder": "/Users/shi/Library/Android/sdk/ndk/23.1.7779620",
   "messages": [
     {
       "level": "INFO",
@@ -7,7 +7,7 @@
     },
     {
       "level": "INFO",
-      "message": "ndk.dir in local.properties is D:\\sdk\\ndk\\21.3.6528147"
+      "message": "ndk.dir in local.properties is /Users/shi/Library/Android/sdk/ndk/23.1.7779620"
     },
     {
       "level": "INFO",
@@ -15,27 +15,27 @@
     },
     {
       "level": "INFO",
-      "message": "sdkFolder is D:\\sdk"
+      "message": "sdkFolder is /Users/shi/Library/Android/sdk"
     },
     {
       "level": "INFO",
-      "message": "Considering D:\\sdk\\ndk\\21.3.6528147 by ndk.dir"
+      "message": "Considering /Users/shi/Library/Android/sdk/ndk/23.1.7779620 by ndk.dir"
     },
     {
       "level": "INFO",
-      "message": "Considering D:\\sdk\\ndk-bundle in SDK ndk-bundle folder"
+      "message": "Considering /Users/shi/Library/Android/sdk/ndk-bundle in SDK ndk-bundle folder"
     },
     {
       "level": "INFO",
-      "message": "Considering D:\\sdk\\ndk\\21.3.6528147 in SDK ndk folder"
+      "message": "Considering /Users/shi/Library/Android/sdk/ndk/23.1.7779620 in SDK ndk folder"
     },
     {
       "level": "INFO",
-      "message": "Rejected D:\\sdk\\ndk-bundle in SDK ndk-bundle folder because that location has no source.properties"
+      "message": "Rejected /Users/shi/Library/Android/sdk/ndk-bundle in SDK ndk-bundle folder because that location has no source.properties"
     },
     {
       "level": "INFO",
-      "message": "Found requested ndk.dir (D:\\sdk\\ndk\\21.3.6528147) which has version 21.3.6528147"
+      "message": "Found requested ndk.dir (/Users/shi/Library/Android/sdk/ndk/23.1.7779620) which has version 23.1.7779620"
     }
   ]
 }
