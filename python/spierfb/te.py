@@ -45,10 +45,18 @@ import random
 
 
 ######################################
-import pandas as pd
 
-# data1 = pd.read_csv('/Users/lexue/EKIA/python/spierfb/123.txt',skiprows=2,sep='')
-# data1 = pd.read_csv('/Users/lexue/EKIA/python/spierfb/123.txt',skiprows=1,sep='',skipfooter=1,encoding='utf-8',names=['id','name','incom'])
-data2 = pd.read_sql()
+s = ['湘南','Ｇ大阪']
 
-print(data2)
+def fixlist(ss):
+    l = []
+    for i in ss:
+        # print(i)
+        ee = ''
+        for e in i:
+            print(e)
+            ee += f'{e}\n'
+        l.append(ee)
+    # print(l)
+    return l
+fixlist(s)

@@ -2,6 +2,7 @@ import mysql.connector, datetime, time, re, requests, yaml, lxml.html, pyquery, 
 from bs4 import BeautifulSoup
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 from selenium.webdriver.support.select import Select
+from logging.handlers import TimedRotatingFileHandler
 
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 from selenium import webdriver
@@ -85,21 +86,53 @@ class msq:
             pass
 
 
-def logconfig():
-    logger = logging.getLogger("s")
-    logger.setLevel(logging.DEBUG)
-    ch = logging.StreamHandler()
-    ch.setLevel(logging.DEBUG)
+# def logconfig():
+#     logger = logging.getLogger("s")
+#     logger.setLevel(logging.DEBUG)
+#     ch = logging.StreamHandler()
+#     ch.setLevel(logging.DEBUG)
+#     homept = os.path.expanduser('~')
+#     fh = logging.FileHandler(f"{homept}/EKIA/python/spierfb/log.log", encoding="utf8")
+#     fh.setLevel(logging.DEBUG)
+#     file_formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s", datefmt='%H-%M-%S')
+#     console_formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s", datefmt='%H-%M-%S')
+#     ch.setFormatter(console_formatter)
+#     fh.setFormatter(file_formatter)
+#     logger.addHandler(ch)
+#     logger.addHandler(fh)
+#     return logger
+
+
+
+def logconfig(log_name='s'):
+    # 创建logger对象。传入logger名字
+    log_obj = logging.getLogger(log_name)
     homept = os.path.expanduser('~')
-    fh = logging.FileHandler(f"{homept}/EKIA/python/spierfb/log.log", encoding="utf8")
-    fh.setLevel(logging.DEBUG)
-    file_formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s", datefmt='%H-%M-%S')
-    console_formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s", datefmt='%H-%M-%S')
-    ch.setFormatter(console_formatter)
-    fh.setFormatter(file_formatter)
-    logger.addHandler(ch)
-    logger.addHandler(fh)
-    return logger
+    # fh = logging.FileHandler(f"{homept}/EKIA/python/spierfb/log.log", encoding="utf8")
+    log_path = os.path.join(f"{homept}/EKIA/python/spierfb/log.log")
+    # 设置日志记录等级
+    log_obj.setLevel(logging.INFO)
+    # interval 滚动周期，
+    # when="MIDNIGHT", interval=1.txt 表示每天0点为更新点，每天生成一个文件
+    # backupCount  表示日志保存个数
+    file_handler = TimedRotatingFileHandler(
+        filename=log_path, when="MIDNIGHT", interval=1, backupCount=30
+    )
+    # filename="mylog" suffix设置，会生成文件名为mylog.2020-02-25.log
+    file_handler.suffix = "%Y-%m-%d.log"
+    # extMatch是编译好正则表达式，用于匹配日志文件名后缀
+    # 需要注意的是suffix和extMatch一定要匹配的上，如果不匹配，过期日志不会被删除。
+    file_handler.extMatch = re.compile(r"^\d{4}-\d{2}-\d{2}.log$")
+    # 定义日志输出格式
+    file_handler.setFormatter(
+        # logging.Formatter(
+        #     "[%(asctime)s] [%(process)d] [%(levelname)s] - %(module)s.%(funcName)s (%(filename)s:%(lineno)d) - %(message)s"
+        # )
+        logging.Formatter("%(asctime)s - %(levelname)s- %(message)s", datefmt='%Y-%m-%d %H:%M:%S')
+    )
+    log_obj.addHandler(file_handler)
+    return log_obj
+
 
 
 def Logi(msg):
@@ -126,7 +159,7 @@ def getUrl():
     indexhtml = requests.get(
         url='https://www.jleague.jp/match/', verify=False, headers=J_Header, timeout=60)
 
-    # indexhtml = requests.get(url='https://www.jleague.jp/match/section/j3/2/',verify=False,headers=J_Header)
+    # indexhtml = requests.get(url='https://www.jleague.jp/match/section/j1/11/',verify=False,headers=J_Header)
     selector = lxml.html.fromstring(indexhtml.text)
     info = selector.cssselect("li a")
     for i in info:
@@ -146,7 +179,7 @@ def w2db(_sql):
     data = re.findall("\'(.*?)\'\,", _sql)
     if data is []: Loge("匹配数据失败")
     _date = data[0]
-    if ms.search("select * from j22 where date ='{}'".format(_date)) != []:
+    if ms.search("select * from j23 where date ='{}'".format(_date)) != []:
         Logi("{} exist,don't insert".format(_date))
     else:
         try:
@@ -159,7 +192,7 @@ def w2db(_sql):
 
 def get_every_j_data(_url):
     url = "https://www.jleague.jp{}".format(_url)
-    __level = getlevel(re.findall('/match/(.*)/2022', _url)[0])
+    __level = getlevel(re.findall('/match/(.*)/2023', _url)[0])
     __round = ""
     __st = ""
     __status = False
@@ -188,7 +221,7 @@ def get_every_j_data(_url):
     __zj = selector.cssselect(".leagLeftScore")[0].text  # zj 主进
     __kj = selector.cssselect(".leagRightScore")[0].text  # kj 客进
     __round = re.findall("第(.*?)節", "".join(selector.xpath('//span[@class=\'matchVsTitle__league\']/text()')))[-1]
-    __date = re.findall("2022/(.*?)/live", soup.link['href'])[0]
+    __date = re.findall("2023/(.*?)/live", soup.link['href'])[0]
     # get weather
     weather_url = url.replace("live/", "ajax_live?_={}T{}")  # 天气信息ajax动态加载的.拼ajax的url
     weather_url.format(datetime.date.today(), time.strftime('%H:%M', time.localtime(time.time())))
@@ -201,7 +234,7 @@ def get_every_j_data(_url):
     ss = pyquery.PyQuery(html.text)
     sk = ss.find(ryaml("sj_css", "css")).text()
     st = re.findall("\d+\:\d+", sk)[0].replace(":", "")
-    _sql = "INSERT INTO `j22` VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');" % (
+    _sql = "INSERT INTO `j23` VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');" % (
         __date, st, __level, str(int(__round)), weather, __zhu, "", __ke, __bc, __zj, __kj, __zc, __kc, "9.99", "9.99",
         "9.99")
     Logi(f"sql:={_sql}")
@@ -304,7 +337,7 @@ class GetPeilv:
                 self.draw = key[2]
                 self.lose = key[3]
                 updatesql = (
-                        "update j22 set win='%s',draw='%s',lose='%s' where zhu='%s' and round='%s'" % (
+                        "update j23 set win='%s',draw='%s',lose='%s' where zhu='%s' and round='%s'" % (
                     self.win, self.draw, self.lose, Team_PL[zhu], round))
                 Logi(updatesql)
                 self.writeSql(zhu, updatesql, round)
@@ -315,7 +348,7 @@ class GetPeilv:
             Loge("sql not found ")
         else:
             try:
-                if ms.search("select win from j22 where zhu ='%s' and round='%s' " % (Team_PL[zhu_], round))[0][0] != 9.99:
+                if ms.search("select win from j23 where zhu ='%s' and round='%s' " % (Team_PL[zhu_], round))[0][0] != 9.99:
                     Logi("peil exist don't insert")
                 else:
                     ms.update(sql_lan)
@@ -387,5 +420,23 @@ def run():
         executor.map(get_every_j_data, getUrl())
 
 # if __name__ == '__main__':
-run()
+# run()
     # GetAsia().run()
+
+
+def every_team(team='清水'):
+    team_list = list()
+    result = list()
+
+    sql_ = ms.search(f"select '{team}',count(*) from j22 where level='A' and ('{team}' = zhu or '{team}' = ke) and zj+kj=0")
+    for i in sql_:
+        print(i)
+        _d[i[0]] =i[1]
+    print(_d)
+    return _d
+
+_d = dict()
+
+
+for key,val in JTeam.items():
+    _d.update(every_team(val))
