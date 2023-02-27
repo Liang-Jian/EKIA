@@ -86,24 +86,6 @@ class msq:
             pass
 
 
-# def logconfig():
-#     logger = logging.getLogger("s")
-#     logger.setLevel(logging.DEBUG)
-#     ch = logging.StreamHandler()
-#     ch.setLevel(logging.DEBUG)
-#     homept = os.path.expanduser('~')
-#     fh = logging.FileHandler(f"{homept}/EKIA/python/spierfb/log.log", encoding="utf8")
-#     fh.setLevel(logging.DEBUG)
-#     file_formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s", datefmt='%H-%M-%S')
-#     console_formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s", datefmt='%H-%M-%S')
-#     ch.setFormatter(console_formatter)
-#     fh.setFormatter(file_formatter)
-#     logger.addHandler(ch)
-#     logger.addHandler(fh)
-#     return logger
-
-
-
 def logconfig(log_name='s'):
     # 创建logger对象。传入logger名字
     log_obj = logging.getLogger(log_name)
@@ -125,14 +107,10 @@ def logconfig(log_name='s'):
     file_handler.extMatch = re.compile(r"^\d{4}-\d{2}-\d{2}.log$")
     # 定义日志输出格式
     file_handler.setFormatter(
-        # logging.Formatter(
-        #     "[%(asctime)s] [%(process)d] [%(levelname)s] - %(module)s.%(funcName)s (%(filename)s:%(lineno)d) - %(message)s"
-        # )
-        logging.Formatter("%(asctime)s - %(levelname)s- %(message)s", datefmt='%Y-%m-%d %H:%M:%S')
+        logging.Formatter("%(asctime)s - %(levelname)s-%(message)s", datefmt='%Y-%m-%d %H:%M:%S')
     )
     log_obj.addHandler(file_handler)
     return log_obj
-
 
 
 def Logi(msg):
@@ -158,8 +136,6 @@ def getUrl():
     all_url = list()
     indexhtml = requests.get(
         url='https://www.jleague.jp/match/', verify=False, headers=J_Header, timeout=60)
-
-    # indexhtml = requests.get(url='https://www.jleague.jp/match/section/j1/11/',verify=False,headers=J_Header)
     selector = lxml.html.fromstring(indexhtml.text)
     info = selector.cssselect("li a")
     for i in info:
@@ -243,7 +219,6 @@ def get_every_j_data(_url):
     return True
 
 
-
 L = 'A'
 class GetPeilv:
     from selenium import webdriver
@@ -261,7 +236,6 @@ class GetPeilv:
         self.draw = ""
         self.lose = ""
         self.headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36'}
-
 
     def insert_before(self):
         #
@@ -309,7 +283,6 @@ class GetPeilv:
                     _zhu = re.findall("k\">(.*)", k)[0]  # 主队
                     print(_id, _zhu)
                     self.getPeilv(_id, _zhu, r)
-
 
     def getPeilv(self, id, zhu, round):
         requestdata = {
@@ -415,28 +388,11 @@ class GetAsia:
                 ms.update(sql_lan)
                 Logi("pv update succ={}\n".format(sql_lan))
 
+
 def run():
     with concurrent.futures.ThreadPoolExecutor() as executor:
         executor.map(get_every_j_data, getUrl())
 
-# if __name__ == '__main__':
-# run()
-    # GetAsia().run()
 
-
-def every_team(team='清水'):
-    team_list = list()
-    result = list()
-
-    sql_ = ms.search(f"select '{team}',count(*) from j22 where level='A' and ('{team}' = zhu or '{team}' = ke) and zj+kj=0")
-    for i in sql_:
-        print(i)
-        _d[i[0]] =i[1]
-    print(_d)
-    return _d
-
-_d = dict()
-
-
-for key,val in JTeam.items():
-    _d.update(every_team(val))
+if __name__ == '__main__':
+    run()

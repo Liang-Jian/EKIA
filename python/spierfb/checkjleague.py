@@ -157,7 +157,7 @@ def w2db(_sql):
     data = re.findall("\'(.*?)\'\,", _sql)
     if data is []: Loge("匹配数据失败")
     _date = data[0]
-    if ms.search("select * from j22 where date ='{}'".format(_date)) != []:
+    if ms.search("select * from j23 where date ='{}'".format(_date)) != []:
         Logi(f"{_date} exist,don't insert")
     else:
         try:
@@ -170,7 +170,7 @@ def w2db(_sql):
 
 def get_every_j_data(_url):
     url = "https://www.jleague.jp{}".format(_url)
-    __level = getlevel(re.findall('/match/(.*)/2022', _url)[0])
+    __level = getlevel(re.findall('/match/(.*)/2023', _url)[0])
     __round = ""
     __st = ""
     __status = False
@@ -199,7 +199,7 @@ def get_every_j_data(_url):
     __zj = selector.cssselect(".leagLeftScore")[0].text  # zj 主进
     __kj = selector.cssselect(".leagRightScore")[0].text  # kj 客进
     __round = re.findall("第(.*?)節", "".join(selector.xpath('//span[@class=\'matchVsTitle__league\']/text()')))[-1]
-    __date = re.findall("2022/(.*?)/live", soup.link['href'])[0]
+    __date = re.findall("2023/(.*?)/live", soup.link['href'])[0]
     # get weather
     weather_url = url.replace("live/", "ajax_live?_={}T{}")  # 天气信息ajax动态加载的.拼ajax的url
     weather_url.format(datetime.date.today(), time.strftime('%H:%M', time.localtime(time.time())))
@@ -212,7 +212,7 @@ def get_every_j_data(_url):
     ss = pyquery.PyQuery(html.text)
     sk = ss.find(ryaml("sj_css", "css")).text()
     st = re.findall("\d+\:\d+", sk)[0].replace(":", "")
-    _sql = "INSERT INTO `j22` VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');" % (
+    _sql = "INSERT INTO `j23` VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');" % (
         __date, st, __level, str(int(__round)), weather, __zhu, "", __ke, __bc, __zj, __kj, __zc, __kc, "9.99", "9.99",
         "9.99")
     Logi(f"sql:={_sql}")
