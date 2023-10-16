@@ -1,33 +1,7 @@
 #kali-linux
 ====
-###右键终端(ubuntu)
-sudo apt-get install nautilus-open-terminal
 
-###clear ssh log
-strings /var/log/wtmp <br>
-echo '' > /var/log/wtmp <br>
-strings /var/log/btmp <br>
-echo '' > /var/log/btmp <br>
-history-c <br>
 
-###delete amazon
-
-sudo apt-get remove unity-webapps-common
-
-###shadowsock
-apt-get install python-gevent python-pip  
-apt-get install python-m2crypto
-pip install shadowsocks
-mkdir /etc/shadowsocks
-vi /etc/shadowsocks/config.json  
-`{
-"server":"us1.*idc.top",
-"server_port":16997,
-"local_port":1080,
-"password":"$$$$$",
-"timeout":600,
-"method":"chacha20"
-}`
 
 ### jdk  
 ```
@@ -70,21 +44,7 @@ sudo gedit /etc/NetworkManager/NetworkManager.conf
 true
 /etc/init.d/networking restart
 
-### git configue
-sudo apt-get install git  
-git init  
-git config --global user.name  "QQ"  
-git config --global user.email "\*@gmail.com"  
-ssh-keygen -C 's@gmail.com' -t rsa  
-cat ~/.ssh/id_rsa.pub  
-ssh -T git@github.com  
-git clone git@192.168.5.95:lzhang/PublicDocument.git  
-git remote add origin git@github.com:billfeller/historyBrowsing.git  
 
-Agent admitted failure to sign using the key"  
-eval "$(ssh-agent -s)"  
-ssh-add
-```
 ####git 放弃修改，重置本地代码。
 git fetch --all
 git reset --hard origin/master
@@ -144,10 +104,7 @@ MbrFix /drive 0 fixmbr
 You are about to Fix MBR,are you sure <Y/N>? Y
 delete linux system
 
-###kali ftp安装
-yum -y install vsftpd  
-cd /etc/vsftpd/  
-cp vsftpd.conf vsftpd.conf.root
+
 
 ### centos ftp
 vi /etc/selinux/config
@@ -223,9 +180,6 @@ python3 get-pip.py
 ###安装新力得包管理器
 apt-get install synaptic
 
-###安装蓝牙
-apt-get install blueman
-service bluetooth start
 
 sudo vi /etc/default/atftpd
 sudo sed -e 's/^USE_INETD=true/USE_INETD=false/g' -i /etc/default/atftpd
@@ -386,12 +340,6 @@ net.ipv4.tcp_congestion_control = bbr
 ```
 
 
-### 树莓派开机自动启动脚本
-[root@centos Python37]# vi /etc/rc.local  
-在exit 0前写入：
-./home/pi/start.sh &
-
-
 ### 内网反弹
 ```
 ras:
@@ -412,5 +360,43 @@ host:
 
 
 
+### centos配置密码安全策略
+chattr -ia /var/spool/cron/root
 
+vi /media/getloginip.sh
+```
+#!/bin/bash
+#set -x
+list=$(sudo lastb |awk '{print $3}'|sort |uniq -c|awk '{if ($1 >1 ) print $2}')
+for ip in ${list}
+do
+	echo sshd: ${ip} >> /etc/hosts.deny #加入黑名单
+	echo > /var/log/btmp
+done
+```
+*/15 * * * * sudo bash /media/getloginip.sh
 
+#### centos安装mongodb
+```
+[root@VM-0-7-centos ~]# wget -c https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel70-6.0.5.tgz
+[root@VM-0-7-centos ~]# tar -zxvf mongodb-linux-x86_64-rhel70-6.0.5.tgz
+[root@VM-0-7-centos ~]# mv mongodb-linux-x86_64-rhel70-6.0.5/ mongodb/
+[root@VM-0-7-centos ~]# cd /usr/local/ ; mkdir data logs
+[root@VM-0-7-centos ~]# cd logs ; touch mongodb.log
+[root@VM-0-7-centos ~]# cd ../bin/ ; vi mongodb.conf
+# 数据文件存放目录
+dbpath = /usr/local/mongodb/data
+# 日志文件存放目录
+logpath = /usr/local/mongodb/logs/mongodb.log
+logappend=true
+# 端口
+port = 27017
+# 以守护程序的方式启用，即在后台运行
+fork = false
+# 认证模式
+auth=false
+# 远程连接
+bind_ip=0.0.0.0
+[root@VM-0-7-centos ~]#  firewall-cmd --zone=public --add-port=27017/tcp --permanent
+[root@VM-0-7-centos ~]#  systemctl restart firewalld.service
+[root@VM-0-7-centos ~]# ./mongod -f mongodb.conf

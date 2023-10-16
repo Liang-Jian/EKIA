@@ -87,27 +87,21 @@ class msq:
 
 
 def logconfig(log_name='s'):
-    # 创建logger对象。传入logger名字
+    #
     log_obj = logging.getLogger(log_name)
     homept = os.path.expanduser('~')
     # fh = logging.FileHandler(f"{homept}/EKIA/python/spierfb/log.log", encoding="utf8")
     log_path = os.path.join(f"{homept}/EKIA/python/spierfb/log.log")
-    # 设置日志记录等级
+
     log_obj.setLevel(logging.INFO)
     # interval 滚动周期，
-    # when="MIDNIGHT", interval=1.txt 表示每天0点为更新点，每天生成一个文件
-    # backupCount  表示日志保存个数
     file_handler = TimedRotatingFileHandler(
-        filename=log_path, when="MIDNIGHT", interval=1, backupCount=30
+        filename=log_path, when="W6", interval=1, backupCount=3
     )
-    # filename="mylog" suffix设置，会生成文件名为mylog.2020-02-25.log
     file_handler.suffix = "%Y-%m-%d.log"
-    # extMatch是编译好正则表达式，用于匹配日志文件名后缀
-    # 需要注意的是suffix和extMatch一定要匹配的上，如果不匹配，过期日志不会被删除。
     file_handler.extMatch = re.compile(r"^\d{4}-\d{2}-\d{2}.log$")
-    # 定义日志输出格式
-    file_handler.setFormatter(
-        logging.Formatter("%(asctime)s - %(levelname)s-%(message)s", datefmt='%Y-%m-%d %H:%M:%S')
+    file_handler.setFormatter(# 定义日志输出格式
+        logging.Formatter("%(asctime)s - %(levelname)s- %(message)s", datefmt='%Y-%m-%d %H:%M:%S')
     )
     log_obj.addHandler(file_handler)
     return log_obj
@@ -141,6 +135,10 @@ def getUrl():
     for i in info:
         if i.text == '試合詳細':
             all_url.append(i.get("href"))
+    if len(all_url) == 0:
+        Logi("not found match url")
+    else:
+        Logi("found match url")
     return all_url
 
 
@@ -219,174 +217,115 @@ def get_every_j_data(_url):
     return True
 
 
-L = 'A'
-class GetPeilv:
-    from selenium import webdriver
-    def __init__(self):
-        '''
-        从球探上获取数据，取代500 . 先用webdriver -> pagesource -> id,name -> peilv -> create sql -> done
-        '''
-        self.A = "http://zq.win007.com/cn/SubLeague/2022/25.html"
-        self.B = "http://zq.win007.com/cn/SubLeague/2022/284.html"
-        self.durl = "http://zq.win007.com/League/LeagueOddsAjax"
-        self.level = L
-        self.page_source = ""
-        self.zhu = ""
-        self.win = ""
-        self.draw = ""
-        self.lose = ""
-        self.headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36'}
-
-    def insert_before(self):
-        #
-        sql_list = ms.search("select distinct(round) from j22 where level='%s' and win='9.99'" % self.level)
-        round_list = [x[0] for x in sql_list]
-        args = (self.level, round_list)
-        return args
-
-    def run(self):
-        level,round_l = self.insert_before()
-        print(round_l)
-        if round_l is []: return
-        win007_index = webdriver.Chrome('/usr/local/bin/chromedriver')
-        if level == 'A':
-            win007_index.get(self.A)
-            time.sleep(1)
-            win007_index.find_element_by_css_selector('#leagueDiv2 > ul > li:nth-child(1) > a').click()
-            time.sleep(1)
-            for r in round_l:
-                win007_index.find_element_by_css_selector(f'#Table2 > tbody > tr:nth-child(1) > td:nth-child({1+int(r)})').click()
-                time.sleep(4)
-                self.page_source = win007_index.page_source
-                peilvstr = re.compile('<tr (.*?)</a><sup')
-                infolist = peilvstr.findall(self.page_source)
-                # print(infolist)
-                for k in infolist:
-                    _id = re.findall("\d+", k)[0]  # id
-                    _zhu = re.findall("k\">(.*)", k)[0]  # 主队
-                    print(_id, _zhu)
-                    self.getPeilv(_id, _zhu, r)
-        elif level == 'B':
-            win007_index.get(self.B)
-            time.sleep(1)
-            win007_index.find_element_by_css_selector('#leagueDiv2 > ul > li:nth-child(2) > a').click()
-            time.sleep(1)
-            for r in round_l:
-                win007_index.find_element_by_css_selector(f'#Table2 > tbody > tr:nth-child(1) > td:nth-child({1+int(r)})').click()
-                time.sleep(1)
-                self.page_source = win007_index.page_source
-                peilvstr = re.compile('<tr (.*?)</a><sup')
-                infolist = peilvstr.findall(self.page_source)
-                # print(infolist)
-                for k in infolist:
-                    _id = re.findall("\d+", k)[0]  # id
-                    _zhu = re.findall("k\">(.*)", k)[0]  # 主队
-                    print(_id, _zhu)
-                    self.getPeilv(_id, _zhu, r)
-
-    def getPeilv(self, id, zhu, round):
-        requestdata = {
-            "sclassId": '25',
-            "subSclassId": "943",
-            "matchSeason": "2022",
-            "round": str(round),
-            "flesh": "0.23699970411978874"
-        }
-        int = id
-        if self.level =='B':
-            requestdata['sclassId'] = '284'
-            requestdata['subSclassId'] = '808'
-        peilv = requests.get(url=self.durl, params=requestdata, headers=self.headers)
-        print(peilv.text)
-        recompile = re.compile('oddsData\[\"O_{}\"\]=(.*?)]]'.format(int))  # 正则对象
-        findStr = recompile.search(peilv.text)
-        if findStr is None: return
-        findStr1 = recompile.search(peilv.text).group()[22::]
-        finddict = eval(findStr1)
-        for key in finddict:
-            if key[0] == 281:
-                # print(key[1], key[2], key[3])
-                self.win = key[1]
-                self.draw = key[2]
-                self.lose = key[3]
-                updatesql = (
-                        "update j23 set win='%s',draw='%s',lose='%s' where zhu='%s' and round='%s'" % (
-                    self.win, self.draw, self.lose, Team_PL[zhu], round))
-                Logi(updatesql)
-                self.writeSql(zhu, updatesql, round)
-
-    def writeSql(self, zhu_, sqlyuju, round):
-        sql_lan = sqlyuju
-        if sql_lan is []:
-            Loge("sql not found ")
-        else:
-            try:
-                if ms.search("select win from j23 where zhu ='%s' and round='%s' " % (Team_PL[zhu_], round))[0][0] != 9.99:
-                    Logi("peil exist don't insert")
-                else:
-                    ms.update(sql_lan)
-                    Logi("pv update succ={}\n".format(sql_lan))
-            except(IndexError,):
-                print(f'{sql_lan} error')
-
-
-class GetAsia:
-    from selenium import webdriver
-    requestdata = {
-        "sclassId": "25",
-        "subSclassId": "943",
-        "matchSeason": "2022",
-        "round": ryaml("round"),
-        "flesh": "0.29982359072620323"
-    }
-
-    '''
-    1，查询赔率为空的所有set， 轮数 和 level
-    2，打开球探根据set进行查找
-    3，写库exit出
-    '''
-    def __init__(self):
-        '''
-        从球探上获取数据，取代500 . 先用webdriver -> pagesource -> id,name -> peilv -> create sql -> done
-        '''
-        self.url = "http://zq.win007.com/cn/SubLeague/2022/25.html"
-        self.urlB = "http://zq.win007.com/cn/SubLeague/2021/284.html"
-        self.durl = "http://zq.win007.com/League/LeagueOddsAjax"
-        self.page_source = ""
-        self.zhu = ""
-        self.win = ""
-        self.draw = ""
-        self.lose = ""
-        self.headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36'}
-
-    def run(self):
-        win007_index = webdriver.Chrome('/usr/local/bin/chromedriver')
-        win007_index.get(self.url)
-        time.sleep(2)
-        win007_index.find_element_by_css_selector('#leagueDiv2 > ul > li:nth-child(1) > a').click()
-        time.sleep(1)
-        win007_index.find_element_by_css_selector('#Table2 > tbody > tr:nth-child(1) > td:nth-child(2)').click()
-        self.page_source = win007_index.page_source
-        Select(win007_index.find_element_by_css_selector("select#oddsCompany")).select_by_index(2)  # 是否水淹车 否
-        time.sleep(1)
-        soup = BeautifulSoup(win007_index.page_source)
-        # for i in soup.findAll('tr'):
-        _l = list()
-        for i in soup.find_all(id=re.compile('\d{7}')):
-            print(i)
-            # print(re.findall(r'[\u4e00-\u9fa5]+', str(i)),end='\r\n')
-
-    def writeSql(self, zhu_, sqlyuju):
-        sql_lan = sqlyuju
-        if sql_lan is []:
-            Loge("sql not found ")
-        else:
-            if ms.search("select win from j22 where zhu ='%s' and round='%s' " % (Team_PL[zhu_], ryaml('round')))[0][0] != 9.99:
-                Logi("peil exist don't insert")
-            else:
-                ms.update(sql_lan)
-                Logi("pv update succ={}\n".format(sql_lan))
+# L = 'A'
+# class GetPeilv:
+#     from selenium import webdriver
+#     def __init__(self):
+#         '''
+#         从球探上获取数据，取代500 . 先用webdriver -> pagesource -> id,name -> peilv -> create sql -> done
+#         '''
+#         self.A = "http://zq.win007.com/cn/SubLeague/2022/25.html"
+#         self.B = "http://zq.win007.com/cn/SubLeague/2022/284.html"
+#         self.durl = "http://zq.win007.com/League/LeagueOddsAjax"
+#         self.level = L
+#         self.page_source = ""
+#         self.zhu = ""
+#         self.win = ""
+#         self.draw = ""
+#         self.lose = ""
+#         self.headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36'}
+#
+#     def insert_before(self):
+#         #
+#         sql_list = ms.search("select distinct(round) from j22 where level='%s' and win='9.99'" % self.level)
+#         round_list = [x[0] for x in sql_list]
+#         args = (self.level, round_list)
+#         return args
+#
+#     def run(self):
+#         level,round_l = self.insert_before()
+#         print(round_l)
+#         if round_l is []: return
+#         win007_index = webdriver.Chrome('/usr/local/bin/chromedriver')
+#         if level == 'A':
+#             win007_index.get(self.A)
+#             time.sleep(1)
+#             win007_index.find_element_by_css_selector('#leagueDiv2 > ul > li:nth-child(1) > a').click()
+#             time.sleep(1)
+#             for r in round_l:
+#                 win007_index.find_element_by_css_selector(f'#Table2 > tbody > tr:nth-child(1) > td:nth-child({1+int(r)})').click()
+#                 time.sleep(4)
+#                 self.page_source = win007_index.page_source
+#                 peilvstr = re.compile('<tr (.*?)</a><sup')
+#                 infolist = peilvstr.findall(self.page_source)
+#                 # print(infolist)
+#                 for k in infolist:
+#                     _id = re.findall("\d+", k)[0]  # id
+#                     _zhu = re.findall("k\">(.*)", k)[0]  # 主队
+#                     print(_id, _zhu)
+#                     self.getPeilv(_id, _zhu, r)
+#         elif level == 'B':
+#             win007_index.get(self.B)
+#             time.sleep(1)
+#             win007_index.find_element_by_css_selector('#leagueDiv2 > ul > li:nth-child(2) > a').click()
+#             time.sleep(1)
+#             for r in round_l:
+#                 win007_index.find_element_by_css_selector(f'#Table2 > tbody > tr:nth-child(1) > td:nth-child({1+int(r)})').click()
+#                 time.sleep(1)
+#                 self.page_source = win007_index.page_source
+#                 peilvstr = re.compile('<tr (.*?)</a><sup')
+#                 infolist = peilvstr.findall(self.page_source)
+#                 # print(infolist)
+#                 for k in infolist:
+#                     _id = re.findall("\d+", k)[0]  # id
+#                     _zhu = re.findall("k\">(.*)", k)[0]  # 主队
+#                     print(_id, _zhu)
+#                     self.getPeilv(_id, _zhu, r)
+#
+#     def getPeilv(self, id, zhu, round):
+#         requestdata = {
+#             "sclassId": '25',
+#             "subSclassId": "943",
+#             "matchSeason": "2022",
+#             "round": str(round),
+#             "flesh": "0.23699970411978874"
+#         }
+#         int = id
+#         if self.level =='B':
+#             requestdata['sclassId'] = '284'
+#             requestdata['subSclassId'] = '808'
+#         peilv = requests.get(url=self.durl, params=requestdata, headers=self.headers)
+#         print(peilv.text)
+#         recompile = re.compile('oddsData\[\"O_{}\"\]=(.*?)]]'.format(int))  # 正则对象
+#         findStr = recompile.search(peilv.text)
+#         if findStr is None: return
+#         findStr1 = recompile.search(peilv.text).group()[22::]
+#         finddict = eval(findStr1)
+#         for key in finddict:
+#             if key[0] == 281:
+#                 # print(key[1], key[2], key[3])
+#                 self.win = key[1]
+#                 self.draw = key[2]
+#                 self.lose = key[3]
+#                 updatesql = (
+#                         "update j23 set win='%s',draw='%s',lose='%s' where zhu='%s' and round='%s'" % (
+#                     self.win, self.draw, self.lose, Team_PL[zhu], round))
+#                 Logi(updatesql)
+#                 self.writeSql(zhu, updatesql, round)
+#
+#     def writeSql(self, zhu_, sqlyuju, round):
+#         sql_lan = sqlyuju
+#         if sql_lan is []:
+#             Loge("sql not found ")
+#         else:
+#             try:
+#                 if ms.search("select win from j23 where zhu ='%s' and round='%s' " % (Team_PL[zhu_], round))[0][0] != 9.99:
+#                     Logi("peil exist don't insert")
+#                 else:
+#                     ms.update(sql_lan)
+#                     Logi("pv update succ={}\n".format(sql_lan))
+#             except(IndexError,):
+#                 print(f'{sql_lan} error')
 
 
 def run():

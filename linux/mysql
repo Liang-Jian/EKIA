@@ -626,8 +626,8 @@ mysql> select name ,price from hs_goods where price >= 459.00 order by price des
 4 rows in set (0.05 sec)
 
 #inner join on 的用法，如果两个表中有相同的字段名，需要加上表名.字段名
-mysql> select goods_id,ap_id ,result,area from hs_goods_esl_pr inner join hs_ap on hs_ap.id =hs_goods_esl_pr.ap_id limit 3;
-+----------+-------+--------+------+
+
+3+122+----------+-------+--------+------+
 | goods_id | ap_id | result | area |
 +----------+-------+--------+------+
 | 517149   | 1     | online | NULL |
@@ -1629,7 +1629,7 @@ mysql> select dt ,date_format(dt,'%c/%e/%y %r') as format1,date_format(dt,'%M %e
 +---------------------+----------------------+----------------------------+
 4 rows in set (0.00 sec)
 
-#time_format 格式时间字符串geshi shijian zifuchuan ,时间相关的格式化字符串定义
+#time_format 格式时间字符串 ,时间相关的格式化字符串定义
 
 mysql> select dt ,time_format(dt,'%r') as '12-hour time',time_format(dt,'%T') as '24-hour time' from datetime_val;
 +---------------------+--------------+--------------+
@@ -2067,8 +2067,34 @@ MariaDB [wm]> select name,currently_price from hs_goods where name like "C___E%"
 
 
 
+# case when 列出多种可能
+mysql > SELECT
+CASE
+  WHEN left(bc,1) = right(bc,1) and zj = kj THEN
+    '平平'
+		WHEN left(bc,1) = right(bc,1) and zj > kj THEN
+    '平胜'
+		WHEN left(bc,1) = right(bc,1) and zj < kj THEN
+    '平负'
+	  WHEN left(bc,1) > right(bc,1)  and zj = kj THEN
+    '胜平'
+	  WHEN left(bc,1) > right(bc,1)  and zj > kj THEN
+    '胜胜'
+	  WHEN left(bc,1) > right(bc,1)  and zj < kj THEN
+    '胜负'
+		WHEN left(bc,1) < right(bc,1) and zj = kj THEN
+    '负平'
+		WHEN left(bc,1) < right(bc,1) and zj > kj THEN
+    '负胜'
+		WHEN left(bc,1) < right(bc,1) and zj < kj THEN
+    '负负'
+  ELSE
+    'nofound'
+  END AS banchang,count(*) as zong
+FROM
+  j22  WHERE level='B' group BY banchang order by zong DESC;
 
-
+	select COUNT(*) from j22 where level='B'
 
 
 

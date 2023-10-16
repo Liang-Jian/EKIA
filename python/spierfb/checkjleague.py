@@ -15,6 +15,18 @@ from requests.packages.urllib3.exceptions import InsecureRequestWarning
 from logging.handlers import TimedRotatingFileHandler
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
+
+""" 使用crontab 每周三/四 凌晨 查看数据库数据是否有缺失 。
+    需要修改 年 23年 
+    
+crontab写法
+
+10,50 2 * * 3 /usr/local/python3 /var/a.py
+
+
+"""
+
+
 JTeam = {  # all j team
     "浦和红钻": "浦和", "大阪樱花": "Ｃ大阪", "鹿岛鹿角": "鹿島", "名古屋鲸": "名古屋", "鸟栖沙岩": "鳥栖",
     "广岛三箭": "広島", "清水鼓动": "清水", "东京FC": "FC東京", "大阪钢巴": "Ｇ大阪", "川崎前锋": "川崎Ｆ",
@@ -96,7 +108,7 @@ def logconfig(log_name="j"):
     # 设置日志记录等级
     log_obj.setLevel(logging.INFO)
     file_handler = TimedRotatingFileHandler(
-        filename=log_path, when="MIDNIGHT", interval=1, backupCount=30
+        filename=log_path, when="W6", interval=1, backupCount=3
     )
     file_handler.suffix = "%Y-%m-%d.log"
     file_handler.extMatch = re.compile(r"^\d{4}-\d{2}-\d{2}.log$")
@@ -223,7 +235,7 @@ def get_every_j_data(_url):
 
 def get_unfull_data(level='C'):
     # 检查每轮数据中不全的数据
-    s = ms.search(f"select round,count(*) from j22 where level='{level}' group by round")
+    s = ms.search(f"select round,count(*) from j23 where level='{level}' group by round")
     url_list = list()
     _unfull_round = list()
     num = 0
@@ -232,7 +244,7 @@ def get_unfull_data(level='C'):
     elif level == 'B':
         num = 11
     elif level == 'C':
-        num = 9
+        num = 10
     else:
         Logi("level num is unsupported!")
     for _k, _v in dict(s).items():
@@ -252,7 +264,7 @@ def get_unfull_data(level='C'):
 
 def get_unfull_data_round(level='C'):
     # 检查没有轮数的数据
-    info = ms.search(f"select distinct(round) from j22 where level='{level}'")
+    info = ms.search(f"select distinct(round) from j23 where level='{level}'")
     db_round = [x[0] for x in info]
     # print(db_round)
     match_round = []
@@ -278,6 +290,7 @@ def get_unfull_data_round(level='C'):
 
 def check():
     level = ['A', 'B', 'C']
+    # level = ['A']
     for l in level:
         get_unfull_data(l)
         get_unfull_data_round(l)
