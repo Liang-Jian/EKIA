@@ -1,11 +1,24 @@
 ## debian Ubuntu kali smp
 
-
+####树莓派源
+```
+新系统，安装完后。直接update 然后安装smb 。源不用换,换源后有链接不到的风险
+https://www.raspbian.org/RaspbianMirrors#:kkjjjk:wq~:text=mirror.premi.st/raspbian/raspbian/
+```
 #### 安装树莓派smb
 ```
 sudo apt-get install samba
 sudo apt-get install samba-common-bin
 ```
+
+#### chankanxitongbanben
+pi@centos:~ $ lsb_release -a
+No LSB modules are available.
+Distributor ID:	Debian
+Description:	Debian GNU/Linux 10 (buster)
+Release:	10
+Codename:	buster
+
 
 #### smb.conf末尾添加以下内容
 [smb]
@@ -24,7 +37,7 @@ joker@raspberrypi:~/EKIA $ sudo vi /etc/hosts
 joker@raspberrypi:~/EKIA $ sudo vi /etc/hostname
 
 
-#### 树莓派镜像
+#### 树莓派镜像  这个就很好
 https://downloads.raspberrypi.org/raspios_arm64/images/raspios_arm64-2021-05-28/
 
 #### 树莓派周二定时重启
@@ -41,11 +54,12 @@ sudo umount /dev/sda1
 ```
 
 #### 树莓派修改时区
+```
 sudo dpkg-reconfigure tzdata
-
+```
 
 #### frp config
-```frpc
+```frpc  文件备份/smb/linux/soft/tools/frp
 [common]
 server_addr = 101.101.81.174
 server_port = 6666
@@ -92,22 +106,30 @@ log_max_days = 3
 # Description:       start frpc
 ### END INIT INFO
 
-sleep 15
+sleep 8
 
-./var/frpc -c /var/frpc.ini &
-echo 'success' >> /media/test.txt
+/var/frpc -c /var/frpc.ini &
+echo 'success' 
 exit 0
 
 ```
 #### sh文件加到自启
 ```
+[root@VM-0-7-centos ~]# sudo vi /etc/systemd/system/start.service
 
-sudo chmod a+x start.sh 
-sudo update-rc.d start.sh defaults
+[Unit]
+Description = frp daemon
+[Service]
+ExecStart = /var/start.sh
+Restart = always
+Type = simple
+[Install]
+WantedBy = multi-user.target
+[root@VM-0-7-centos ~]# sudo systemctl enable start.service
 ```
 
 
-#### 安装蓝牙
+#### ~~安装蓝牙~~
 ```
 apt-get install blueman
 service bluetooth start
@@ -170,8 +192,9 @@ sudo apt-get install nautilus-open-terminal
 
 
 #### 安装 rz sz
+```
 sudo apt-get install lrzsz
-
+```
 
 #### 修改/etc/passwd 改默认权限
 pi:x:0:0::/home/pi:/bin/bash

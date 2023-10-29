@@ -444,7 +444,7 @@ mysql> select id ,ifNULL(area,"fuck") as "sss" from hs_ap;
 22 rows in set (0.01 sec)
 
 #修改默认密码
-mysql> SET PASSWORD FOR 'root'@'localhost' = PASSWORD('root')
+mysql> SET PASSWORD FOR 'root'@'localhost' = PASSWORD('1qaz#EDC')
 #允许远程登录
 mysql> grant all on *.* to root@'%' identified by 'root';
 #刷新数据库
