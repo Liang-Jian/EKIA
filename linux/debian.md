@@ -11,7 +11,7 @@ sudo apt-get install samba
 sudo apt-get install samba-common-bin
 ```
 
-#### chankanxitongbanben
+#### 查看系统版本
 pi@centos:~ $ lsb_release -a
 No LSB modules are available.
 Distributor ID:	Debian
@@ -95,7 +95,7 @@ log_max_days = 3
 #### 树莓派启动内网frp
 ```
 [root@VM-0-7-centos ~]# vi /etc/init.d/start.sh
-#!/bin/bash
+#!/bin/sh
 ### BEGIN INIT INFO
 # Provides:          frpstart
 # Required-Start:    $remote_fs $syslog
@@ -106,11 +106,10 @@ log_max_days = 3
 # Description:       start frpc
 ### END INIT INFO
 
-sleep 8
+sleep 15
 
-/var/frpc -c /var/frpc.ini &
-echo 'success' 
-exit 0
+/var/frpc -c /var/frpc.ini
+echo 'success'
 
 ```
 #### sh文件加到自启
@@ -121,11 +120,11 @@ exit 0
 Description = frp daemon
 [Service]
 ExecStart = /var/start.sh
-Restart = always
+Restart=on-failure
+StartLimitInterval=300
 Type = simple
 [Install]
 WantedBy = multi-user.target
-[root@VM-0-7-centos ~]# sudo systemctl enable start.service
 ```
 
 
@@ -161,7 +160,7 @@ tcp6       0      0 :::21                   :::*                    LISTEN      
 sudo vi  /etc/vsftpd/  
 
 
-#禁止匿名登录FTP服务器
+### 禁止匿名登录FTP服务器
 anonymous_enable=NO
 #允许本地用户登录FTP服务器
 local_enable=YES

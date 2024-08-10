@@ -30,7 +30,11 @@
  *                                                                                             *
  *---------------------------------------------------------------------------------------------*
  * Functions:                                                                                  *
- *   BlowStraw::Get -- Fetch a block of data from the straw.                                   *
+ *   BlowStraw::Get -- Fetch a block of data from the straw.
+ *
+ *
+ *
+ *   *
  *   BlowStraw::Key -- Submit a key to the Blowfish straw.                                     *
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 

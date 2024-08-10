@@ -1,3 +1,0 @@
-D:/zdhlog/EKIA/ndktest/app/.cxx/cmake/release/arm64-v8a/CMakeFiles/native-lib.dir
-D:/zdhlog/EKIA/ndktest/app/.cxx/cmake/release/arm64-v8a/CMakeFiles/edit_cache.dir
-D:/zdhlog/EKIA/ndktest/app/.cxx/cmake/release/arm64-v8a/CMakeFiles/rebuild_cache.dir

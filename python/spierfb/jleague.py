@@ -1,3 +1,4 @@
+
 import mysql.connector, datetime, time, re, requests, yaml, lxml.html, pyquery, logging, logging.handlers, os, sys
 from bs4 import BeautifulSoup
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
@@ -53,7 +54,7 @@ J_Header = {  # j header
 def ryaml(key, peer="control"):
     # read yaml file
     homept = os.path.expanduser('~')
-    _f = open(f"{homept}/EKIA/python/spierfb/run.yml", "r", encoding="utf8")
+    _f = open(f"run.yml", "r", encoding="utf8")
     config = yaml.load(_f.read(), Loader=yaml.Loader)
     conf = config[peer]
     _f.close()
@@ -91,12 +92,12 @@ def logconfig(log_name='s'):
     log_obj = logging.getLogger(log_name)
     homept = os.path.expanduser('~')
     # fh = logging.FileHandler(f"{homept}/EKIA/python/spierfb/log.log", encoding="utf8")
-    log_path = os.path.join(f"{homept}/EKIA/python/spierfb/log.log")
+    log_path = os.path.join(f"log.log")
 
     log_obj.setLevel(logging.INFO)
     # interval 滚动周期，
     file_handler = TimedRotatingFileHandler(
-        filename=log_path, when="W6", interval=1, backupCount=3
+        filename=log_path, when="W6", interval=1, backupCount=1
     )
     file_handler.suffix = "%Y-%m-%d.log"
     file_handler.extMatch = re.compile(r"^\d{4}-\d{2}-\d{2}.log$")
@@ -110,9 +111,6 @@ def logconfig(log_name='s'):
 def Logi(msg):
     log.info(msg)
 
-
-def Loge(msg):
-    log.error(msg)
 
 
 def getkey(_dict, _value):
@@ -149,24 +147,25 @@ lock = threading.Lock()
 
 def w2db(_sql):
     lock.acquire()  # sql insert need source
-    if _sql is None: Loge("sql is empty [] ")
+    if _sql is None: Logi("sql is empty [] ")
     data = re.findall("\'(.*?)\'\,", _sql)
-    if data is []: Loge("匹配数据失败")
+    print(data)
+    if data is []: Logi("匹配数据失败")
     _date = data[0]
-    if ms.search("select * from j23 where date ='{}'".format(_date)) != []:
+    if ms.search("select * from j24 where date ='{}'".format(_date)) != []:
         Logi("{} exist,don't insert".format(_date))
     else:
         try:
             ms.update(_sql)
             Logi("j data insert successfully")
         except (Exception,):
-            Loge("fail {}".format(_sql))
+            Logi("fail {}".format(_sql))
     lock.release()
 
 
 def get_every_j_data(_url):
     url = "https://www.jleague.jp{}".format(_url)
-    __level = getlevel(re.findall('/match/(.*)/2023', _url)[0])
+    __level = getlevel(re.findall('/match/(.*)/2024', _url)[0])
     __round = ""
     __st = ""
     __status = False
@@ -176,14 +175,18 @@ def get_every_j_data(_url):
     __zc = ""
     __kc = ""
     Logi("start request {}".format(url))
+
+
     try:
         html = requests.get(url, verify=False, headers=J_Header, timeout=23)  # , proxies=self.proxies
     except(Exception,):
-        Loge("{} request error".format(url))
+        Logi("{} request error".format(url))
         return
+    __headers = html.headers
     Logi("request stutas:={}".format(html.status_code))
     time.sleep(.1)
     selector = lxml.html.fromstring(html.text)
+    # print(html.text)
     soup = BeautifulSoup(html.text, 'lxml')
     # get match info
     info = selector.cssselect("p span")
@@ -194,138 +197,23 @@ def get_every_j_data(_url):
     __kc = info[14].text  # kc
     __zj = selector.cssselect(".leagLeftScore")[0].text  # zj 主进
     __kj = selector.cssselect(".leagRightScore")[0].text  # kj 客进
-    __round = re.findall("第(.*?)節", "".join(selector.xpath('//span[@class=\'matchVsTitle__league\']/text()')))[-1]
-    __date = re.findall("2023/(.*?)/live", soup.link['href'])[0]
-    # get weather
-    weather_url = url.replace("live/", "ajax_live?_={}T{}")  # 天气信息ajax动态加载的.拼ajax的url
-    weather_url.format(datetime.date.today(), time.strftime('%H:%M', time.localtime(time.time())))
-    weather_page = requests.get(weather_url, verify=False, headers=J_Header).content.decode()
+    __round = re.findall("第(.*?)節", "".join(selector.xpath('//span[@class=\'matchVsTitle__league\']/text()')))[0]
+    __date = re.findall("2024/(.*?)/live", soup.link['href'])[0]
     time.sleep(1)
-    weather_info = lxml.html.fromstring(weather_page)
-    weather_info_list = weather_info.cssselect(".bgGray + td")
-    weather = "".join(re.findall("(.*?)\/", weather_info_list[4].text))[:1]
+
+    # get weather
+    replace = url.replace('https://www.jleague.jp','').replace('live/','')
+    dictd = {"url": replace}
+    weather = "空"
     # get start time
     ss = pyquery.PyQuery(html.text)
     sk = ss.find(ryaml("sj_css", "css")).text()
     st = re.findall("\d+\:\d+", sk)[0].replace(":", "")
-    _sql = "INSERT INTO `j23` VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');" % (
-        __date, st, __level, str(int(__round)), weather, __zhu, "", __ke, __bc, __zj, __kj, __zc, __kc, "9.99", "9.99",
-        "9.99")
+    _sql = f"INSERT INTO `j24` VALUES ('{__date}', '{st}', '{__level}', '{str(int(__round))}', '{weather}', '{__zhu}', '', '{__ke}', '{__bc}', '{__zj}', '{__kj}', '{__zc}', '{__kc}', '9.99', '9.99', '9.99');"
     Logi(f"sql:={_sql}")
     html.close()
     w2db(_sql)
     return True
-
-
-# L = 'A'
-# class GetPeilv:
-#     from selenium import webdriver
-#     def __init__(self):
-#         '''
-#         从球探上获取数据，取代500 . 先用webdriver -> pagesource -> id,name -> peilv -> create sql -> done
-#         '''
-#         self.A = "http://zq.win007.com/cn/SubLeague/2022/25.html"
-#         self.B = "http://zq.win007.com/cn/SubLeague/2022/284.html"
-#         self.durl = "http://zq.win007.com/League/LeagueOddsAjax"
-#         self.level = L
-#         self.page_source = ""
-#         self.zhu = ""
-#         self.win = ""
-#         self.draw = ""
-#         self.lose = ""
-#         self.headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36'}
-#
-#     def insert_before(self):
-#         #
-#         sql_list = ms.search("select distinct(round) from j22 where level='%s' and win='9.99'" % self.level)
-#         round_list = [x[0] for x in sql_list]
-#         args = (self.level, round_list)
-#         return args
-#
-#     def run(self):
-#         level,round_l = self.insert_before()
-#         print(round_l)
-#         if round_l is []: return
-#         win007_index = webdriver.Chrome('/usr/local/bin/chromedriver')
-#         if level == 'A':
-#             win007_index.get(self.A)
-#             time.sleep(1)
-#             win007_index.find_element_by_css_selector('#leagueDiv2 > ul > li:nth-child(1) > a').click()
-#             time.sleep(1)
-#             for r in round_l:
-#                 win007_index.find_element_by_css_selector(f'#Table2 > tbody > tr:nth-child(1) > td:nth-child({1+int(r)})').click()
-#                 time.sleep(4)
-#                 self.page_source = win007_index.page_source
-#                 peilvstr = re.compile('<tr (.*?)</a><sup')
-#                 infolist = peilvstr.findall(self.page_source)
-#                 # print(infolist)
-#                 for k in infolist:
-#                     _id = re.findall("\d+", k)[0]  # id
-#                     _zhu = re.findall("k\">(.*)", k)[0]  # 主队
-#                     print(_id, _zhu)
-#                     self.getPeilv(_id, _zhu, r)
-#         elif level == 'B':
-#             win007_index.get(self.B)
-#             time.sleep(1)
-#             win007_index.find_element_by_css_selector('#leagueDiv2 > ul > li:nth-child(2) > a').click()
-#             time.sleep(1)
-#             for r in round_l:
-#                 win007_index.find_element_by_css_selector(f'#Table2 > tbody > tr:nth-child(1) > td:nth-child({1+int(r)})').click()
-#                 time.sleep(1)
-#                 self.page_source = win007_index.page_source
-#                 peilvstr = re.compile('<tr (.*?)</a><sup')
-#                 infolist = peilvstr.findall(self.page_source)
-#                 # print(infolist)
-#                 for k in infolist:
-#                     _id = re.findall("\d+", k)[0]  # id
-#                     _zhu = re.findall("k\">(.*)", k)[0]  # 主队
-#                     print(_id, _zhu)
-#                     self.getPeilv(_id, _zhu, r)
-#
-#     def getPeilv(self, id, zhu, round):
-#         requestdata = {
-#             "sclassId": '25',
-#             "subSclassId": "943",
-#             "matchSeason": "2022",
-#             "round": str(round),
-#             "flesh": "0.23699970411978874"
-#         }
-#         int = id
-#         if self.level =='B':
-#             requestdata['sclassId'] = '284'
-#             requestdata['subSclassId'] = '808'
-#         peilv = requests.get(url=self.durl, params=requestdata, headers=self.headers)
-#         print(peilv.text)
-#         recompile = re.compile('oddsData\[\"O_{}\"\]=(.*?)]]'.format(int))  # 正则对象
-#         findStr = recompile.search(peilv.text)
-#         if findStr is None: return
-#         findStr1 = recompile.search(peilv.text).group()[22::]
-#         finddict = eval(findStr1)
-#         for key in finddict:
-#             if key[0] == 281:
-#                 # print(key[1], key[2], key[3])
-#                 self.win = key[1]
-#                 self.draw = key[2]
-#                 self.lose = key[3]
-#                 updatesql = (
-#                         "update j23 set win='%s',draw='%s',lose='%s' where zhu='%s' and round='%s'" % (
-#                     self.win, self.draw, self.lose, Team_PL[zhu], round))
-#                 Logi(updatesql)
-#                 self.writeSql(zhu, updatesql, round)
-#
-#     def writeSql(self, zhu_, sqlyuju, round):
-#         sql_lan = sqlyuju
-#         if sql_lan is []:
-#             Loge("sql not found ")
-#         else:
-#             try:
-#                 if ms.search("select win from j23 where zhu ='%s' and round='%s' " % (Team_PL[zhu_], round))[0][0] != 9.99:
-#                     Logi("peil exist don't insert")
-#                 else:
-#                     ms.update(sql_lan)
-#                     Logi("pv update succ={}\n".format(sql_lan))
-#             except(IndexError,):
-#                 print(f'{sql_lan} error')
 
 
 def run():

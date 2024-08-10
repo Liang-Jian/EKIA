@@ -56,6 +56,7 @@ endif
 
 #### termit 设置颜色
 shi@shis-MBP ~ % vi .bash_profile 
+shi@shis-MBP ~ % source .bash_profile 
 ```shell
 
 # Tell ls to be colourful

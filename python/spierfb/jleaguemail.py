@@ -231,9 +231,9 @@ def get_all_match_peilv(level, urlu):
         oods_list = driver.execute_script(peilvsql)
         team_list = driver.execute_script(team_oops)
         time_list = driver.execute_script(match_time)
-        # print(oods_list)
-        # print(team_list)
-        # print(time_list)
+        print(oods_list)
+        print(team_list)
+        print(time_list)
         time.sleep(5)
         driver.quit()
         return oods_list, team_list, time_list

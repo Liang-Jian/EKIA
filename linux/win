@@ -7,8 +7,6 @@ GRADLE_HOME    : D:\gradle-5.4.1
 ALLURE_HOME    : D:\allure
 MAVEN_HOME     : D:\apache-maven-3.6.3
 
-## 编译器rgb 颜色
-R 199 G 237 B 204
-R 0 G 128 B 128
+
 
 

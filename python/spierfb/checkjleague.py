@@ -13,19 +13,18 @@ import threading
 from bs4 import BeautifulSoup
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 from logging.handlers import TimedRotatingFileHandler
-requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
+requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
 """ 使用crontab 每周三/四 凌晨 查看数据库数据是否有缺失 。
     需要修改 年 23年 
-    
+
 crontab写法
 
 10,50 2 * * 3 /usr/local/python3 /var/a.py
 
 
 """
-
 
 JTeam = {  # all j team
     "浦和红钻": "浦和", "大阪樱花": "Ｃ大阪", "鹿岛鹿角": "鹿島", "名古屋鲸": "名古屋", "鸟栖沙岩": "鳥栖",
@@ -49,8 +48,8 @@ Team_PL = {  # all 007 team
     "千叶市原": "千葉", "冈山绿雉": "岡山", "德岛漩涡": "徳島", "山形山神": "山形", "北九州": "北九州",
     "爱媛FC": "愛媛", "山口雷诺": "山口", "甲府风林": "甲府", "大宫松鼠": "大宮", "秋田闪电": "秋田",
     "岐阜FC": "岐阜", "大分三神": "大分", "町田泽维": "町田", "新泻天鹅": "新潟", "相模原SC": "相模原",
-    "京都不死鸟": "京都", "赞岐釜玉": "讃岐", "熊本深红": "熊本", "群马温泉": "群馬", "FC琉球": "琉球","群马草津温泉":"群馬",
-    "町田泽维亚":"町田","山口雷法":"山口","长崎成功丸":"長崎"
+    "京都不死鸟": "京都", "赞岐釜玉": "讃岐", "熊本深红": "熊本", "群马温泉": "群馬", "FC琉球": "琉球", "群马草津温泉": "群馬",
+    "町田泽维亚": "町田", "山口雷法": "山口", "长崎成功丸": "長崎"
 
 }
 
@@ -71,6 +70,7 @@ def ryaml(key, peer="control"):
     # read yaml file
     homept = os.path.expanduser('~')
     _f = open(f"{homept}/EKIA/python/spierfb/run.yml", "r", encoding="utf8")
+    #_f = open(f"run.yml", "r", encoding="utf8")
     config = yaml.load(_f.read(), Loader=yaml.Loader)
     conf = config[peer]
     _f.close()
@@ -169,7 +169,7 @@ def w2db(_sql):
     data = re.findall("\'(.*?)\'\,", _sql)
     if data is []: Loge("匹配数据失败")
     _date = data[0]
-    if ms.search("select * from j23 where date ='{}'".format(_date)) != []:
+    if ms.search("select * from j24 where date ='{}'".format(_date)) != []:
         Logi(f"{_date} exist,don't insert")
     else:
         try:
@@ -182,7 +182,7 @@ def w2db(_sql):
 
 def get_every_j_data(_url):
     url = "https://www.jleague.jp{}".format(_url)
-    __level = getlevel(re.findall('/match/(.*)/2023', _url)[0])
+    __level = getlevel(re.findall('/match/(.*)/2024', _url)[0])
     __round = ""
     __st = ""
     __status = False
@@ -211,7 +211,7 @@ def get_every_j_data(_url):
     __zj = selector.cssselect(".leagLeftScore")[0].text  # zj 主进
     __kj = selector.cssselect(".leagRightScore")[0].text  # kj 客进
     __round = re.findall("第(.*?)節", "".join(selector.xpath('//span[@class=\'matchVsTitle__league\']/text()')))[-1]
-    __date = re.findall("2023/(.*?)/live", soup.link['href'])[0]
+    __date = re.findall("2024/(.*?)/live", soup.link['href'])[0]
     # get weather
     weather_url = url.replace("live/", "ajax_live?_={}T{}")  # 天气信息ajax动态加载的.拼ajax的url
     weather_url.format(datetime.date.today(), time.strftime('%H:%M', time.localtime(time.time())))
@@ -224,9 +224,7 @@ def get_every_j_data(_url):
     ss = pyquery.PyQuery(html.text)
     sk = ss.find(ryaml("sj_css", "css")).text()
     st = re.findall("\d+\:\d+", sk)[0].replace(":", "")
-    _sql = "INSERT INTO `j23` VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');" % (
-        __date, st, __level, str(int(__round)), weather, __zhu, "", __ke, __bc, __zj, __kj, __zc, __kc, "9.99", "9.99",
-        "9.99")
+    _sql = f"INSERT INTO `j24` VALUES ('{__date}', '{st}', '{__level}', '{str(int(__round))}', '{weather}', '{__zhu}', '', '{__ke}', '{__bc}', '{__zj}', '{__kj}', '{__zc}', '{__kc}', '9.99', '9.99', '9.99');"
     Logi(f"sql:={_sql}")
     html.close()
     w2db(_sql)
@@ -235,7 +233,7 @@ def get_every_j_data(_url):
 
 def get_unfull_data(level='C'):
     # 检查每轮数据中不全的数据
-    s = ms.search(f"select round,count(*) from j23 where level='{level}' group by round")
+    s = ms.search(f"select round,count(*) from j24 where level='{level}' group by round")
     url_list = list()
     _unfull_round = list()
     num = 0
@@ -264,7 +262,7 @@ def get_unfull_data(level='C'):
 
 def get_unfull_data_round(level='C'):
     # 检查没有轮数的数据
-    info = ms.search(f"select distinct(round) from j23 where level='{level}'")
+    info = ms.search(f"select distinct(round) from j24 where level='{level}'")
     db_round = [x[0] for x in info]
     # print(db_round)
     match_round = []
@@ -276,7 +274,7 @@ def get_unfull_data_round(level='C'):
         match_round = [x for x in range(1, 34)]
     else:
         Logi("not found match round")
-    unfound_round = list(set(match_round)-set(db_round))
+    unfound_round = list(set(match_round) - set(db_round))
     url_list = list()
     if len(unfound_round) > 0:
         Logi(f"level {level} at {unfound_round} not found in db, catch it")
