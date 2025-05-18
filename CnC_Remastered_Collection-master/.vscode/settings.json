@@ -1,7 +1,0 @@
-{
-    "files.associations": {
-        "__bit_reference": "cpp",
-        "ostream": "cpp"
-    },
-    "C_Cpp.errorSquiggles": "disabled"
-}

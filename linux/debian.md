@@ -210,3 +210,21 @@ pi@centos:~ $ ldconfig -p | grep libmmal
 	libmmal_core.so (libc6) => /opt/vc/lib/libmmal_core.so
 	libmmal_components.so (libc6) => /opt/vc/lib/libmmal_components.so
 	libmmal.so (libc6) => /opt/vc/lib/libmmal.so
+
+
+
+#### debian 安装docker
+```
+sudo apt i
+```
+
+#### debian install rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+
+#### ssh dong't need passwd
+1,服务器生成公要喝死药
+ssh-keygen -t rsa
+2，win把私钥id_sra 复制出来。放到终端配置中
+3，mac
+ssh-copy-id root@{ip}
