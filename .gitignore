@@ -1,0 +1,17 @@
+*.log
+*.yml
+*.pem
+*.zip
+*.txt
+*.rar
+/python/1.3.2
+/python/hs
+*/__pycache__
+*.jpg
+*.PNG
+*.JPG
+*.mp4
+.vscode
+.idea
+!apitk/*.PNG
+!apitk/*.png
