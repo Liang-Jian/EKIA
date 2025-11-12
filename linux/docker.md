@@ -75,3 +75,6 @@ sudo sysctl -p
   --name chisel -p 9312:9312 \
   -d --restart always \
   jpillora/chisel server -p 9312 --socks5 --key supersecret`
+
+
+[root@VM_0_7_centos v2ray]# docker compose up -d

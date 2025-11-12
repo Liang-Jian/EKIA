@@ -11,10 +11,8 @@
 /python/api_demo
 /python/mui-js
 */__pycache__
-/apitk
 *.jpg
 *.PNG
-*.png
 *.JPG
 *.mp4
 .vscode
