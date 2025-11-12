@@ -1,6 +1,0 @@
-
-'''
-
-train demo from internet
-
-'''
