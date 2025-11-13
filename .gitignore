@@ -3,9 +3,6 @@
 *.pem
 *.zip
 *.txt
-*.rar
-/python/1.3.2
-/python/hs
 */__pycache__
 *.jpg
 *.PNG
@@ -15,3 +12,4 @@
 .idea
 !apitk/*.PNG
 !apitk/*.png
+target
