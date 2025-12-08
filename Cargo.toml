@@ -1,6 +1,11 @@
 [package]
-name = "akia"
+name = "EKIA"
 version = "0.1.0"
 edition = "2024"
+license = "MIT"
 
 [dependencies]
+tokio = { version = "1", features = ["full"] }
+tokio-serial = "5"
+bytes = "1"
+anyhow_ext = "0.2"
