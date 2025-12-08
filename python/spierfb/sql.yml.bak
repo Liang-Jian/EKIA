@@ -1,0 +1,46 @@
+mysql:
+  # 单轮进球数分布
+  jqfb: select zj+kj as f, count(*) as zong FROM {year} where LEVEL='{level}' and round={round} group by f ORDER BY zong DESC
+
+  # 胜负平 分布
+  wwl: "SELECT
+	CASE
+		WHEN zj-kj =0 THEN '平'
+		WHEN zj-kj >0 THEN '胜'
+		WHEN zj-kj <0 THEN '负'
+	END	
+		AS type , COUNT(*) as zong from {year} where LEVEL='{level}' group by type ORDER BY zong DESC "
+
+  # 半全场分布
+  bqc: "SELECT
+    CASE
+       WHEN left(bc,1) = right(bc,1) and zj = kj THEN '平平'
+			 WHEN left(bc,1) = right(bc,1) and zj > kj THEN '平胜'
+			 WHEN left(bc,1) = right(bc,1) and zj < kj THEN '平负'
+       WHEN left(bc,1) > right(bc,1)  and zj = kj THEN '胜平'
+			 WHEN left(bc,1) > right(bc,1)  and zj > kj THEN '胜胜'
+			 WHEN left(bc,1) > right(bc,1)  and zj < kj THEN '胜负'
+			 WHEN left(bc,1) < right(bc,1) and zj = kj THEN '负平'
+			 WHEN left(bc,1) < right(bc,1) and zj > kj THEN  '负胜'
+			 WHEN left(bc,1) < right(bc,1) and zj < kj THEN '负负'
+   END AS banquanchang, count(*) as total FROM {year}  WHERE level='{level}' group BY banquanchang order by total DESC "
+
+  # 角球数分布
+  cn: select zc+kc as cn,count(*) as zong  from {year} where level='{level}' GROUP BY cn ORDER BY zong DESC
+
+  # 半场进球数大于2.5的出现最多球队
+  cno: select zhu,sum(cout) as t from 
+      (
+      (select zhu,count(*) as cout from {year} where (zhu,ke) in (select zhu,ke from {year} where level='{level}' and left(bc,1)+right(bc,1) > 2.5 group by zhu,ke HAVING count(*) >=1) group by zhu ORDER BY cout desc ) union ALL
+      (select ke,count(*) as cout from {year} where (zhu,ke) in (select zhu,ke from {year} where level='{level}' and left(bc,1)+right(bc,1) > 2.5 group by zhu,ke HAVING count(*) >=1) group by ke ORDER BY cout desc )
+      ) test GROUP BY zhu ORDER BY t DESC
+
+  # 每一轮的进球数，角球数分布
+  ecs: select round,sum(zj+kj) as 总进球 , sum(zc+kc) as 总角球数 from j22 where level='A' group by round
+
+  # 半场进球数小于2 出现最多的队伍
+  ebs:  select zhu,sum(cout) as t from 
+      (
+      (select zhu,count(*) as cout from j22 where (zhu,ke) in (select zhu,ke from j22 where level='A' and left(bc,1)+right(bc,1) <2 group by zhu,ke HAVING count(*) >=1) group by zhu ORDER BY cout desc ) union ALL
+      (select ke,count(*) as cout from j22 where (zhu,ke) in (select zhu,ke from j22 where level='A' and left(bc,1)+right(bc,1) <2 group by zhu,ke HAVING count(*) >=1) group by ke ORDER BY cout desc )
+      ) test GROUP BY zhu ORDER BY t DESC
